@@ -17,3 +17,10 @@ const formatNumber = n => {
 module.exports = {
   formatTime
 }
+const debug = str => {
+  console.warn("DEBUG INFO: " + str)
+}
+
+module.exports = {
+  debug
+}

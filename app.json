@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/follows/follows-home/follows-home",
-        "pages/index/index-map/index-map",
         "pages/index/recommend/recommend",
+        "pages/index/index-map/index-map",
+        "pages/follows/follows-home/follows-home",
         "pages/my/my-home/my-home",
         "pages/schedule/calendar/calendar",
         "pages/schedule/sch-list/sch-list",
@@ -51,7 +51,8 @@
         "request": 10000,
         "downloadFile": 10000
     },
-    "debug": true,
+    "debug": false,
     "style": "v2",
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "themeLocation": "theme.json"
 }
