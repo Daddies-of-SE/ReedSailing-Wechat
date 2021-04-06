@@ -19,3 +19,5 @@
     </block>
   </view>
 </view>
+
+<button bind:tap="toMyAccount">我的账户</button>

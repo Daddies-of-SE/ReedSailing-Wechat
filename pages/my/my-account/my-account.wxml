@@ -1,0 +1,14 @@
+<!--pages/my/my-account/my-account.wxml-->
+
+<view>我的认证邮箱</view>
+<text>\n</text>
+<view wx:if="">已认证：{{verifiedEmail}}</view>
+<view wx:else>
+  <view style="flex-direction:row; display:flex;">
+    <input value="{{inputEmailAddress}}" placeholder="请输入地址" bindinput="inputEmailHandler" style="width:50%"/>
+    <text style="width:30%">@buaa.edu.cn</text>
+  </view>
+  <button bindtap="submitVerifyEmail" style="width:50%">发送验证码</button>
+  <input value="{{inputVerifyCode}}" placeholder="请输入邮箱验证码" bindinput="inputVerifyCodeHandler" style="width:50%"/>
+  <button bindtap="submitVerifyCode" style="width:50%">提交验证</button>
+</view>

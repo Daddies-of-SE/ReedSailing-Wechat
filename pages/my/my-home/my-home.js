@@ -40,5 +40,11 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+
+  toMyAccount() {
+    wx.navigateTo({
+      url: '../my-account/my-account',
+    })
   }
 })

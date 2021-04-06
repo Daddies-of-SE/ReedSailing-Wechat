@@ -1,58 +1,60 @@
 {
-    "pages": [
-        "pages/index/recommend/recommend",
-        "pages/index/index-map/index-map",
-        "pages/follows/follows-home/follows-home",
-        "pages/my/my-home/my-home",
-        "pages/schedule/calendar/calendar",
-        "pages/schedule/sch-list/sch-list",
-        "pages/sections/sections-home/sections-home",
-        "pages/sections/org-detail/org-detail",
-        "pages/sections/act-detail/act-detail",
-        "pages/my/my-org/my-org",
-        "pages/my/my-act/my-act",
-        "pages/my/new-act/new-act",
-        "pages/my/new-org/new-org",
-        "pages/my/org-admin/org-act/org-act",
-        "pages/my/org-admin/org-info/org-info",
-        "pages/my/org-admin/org-people/org-people"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "一苇以航",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "list": [
-            {
-                "pagePath": "pages/index/recommend/recommend",
-                "text": "首页"
-            },
-            {
-                "pagePath": "pages/sections/sections-home/sections-home",
-                "text": "分区"
-            },
-            {
-                "pagePath": "pages/follows/follows-home/follows-home",
-                "text": "关注"
-            },
-            {
-                "pagePath": "pages/schedule/calendar/calendar",
-                "text": "日程"
-            },
-            {
-                "pagePath": "pages/my/my-home/my-home",
-                "text": "我的"
-            }
-        ]
-    },
-    "networkTimeout": {
-        "request": 10000,
-        "downloadFile": 10000
-    },
-    "debug": false,
-    "style": "v2",
-    "sitemapLocation": "sitemap.json",
-    "themeLocation": "theme.json"
+  "pages": [
+    "pages/index/recommend/recommend",
+    "pages/index/index-map/index-map",
+    "pages/follows/follows-home/follows-home",
+    "pages/my/my-home/my-home",
+    "pages/schedule/calendar/calendar",
+    "pages/schedule/sch-list/sch-list",
+    "pages/sections/sections-home/sections-home",
+    "pages/sections/org-detail/org-detail",
+    "pages/sections/act-detail/act-detail",
+    "pages/my/my-org/my-org",
+    "pages/my/my-act/my-act",
+    "pages/my/new-act/new-act",
+    "pages/my/new-org/new-org",
+    "pages/my/org-admin/org-act/org-act",
+    "pages/my/org-admin/org-info/org-info",
+    "pages/my/org-admin/org-people/org-people",
+    "pages/my/my-account/my-account",
+    "pages/sections/forum-detail/forum-detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "一苇以航",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/recommend/recommend",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/sections/sections-home/sections-home",
+        "text": "分区"
+      },
+      {
+        "pagePath": "pages/follows/follows-home/follows-home",
+        "text": "关注"
+      },
+      {
+        "pagePath": "pages/schedule/calendar/calendar",
+        "text": "日程"
+      },
+      {
+        "pagePath": "pages/my/my-home/my-home",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "themeLocation": "theme.json"
 }
