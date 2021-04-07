@@ -5,15 +5,28 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        orgInfo: {},
+        hasOrgInfo: false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
-    },
+        wx.request({
+          url: 'url',
+          header: {
+            'content-type': 'application/json'
+          },
+          success: res => {
+            console.log(res) //控制台打印
+            this.setData({
+              orgInfo: res.orgInfo,
+              hasOrgInfo: True
+            })
+          }
+        })
+      },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
