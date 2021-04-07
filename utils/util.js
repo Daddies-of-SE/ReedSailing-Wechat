@@ -14,13 +14,11 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
-module.exports = {
-  formatTime
-}
 const debug = str => {
   console.warn("DEBUG INFO: " + str)
 }
 
 module.exports = {
-  debug
+  debug,
+  formatTime
 }

@@ -1,6 +1,7 @@
 // pages/my/my-account/my-account.js
 
 const util = require('../../../utils/util.js')
+const interact = require('../../../utils/interact.js')
 
 Page({
 
@@ -72,6 +73,7 @@ Page({
   submitVerifyEmail(e) {
     var addr = this.data.inputEmailAddress + "@buaa.edu.cn"
     util.debug("submit email address: " + addr)
+    interact.submitEmailAddress(addr)
     //TODO
     //TODO: 60秒间隔
   },
