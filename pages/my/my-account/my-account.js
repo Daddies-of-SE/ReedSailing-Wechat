@@ -71,6 +71,13 @@ Page({
   },
 
   submitVerifyEmail(e) {
+    if (this.data.inputEmailAddress == "") {
+      wx.showToast({
+        title: "请输入邮箱",
+        icon: 'none'
+      })
+      return
+    }
     var addr = this.data.inputEmailAddress + "@buaa.edu.cn"
     util.debug("submit email address: " + addr)
     interact.submitEmailAddress(addr)
