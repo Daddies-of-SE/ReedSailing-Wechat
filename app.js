@@ -11,8 +11,19 @@ App({
 
     // 登录
     wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      success (res) {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: 'http://127.0.0.1:8000/login/',
+            data: {
+              code: res.code
+            },
+            method: "POST", 
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
   },
