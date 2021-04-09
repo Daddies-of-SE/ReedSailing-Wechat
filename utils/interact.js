@@ -2,6 +2,7 @@ const app = getApp()
 const util = require("util.js")
 
 function getAPIUrl(params) {
+  // const server = 'http://www.reedsailing.xyz/'
   const server = 'http://127.0.0.1:8000/'
   return server + params;
 }
@@ -46,7 +47,7 @@ function submitEmailAddress(addr) {
   //     title: '提交成功',
   //     icon: 'success'
   //   })
-  // }
+  // } 
   // else {
   //   wx.showToast({
   //     title: '无法连接服务器',
