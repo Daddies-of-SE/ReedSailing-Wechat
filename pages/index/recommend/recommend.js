@@ -8,7 +8,14 @@ Page({
      * 页面的初始数据
      */
     data: {
-        info : "userInfo未获取"
+        info : "userInfo未获取",
+        haveLogin : false
+    },
+
+    onLoad(){
+        this.setData({
+            haveLogin : app.loginData.token != ""
+        })
     },
 
     //TODO
@@ -48,11 +55,13 @@ Page({
           wx.showModal({
             title: '登录失败1',
             content: text,
-            showCancel: false,
+            showCancel: true,
             confirmText: '重试',
             success: res => {
-              wx.showLoading({ title: '正在重试', mask: true });
-              that.getCodeLogin(userInfo);
+              if (res.confirm) {
+                wx.showLoading({ title: '正在重试', mask: true });
+                that.getCodeLogin(userInfo);
+              }
             }
           });
         }
@@ -69,7 +78,8 @@ Page({
                   icon: 'success'
                 })
                 this.setData({
-                    info : JSON.stringify(app.loginData.userInfo)
+                    info : JSON.stringify(app.loginData.userInfo),
+                    haveLogin : true
                 })
               }).catch((e) => {
                 console.error("登录失败2：" + e.errMsg);

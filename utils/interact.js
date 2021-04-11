@@ -17,7 +17,8 @@ function saveLoginData(data) {
   wx.setStorage({
     data: {
       token: data.token,
-      userInfo: data.userInfo
+      userInfo: data.userInfo,
+      email : data.email
     },
     key: 'login',
   })
@@ -27,7 +28,8 @@ function saveLoginData(data) {
   }
   app.loginData = {
     token: data.token,
-    userInfo: data.userInfo
+    userInfo: data.userInfo,
+    email : data.email
   }
 }
 
@@ -125,19 +127,24 @@ function request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
+        if (!result.data.success) {
+          util.debug("result.data.success in request: " + result.data.success)
+          wx.hideToast()
+          wx.showModal({
+            title: funcInfo.funcName + "请求失败 (errCode:" + result.data.errCode + ")",
+            content: result.data.msg,
+            showCancel: true,
+            confirmText: '确认',
+          })
+        }
+
         //如果状态码为401 Unauthorized
         if (result.statusCode == 401) {
           catchUnLogin(funcInfo);
           return
         } else if (result.statusCode != 200) { // 如果状态码不是200
-          // if (funcInfo.options.fail)
-          //   funcInfo.options.fail({ err: result, errMsg: "服务器发生错误" })
-          // else
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         }
-
-        // if (funcInfo.options.success)
-        //   funcInfo.options.success(result)
         funcInfo.resolve(result);
 
       },
@@ -147,7 +154,11 @@ function request(urlpath, data, funcInfo) {
         // if (funcInfo.options.fail)
         //   funcInfo.options.fail(e)
         // else
-          funcInfo.reject(e);
+        funcInfo.reject(e);
+        wx.showToast({
+          'title' : '无法连接服务器',
+          'icon' : 'none',
+        }) 
       }
     })
   }).catch(() => {
@@ -190,7 +201,8 @@ module.exports.login = function (options) {
         if (res.data.token) {
           saveLoginData({
             token: res.data.token,
-            userInfo: options.userInfo
+            userInfo: options.userInfo,
+            email: res.data.email
           });
           if (options.success)
             options.success(res);
@@ -254,45 +266,24 @@ module.exports.submitEmailAddress = function (addr) {
         reject: reject,
         resolve: resolve
       })
+  })
+}
 
-      // wx.request({
-      //   url: getAPIUrl('sendVerify/'),
-      //   data: {
-      //     email: addr
-      //   },
-      //   // method: 'GET',
-      //   header:{
-      //     "content-type": "application/x-www-form-urlencoded"		//使用POST方法要带上这个header
-      //   },
-      //   method: "POST",
-      //   success: function (res) {
-      //     util.debug("request success" + res)
-      //     util.debug(res.success + res.mess)
-
-      //     //如果返回数据存在token则记录并返回token
-      //     if (res.data.success) {
-      //       util.debug("find success", res.data.success)
-      //       wx.showToast({
-      //         title: '提交成功',
-      //         icon: 'success' 
-      //       })
-      //     } else { //如果不存在则报错
-      //       util.debug("服务器返回data ")
-      //       util.debug(res)
-      //       wx.showToast({
-      //         title: '服务器返回无效token',
-      //         icon: 'error'
-      //       })
-      //     }
-      //   },
-
-      //   fail: function (res) {
-      //     util.debug("request fail" + res)
-      //     wx.showToast({
-      //       title: '无法连接服务器',
-      //       icon: 'error'
-      //     })
-      //   }
-      // })
+module.exports.submitVerifyCode = function (addr, code) {
+  return new Promise((resolve, reject) => {
+      wx.showToast({
+        title: '提交中',
+        icon: 'loading'
+      })
+      request('verify', 
+        {
+          email: addr,
+          verifyCode: code,
+        }, {
+          func: module.exports.submitVerifyCode,
+          funcName: 'submitVerifyCode',
+          reject: reject,
+          resolve: resolve
+      })
   })
 }
