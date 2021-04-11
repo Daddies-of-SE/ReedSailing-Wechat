@@ -1,2 +1,10 @@
 <!--pages/sections/org-detail/org-detail.wxml-->
-<text>pages/sections/org-detail/org-detail.wxml</text>
+
+  <!--搜索框-->
+  <view class="search-bar">
+      <view class="search" bindtap="">
+          <image class="search-logo" src='/icon/search.png' mode="aspectFit"></image>
+          搜索组织
+      </view>
+  </view>
+    

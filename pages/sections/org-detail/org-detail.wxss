@@ -1,1 +1,34 @@
 /* pages/sections/org-detail/org-detail.wxss */
+
+.search-bar {
+  position: fixed;
+  /* top: 0rpx; */
+  display: flex;
+  justify-content: center;
+  height: 110rpx;
+  width: 100%;
+  background: #fff;
+  z-index: 100;
+}
+
+.search {
+  width: 700rpx;
+  border-radius: 35rpx;
+  background: #ededed;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.search-logo {
+  width: 27rpx;
+  height: 27rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 6rpx;
+  margin-right: 5rpx;
+}

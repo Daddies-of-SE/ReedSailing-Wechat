@@ -4,8 +4,7 @@
     "pages/index/index-map/index-map",
     "pages/follows/follows-home/follows-home",
     "pages/my/my-home/my-home",
-    "pages/schedule/calendar/calendar",
-    "pages/schedule/sch-list/sch-list",
+    "pages/schedule/schedule",
     "pages/sections/sections-home/sections-home",
     "pages/sections/org-detail/org-detail",
     "pages/sections/act-detail/act-detail",
@@ -40,7 +39,7 @@
         "text": "关注"
       },
       {
-        "pagePath": "pages/schedule/calendar/calendar",
+        "pagePath": "pages/schedule/schedule",
         "text": "日程"
       },
       {
@@ -57,8 +56,5 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "themeLocation": "theme.json",
-  "usingComponents": {
-    
-    
-  }
+  "usingComponents": {}
 }

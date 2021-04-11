@@ -1,0 +1,18 @@
+<!--pages/schedule/schedule.wxml-->
+<view class="swiper-tab">
+    <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">活动日历</view>
+    <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">活动列表</view>
+</view>
+ 
+<swiper current="{{currentTab}}" class="swiper" duration="300" style="height:{{winHeight - 30}}px" bindchange="bindChange">
+    <swiper-item>
+        <!--活动日历-->
+       
+    </swiper-item>
+
+
+    <swiper-item>
+        <!--活动列表-->
+        
+    </swiper-item>
+</swiper>
