@@ -2,6 +2,7 @@
 
 const util = require('../../../utils/util.js')
 const interact = require('../../../utils/interact.js')
+const app = getApp()
 
 Page({
 
@@ -9,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    verifiedEmail : false,
+    verifiedEmail : "",
     inputEmailAddress : "",
     inputVerifyCode : "",
     second: 60,
@@ -19,7 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //TODO: 更新verifiedEmail
+    this.setData({
+      verifiedEmail : app.loginData.email
+    })
   },
 
   /**
@@ -84,7 +87,6 @@ Page({
     interact.submitEmailAddress(addr).then(
       (res) => {
         if (res.data.success) {
-          util.debug("find success", res.data.success)
           wx.showToast({
             title: '提交成功',
             icon: 'success' 
@@ -112,8 +114,23 @@ Page({
       })
     }
     else {
+      var addr = this.data.inputEmailAddress + "@buaa.edu.cn"
       util.debug("submit verify code: " + this.data.inputVerifyCode)
-      //TODO
+      interact.submitVerifyCode(addr, this.data.inputVerifyCode).then(
+        (res) => {
+          util.debug("res.data.success: " + res.data.success)
+          if (res.data.success) {
+            wx.showToast({
+              title: '验证成功',
+              icon: 'success' 
+            })
+            app.loginData.email = addr
+            this.setData({
+              verifiedEmail : addr
+            })
+          }
+        }
+      )
     }
   },
 

@@ -2,7 +2,7 @@
 
 <view>我的认证邮箱</view>
 <text>\n</text>
-<view wx:if="">已认证：{{verifiedEmail}}</view>
+<view wx:if="{{verifiedEmail != ''}}">已认证：{{verifiedEmail}}</view>
 <view wx:else>
   <view style="flex-direction:row; display:flex;">
     <input value="{{inputEmailAddress}}" placeholder="请输入地址" bindinput="inputEmailHandler" style="width:50%"/>

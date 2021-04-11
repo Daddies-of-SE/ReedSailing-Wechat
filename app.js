@@ -4,7 +4,8 @@ const util = require('utils/util.js')
 App({
   loginData: {
     token: '',
-    userInfo: {}
+    userInfo: {},
+    email: ''
   },
   onLaunch() {
     util.debug("launching app...")
