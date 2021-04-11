@@ -46,5 +46,29 @@ Page({
     wx.navigateTo({
       url: '../my-account/my-account',
     })
-  }
+  },
+
+  toMyOrg() {
+    wx.navigateTo({
+      url: '../my-org/my-org',
+    })
+  },
+
+  toMyAct() {
+    wx.navigateTo({
+      url: '../my-act/my-act',
+    })
+  },
+
+  toNewAct() {
+    wx.navigateTo({
+      url: '../new-act/new-act',
+    })
+  },
+
+  toFeedback() {
+    wx.navigateTo({
+      url: '../feedback/feedback',
+    })
+  },
 })
