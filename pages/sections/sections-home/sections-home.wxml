@@ -20,6 +20,8 @@
     <swiper-item>
         <!--组织界面-->
         <view class="org">
+            
+
             <!--搜索框-->
             <view class="search-bar">
                 <view class="search" bindtap="">

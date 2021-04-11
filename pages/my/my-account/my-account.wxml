@@ -8,7 +8,13 @@
     <input value="{{inputEmailAddress}}" placeholder="请输入地址" bindinput="inputEmailHandler" style="width:50%"/>
     <text style="width:30%">@buaa.edu.cn</text>
   </view>
-  <button bindtap="submitVerifyEmail" style="width:50%">发送验证码</button>
+  <view wx:if="{{second==60}}">
+    <button bindtap="submitVerifyEmail" style="width:50%">发送验证码</button>
+  </view>
+  <view wx:else>
+    <button bindtap="warnWait" style="width:50%">重新发送({{second}})</button>
+  </view>
+
   <input value="{{inputVerifyCode}}" placeholder="请输入邮箱验证码" bindinput="inputVerifyCodeHandler" style="width:50%"/>
   <button bindtap="submitVerifyCode" style="width:50%">提交验证</button>
 </view>

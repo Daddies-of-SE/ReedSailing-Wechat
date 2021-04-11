@@ -1,2 +1,11 @@
 <!--pages/index/recommend.wxml-->
-<text>pages/index/recommend.wxml</text>
+<text>pages/index/recommend.wxml\n\n</text>
+
+<mp-dialog title="授权提示" show="{{loginDialogShow}}" bindbuttontap="loginDialogTap" buttons="{{[{text: '取消'}]}}" bindbuttontap="loginDialogClose">
+	<view class="auth-content">
+		<text>授权使用用户信息后才可使用全部功能，是否授权？</text>
+		<button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">去授权</button>
+	</view>
+</mp-dialog>
+
+<view>{{info}}</view>
