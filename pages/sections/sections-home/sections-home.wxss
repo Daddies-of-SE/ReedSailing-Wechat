@@ -1,1 +1,91 @@
 /* pages/sections/sections-home/sections-home.wxss */
+
+
+.swiper-tab{
+  width: 100%;  
+  text-align: center;  
+  line-height: 80rpx;
+  border-bottom: 1px solid #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.tab-item{
+  flex: 1;
+  font-size: 30rpx;  
+  display: inline-block;   
+  color: #777777;
+}
+.on{
+  color: red;  
+  border-bottom: 5rpx solid red;
+}
+
+/*forum style*/
+
+
+.forum {
+  display: flex;
+  flex-wrap:wrap;
+  margin-bottom: 20rpx;
+}
+
+.forum .item {
+  display: block;
+  height: 241rpx;
+  width: 210rpx;
+  margin-right: 47rpx;
+}
+
+.forum .last {
+  margin-right: 0rpx;
+}
+
+.forum .item .icon {
+  height: 169rpx;
+  width: 210rpx;
+}
+
+.forum .item .text {
+  display: block;
+  text-align: center;
+  font-size: 32rpx;
+  color: #666;
+  height: 72rpx;
+  width: 210rpx;
+  overflow:hidden;
+}
+
+/*org style*/
+.search-bar {
+  position: fixed;
+  top: 0rpx;
+  display: flex;
+  justify-content: center;
+  height: 110rpx;
+  width: 100%;
+  background: #fff;
+  z-index: 100;
+}
+
+.search {
+  width: 700rpx;
+  border-radius: 35rpx;
+  background: #ededed;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.search-logo {
+  width: 27rpx;
+  height: 27rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 6rpx;
+  margin-right: 5rpx;
+}

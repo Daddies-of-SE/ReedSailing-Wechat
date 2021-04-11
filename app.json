@@ -56,5 +56,9 @@
   "debug": false,
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "themeLocation": "theme.json"
+  "themeLocation": "theme.json",
+  "usingComponents": {
+    
+    
+  }
 }

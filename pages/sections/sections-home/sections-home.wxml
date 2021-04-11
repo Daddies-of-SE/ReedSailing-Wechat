@@ -1,2 +1,35 @@
 <!--pages/sections/sections-home/sections-home.wxml-->
-<text>pages/sections/sections-home/sections-home.wxml</text>
+
+<view class="swiper-tab">
+    <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">板块</view>
+    <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">组织</view>
+</view>
+ 
+<swiper current="{{currentTab}}" class="swiper" duration="300" style="height:{{winHeight - 30}}px" bindchange="bindChange">
+    <swiper-item>
+        <!--板块界面-->
+        <view class="forum">
+            <view class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" wx:for="{{forum_list}}" wx:key="id">
+                <image class="icon" src="{{item.picUrl}}"></image>
+                <text class="text">{{item.title}}</text>
+            </view>
+        </view>
+    </swiper-item>
+
+
+    <swiper-item>
+        <!--组织界面-->
+        <view class="org">
+            
+
+            <!--搜索框-->
+            <view class="search-bar">
+                <view class="search" bindtap="">
+                    <image class="search-logo" src='/icon/search-log.png' mode="aspectFit"></image>
+                    搜索组织
+                </view>
+            </view>
+            
+        </view>
+    </swiper-item>
+</swiper>
