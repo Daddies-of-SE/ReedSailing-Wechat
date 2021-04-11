@@ -12,6 +12,7 @@ Page({
     verifiedEmail : false,
     inputEmailAddress : "",
     inputVerifyCode : "",
+    second: 60,
   },
 
   /**
@@ -80,9 +81,27 @@ Page({
     }
     var addr = this.data.inputEmailAddress + "@buaa.edu.cn"
     util.debug("submit email address: " + addr)
-    interact.submitEmailAddress(addr)
+    interact.submitEmailAddress(addr).then(
+      (res) => {
+        if (res.data.success) {
+          util.debug("find success", res.data.success)
+          wx.showToast({
+            title: '提交成功',
+            icon: 'success' 
+          })
+          this.timer()
+        }
+      }
+    )
     //TODO
     //TODO: 60秒间隔
+  },
+
+  warnWait(e) {
+    wx.showToast({
+      title: "请等待时间冷却",
+      icon: 'none'
+    })
   },
 
   submitVerifyCode(e) {
@@ -104,5 +123,27 @@ Page({
 
   inputVerifyCodeHandler(e) {
     this.data.inputVerifyCode = e.detail.value
+  },
+
+  timer() {
+    let promise = new Promise((resolve, reject) => {
+      let setTimer = setInterval(
+        () => {
+          this.setData({
+            second: this.data.second - 1
+          })
+          if (this.data.second <= 0) {
+            this.setData({
+              second: 60
+            })
+            resolve(setTimer)
+          }
+        }
+        , 1000)
+    })
+    promise.then((setTimer) => {
+      clearInterval(setTimer)
+    })
   }
+
 })
