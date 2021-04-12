@@ -1,4 +1,4 @@
-<!--pages/sections/org-detail/org-detail.wxml-->
+<!--pages/sections/org-list/org-list.wxml-->
 
   <!--搜索框-->
   <view class="search-bar">
@@ -8,3 +8,4 @@
       </view>
   </view>
     
+

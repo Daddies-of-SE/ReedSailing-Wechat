@@ -1,4 +1,3 @@
-
 Page({
  
     /**
@@ -14,27 +13,33 @@ Page({
             {
                 id : 0,
                 title : "社团",
-                picUrl : "/icon/sample.png"
+                hasOrgLevel: true,
+                picUrl : "/icon/sample.png",
+            
             },
             {
                 id : 1,
                 title : "博雅",
-                picUrl : "/icon/sample.png"
+                hasOrgLevel: false,
+                picUrl : "/icon/sample.png",
             },
             {
                 id : 2,
                 title : "学生会",
-                picUrl : "/icon/sample.png"
+                hasOrgLevel: true,
+                picUrl : "/icon/sample.png",
             },
             {
                 id : 3,
                 title : "志愿",
-                picUrl : "/icon/sample.png"
+                hasOrgLevel: true,
+                picUrl : "/icon/sample.png",
             },
             {
                 id : 4,
                 title : "个人",
-                picUrl : "/icon/sample.png"
+                hasOrgLevel: false,
+                picUrl : "/icon/sample.png",
             },
 
         ],
@@ -98,8 +103,16 @@ Page({
     },
 
     handleClick: function(e) {
-        wx.navigateTo({
-          url: '../forum-detail/forum-detail',
-        })
+        // console.log(e)
+        if (e.currentTarget.dataset.hasOrg) {
+            wx.navigateTo({
+                url: '../org-list/org-list',
+              })
+        } else {
+            wx.navigateTo({
+              url: '../act-list/act-list',
+            })
+        }
+        
     }
 })

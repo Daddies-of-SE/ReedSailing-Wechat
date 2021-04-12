@@ -3,7 +3,7 @@
 
 <!--板块界面-->
 <view class="forum">
-    <view class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" wx:for="{{forum_list}}" wx:key="id" bindtap="handleClick">
+    <view class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" wx:for="{{forum_list}}" data-has-org="{{item.hasOrgLevel}}" wx:key="id" bindtap="handleClick">
         <image class="icon" src="{{item.picUrl}}"></image>
         <text class="text">{{item.title}}</text>
     </view>

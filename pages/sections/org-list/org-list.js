@@ -1,4 +1,4 @@
-// pages/sections/forum-detail/forum-detail.js
+// pages/sections/org-list/org-list.js
 Page({
 
   /**

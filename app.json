@@ -6,7 +6,7 @@
     "pages/my/my-home/my-home",
     "pages/schedule/schedule",
     "pages/sections/sections-home/sections-home",
-    "pages/sections/org-detail/org-detail",
+    "pages/sections/act-list/act-list",
     "pages/sections/act-detail/act-detail",
     "pages/my/my-org/my-org",
     "pages/my/my-act/my-act",
@@ -16,7 +16,7 @@
     "pages/my/org-admin/org-info/org-info",
     "pages/my/org-admin/org-people/org-people",
     "pages/my/my-account/my-account",
-    "pages/sections/forum-detail/forum-detail"
+    "pages/sections/org-list/org-list"
   ],
   "window": {
     "backgroundTextStyle": "light",

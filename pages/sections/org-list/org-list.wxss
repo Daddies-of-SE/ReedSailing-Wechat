@@ -1,4 +1,4 @@
-/* pages/sections/org-detail/org-detail.wxss */
+/* pages/sections/org-list/org-list.wxss */
 
 .search-bar {
   position: fixed;
