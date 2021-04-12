@@ -1,0 +1,7 @@
+<!--pages/my/feedback/feedback.wxml-->
+
+<input placeholder="填写反馈"/>
+<input placeholder="留下联系方式（可选）"/>
+<button>提交反馈</button>
+
+<text>关于我们：\n一苇以航开发团队\n乐洋 史鑫杰 王肇凯 开聚实 王佳瑞 李永毅</text>

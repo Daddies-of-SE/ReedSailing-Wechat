@@ -21,3 +21,7 @@
 </view>
 
 <button bind:tap="toMyAccount">我的账户</button>
+<button bind:tap="toMyOrg">我管理的组织</button>
+<button bind:tap="toMyAct">我管理的活动</button>
+<button bind:tap="toNewAct">活动发布</button>
+<button bind:tap="toFeedback">提交反馈</button>

@@ -16,7 +16,8 @@
     "pages/my/org-admin/org-info/org-info",
     "pages/my/org-admin/org-people/org-people",
     "pages/my/my-account/my-account",
-    "pages/sections/org-list/org-list"
+    "pages/sections/org-list/org-list",
+    "pages/my/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "light",
