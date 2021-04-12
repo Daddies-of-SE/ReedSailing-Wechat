@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    forumName: null,
     forumInfo: {},
     hasForumInfo: false
 },
@@ -13,6 +14,9 @@ Page({
  * 生命周期函数--监听页面加载
  */
 onLoad: function (options) {
+    var appInstance = getApp()
+    this.setData({forumName: appInstance.globalData.currentForum})
+
     wx.request({
       url: 'url',
       header: {
@@ -76,5 +80,10 @@ onLoad: function (options) {
    */
   onShareAppMessage: function () {
 
+  },
+  goFoundOrg: function() {
+    wx.navigateTo({
+      url: '/pages/my/new-org/new-org',
+    })
   }
 })

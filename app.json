@@ -17,7 +17,8 @@
     "pages/my/org-admin/org-people/org-people",
     "pages/my/my-account/my-account",
     "pages/sections/org-list/org-list",
-    "pages/my/feedback/feedback"
+    "pages/my/feedback/feedback",
+    "pages/sections/org-list/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,5 +58,7 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "themeLocation": "theme.json",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-search": "lib/vant-weapp/search/index"
+  }
 }

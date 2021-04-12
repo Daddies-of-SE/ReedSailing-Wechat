@@ -104,6 +104,9 @@ Page({
 
     handleClick: function(e) {
         // console.log(e)
+        var appInstance = getApp()
+        appInstance.globalData.currentForum = e.currentTarget.dataset.name
+
         if (e.currentTarget.dataset.hasOrg) {
             wx.navigateTo({
                 url: '../org-list/org-list',

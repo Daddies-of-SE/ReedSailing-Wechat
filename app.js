@@ -7,6 +7,11 @@ App({
     userInfo: {},
     email: ''
   },
+  globalData: {
+    userInfo: null,
+    currentForum: null,
+    
+  },
   onLaunch() {
     util.debug("launching app...")
     // 展示本地存储能力
@@ -33,10 +38,8 @@ App({
       }
     })
   },
-  globalData: {
-    userInfo: null
-  },
   onError() {
     util.debug("Error encountered")
   }
+  
 })
