@@ -7,6 +7,7 @@
     "pages/schedule/schedule",
     "pages/sections/sections-home/sections-home",
     "pages/sections/act-list/act-list",
+    "pages/sections/act-list/mem-list/mem-list",
     "pages/sections/act-detail/act-detail",
     "pages/sections/boya/boya",
     "pages/my/my-org/my-org",
