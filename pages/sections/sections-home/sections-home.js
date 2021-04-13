@@ -112,9 +112,16 @@ Page({
                 url: '../org-list/org-list',
               })
         } else {
-            wx.navigateTo({
-              url: '../act-list/act-list',
-            })
+            if (e.currentTarget.dataset.name == "博雅") {
+                wx.navigateTo({
+                  url: '../boya/boya',
+                })
+            }
+            else {
+                wx.navigateTo({
+                url: '../act-list/act-list',
+                })
+            }
         }
         
     }

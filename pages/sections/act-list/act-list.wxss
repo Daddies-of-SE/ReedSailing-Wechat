@@ -1,2 +1,45 @@
 /* pages/sections/act-list/act-list.wxss */
 
+.org-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90rpx;
+  padding: 0 30rpx;
+}
+
+.folder {
+  width: 700rpx;
+  margin: 0 auto;
+}
+.folder .folder_item {
+  margin: 10rpx auto;
+}
+.folder .folder_item .title {
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #e2e2e2;
+  display: flex;
+}
+.folder .folder_item .title .title_1 {
+  width: 630rpx;
+  height: 60rpx;
+  padding-left: 20rpx;
+}
+.folder .folder_item .title .title_2 {
+  width: 50rpx;
+  height: 60rpx;
+  text-align: center;
+}
+.folder .folder_item .title .title_2 image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 10rpx auto;
+}
+.folder .folder_item .detail {
+  margin: 10rpx auto;
+  font-size: 25rpx;
+  line-height: 40rpx;
+  text-indent: 2em;
+}

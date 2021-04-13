@@ -1,0 +1,6 @@
+<!--pages/sections/boya/boya.wxml-->
+
+<!--博雅标题-->
+<view class="boya-header">
+    <text class="text">博雅课程</text>
+</view>

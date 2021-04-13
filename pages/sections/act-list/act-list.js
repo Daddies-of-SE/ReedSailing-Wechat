@@ -5,8 +5,10 @@ Page({
      * 页面的初始数据
      */
     data: {
+        orgName: null,
         orgInfo: {},
-        hasOrgInfo: false
+        hasOrgInfo: false,
+        showIndex: 0
     },
 
     /**
@@ -27,6 +29,18 @@ Page({
           }
         })
       },
+
+    panel: function (e) {
+      if (e.currentTarget.dataset.index != this.data.showIndex) {
+        this.setData({
+          showIndex: e.currentTarget.dataset.index
+        })
+      } else {
+        this.setData({
+          showIndex: 0
+        })
+      }
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

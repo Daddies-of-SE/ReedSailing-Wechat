@@ -8,6 +8,7 @@
     "pages/sections/sections-home/sections-home",
     "pages/sections/act-list/act-list",
     "pages/sections/act-detail/act-detail",
+    "pages/sections/boya/boya",
     "pages/my/my-org/my-org",
     "pages/my/my-act/my-act",
     "pages/my/new-act/new-act",
