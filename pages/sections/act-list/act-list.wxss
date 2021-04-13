@@ -8,6 +8,31 @@
   padding: 0 30rpx;
 }
 
+.org-header .picture {
+  height: 90rpx;
+  width: 90rpx;
+}
+
+.org-header .btn{
+  width: 120rpx;
+  height: 60rpx;
+  background-color: rgba(19, 173, 245, 0.548);
+  color: white;
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}
+
+.org-header .btn1::after {
+  border-radius: 49rpx;
+  border: 0;
+}
+
 .folder {
   width: 700rpx;
   margin: 0 auto;

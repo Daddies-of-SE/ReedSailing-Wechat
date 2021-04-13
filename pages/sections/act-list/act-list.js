@@ -6,7 +6,8 @@ Page({
      */
     data: {
         orgName: null,
-        orgInfo: {},
+        orgPicUrl: "/icon/sample.png",
+        orgInfo: {"orgInfo": "orgInfo"},
         hasOrgInfo: false,
         showIndex: 0
     },
@@ -40,6 +41,11 @@ Page({
           showIndex: 0
         })
       }
+    },
+
+    //关注页面
+    followOrg: function() {
+      
     },
 
     /**

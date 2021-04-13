@@ -3,6 +3,8 @@
 <!--组织名称-->
 <view class="org-header">
     <text class="text">{{orgName}}组织</text>
+    <image class="picture" src="{{orgPicUrl}}"></image>
+    <button class='btn' bindtap='followOrg'>关注</button>
 </view>
 
 <!--信息、管理员、活动-->
@@ -13,6 +15,7 @@
       <view class='title_2'><image src="/icon/{{showIndex == 1 ? 'up':'down'}}.png"></image></view>
     </view>
     <view class='detail' wx:if="{{showIndex == 1}}">没有信息</view>
+    <view class='detail' wx:if="{{showIndex == 1}}">{{orgInfo}}</view>
   </view>
   <view class='folder_item'>
     <view class='title' data-index='2' catchtap='panel'>
@@ -27,5 +30,8 @@
       <view class='title_2'><image src="/icon/{{showIndex == 3 ? 'up':'down'}}.png"></image></view>
     </view>
     <view class='detail' wx:if="{{showIndex == 3}}">活动都是假的</view>
+    <view class="list" wx:if="{{showIndex == 3}}">
+
+    </view>
   </view>
 </view>
