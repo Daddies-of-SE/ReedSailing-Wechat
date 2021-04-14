@@ -77,7 +77,6 @@
 }
 
 .msg-item .activity {
-  background: #aaa;
 }
 
 
@@ -99,7 +98,9 @@
 }
 
 .msg-item .content .content-body {
-
+  border-style:solid;
+  border-width:2rpx;
+  border-color: #666;
 }
 
 .msg-item .header {
