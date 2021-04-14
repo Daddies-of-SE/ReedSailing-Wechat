@@ -1,4 +1,6 @@
 // pages/sections/org-list/org-list.js
+const interact = require("../../../utils/interact.js")
+
 Page({
 
   /**
@@ -17,19 +19,16 @@ onLoad: function (options) {
     var appInstance = getApp()
     this.setData({forumName: appInstance.globalData.currentForum})
 
-    wx.request({
-      url: 'url',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: res => {
+    interact.getBlockOrgList(appInstance.globalData.currentForumID).then(
+      (res) => {
         console.log(res) //控制台打印
         this.setData({
           forumInfo: res.forumInfo,
-          hasForumInfo: True
+          hasForumInfo: True,
         })
       }
-    })
+    )
+
   },
 
 

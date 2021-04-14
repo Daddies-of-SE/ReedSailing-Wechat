@@ -1,2 +1,3 @@
 <!--pages/follows/follows-home/follows-home.wxml-->
+<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
 <text>pages/follows/follows-home/follows-home.wxml</text>

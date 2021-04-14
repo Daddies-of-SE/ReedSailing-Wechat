@@ -1,17 +1,23 @@
 const util = require('utils/util.js')
+const interact = require('utils/interact.js')
+const login = require('utils/login.js')
 
 // app.js
 App({
   loginData: {
     token: '',
-    userInfo: {},
-    email: ''
+    userInfo: '',
+    email : '',
+    userExist : -1,
+    userId : -1
   },
   globalData: {
     userInfo: null,
     currentForum: null,
-    
+    currentForumID: null
   },
+  server : 'http://127.0.0.1:8000/',
+
   onLaunch() {
     util.debug("launching app...")
     // 展示本地存储能力
@@ -20,26 +26,12 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 登录
-    wx.login({
-      success (res) {
-        if (res.code) {
-          //发起网络请求
-          util.debug('登录成功')
-          wx.request({
-            url: 'http://127.0.0.1:8000/login/',
-            data: {
-              code: res.code
-            },
-            method: "POST", 
-          })
-        } else {
-          util.debug('登录失败！' + res.errMsg)
-        }
-      }
-    })
+    // interact.login()
+    login.getCodeLogin()
   },
-  onError() {
-    util.debug("Error encountered")
+
+  haveLogin() {
+    console.log("have login:" + this.loginData.token != "")
+    return this.loginData.token != ""
   }
-  
 })
