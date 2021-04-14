@@ -1,5 +1,10 @@
 <!--pages/follows/follows-home/follows-home.wxml-->
 
+</view>
+<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
+<text>pages/follows/follows-home/follows-home.wxml</text>
+
+
 <!--follow-orgs-->
 <view class="org-wrap">
   <view class="header">
@@ -46,4 +51,3 @@
     </view>
       
   </scroll-view>
-</view>

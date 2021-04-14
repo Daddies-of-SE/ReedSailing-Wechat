@@ -1,3 +1,5 @@
+const app = getApp()
+
 // pages/follows/follows-home/follows-home.js
 Page({
 
@@ -10,11 +12,9 @@ Page({
         msg_list : null,
 
 
+        havelogin : false
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
         /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
         this.setData({
@@ -108,5 +108,32 @@ Page({
      */
     onShareAppMessage: function () {
 
+      this.setData({
+          havelogin : app.haveLogin()
+      })
+    },
+
+    onShow: function (e) {
+      if (app.haveLogin()) {
+          this.setData({
+              havelogin : true
+          })
+      }
+    },
+
+    callLogin: function (e) {
+      if (!app.haveLogin()) {
+        const login = require("../../../utils/login.js")
+        login.getCodeLogin().then(
+          (res) => {
+              if (app.haveLogin()) {
+                  this.setData({
+                      havelogin : true
+                  })
+              }
+          }
+        )
+      }
     }
+
 })

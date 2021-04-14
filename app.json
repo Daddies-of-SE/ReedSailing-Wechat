@@ -9,6 +9,7 @@
     "pages/sections/act-list/act-list",
     "pages/sections/act-list/mem-list/mem-list",
     "pages/sections/act-detail/act-detail",
+    "pages/sections/org-detail/org-detail",
     "pages/sections/boya/boya",
     "pages/my/my-org/my-org",
     "pages/my/my-act/my-act",

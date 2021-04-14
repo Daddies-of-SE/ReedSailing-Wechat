@@ -47,6 +47,24 @@ Page({
     followOrg: function() {
       
     },
+  
+    editOrgInfo: function() {
+      wx.navigateTo({
+        url: '../org-detail/org-detail',
+      })
+    },
+  
+    editMemList: function() {
+      wx.navigateTo({
+        url: '../act-list/mem-list/mem-list',
+      })
+    },
+  
+    editActInfo: function() {
+      wx.navigateTo({
+        url: '../act-detail/act-detail',
+      })
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -95,5 +113,11 @@ Page({
      */
     onShareAppMessage: function () {
 
-    }
+    },
+  
+  goFoundOrg: function() {
+    wx.navigateTo({
+      url: '/pages/my/new-org/new-org',
+    })
+  }
 })

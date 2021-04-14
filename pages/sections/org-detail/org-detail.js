@@ -1,36 +1,19 @@
-// pages/sections/org-list/org-list.js
-const interact = require("../../../utils/interact.js")
-
+// pages/sections/org-detail/org-detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    forumName: null,
-    forumInfo: {},
-    hasForumInfo: false
-},
-
-/**
- * 生命周期函数--监听页面加载
- */
-onLoad: function (options) {
-    var appInstance = getApp()
-    this.setData({forumName: appInstance.globalData.currentForum})
-
-    interact.getBlockOrgList(appInstance.globalData.currentForumID).then(
-      (res) => {
-        console.log(res) //控制台打印
-        this.setData({
-          forumInfo: res.forumInfo,
-          hasForumInfo: True,
-        })
-      }
-    )
 
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -79,11 +62,5 @@ onLoad: function (options) {
    */
   onShareAppMessage: function () {
 
-  },
-  
-  goFoundOrg: function() {
-    wx.navigateTo({
-      url: '/pages/my/new-org/new-org',
-    })
   }
 })

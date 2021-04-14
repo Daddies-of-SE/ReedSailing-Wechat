@@ -1,3 +1,5 @@
+const app = getApp()
+
 // pages/schedule/schedule.js
 Page({
 
@@ -5,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    havelogin : false
   },
 
    /**
@@ -18,16 +20,18 @@ Page({
        * 获取系统信息 
        */
       wx.getSystemInfo({
-
           success: function (res) {
               that.setData({
                   winWidth: res.windowWidth,
                   winHeight: res.windowHeight
               });
           }
+        });
+        this.setData({
+            havelogin : app.haveLogin()
+        })
+    },
 
-      });  
-  },
   bindChange: function (e) {
 
       var that = this;
@@ -46,24 +50,27 @@ Page({
           })
       }
   } ,  
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  
+  onShow: function (e) {
+    if (app.haveLogin()) {
+        this.setData({
+            havelogin : true
+        })
+    }
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  callLogin: function (e) {
+    if (!app.haveLogin()) {
+      const login = require("../../utils/login.js")
+      login.getCodeLogin().then(
+        (res) => {
+            if (app.haveLogin()) {
+                this.setData({
+                    havelogin : true
+                })
+            }
+        }
+      )
+    }
   }
 })
