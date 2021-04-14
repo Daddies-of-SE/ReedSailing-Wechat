@@ -28,7 +28,7 @@ function post_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if (result.data.status != 0) {
+        if ('status' in result.data && result.data.status != 0) {
           util.debug("result.data.status in post_request: " + result.data.status)
           wx.hideToast()
           wx.showModal({
@@ -40,10 +40,11 @@ function post_request(urlpath, data, funcInfo) {
         }
 
         //如果状态码为401 Unauthorized
-        if (result.statusCode == 401) {
+        var s = result.statusCode
+        if (s == 401) {
           login.catchUnLogin(funcInfo);
           return
-        } else if (result.statusCode != 200) { // 如果状态码不是200
+        } else if (s != 200 && s != 201 && s != 202) { // 如果状态码不是200
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         } 
         funcInfo.resolve(result);
@@ -220,4 +221,59 @@ module.exports.getUserControlOrgs = function (user_id) {
         resolve: resolve
     })
   })  
+}
+
+// for develop
+module.exports.createBlock = function (name) {
+  util.debug("creating block " + name)
+  return new Promise((resolve, reject) => {
+    post_request(`blocks/`,
+      {
+        name: name
+      }, 
+      {
+        func: module.exports.createBlock,
+        funcName: 'createBlock',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.createOrg = function (name, description, blockid) {
+  util.debug("creating block " + name)
+  return new Promise((resolve, reject) => {
+    post_request(`blocks/`,
+      {
+        name: name,
+        description: description,
+        user: app.loginData.userId,
+        block: blockid
+      }, 
+      {
+        func: module.exports.createOrg,
+        funcName: 'createOrg',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.followOrg = function (org_id) {
+  return new Promise((resolve, reject) => {
+    post_request(`organizations/followers/`,
+      {
+        org: org_id,
+        person: app.loginData.userId,
+      }, 
+      {
+        func: module.exports.followOrg,
+        funcName: 'followOrg',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.unfollowOrg = function () {
 }

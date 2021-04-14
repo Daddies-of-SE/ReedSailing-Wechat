@@ -1,5 +1,6 @@
 const util = require("../../../utils/util")
 const app = getApp();
+const interact = require("../../../utils/interact.js")
 
 Page({
  
@@ -57,6 +58,11 @@ Page({
         this.setData({
             havelogin : app.haveLogin()
         })
+        // interact.createBlock("社团")
+        // interact.createBlock("博雅")
+        // interact.createBlock("学生会")
+        // interact.createBlock("志愿")
+        // interact.createBlock("个人")
     },
 
     /**
@@ -112,7 +118,7 @@ Page({
         // console.log(e)
         var appInstance = getApp()
         appInstance.globalData.currentForum = e.currentTarget.dataset.name
-        appInstance.globalData.currentForumID = e.currentTarget.dataset.forumid
+        appInstance.globalData.currentForumID = e.currentTarget.dataset.forumid + 1
         util.debug("forum id " + appInstance.globalData.currentForumID)
 
         if (e.currentTarget.dataset.hasOrg) {

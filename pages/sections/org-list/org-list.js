@@ -23,8 +23,8 @@ onLoad: function (options) {
       (res) => {
         console.log(res) //控制台打印
         this.setData({
-          forumInfo: res.forumInfo,
-          hasForumInfo: True,
+          forumInfo: res.results,
+          hasForumInfo: true,
         })
       }
     )

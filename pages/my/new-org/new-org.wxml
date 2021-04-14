@@ -1,2 +1,7 @@
 <!--pages/my/new-org/new-org.wxml-->
-<text>pages/my/new-org/new-org.wxml</text>
+
+<view>组织名称</view>
+<input value="{{inputName}}" placeholder="请输入组织名称" bindinput="inputNameHandler" style="width:50%"/>
+<view>组织描述</view>
+<input value="{{inputDescription}}" placeholder="请输入组织描述" bindinput="inputDescriptionHandler" style="width:50%"/>
+<button bindtap="submitOrg">提交申请</button>

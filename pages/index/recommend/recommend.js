@@ -1,5 +1,6 @@
 const app = getApp()
 const interact = require("../../../utils/interact.js")
+const util = require("../../../utils/util.js")
 
 // pages/index/recommend.js
 Page({
@@ -29,6 +30,7 @@ Page({
     },
 
     callLogin: function (e) {
+
       if (!app.haveLogin()) {
         const login = require("../../../utils/login.js")
         login.getCodeLogin().then(
