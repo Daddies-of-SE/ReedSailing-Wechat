@@ -1,6 +1,6 @@
 <!--pages/my/my-account/my-account.wxml-->
 
-<view>我的用户id:{{userId}}</view>
+<view>我的用户id:  {{userId}}</view>
 
 <view>我的认证邮箱</view>
 <text>\n</text>

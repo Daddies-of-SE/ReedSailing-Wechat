@@ -1,21 +1,20 @@
-let app = getApp()
+var app = getApp()
 const util = require("util.js")
-const login = require("login.js")
-let retryTimes = 0
+const lg = require("login.js")
 
 function getAPIUrl(params) {
+  if (!app) {
+    app = getApp()
+  }
   return app.server + params;
 }
-
-
-
 
 //POST请求函数 urlpath是请求路径（不包含前面的/） data是请求体 funcInfo是调用函数信息
 function post_request(urlpath, data, funcInfo) {
   if (!urlpath.endsWith("/")) {
     urlpath = urlpath + "/"
   }
-  checkLoginData().then(login => {
+  lg.checkLoginData().then(login => {
     wx.request({
       url: getAPIUrl(urlpath),
       method: 'POST',
@@ -29,8 +28,8 @@ function post_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if (!result.data.success) {
-          util.debug("result.data.success in post_request: " + result.data.success)
+        if (result.data.status != 0) {
+          util.debug("result.data.status in post_request: " + result.data.status)
           wx.hideToast()
           wx.showModal({
             title: funcInfo.funcName + "请求失败 (errCode:" + result.data.errCode + ")",
@@ -63,14 +62,16 @@ function post_request(urlpath, data, funcInfo) {
         }) 
       }
     })
-  }).catch(() => {
-    login.catchUnLogin(funcInfo)
+  })
+  
+  .catch(() => {
+    lg.catchUnLogin(funcInfo)
   })
 }
 
-//POST请求函数 urlpath是请求路径（不包含前面的/） data是请求体 funcInfo是调用函数信息
+//GET请求函数 urlpath是请求路径（不包含前面的/）funcInfo是调用函数信息
 function get_request(urlpath, funcInfo) {
-  checkLoginData().then(login => {
+  lg.checkLoginData().then(login => {
     wx.request({
       url: getAPIUrl(urlpath),
       method: 'GET',
@@ -84,8 +85,8 @@ function get_request(urlpath, funcInfo) {
         console.log(funcInfo.funcName + "请求链接：", urlpath);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if (!result.data.success) {
-          util.debug("result.data.success in get_request: " + result.data.success)
+        if (result.data.status != 0) {
+          util.debug("result.data.status in get_request: " + result.data.status)
           wx.hideToast()
           wx.showModal({
             title: funcInfo.funcName + "请求失败 (errCode:" + result.data.errCode + ")",
@@ -97,7 +98,7 @@ function get_request(urlpath, funcInfo) {
 
         //如果状态码为401 Unauthorized
         if (result.statusCode == 401) {
-          login.catchUnLogin(funcInfo);
+          lg.catchUnLogin(funcInfo);
           return
         } else if (result.statusCode != 200) { // 如果状态码不是200
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
@@ -119,7 +120,7 @@ function get_request(urlpath, funcInfo) {
       }
     })
   }).catch(() => {
-    login.catchUnLogin(funcInfo)
+    lg.catchUnLogin(funcInfo)
   })
 }
 
@@ -139,6 +140,9 @@ module.exports.submitEmailAddress = function (addr) {
 }
 
 module.exports.submitVerifyCode = function (addr, code) {
+  if (!app) {
+    app = getApp()
+  }
   return new Promise((resolve, reject) => {
       wx.showToast({
         title: '提交中',
@@ -148,6 +152,7 @@ module.exports.submitVerifyCode = function (addr, code) {
         {
           email: addr,
           verifyCode: code,
+          id: app.loginData.userId
         }, {
           func: module.exports.submitVerifyCode,
           funcName: 'submitVerifyCode',
@@ -166,5 +171,53 @@ module.exports.getBlockOrgList = function (block_id) {
         reject: reject,
         resolve: resolve
     })
-})
+  })  
+}
+
+module.exports.getOrgInfo = function (org_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`organizations/?org=${org_id}`, 
+      {
+        func: module.exports.getOrgInfo,
+        funcName: 'getOrgInfo',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.getOrgAdmins = function (org_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`organizations/managers/?org=${org_id}`, 
+      {
+        func: module.exports.getOrgAdmins,
+        funcName: 'getOrgAdmins',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.getUserInfo = function (user_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`users/?id=${user_id}`, 
+      {
+        func: module.exports.getUserInfo,
+        funcName: 'getUserInfo',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.getUserControlOrgs = function (user_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`users/organizations/?id=${user_id}&user_view=true`, 
+      {
+        func: module.exports.getUserControlOrgs,
+        funcName: 'getUserControlOrgs',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
 }

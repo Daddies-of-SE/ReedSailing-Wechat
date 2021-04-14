@@ -1,6 +1,7 @@
 var app = getApp()
 const util = require("util.js")
 const interact = require("interact.js")
+let retryTimes = 0
 
 function getAPIUrl(params) {
   if (!app) {
@@ -13,12 +14,25 @@ function getAPIUrl(params) {
 //缓存用户登录数据
 function saveLoginData(userInfo, resData) {
   //存储登录token等信息
+  // wx.request({
+  //   url: getAPIUrl(`users?id=${resData.id}`),
+  //   method: 'GET',
+  //   header: {
+  //     'Authorization': 'Bearer ' + resData.token
+  //   },
+  //   success : result => {
+
+  //   }
+  // })
   var dt = {
     token: resData.token,
     userInfo: userInfo,
     email : resData.email,
     userExist : resData.userExist,
-    userId : resData.id
+    userId : resData.id,
+    //TODO
+    // nickName : resData.name,
+    // motto : resData.sign
   }
   util.debug("save login data: " + JSON.stringify(dt))
   if (dt.email == null) {
@@ -36,7 +50,7 @@ function saveLoginData(userInfo, resData) {
 }
 
 //检查本地是否存在用户登录数据
-function checkLoginData() {
+module.exports.checkLoginData = function () {
   return new Promise((resolve, reject) => {
     if (!app) {
       app = getApp()
@@ -72,12 +86,14 @@ function checkLoginData() {
 }
 
 //请求时捕获未登录的状态
-function catchUnLogin(funcInfo) {
+module.exports.catchUnLogin = function(funcInfo) {
   //限制重复登录次数为3次
+  util.debug("CatchUnLogin called")
   if (retryTimes < 3) {
     //获取code
     wx.login({
       success: e => {
+        // util.debug("loginData.userInfo " + JSON.stringify(app.loginData.userInfo))
         if (app.loginData.userInfo) {
           module.exports.login({
             userInfo: app.loginData.userInfo,
@@ -91,10 +107,10 @@ function catchUnLogin(funcInfo) {
                 funcInfo.options.success(res);
               funcInfo.resolve(res);
             }).catch((e) => {
-              if (funcInfo.options.fail)
-                funcInfo.options.fail(e)
-              else
-                funcInfo.reject(e);
+              // if (funcInfo.options.fail)
+              //   funcInfo.options.fail(e)
+              // else
+              funcInfo.reject(e);
             })
           }).catch((e) => {
             console.error(funcInfo.funcName + ': 未登录')
@@ -120,7 +136,6 @@ function catchUnLogin(funcInfo) {
 //fail: 调用失败，返回错误信息的函数。
 //也可以使用Promise写法。例如调用时: api.login({code: res.code}).then((res)=>{/*正确登录的逻辑段*/}.catch((e)=>{/*发生错误*/}))
 module.exports.login = function (options) {
-  let that = this
   return new Promise((resolve, reject) => {
 
     //检查options
@@ -134,7 +149,7 @@ module.exports.login = function (options) {
     }
 
     //先检查是否处于登录态
-    that.checkLogin()
+    module.exports.checkLogin()
     util.debug("userInfo " + options.userInfo)
     //向后端请求登录
     wx.request({
@@ -185,7 +200,7 @@ module.exports.checkLogin = function (isDebug) {
     wx.checkSession({
       success: () => {
         //检查是否存在登录数据
-        checkLoginData().then((res) => {
+        module.exports.checkLoginData().then((res) => {
           resolve({ data: res })
         }).catch((e) => {
           reject({ err: e, errMsg: "本地无已存储的用户登录数据" })

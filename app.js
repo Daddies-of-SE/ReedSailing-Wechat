@@ -9,7 +9,9 @@ App({
     userInfo: '',
     email : '',
     userExist : -1,
-    userId : -1
+    userId : -1,
+    nickName : '',
+    motto : ''
   },
   globalData: {
     userInfo: null,

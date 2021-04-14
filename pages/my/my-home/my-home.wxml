@@ -16,7 +16,8 @@
     </block>
     <block wx:else>
       <image bind:tap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text class="userinfo-nickname">{{nickName}}</text>
+      <text class="userinfo-nickname">{{motto}}</text>
     </block>
   </view>
 </view>

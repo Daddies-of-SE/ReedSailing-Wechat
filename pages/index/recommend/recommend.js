@@ -1,4 +1,5 @@
 const app = getApp()
+const interact = require("../../../utils/interact.js")
 
 // pages/index/recommend.js
 Page({
@@ -7,19 +8,22 @@ Page({
      * 页面的初始数据
      */
     data: {
-        havelogin : false
+        havelogin : false,
+        info : ""
     },
 
     onLoad: function (options) {
       this.setData({
-          havelogin : app.haveLogin()
+          havelogin : app.haveLogin(),
+          info : JSON.stringify(app.loginData.userInfo)
       })
     },
 
     onShow: function (e) {
       if (app.haveLogin()) {
           this.setData({
-              havelogin : true
+              havelogin : true,
+              info : JSON.stringify(app.loginData.userInfo)
           })
       }
     },
@@ -31,12 +35,18 @@ Page({
           (res) => {
               if (app.haveLogin()) {
                   this.setData({
-                      havelogin : true
+                      havelogin : true,
+                      info : JSON.stringify(app.loginData.userInfo)
                   })
               }
           }
         )
+      }
+    },
+
+    debugFunc: function(e) {
+      //For debugging
+      interact.getUserControlOrgs(1)
     }
-  }
 
 })
