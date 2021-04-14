@@ -1,3 +1,54 @@
 <!--pages/follows/follows-home/follows-home.wxml-->
+
 <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
-<text>pages/follows/follows-home/follows-home.wxml</text>
+
+
+<!--follow-orgs-->
+<view class="org-wrap">
+  <view class="header">
+      <text class="txt">最常访问</text>
+      <view class="right" id="0" bindtap="toFollowOrg">
+        <text class="all">查看全部</text>
+        <image class="arrow" src="/icon/rightArrow.png"></image>
+      </view>
+  </view>
+  <view class="org-list">
+    <view class="org-item" wx:for="{{most_visited}}">
+      <image class="org-avator" src="{{item.avatorUrl}}"></image>
+      <text class="org-name">{{item.name}}</text>
+    </view>
+  </view>
+</view>
+
+<!--message lists-->
+<view class="msg-wrap">
+  <scroll-view scroll-y="true" class="nav">
+    <view class="msg-item" wx:for="{{msg_list}}">
+      <view class="activity" wx:if="{{item.type === 'activity'}}">
+          <image class="org-avator" src="{{item.avatorUrl}}"></image>
+          <view class="content">
+            <text class="header">{{item.org_name}}</text>
+            <text class="publish_time">{{item.publish_time}}</text>
+            <view class="content-body">
+              <text calss="title">{{item.act_title}}</text>
+              <text class="org_time">活动时间： {{item.act_time !== null ? item.act_time : "暂无信息"}}</text>
+              <text class="place">活动地点：{{item.act_place !== null ? item.act_place : "暂无信息"}}</text>
+              <text class="body">{{item.body}}</text>
+            </view>
+            <view class="bottom-right" bindtap="toActivity">
+              <image class="arrow" src="/icon/rightArrow.png"></image>
+              <text class="txt">详情</text>
+            </view>
+          </view>
+      </view>
+      <view wx:elif="{{item.type === 'news'}}">
+        <!--TO DO-->
+
+      </view>
+      <view wx:elif="{{item.type === 'notice'}}">
+        <!--TO DO-->
+      </view>
+    </view>
+    
+  </scroll-view>
+</view>
