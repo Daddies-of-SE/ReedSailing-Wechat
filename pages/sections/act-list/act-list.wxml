@@ -4,7 +4,7 @@
 <view class="org-header">
     <text class="text">{{orgName}}组织</text>
     <image class="picture" src="{{orgPicUrl}}"></image>
-    <button class='btn' bindtap='followOrg'>关注</button>
+    <button class='followBtn' bindtap='followOrg'>关注</button>
 </view>
 
 <!--信息、管理员、活动-->
@@ -15,7 +15,9 @@
       <view class='title_2'><image src="/icon/{{showIndex == 1 ? 'up':'down'}}.png"></image></view>
     </view>
     <view class='detail' wx:if="{{showIndex == 1}}">没有信息</view>
-    <view class='detail' wx:if="{{showIndex == 1}}">{{orgInfo}}</view>
+    <view class='detail' wx:if="{{showIndex == 1}}">创建时间{{orgInfo}}</view>
+    <view class='detail' wx:if="{{showIndex == 1}}">介绍{{orgInfo}}</view>
+    <button class='editBtn' bindtap='editOrgInfo' wx:if="{{showIndex == 1}}">编辑</button>
   </view>
   <view class='folder_item'>
     <view class='title' data-index='2' catchtap='panel'>
@@ -23,6 +25,7 @@
       <view class='title_2'><image src="/icon/{{showIndex == 2 ? 'up':'down'}}.png"></image></view>
     </view>
     <view class='detail' wx:if="{{showIndex == 2}}">管理员跑路了</view>
+    <button class='editBtn' bindtap='editMemList' wx:if="{{showIndex == 2}}">编辑</button>
   </view>
   <view class='folder_item'>
     <view class='title' data-index='3' catchtap='panel'>
@@ -31,6 +34,7 @@
     </view>
     <view class='detail' wx:if="{{showIndex == 3}}">活动都是假的</view>
     <view class="list" wx:if="{{showIndex == 3}}">
+      <button class='editBtn' bindtap='editActInfo' wx:if="{{showIndex == 3}}">编辑</button>
 
     </view>
   </view>
