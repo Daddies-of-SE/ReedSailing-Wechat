@@ -1,1 +1,153 @@
 /* pages/follows/follows-home/follows-home.wxss */
+
+.org-wrap {
+  margin-top: 10rpx;
+  margin-bottom: 30rpx;
+  background: #fff;
+}
+
+.org-wrap .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90rpx;
+  padding: 0 30rpx;
+}
+
+.org-wrap .header .txt {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.org-wrap .header .right {
+  display: flex;
+  align-items: center;
+}
+
+.org-wrap .header .all {
+  color: #666;
+  font-size: 25rpx;
+  margin-right: 10rpx;
+}
+
+.org-wrap .header .arrow {
+  width: 13rpx;
+  height: 25rpx;
+}
+
+
+.org-wrap .org-list  {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+
+
+}
+
+.org-wrap .org-item {
+  display: block;
+  height: 144rpx;
+  width: 156rpx;
+  margin-right: 18rpx;
+}
+
+.org-wrap .org-item .org-avator {
+  height: 101rpx;
+  width: 156rpx;
+}
+
+.org-wrap .org-item .org-name {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+  height: 43rpx;
+  width: 156rpx;
+  overflow:hidden;
+}
+
+/*******************************************************/
+
+.msg-item {
+  display: block;
+  margin-top: 20rpx;
+  background: #fff;
+}
+
+.msg-item .activity {
+
+}
+
+
+.msg-item .org-avator {
+    display: block;
+    width: 101rpx;
+    height: 101rpx;
+    top: 24rpx;
+    left: 24rpx;
+}
+
+.msg-item .content {
+  position: relative;
+  top: -100rpx;
+  display: flex;
+  flex-direction: column;
+  padding-top: 45rpx;
+  margin-left: 130rpx;
+}
+
+.msg-item .header {
+  display: block;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.msg-item .publish_time {
+  display: block;
+  color: #999;
+  font-size: 20rpx;
+  font-weight: 500;
+  margin-bottom: 30rpx;
+}
+
+.msg-item .title {
+
+}
+
+.msg-item .org_time {
+  display: block;
+  color: #999;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.msg-item .place {
+  display: block;
+  color: #999;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.msg-item .body {
+  font-size: 26rpx;
+}
+
+.msg-item .bottom-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.msg-item .bottom-right .txt {
+  color: #666;
+  font-size: 25rpx;
+  margin-right: 10rpx;
+}
+
+.msg-item .bottom-right .arrow {
+  width: 13rpx;
+  height: 25rpx;
+}
