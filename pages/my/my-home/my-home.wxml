@@ -1,27 +1,29 @@
 <!--pages/my/my-home/my-home.wxml-->
+<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
 
 <view class="container">
   <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
+      <view class="userinfo-avatar" bind:tap="bindViewTap">
         <open-data type="userAvatarUrl"></open-data>
       </view>
       <open-data type="userNickName"></open-data>
     </block>
     <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:if="{{canIUseGetUserProfile}}" bind:tap="getUserProfile"> 获取头像昵称 </button>
       <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
       <view wx:else> 无法进行微信认证登录，请使用1.4.4及以上版本基础库 </view>
     </block>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <image bind:tap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{nickName}}</text>
+      <text class="userinfo-nickname">{{motto}}</text>
     </block>
   </view>
 </view>
 
-<button bind:tap="toMyAccount">我的账户</button>
-<button bind:tap="toMyOrg">我管理的组织</button>
-<button bind:tap="toMyAct">我管理的活动</button>
-<button bind:tap="toNewAct">活动发布</button>
-<button bind:tap="toFeedback">提交反馈</button>
+<view bind:tap="toMyAccount">我的账户</view>
+<view bind:tap="toMyOrg">我管理的组织</view>
+<view bind:tap="toMyAct">我管理的活动</view>
+<view bind:tap="toNewAct">活动发布</view>
+<view bind:tap="toFeedback">提交反馈</view>

@@ -1,20 +1,25 @@
 <!--pages/index/recommend.wxml-->
+
+<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
 <text>pages/index/recommend.wxml\n\n</text>
 
-<view wx:if="{{!haveLogin}}">
+<!-- <view wx:if="{{!haveLogin}}">
 	<mp-dialog title="授权提示" show="{{loginDialogShow}}" bindbuttontap="loginDialogTap" buttons="{{[{text: '取消'}]}}" bindbuttontap="loginDialogClose">
 		<view class="auth-content">
 			<text>授权使用用户信息后才可使用全部功能，是否授权？</text>
 			<button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">去授权</button>
 		</view>
 	</mp-dialog>
-</view>
+</view> -->
 
+
+<view wx:if="{{!havelogin}}">未登录，点页面任何位置触发登录按钮</view>
 <view wx:else>
 	<!--用于debug-->>
-	<view>已成功登陆</view>
-	<view>{{info}}</view>
+	<view>已成功登录</view>
+	<view style='word-break:break-all;'>{{info}}</view>
 </view>
 
+<text>\n</text>
 
-
+<view bind:tap="debugFunc">【这是一个debug用的区域，可以设置tap响应事件】</view>

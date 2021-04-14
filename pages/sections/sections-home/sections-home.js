@@ -1,3 +1,6 @@
+const util = require("../../../utils/util")
+const app = getApp();
+
 Page({
  
     /**
@@ -7,6 +10,7 @@ Page({
         winWidth:0,
         winHeight:0,
         currentTab:0,
+        havelogin: false,
 
         forum_list: [
             // TODO： 暂时先随便放个图标，之后需更换为符合主题的图标
@@ -50,8 +54,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
-},
+        this.setData({
+            havelogin : app.haveLogin()
+        })
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -106,6 +112,8 @@ Page({
         // console.log(e)
         var appInstance = getApp()
         appInstance.globalData.currentForum = e.currentTarget.dataset.name
+        appInstance.globalData.currentForumID = e.currentTarget.dataset.forumid
+        util.debug("forum id " + appInstance.globalData.currentForumID)
 
         if (e.currentTarget.dataset.hasOrg) {
             wx.navigateTo({
@@ -124,5 +132,28 @@ Page({
             }
         }
         
+    },
+
+    onShow: function (e) {
+        if (app.haveLogin()) {
+            this.setData({
+                havelogin : true
+            })
+        }
+      },
+
+    callLogin: function (e) {
+        if (!app.haveLogin()) {
+            const login = require("../../../utils/login.js")
+            login.getCodeLogin().then(
+            (res) => {
+                if (app.haveLogin()) {
+                    this.setData({
+                        havelogin : true
+                    })
+                }
+            }
+            )
+        }
     }
 })

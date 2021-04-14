@@ -1,3 +1,5 @@
+const app = getApp()
+
 // pages/follows/follows-home/follows-home.js
 Page({
 
@@ -5,62 +7,36 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        havelogin : false
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
-
+      this.setData({
+          havelogin : app.haveLogin()
+      })
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+    onShow: function (e) {
+      if (app.haveLogin()) {
+          this.setData({
+              havelogin : true
+          })
+      }
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
+    callLogin: function (e) {
+      if (!app.haveLogin()) {
+        const login = require("../../../utils/login.js")
+        login.getCodeLogin().then(
+          (res) => {
+              if (app.haveLogin()) {
+                  this.setData({
+                      havelogin : true
+                  })
+              }
+          }
+        )
+      }
     }
+
 })

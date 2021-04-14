@@ -13,7 +13,8 @@ Page({
     verifiedEmail : "",
     inputEmailAddress : "",
     inputVerifyCode : "",
-    second: 60,
+    second : 60,
+    userId : -1
   },
 
   /**
@@ -21,8 +22,11 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      verifiedEmail : app.loginData.email
+      verifiedEmail : app.loginData.email,
+      userId : app.loginData.userId
     })
+    util.debug("email" + this.data.verifiedEmail)
+    // util.debug("logindata email" + app.loginData.email)
   },
 
   /**
