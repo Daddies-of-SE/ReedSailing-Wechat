@@ -1,1 +1,14 @@
-/* pages/my/my-account/my-account.wxss */
+van-button {
+  margin-left: 300rpx;
+}
+
+.relative {
+  position: relative;
+}
+
+.email-pattern {
+  position: absolute;
+  top: 28rpx;
+  right: 35rpx;
+}
+

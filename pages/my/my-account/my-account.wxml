@@ -1,22 +1,45 @@
 <!--pages/my/my-account/my-account.wxml-->
 
-<view>我的用户id:  {{userId}}</view>
 
-<view>我的认证邮箱</view>
-<text>\n</text>
-<view wx:if="{{verifiedEmail != ''}}">已认证：{{verifiedEmail}}</view>
-<view wx:else>
-  <view style="flex-direction:row; display:flex;">
-    <input value="{{inputEmailAddress}}" placeholder="请输入地址" bindinput="inputEmailHandler" style="width:50%"/>
-    <text style="width:30%">@buaa.edu.cn</text>
-  </view>
+<van-cell-group>
+    <van-cell title="我的用户id" value=" {{userId}}" />
+    <van-cell wx:if="{{verifiedEmail != ''}}"
+      title="已认证"
+      value="{{verifiedEmail}}"
+      label="我的认证邮箱"
+      border="{{ false }}"
+    />
+</van-cell-group>
+
+
+<view class="verify-email relative" wx:if="{{verifiedEmail == ''}}">
+  <van-field
+      center
+      clearable
+      placeholder="请输入北航邮箱地址"
+      bindinput="inputEmailHandler"
+      border="{{ true }}"
+    >
+  </van-field>
+  <text class="email-pattern">@buaa.edu.cn</text>
+  
   <view wx:if="{{second==60}}">
-    <button bindtap="submitVerifyEmail" style="width:50%">发送验证码</button>
+    <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitVerifyEmail">发送验证码</van-button>
   </view>
   <view wx:else>
-    <button bindtap="warnWait" style="width:50%">重新发送({{second}})</button>
-  </view>
+    <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="warnWait">重新发送({{second}})</van-button>
+  </view> 
+  
+  <van-field
+      center
+      clearable
+      label="验证码"
+      placeholder="请输入邮箱验证码"
+      bindinput="inputVerifyCodeHandler"
+      border="{{ true }}"
+    >
+  </van-field>
+  <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitVerifyCode">提交验证</van-button>
 
-  <input value="{{inputVerifyCode}}" placeholder="请输入邮箱验证码" bindinput="inputVerifyCodeHandler" style="width:50%"/>
-  <button bindtap="submitVerifyCode" style="width:50%">提交验证</button>
 </view>
+

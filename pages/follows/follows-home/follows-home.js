@@ -21,11 +21,11 @@ Page({
             most_visited : [
                 {
                     name: "高工足球队",
-                    avatorUrl: "/icon/sample.png",
+                    avatorUrl: "/icon/gaogong_football.png",
                 },
                 {
                     name: "高工学生会",
-                    avatorUrl: "/icon/sample.png",
+                    avatorUrl: "/icon/gaogong_student_union.png",
                 },
             ],
 
@@ -33,10 +33,11 @@ Page({
                 {
                     type : "activity",
                     org_name : "高工足球队",
-                    avatorUrl: "/icon/sample.png",
+                    avatorUrl: "/icon/gaogong_football.png",
                     act_title : "常规训练",
                     publish_time : "3小时前",
-                    act_time : "2021-04-18 15:00 星期天",
+                    start_time : "2021-04-18 15:00",
+                    end_time : "2021-04-18 17:30",
                     act_place : "小足球场",
                     body : "进行常规的足球训练，包括传球盘带练习，以及五人制对抗赛。",
 
@@ -44,10 +45,11 @@ Page({
                 {
                     type : "activity",
                     org_name : "高工学生会",
-                    avatorUrl: "/icon/sample.png",
+                    avatorUrl: "/icon/gaogong_student_union.png",
                     act_title : "大班会",
                     publish_time : "10小时前",
-                    act_time : "2021-04-14 14:30 星期天",
+                    start_time : "2021-04-14 14:30",
+                    end_time : "2021-04-14 16:30",
                     act_place : "教（一） 307",
                     body : "阿巴阿巴",
 
