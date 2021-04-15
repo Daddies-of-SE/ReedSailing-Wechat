@@ -1,9 +1,5 @@
 <!--pages/my/my-home/my-home.wxml-->
-<<<<<<< HEAD
 <!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
-=======
-<!--<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>-->
->>>>>>> 8da8e518894991156633c8b93c54d135eaf5f047
 
 <view class="container">
   <view class="userinfo">

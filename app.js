@@ -33,7 +33,6 @@ App({
   },
 
   haveLogin() {
-    console.log("have login:" + this.loginData.token != "")
     return this.loginData.token != ""
   }
 })
