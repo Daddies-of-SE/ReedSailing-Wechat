@@ -1,2 +1,7 @@
 <!--pages/sections/act-list/mem-list/mem-list.wxml-->
-<text>pages/sections/act-list/mem-list/mem-list.wxml</text>
+
+<!--组织名称-->
+<view class="org-header">
+    <text class="text">{{orgName}}组织</text>
+    <image class="picture" src="{{orgPicUrl}}"></image>
+</view>

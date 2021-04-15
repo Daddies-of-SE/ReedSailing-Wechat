@@ -1,1 +1,14 @@
 /* pages/sections/act-list/mem-list/mem-list.wxss */
+
+.org-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90rpx;
+  padding: 0 30rpx;
+}
+
+.org-header .picture {
+  height: 90rpx;
+  width: 90rpx;
+}
