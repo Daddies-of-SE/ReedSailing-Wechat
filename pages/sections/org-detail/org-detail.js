@@ -1,10 +1,15 @@
 // pages/sections/org-detail/org-detail.js
+
+const interact = require("../../../utils/interact.js")
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    orgId : -1,
     orgName: "orgName",
     orgPicUrl: "/icon/sample.png",
     orgInfo: "orgInfo",
@@ -31,7 +36,20 @@ inputs: function (e) {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    interact.getOrgInfo(app.globalData.currentOrgID).then(
+      (res) => {
+        this.setData({
+          orgName : res.data.name,
+          orgId : res.data.id,
+          orgInfo : res.data.description
+        })
+        if (res.data.avatar != null) {
+          this.setData({
+            orgPicUrl : res.data.avatar,
+          })
+        }
+      }
+    )
   },
 
   /**

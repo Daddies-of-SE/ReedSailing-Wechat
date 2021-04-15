@@ -1,7 +1,27 @@
 <!--pages/my/new-org/new-org.wxml-->
 
-<view>组织名称</view>
+<!-- <view>组织名称</view>
 <input value="{{inputName}}" placeholder="请输入组织名称" bindinput="inputNameHandler" style="width:50%"/>
 <view>组织描述</view>
 <input value="{{inputDescription}}" placeholder="请输入组织描述" bindinput="inputDescriptionHandler" style="width:50%"/>
-<button bindtap="submitOrg">提交申请</button>
+<button bindtap="submitOrg">提交申请</button> -->
+
+<van-field
+      center
+      clearable
+      label="组织名称"
+      placeholder="请输入组织名称"
+      bindinput="inputNameHandler"
+      border="{{ true }}"
+    >
+</van-field>
+<van-field
+      center
+      clearable
+      label="申请原因"
+      placeholder="请输入申请原因"
+      bindinput="inputDescriptionHandler"
+      border="{{ true }}"
+    >
+</van-field>
+<van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitOrg">提交申请</van-button>

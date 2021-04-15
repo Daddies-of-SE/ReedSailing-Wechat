@@ -17,9 +17,9 @@
 <view wx:else>
 	<!--用于debug-->>
 	<view>已成功登录</view>
-	<view style='word-break:break-all;'>{{info}}</view>
+	<!-- <view style='word-break:break-all;'>{{info}}</view> -->
 </view>
 
 <text>\n</text>
 
-<view bind:tap="debugFunc">【这是一个debug用的区域，可以设置tap响应事件】</view>
+<!-- <view bind:tap="debugFunc">【这是一个debug用的区域，可以设置tap响应事件】</view> -->

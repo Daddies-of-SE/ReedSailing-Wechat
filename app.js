@@ -16,7 +16,9 @@ App({
   globalData: {
     userInfo: null,
     currentForum: null,
-    currentForumID: null
+    currentForumID: null,
+    currentOrg: null,
+    currentOrgID: null
   },
   server : 'http://127.0.0.1:8000/',
 

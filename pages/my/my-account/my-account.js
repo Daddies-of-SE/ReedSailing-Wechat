@@ -91,7 +91,7 @@ Page({
     util.debug("submit email address: " + addr)
     interact.submitEmailAddress(addr).then(
       (res) => {
-        if (res.data.success) {
+        if (res.data.status == 0) {
           wx.showToast({
             title: '提交成功',
             icon: 'success' 
@@ -123,8 +123,7 @@ Page({
       util.debug("submit verify code: " + this.data.inputVerifyCode)
       interact.submitVerifyCode(addr, this.data.inputVerifyCode).then(
         (res) => {
-          util.debug("res.data.success: " + res.data.success)
-          if (res.data.success) {
+          if (res.data.status == 0) {
             wx.showToast({
               title: '验证成功',
               icon: 'success' 
@@ -134,17 +133,23 @@ Page({
               verifiedEmail : addr
             })
           }
+          else if (res.data.status == 1) {
+            wx.showToast({
+              title: '验证失败'
+            })
+          }
         }
       )
     }
   },
 
   inputEmailHandler(e) {
-    this.data.inputEmailAddress = e.detail.value
+    // util.debug("e" + JSON.stringify(e.curren))
+    this.data.inputEmailAddress = e.detail
   },
 
   inputVerifyCodeHandler(e) {
-    this.data.inputVerifyCode = e.detail.value
+    this.data.inputVerifyCode = e.detail
   },
 
   timer() {

@@ -1,6 +1,7 @@
 // pages/sections/org-list/org-list.js
 const interact = require("../../../utils/interact.js")
 const appInstance = getApp()
+const util = require("../../../utils/util.js")
 
 Page({
 
@@ -9,7 +10,7 @@ Page({
    */
   data: {
     forumName: null,
-    forumInfo: {},
+    forumInfo: [],
     hasForumInfo: false
 },
 
@@ -36,9 +37,9 @@ onLoad: function (options) {
     interact.approveMyFirstCreateOrgApply()
     interact.getBlockOrgList(appInstance.globalData.currentForumID).then(
       (res) => {
-        console.log("getblocklist" + res) //控制台打印
+        console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
         this.setData({
-          forumInfo: res.results,
+          forumInfo: res.data,
           hasForumInfo: true,
         })
       }
@@ -83,6 +84,21 @@ onLoad: function (options) {
   goFoundOrg: function() {
     wx.navigateTo({
       url: '/pages/my/new-org/new-org',
+    })
+  },
+
+  onCancel(e) {
+    //TODO
+  },
+
+  goOrg(e) {
+    var appInstance = getApp()
+    appInstance.globalData.currentOrg = e.currentTarget.dataset.orgname
+    appInstance.globalData.currentOrgID = e.currentTarget.dataset.orgid
+    util.debug("org " + appInstance.globalData.currentOrgID + " " + appInstance.globalData.currentOrg)
+
+    wx.navigateTo({
+      url: '../org-detail/org-detail',
     })
   }
 })

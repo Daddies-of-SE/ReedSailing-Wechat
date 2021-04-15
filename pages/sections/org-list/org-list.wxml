@@ -14,14 +14,15 @@
 </view>
 
 <!--搜索框-->
-<!-- 
+
 <view class="search-bar">
     <view class="search" bindtap="goSearchOrg">
         <image class="search-logo" src='/icon/search.png' mode="aspectFit"></image>
         搜索组织
     </view>
 </view>
--->
+
+
 <view class="search-bar">
     <view class="header">
         <van-search value="{{ value }}" placeholder="请输入组织关键词" show-action shape="round" bind:search="onSearch" bind:cancel="onCancel" bind:clear="onClear" />
@@ -52,15 +53,22 @@
     <view class="empty-wrap" wx:if="{{ result.length==0 && searchStatus}}">
     <view class="empty">
         <image class="icon" src="/assets/noSearch.png"></image>
-        <text class="text">您寻找的商品还未上架</text>
+        <text class="text">您寻找的还未上架TODO</text>
     </view>
     </view>
 
 </view>
 
 <!--组织列表-->
-<view class="list">
-
+<view class="shadow">
+    <block wx:for="{{forumInfo}}" wx:key="id">
+			<view class="cell" hover-class="hover-grey" hover-stay-time="300" bindtap="goOrg" data-orgid="{{item.id}}" data-orgname="{{item.name}}">
+				<view class="content one-line">
+					<view class="title">{{item.name}}</view>
+					<view class="arrow" />
+				</view>
+			</view>
+    </block>
 </view>
 
 

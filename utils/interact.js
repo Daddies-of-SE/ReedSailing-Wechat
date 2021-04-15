@@ -223,7 +223,7 @@ module.exports.submitVerifyCode = function (addr, code) {
 
 module.exports.getBlockOrgList = function (block_id) {
   return new Promise((resolve, reject) => {
-    get_request(`blocks/orgs/?block=${block_id}`, 
+    get_request(`blocks/organizations/${block_id}/`, 
       {
         func: module.exports.getBlockOrgList,
         funcName: 'getBlockOrgList',
@@ -269,6 +269,18 @@ module.exports.getUserInfo = function (user_id) {
   })  
 }
 
+module.exports.getOrgInfo = function (org_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`organizations/${org_id}/`, 
+      {
+        func: module.exports.getOrgInfo,
+        funcName: 'getOrgInfo',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
 module.exports.getUserControlOrgs = function (user_id) {
   return new Promise((resolve, reject) => {
     get_request(`users/organizations/?id=${user_id}&user_view=true`, 
@@ -298,8 +310,8 @@ module.exports.createBlock = function (name) {
   })  
 }
 
-module.exports.createOrg = function (name, description, blockid) {
-  util.debug("creating org " + name)
+module.exports.createOrgApplication = function (name, description, blockid) {
+  util.debug("creating org application" + name)
   return new Promise((resolve, reject) => {
     post_request(`organizations/applications`,
       {
@@ -309,8 +321,28 @@ module.exports.createOrg = function (name, description, blockid) {
         block: blockid
       }, 
       {
-        func: module.exports.createOrg,
-        funcName: 'createOrg',
+        func: module.exports.createOrgApplication,
+        funcName: 'createOrgApplication',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+// for develop
+module.exports.createOrgDirectly = function (name, description, blockid) {
+  util.debug("creating org dicrectly " + name)
+  return new Promise((resolve, reject) => {
+    post_request(`organizations/`,
+      {
+        name: name,
+        description: description, //TODO
+        owner: app.loginData.userId,
+        block: blockid
+      }, 
+      {
+        func: module.exports.createOrgDirectly,
+        funcName: 'createOrgDirectly',
         reject: reject,
         resolve: resolve
     })

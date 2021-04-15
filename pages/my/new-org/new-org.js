@@ -20,18 +20,19 @@ Page({
     },
 
     inputNameHandler: function (e) {
-        this.data.inputName = e.detail.value
+        this.data.inputName = e.detail
     },
 
     inputDescriptionHandler: function (e) {
-        this.data.inputDescription = e.detail.value
+        this.data.inputDescription = e.detail
     },
 
     submitOrg: function (e) {
-        interact.createOrg(this.data.inputName, this.data.inputDescription, app.globalData.currentForumID).then(
+        //TODO : change to createOrgApplication
+        interact.createOrgDirectly(this.data.inputName, this.data.inputDescription, app.globalData.currentForumID).then(
             (res) => {
             wx.showToast({
-              title: '组织创建成功',
+              title: '提交成功',
               icon : 'success'
             })
         })

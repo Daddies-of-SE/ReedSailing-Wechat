@@ -9,9 +9,10 @@
 }
 
 .btn{
-  width: 200rpx;
-  height: 200rpx;
+  width: 100rpx;
+  height: 150rpx;
   margin-top: 20rpx;
+  margin-bottom: 20rpx;
   background-color: white;
   color: #999999;
   border-radius: 0rpx;
@@ -59,4 +60,65 @@
   vertical-align: middle;
   margin-bottom: 6rpx;
   margin-right: 5rpx;
+}
+
+
+.hover-grey {
+  transition: none !important;
+  background-color: #DCDCDC !important;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.shadow {
+  transition: ease-out 200ms;
+  box-shadow: 0 0 18rpx rgb(236, 236, 236);
+}
+
+.arrow {
+  width: 20rpx;
+  height: 20rpx;
+  border-top: 4rpx solid #999;
+  border-right: 4rpx solid #999;
+  transform: rotate(45deg);
+  margin: 0 12rpx 0 auto;
+}
+
+.one-line {
+  align-items: center;
+}
+
+.title {
+  font-size: 34rpx;
+}
+
+.card {
+  padding: 0;
+}
+
+.order {
+  font-weight: 600;
+}
+
+.cell {
+  padding: 24rpx;
+  height: 80rpx;
+  align-items: center;
+  display: flex;
+  background : white;
+  border-bottom: 1px solid #f0f0f0;
+  /* border-bottom: 1px solid #ffffff; */
+}
+
+.auth-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-content text {
+  margin-bottom: 30rpx;
 }

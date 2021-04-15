@@ -1,5 +1,9 @@
 <!--pages/sections/org-detail/org-detail.wxml-->
 
+<view class="org-name">
+    <text class="text">组织id：{{orgId}}</text>
+</view>
+
 <!--组织名称-->
 <view class="org-name">
     <text class="text">名称：</text>

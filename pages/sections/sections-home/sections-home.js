@@ -119,7 +119,7 @@ Page({
         var appInstance = getApp()
         appInstance.globalData.currentForum = e.currentTarget.dataset.name
         appInstance.globalData.currentForumID = e.currentTarget.dataset.forumid + 1
-        util.debug("forum id " + appInstance.globalData.currentForumID)
+        util.debug("forum " + appInstance.globalData.currentForumID + " " + appInstance.globalData.currentForum)
 
         if (e.currentTarget.dataset.hasOrg) {
             wx.navigateTo({
