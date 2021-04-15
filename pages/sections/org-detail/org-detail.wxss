@@ -1,1 +1,82 @@
 /* pages/sections/org-detail/org-detail.wxss */
+
+text {
+  font-size: 20px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2px;
+}
+input{
+  border:1px black solid;
+  margin-inline: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.org-pic .picture {
+  display: flex;
+  justify-content: center;
+}
+
+.org-pic .picture .pictureSize {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.org-pic .uploadBtn{
+  width: 120rpx;
+  height: 60rpx;
+  background-color: rgba(200, 212, 218, 0.548);
+  color: rgb(43, 37, 37);
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  writing-mode: vertical-lr;
+  margin-bottom: 20px;
+}
+
+.areas{
+  height:240rpx;
+  font-size: 35rpx;
+  text-indent: 28rpx;
+  border: 2rpx solid gainsboro;
+  padding-top: 30rpx;
+  margin: 0 auto;
+  overflow: hidden;   
+  position: relative; 
+  margin-bottom: 50px;
+}
+.currentWordNumber{
+  font-size: 28rpx;
+  color: gray;
+  position: absolute;
+  left: 593rpx;
+  top: -6rpx;
+}
+.hint{
+   font-size: 28rpx;
+   position: absolute;
+   top: 200rpx;
+   left: 30rpx;
+   color: #FF6600;
+}
+
+.submitBtn{
+  width: 120rpx;
+  height: 80rpx;
+  background-color: rgba(19, 173, 245, 0.548);
+  color: white;
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}
