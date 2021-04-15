@@ -1,5 +1,6 @@
 // pages/sections/org-list/org-list.js
 const interact = require("../../../utils/interact.js")
+const appInstance = getApp()
 
 Page({
 
@@ -16,18 +17,7 @@ Page({
  * 生命周期函数--监听页面加载
  */
 onLoad: function (options) {
-    var appInstance = getApp()
     this.setData({forumName: appInstance.globalData.currentForum})
-
-    interact.getBlockOrgList(appInstance.globalData.currentForumID).then(
-      (res) => {
-        console.log(res) //控制台打印
-        this.setData({
-          forumInfo: res.results,
-          hasForumInfo: true,
-        })
-      }
-    )
 
   },
 
@@ -43,7 +33,16 @@ onLoad: function (options) {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    interact.approveMyFirstCreateOrgApply()
+    interact.getBlockOrgList(appInstance.globalData.currentForumID).then(
+      (res) => {
+        console.log("getblocklist" + res) //控制台打印
+        this.setData({
+          forumInfo: res.results,
+          hasForumInfo: true,
+        })
+      }
+    )
   },
 
   /**

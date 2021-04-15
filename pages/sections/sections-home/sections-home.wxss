@@ -35,6 +35,7 @@
   height: 241rpx;
   width: 210rpx;
   margin-right: 47rpx;
+  margin-top: 20rpx;
 }
 
 .forum .last {
@@ -42,8 +43,12 @@
 }
 
 .forum .item .icon {
-  height: 169rpx;
-  width: 210rpx;
+  height: 149rpx;
+  width: 187rpx;
+}
+
+.icon {
+  border-radius: 25px;
 }
 
 .forum .item .text {
@@ -52,7 +57,7 @@
   font-size: 32rpx;
   color: #666;
   height: 72rpx;
-  width: 210rpx;
+  width: 187rpx;
   overflow:hidden;
 }
 

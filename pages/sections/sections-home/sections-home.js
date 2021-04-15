@@ -19,32 +19,32 @@ Page({
                 id : 0,
                 title : "社团",
                 hasOrgLevel: true,
-                picUrl : "/icon/sample.png",
+                picUrl : "/icon/club.png",
             
             },
             {
                 id : 1,
                 title : "博雅",
                 hasOrgLevel: false,
-                picUrl : "/icon/sample.png",
+                picUrl : "/icon/boya.png",
             },
             {
                 id : 2,
                 title : "学生会",
                 hasOrgLevel: true,
-                picUrl : "/icon/sample.png",
+                picUrl : "/icon/student_union.png",
             },
             {
                 id : 3,
                 title : "志愿",
                 hasOrgLevel: true,
-                picUrl : "/icon/sample.png",
+                picUrl : "/icon/volunteer.png",
             },
             {
                 id : 4,
                 title : "个人",
                 hasOrgLevel: false,
-                picUrl : "/icon/sample.png",
+                picUrl : "/icon/person.png",
             },
 
         ],
