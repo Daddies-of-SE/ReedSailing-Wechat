@@ -12,3 +12,6 @@ van-button {
   right: 35rpx;
 }
 
+.van-cell__title {
+  width: 30%;
+}

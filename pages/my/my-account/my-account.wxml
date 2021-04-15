@@ -4,9 +4,8 @@
 <van-cell-group>
     <van-cell title="我的用户id" value=" {{userId}}" />
     <van-cell wx:if="{{verifiedEmail != ''}}"
-      title="已认证"
+      title="认证邮箱"
       value="{{verifiedEmail}}"
-      label="我的认证邮箱"
       border="{{ false }}"
     />
 </van-cell-group>

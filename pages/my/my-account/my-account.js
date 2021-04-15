@@ -23,6 +23,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       verifiedEmail : app.loginData.email,
+      // verifiedEmail : "yuey23@buaa.edu.cn",
       userId : app.loginData.userId
     })
     util.debug("email" + this.data.verifiedEmail)
