@@ -1,5 +1,5 @@
 <!--pages/my/my-home/my-home.wxml-->
-<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
+<!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
 
 <view class="container">
   <view class="userinfo">
