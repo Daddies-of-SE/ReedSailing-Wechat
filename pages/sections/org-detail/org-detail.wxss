@@ -55,7 +55,7 @@ input{
   font-size: 28rpx;
   color: gray;
   position: absolute;
-  left: 593rpx;
+  left: 580rpx;
   top: -6rpx;
 }
 .hint{
