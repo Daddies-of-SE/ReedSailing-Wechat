@@ -1,5 +1,5 @@
 <!--pages/my/my-home/my-home.wxml-->
-<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
+<!--<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>-->
 
 <view class="container">
   <view class="userinfo">
@@ -22,8 +22,8 @@
   </view>
 </view>
 
-<view bind:tap="toMyAccount">我的账户</view>
-<view bind:tap="toMyOrg">我管理的组织</view>
-<view bind:tap="toMyAct">我管理的活动</view>
-<view bind:tap="toNewAct">活动发布</view>
-<view bind:tap="toFeedback">提交反馈</view>
+<button bind:tap="toMyAccount" class="accountBtn">我的账户</button>
+<button bind:tap="toMyOrg" class="orgBtn">我管理的组织</button>
+<button bind:tap="toMyAct" class="actBtn">我管理的活动</button>
+<button bind:tap="toNewAct" class="pubBtn">活动发布</button>
+<button bind:tap="toFeedback" class="fdbBtn">提交反馈</button>

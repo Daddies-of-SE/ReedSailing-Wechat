@@ -17,3 +17,83 @@
   .usermotto {
     margin-top: 200px;
   }
+
+  .accountBtn {
+    width: 80rpx;
+    height: 80rpx;
+    background-color: rgba(19, 245, 94, 0.548);
+    color: white;
+    border-radius: 49rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 40rpx;
+    writing-mode: vertical-lr;
+    margin-right: 0%;
+    top: -600rpx;
+  }
+  
+  .orgBtn {
+    width: 80rpx;
+    height: 80rpx;
+    background-color: rgba(19, 245, 215, 0.548);
+    color: white;
+    border-radius: 49rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 40rpx;
+    writing-mode: vertical-lr;
+    margin-right: 0%;
+    top: -560rpx;
+  }
+  
+  .actBtn {
+    width: 80rpx;
+    height: 80rpx;
+    background-color: rgba(19, 125, 245, 0.548);
+    color: white;
+    border-radius: 49rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 40rpx;
+    writing-mode: vertical-lr;
+    margin-right: 0%;
+    top: -520rpx;
+  }
+  
+  .pubBtn {
+    width: 80rpx;
+    height: 80rpx;
+    background-color: rgba(19, 61, 245, 0.548);
+    color: white;
+    border-radius: 49rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 40rpx;
+    writing-mode: vertical-lr;
+    margin-right: 0%;
+    top: -480rpx;
+  }
+  
+  .fdbBtn {
+    width: 80rpx;
+    height: 80rpx;
+    background-color: rgba(245, 19, 189, 0.548);
+    color: white;
+    border-radius: 49rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 40rpx;
+    writing-mode: vertical-lr;
+    margin-right: 0%;
+    top: -440rpx;
+  }
