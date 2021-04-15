@@ -28,6 +28,12 @@ Page({
     },
 
     submitOrg: function (e) {
-        interact.createOrg(this.data.inputName, this.data.inputDescription, app.globalData.currentForumID)
+        interact.createOrg(this.data.inputName, this.data.inputDescription, app.globalData.currentForumID).then(
+            (res) => {
+            wx.showToast({
+              title: '组织创建成功',
+              icon : 'success'
+            })
+        })
     }
 })

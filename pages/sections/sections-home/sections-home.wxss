@@ -47,6 +47,10 @@
   width: 187rpx;
 }
 
+.icon {
+  border-radius: 25px;
+}
+
 .forum .item .text {
   display: block;
   text-align: center;
