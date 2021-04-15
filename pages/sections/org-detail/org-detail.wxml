@@ -1,2 +1,27 @@
 <!--pages/sections/org-detail/org-detail.wxml-->
-<text>pages/sections/org-detail/org-detail.wxml</text>
+
+<!--组织名称-->
+<view class="org-name">
+    <text class="text">名称：</text>
+    <input class="input" name="orgName" placeholder="{{orgName}}" bindinput="orgNameInput"/>
+</view>
+
+<!--组织头像-->
+<view class="org-pic">
+    <text class="text">头像：</text>
+    <view class="picture">
+      <image src="{{orgPicUrl}}" class="pictureSize"></image>
+    </view>
+    <button class='uploadBtn' bindtap='upload'>上传</button>
+</view>
+
+<!--介绍信息-->
+<view class="org-info">
+    <text class="text">介绍信息：</text>
+    <textarea class="areas" placeholder='{{orgInfo}}' maxlength="{{max}}" bindinput="inputs"> 
+        <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
+        <text class="hint">{{texts}}</text>
+    </textarea>
+</view>
+
+<button class='submitBtn' bindtap='submit'>提交</button>
