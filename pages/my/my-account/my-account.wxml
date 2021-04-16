@@ -29,6 +29,7 @@
     <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="warnWait">重新发送({{second}})</van-button>
   </view> 
   
+  
   <van-field
       center
       clearable
@@ -39,6 +40,28 @@
     >
   </van-field>
   <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitVerifyCode">提交验证</van-button>
-
 </view>
 
+
+
+<van-field
+      center
+      clearable
+      label="昵称"
+      placeholder="{{nickName}}"
+      bindinput="inputNickNameHandler"
+      border="{{ true }}"
+    >
+</van-field>
+
+<van-field
+      center
+      clearable
+      label="个人描述"
+      placeholder="{{motto}}"
+      bindinput="inputMottoHandler"
+      border="{{ false }}"
+    >
+</van-field>
+
+<van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitUserInfo">修改个人信息</van-button>

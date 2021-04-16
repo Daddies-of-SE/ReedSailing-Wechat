@@ -13,8 +13,12 @@ Page({
     verifiedEmail : "",
     inputEmailAddress : "",
     inputVerifyCode : "",
+    inputNickName : "",
+    inputMotto : "",
     second : 60,
-    userId : -1
+    userId : -1,
+    nickName : '',
+    motto : '',
   },
 
   /**
@@ -24,9 +28,13 @@ Page({
     this.setData({
       verifiedEmail : app.loginData.email,
       // verifiedEmail : "yuey23@buaa.edu.cn",
-      userId : app.loginData.userId
+      userId : app.loginData.userId,
+      nickName : app.loginData.nickName,
+      motto : app.loginData.motto,
+      inputNickName : app.loginData.nickName,
+      inputMotto : app.loginData.motto,
     })
-    util.debug("email" + this.data.verifiedEmail)
+    util.debug("user's email: " + this.data.verifiedEmail)
     // util.debug("logindata email" + app.loginData.email)
   },
 
@@ -143,6 +151,31 @@ Page({
     }
   },
 
+  submitUserInfo(e) {
+    if (this.data.inputNickName == "") {
+      wx.showToast({
+        title: '昵称不能为空',
+        icon: 'none'
+      })
+      return
+    }
+    interact.updateUserInfo(this.data.inputNickName, this.data.inputMotto).then(
+      (res) => {
+        if (res.statusCode == 200) {
+          wx.showToast({
+            title: '修改成功',
+            icon : 'success'
+          })
+        } else {
+          wx.showToast({
+            title: '修改失败',
+            icon: 'none'
+          })
+        }
+      }
+    )
+  },
+
   inputEmailHandler(e) {
     // util.debug("e" + JSON.stringify(e.curren))
     this.data.inputEmailAddress = e.detail
@@ -150,6 +183,14 @@ Page({
 
   inputVerifyCodeHandler(e) {
     this.data.inputVerifyCode = e.detail
+  },
+
+  inputNickNameHandler(e) {
+    this.data.inputNickName = e.detail
+  },
+
+  inputMottoHandler(e) {
+    this.data.inputMotto = e.detail
   },
 
   timer() {

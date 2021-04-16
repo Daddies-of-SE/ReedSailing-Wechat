@@ -11,7 +11,8 @@ App({
     userExist : -1,
     userId : -1,
     nickName : '',
-    motto : ''
+    motto : '',
+    avatar : ''
   },
   globalData: {
     userInfo: null,

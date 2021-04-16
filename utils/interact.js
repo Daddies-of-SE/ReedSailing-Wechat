@@ -350,41 +350,41 @@ module.exports.createOrgDirectly = function (name, description, blockid) {
 }
 
 // for develop
-module.exports.approveMyFirstCreateOrgApply = function () {
+// module.exports.approveMyFirstCreateOrgApply = function () {
 
-  //先获得我的所有申请，然后再全批准
-  if (!app) {
-    app = getApp()
-  }
-  new Promise((resolve, reject) => {
-    get_request(`users/organizations/applications/${app.loginData.userId}/`, 
-      {
-      func: module.exports.approveMyFirstCreateOrgApply,
-      funcName: 'approveMyFirstCreateOrgApply',
-      reject: reject,
-      resolve: resolve
-    })
-  }).then(
-    (res) => {
-        return new Promise((resolve, reject) => {
-        if (res.data.length > 0 && res.data[0].status == 0) {
-          util.debug(JSON.stringify(res.data))
-          var appli_id = res.data[0].id
-          // util.debug("appli_id " + appli_id)
-          put_request(`organizations/applications/verifications/${appli_id}/`,
-            {
-              "status" : 1 // approve
-            }, {
-              func: module.exports.approveMyFirstCreateOrgApply,
-              funcName: 'approveMyFirstCreateOrgApply',
-              reject: reject,
-              resolve: resolve
-          })
-        }
-      })
-    }
-  )
-}
+//   //先获得我的所有申请，然后再全批准
+//   if (!app) {
+//     app = getApp()
+//   }
+//   new Promise((resolve, reject) => {
+//     get_request(`users/organizations/applications/${app.loginData.userId}/`, 
+//       {
+//       func: module.exports.approveMyFirstCreateOrgApply,
+//       funcName: 'approveMyFirstCreateOrgApply',
+//       reject: reject,
+//       resolve: resolve
+//     })
+//   }).then(
+//     (res) => {
+//         return new Promise((resolve, reject) => {
+//         if (res.data.length > 0 && res.data[0].status == 0) {
+//           util.debug(JSON.stringify(res.data))
+//           var appli_id = res.data[0].id
+//           // util.debug("appli_id " + appli_id)
+//           put_request(`organizations/applications/verifications/${appli_id}/`,
+//             {
+//               "status" : 1 // approve
+//             }, {
+//               func: module.exports.approveMyFirstCreateOrgApply,
+//               funcName: 'approveMyFirstCreateOrgApply',
+//               reject: reject,
+//               resolve: resolve
+//           })
+//         }
+//       })
+//     }
+//   )
+// }
 
 module.exports.followOrg = function (org_id) {
   return new Promise((resolve, reject) => {
@@ -404,4 +404,23 @@ module.exports.followOrg = function (org_id) {
 
 module.exports.unfollowOrg = function () {
   //TODO
+}
+
+module.exports.updateUserInfo = function (name, sign) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    put_request(`users/${app.loginData.userId}/`,
+      {
+        name : name,
+        sign : sign
+      }, 
+      {
+        func: module.exports.updateUserInfo,
+        funcName: 'updateUserInfo',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
 }

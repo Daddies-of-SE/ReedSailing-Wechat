@@ -31,8 +31,9 @@ function saveLoginData(userInfo, resData) {
     userExist : resData.userExist,
     userId : resData.id,
     //TODO
-    // nickName : resData.name,
-    // motto : resData.sign
+    nickName : resData.name,
+    motto : resData.sign,
+    avatar : resData.avatar
   }
   util.debug("save login data: " + JSON.stringify(dt))
   if (dt.email == null) {
