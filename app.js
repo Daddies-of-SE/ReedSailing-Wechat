@@ -32,7 +32,7 @@ App({
 
     // 登录
     // interact.login()
-    login.getCodeLogin()
+    // login.getCodeLogin()
   },
 
   haveLogin() {

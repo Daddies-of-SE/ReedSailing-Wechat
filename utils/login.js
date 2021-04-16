@@ -35,7 +35,7 @@ function saveLoginData(userInfo, resData) {
     motto : resData.sign,
     avatar : resData.avatar
   }
-  util.debug("save login data: " + JSON.stringify(dt))
+  // util.debug("save login data: " + JSON.stringify(dt))
   if (dt.email == null) {
     dt.email = ""
   }
@@ -60,8 +60,7 @@ module.exports.checkLoginData = function () {
       wx.getStorage({
         key: 'login',
         success: res => {
-          let data = res.data; 
-          console.log("login data: " + data);
+          let data = res.data;
           if (data && data.token && data.userInfo) {
             saveLoginData(data.userInfo, data)
             resolve(data)
@@ -151,7 +150,6 @@ module.exports.login = function (options) {
 
     //先检查是否处于登录态
     module.exports.checkLogin()
-    util.debug("userInfo " + options.userInfo)
     //向后端请求登录
     wx.request({
       url: getAPIUrl('login/'),
@@ -164,6 +162,7 @@ module.exports.login = function (options) {
         //如果返回数据存在token则记录并返回token
         if (res.data.token) {
           saveLoginData(options.userInfo,res.data);
+          util.debug("登录成功")
           if (options.success)
             options.success(res);
           resolve(res);
@@ -238,21 +237,19 @@ module.exports.getCodeLogin = function () {
   //   }
   // })
   return new Promise((resolve, reject) => {
-    util.debug("get code login init")
+    // util.debug("get code login init")
     wx.getUserProfile({
       desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
-        util.debug("get user profile")
         let userInfo = res.userInfo
         wx.login({
           success: res => {
-            util.debug("get user profile登录成功")
+            // util.debug("get user profile登录成功")
             if (res.code) {
               module.exports.login({
                 code: res.code,
                 userInfo: userInfo,
               }).then((result) => {
-                console.warn("登录成功")
                 wx.showToast({
                   title: '登录成功',
                   icon: 'success'
