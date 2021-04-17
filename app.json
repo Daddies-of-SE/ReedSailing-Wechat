@@ -5,20 +5,19 @@
     "pages/follows/follows-home/follows-home",
     "pages/my/my-home/my-home",
     "pages/schedule/schedule",
+
     "pages/sections/sections-home/sections-home",
     "pages/sections/act-list/act-list",
     "pages/sections/act-list/mem-list/mem-list",
     "pages/sections/act-detail/act-detail",
     "pages/sections/org-detail/org-detail",
-    "pages/sections/boya/boya",
+
     "pages/my/my-org/my-org",
     "pages/my/my-act/my-act",
     "pages/my/new-act/new-act",
     "pages/my/new-org/new-org",
-    "pages/my/org-admin/org-act/org-act",
-    "pages/my/org-admin/org-info/org-info",
-    "pages/my/org-admin/org-people/org-people",
     "pages/my/my-account/my-account",
+    
     "pages/sections/org-list/org-list",
     "pages/my/feedback/feedback",
     "pages/sections/org-list/search/search"

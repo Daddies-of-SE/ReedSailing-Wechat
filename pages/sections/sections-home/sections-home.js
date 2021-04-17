@@ -127,11 +127,13 @@ Page({
               })
         } else {
             if (e.currentTarget.dataset.name == "博雅") {
+                appInstance.globalData.currentOrgID = -1
                 wx.navigateTo({
-                  url: '../boya/boya',
+                  url: '../act-list/act-list',
                 })
             }
             else {
+                appInstance.globalData.currentOrgID = -2
                 wx.navigateTo({
                 url: '../act-list/act-list',
                 })

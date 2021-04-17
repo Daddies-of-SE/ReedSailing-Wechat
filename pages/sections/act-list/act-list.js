@@ -1,34 +1,70 @@
 // pages/sections/org-detail/org-detail.js
+
+const interact = require("../../../utils/interact.js")
+const app = getApp()
+const util = require("../../../utils/util.js")
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        orgName: null,
+        isRealOrg : true,
+        orgName: "",
         orgPicUrl: "/icon/sample.png",
-        orgInfo: {"orgInfo": "orgInfo"},
+        orgInfo: {
+          create_time : "",
+          description : ""
+        },
         hasOrgInfo: false,
-        showIndex: 0
+        showIndex: 0,
+        hasFollowed: false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        wx.request({
-          url: 'url',
-          header: {
-            'content-type': 'application/json'
-          },
-          success: res => {
-            console.log(res) //控制台打印
+      var orgId = app.globalData.currentOrgID
+      if (orgId == -1) {
+        this.setData({
+          orgName: "博雅活动列表",
+          orgPicUrl : "/icon/boya.png",
+          isRealOrg : false
+        })
+        return
+      }
+      else if (orgId == -2) {
+        this.setData({
+          orgName: "个人活动列表",
+          orgPicUrl : "/icon/person.png",
+          isRealOrg : false
+        })
+        return
+      }
+      interact.getOrgInfo(orgId).then(
+        (res) => {
+          this.setData({
+            orgName : res.data.name,
+            orgInfo : {
+              description : res.data.description,
+              create_time : res.data.create_time.split("T")[0]
+            }
+          })
+          if (res.data.avatar != null) {
             this.setData({
-              orgInfo: res.orgInfo,
-              hasOrgInfo: True
+              orgPicUrl : res.data.avatar,
             })
           }
-        })
+          if (app.userData.followOrgs.indexOf(orgId) != -1) {
+            this.setData({
+              hasFollowed : true
+            })
+            util.debug(this.data.hasFollowed + "   " + this.data.isRealOrg)
+          }
+        }
+      )
       },
 
     panel: function (e) {
@@ -45,7 +81,33 @@ Page({
 
     //关注页面
     followOrg: function() {
-      
+      interact.followOrg(app.globalData.currentOrgID).then(
+        (res) => {
+          wx.showToast({
+            title: '关注成功',
+          })
+          app.userData.followOrgs.push(app.globalData.currentOrgID)
+          util.debug("当前关注组织：" + app.userData.followOrgs)
+          this.setData({
+            hasFollowed : true
+          })
+        }
+      )
+    },
+
+    unFollowOrg: function() {
+      interact.unFollowOrg(app.globalData.currentOrgID).then(
+        (res) => {
+          wx.showToast({
+            title: '已取消关注',
+          })
+          app.userData.followOrgs.splice(app.userData.followOrgs.indexOf(app.globalData.currentOrgID))
+          util.debug("当前关注组织：" + app.userData.followOrgs)
+          this.setData({
+            hasFollowed : false
+          })
+        }
+      )
     },
   
     editOrgInfo: function() {

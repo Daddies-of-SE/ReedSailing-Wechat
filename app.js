@@ -19,7 +19,12 @@ App({
     currentForum: null,
     currentForumID: null,
     currentOrg: null,
-    currentOrgID: null
+    currentOrgID: null // -1: 博雅 -2：个人
+  },
+  userData: {
+    followOrgs: [],
+    controlOrgs: [],
+    controlActs: []
   },
   server : 'http://127.0.0.1:8000/',
 
@@ -29,10 +34,6 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    // 登录
-    // interact.login()
-    // login.getCodeLogin()
   },
 
   haveLogin() {

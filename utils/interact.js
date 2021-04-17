@@ -183,6 +183,50 @@ function get_request(urlpath, funcInfo) {
   })
 }
 
+//DELETE请求函数 urlpath是请求路径（不包含前面的/）funcInfo是调用函数信息
+function delete_request(urlpath, funcInfo) {
+  lg.checkLoginData().then(login => {
+    wx.request({
+      url: getAPIUrl(urlpath),
+      method: 'DELETE',
+      header: {
+        'Authorization': 'Bearer ' + login.token
+      },
+      // data: data,
+      success: result => {
+
+        //调试使用 发布时请记得注释
+        console.log(funcInfo.funcName + "请求链接：", urlpath);
+        console.log(funcInfo.funcName + "请求结果：", result.data)
+
+        //如果状态码为401 Unauthorized
+        if (result.statusCode == 401) {
+          lg.catchUnLogin(funcInfo);
+          return
+        } else if (result.statusCode != 204) { // 如果状态码不是200
+            funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
+        } 
+        funcInfo.resolve(result);
+
+      },
+
+      fail: e => {
+        e.func = funcInfo.funcName
+        // if (funcInfo.options.fail)
+        //   funcInfo.options.fail(e)
+        // else
+        funcInfo.reject(e);
+        wx.showToast({
+          'title' : '无法连接服务器',
+          'icon' : 'none',
+        }) 
+      }
+    })
+  }).catch(() => {
+    lg.catchUnLogin(funcInfo)
+  })
+}
+
 module.exports.submitEmailAddress = function (addr) {
   return new Promise((resolve, reject) => {
       wx.showToast({
@@ -331,6 +375,9 @@ module.exports.createOrgApplication = function (name, description, blockid) {
 
 // for develop
 module.exports.createOrgDirectly = function (name, description, blockid) {
+  if (!app) {
+    app = getApp()
+  }
   util.debug("creating org dicrectly " + name)
   return new Promise((resolve, reject) => {
     post_request(`organizations/`,
@@ -388,7 +435,7 @@ module.exports.createOrgDirectly = function (name, description, blockid) {
 
 module.exports.followOrg = function (org_id) {
   return new Promise((resolve, reject) => {
-    post_request(`organizations/followers/`,
+    post_request(`users/followed_organizations/`,
       {
         org: org_id,
         person: app.loginData.userId,
@@ -402,8 +449,16 @@ module.exports.followOrg = function (org_id) {
   })  
 }
 
-module.exports.unfollowOrg = function () {
-  //TODO
+module.exports.unFollowOrg = function (org_id) {
+  return new Promise((resolve, reject) => {
+    delete_request(`users/followed_organizations/?user=${app.loginData.userId}&org=${org_id}`, 
+      {
+        func: module.exports.unFollowOrg,
+        funcName: 'unFollowOrg',
+        reject: reject,
+        resolve: resolve
+    })
+  })
 }
 
 module.exports.updateUserInfo = function (name, sign) {
@@ -419,6 +474,21 @@ module.exports.updateUserInfo = function (name, sign) {
       {
         func: module.exports.updateUserInfo,
         funcName: 'updateUserInfo',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.getAllFollowOrgs = function () {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    get_request(`users/followed_organizations/${app.loginData.userId}/`, 
+      {
+        func: module.exports.getAllFollowOrgs,
+        funcName: 'getAllFollowOrgs',
         reject: reject,
         resolve: resolve
     })

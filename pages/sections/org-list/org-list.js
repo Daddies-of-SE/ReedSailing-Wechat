@@ -34,7 +34,6 @@ onLoad: function (options) {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    interact.approveMyFirstCreateOrgApply()
     interact.getBlockOrgList(appInstance.globalData.currentForumID).then(
       (res) => {
         console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
@@ -98,7 +97,7 @@ onLoad: function (options) {
     util.debug("org " + appInstance.globalData.currentOrgID + " " + appInstance.globalData.currentOrg)
 
     wx.navigateTo({
-      url: '../org-detail/org-detail',
+      url: '../act-list/act-list',
     })
   }
 })

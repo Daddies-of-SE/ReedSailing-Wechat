@@ -1,9 +1,0 @@
-/* pages/sections/boya/boya.wxss */
-
-.boya-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 90rpx;
-  padding: 0 30rpx;
-}

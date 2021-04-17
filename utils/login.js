@@ -162,7 +162,7 @@ module.exports.login = function (options) {
         //如果返回数据存在token则记录并返回token
         if (res.data.token) {
           saveLoginData(options.userInfo,res.data);
-          util.debug("登录成功")
+          util.debug("登录成功, id: " + res.data.id)
           if (options.success)
             options.success(res);
           resolve(res);
@@ -254,7 +254,19 @@ module.exports.getCodeLogin = function () {
                   title: '登录成功',
                   icon: 'success'
                 })
-                resolve(res)
+
+                interact.getAllFollowOrgs().then(
+                  (res_orgs) => {
+                    app.userData.followOrgs = []
+                    for (var org in res_orgs.data) {
+                      app.userData.followOrgs.push(res_orgs.data[org].org.id)
+                    }
+                    util.debug("关注的组织：" + app.userData.followOrgs)
+                    resolve(res)
+                  }
+                )
+
+                
               })
               // .catch((e) => {
               //   console.error("登录失败2：" + e.errMsg);
