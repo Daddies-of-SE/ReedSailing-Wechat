@@ -6,6 +6,7 @@
 <!--follow-orgs-->
 <view class="org-wrap">
   <view class="header">
+    <!-- TODO: 增加下拉框 -->
       <text class="txt">最常访问</text>
       <view class="right" id="0" bindtap="toFollowOrg">
         <text class="all">查看全部</text>
@@ -13,9 +14,14 @@
       </view>
   </view>
   <view class="org-list">
-    <view class="org-item" wx:for="{{most_visited}}">
-      <image class="org-avator" src="{{item.avatorUrl}}"></image>
-      <text class="org-name">{{item.name}}</text>
+    <view class="org-item" wx:for="{{most_visited}}" data-orgid="{{item.org.id}}" bindtap="toOrg">
+      <block wx:if="{{item.org.avator != null}}"> 
+        <image class="org-avator" src="{{item.org.avator}}"></image>
+      </block>
+      <block wx:else> 
+        <image class="org-avator" src="/icon/sample.png"></image>
+      </block>
+      <text class="org-name">{{item.org.name}}</text>
     </view>
   </view>
 </view>

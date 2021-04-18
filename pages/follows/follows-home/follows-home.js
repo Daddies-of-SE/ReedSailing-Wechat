@@ -1,4 +1,5 @@
 const app = getApp()
+const util = require("../../../utils/util.js")
 
 // pages/follows/follows-home/follows-home.js
 Page({
@@ -18,16 +19,17 @@ Page({
     onLoad: function (options) {
         /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
         this.setData({
-            most_visited : [
-                {
-                    name: "高工足球队",
-                    avatorUrl: "/icon/gaogong_football.png",
-                },
-                {
-                    name: "高工学生会",
-                    avatorUrl: "/icon/gaogong_student_union.png",
-                },
-            ],
+            most_visited : app.userData.followOrgInfo,
+            // most_visited : [
+            //     {
+            //         name: "高工足球队",
+            //         avatorUrl: "/icon/gaogong_football.png",
+            //     },
+            //     {
+            //         name: "高工学生会",
+            //         avatorUrl: "/icon/gaogong_student_union.png",
+            //     },
+            // ],
 
             msg_list : [
                 {
@@ -59,8 +61,15 @@ Page({
 
         })
 
+        util.debug(JSON.stringify(this.data.most_visited))
 
+    },
 
+    toOrg(e) {
+        app.globalData.currentOrgID = e.currentTarget.dataset.orgid
+        wx.navigateTo({
+            url: '../../sections/act-list/act-list',
+        })
     },
 
     /**
@@ -74,22 +83,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        this.setData({
+            most_visited : app.userData.followOrgInfo,
+        })
     },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
+    
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作

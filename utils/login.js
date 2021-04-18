@@ -257,6 +257,7 @@ module.exports.getCodeLogin = function () {
 
                 interact.getAllFollowOrgs().then(
                   (res_orgs) => {
+                    app.userData.followOrgInfo = res_orgs.data
                     app.userData.followOrgs = []
                     for (var org in res_orgs.data) {
                       app.userData.followOrgs.push(res_orgs.data[org].org.id)

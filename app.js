@@ -23,6 +23,7 @@ App({
   },
   userData: {
     followOrgs: [],
+    followOrgInfo: [],
     controlOrgs: [],
     controlActs: []
   },
