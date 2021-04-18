@@ -16,22 +16,22 @@
 <!--搜索框-->
 <!--TODO：搜索框会盖住组织列表-->
 
-<!-- <view class="search-bar">
+<view class="search-bar">
     <view class="search" bindtap="goSearchOrg">
         <image class="search-logo" src='/icon/search.png' mode="aspectFit"></image>
         搜索组织
     </view>
-</view> -->
+</view>
 
 
-<!-- <view class="search-bar">
+<view class="search-bar">
     <view class="header">
         <van-search value="{{ value }}" placeholder="请输入组织关键词" show-action shape="round" bind:search="onSearch" bind:cancel="onCancel" bind:clear="onClear" />
         <wux-filterbar items="{{ filters }}" bind:change="onFilterChange" bind:open="onOpen" wx:if="{{ result.length>0 && searchStatus }}" />
-    </view> -->
+    </view>
 
     <!-- 未搜索时标签 -->
-    <!-- <view class="no-search" wx:if="{{ !searchStatus }}">
+    <view class="no-search" wx:if="{{ !searchStatus }}">
         <view class="history" wx:if="{{history.length>0}}">
             <view class="head">
             <text class="title">历史记录</text>
@@ -41,10 +41,10 @@
             <view class="item" bindtap="clickTag" data-value="{{item}}" wx:key="{{item}}" wx:for="{{history}}" hover-class="navigator-hover">{{item}}</view>
             </view>
         </view>
-    </view> -->
+    </view>
 
     <!-- 搜索结果 -->
-    <!-- <scroll-view bindscrolltolower="scrollListen" scroll-y enable-flex class="result" wx:if="{{ result.length>0 && searchStatus }}">
+    <scroll-view bindscrolltolower="scrollListen" scroll-y enable-flex class="result" wx:if="{{ result.length>0 && searchStatus }}">
     <view style="height:208rpx;width:750rpx"></view>
     <view class="item" wx:for="{{result}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="handleClick">
         <product-big data="{{item}}" border="false"></product-big>
@@ -58,7 +58,7 @@
     </view>
     </view>
 
-</view> -->
+</view>
 
 <!--组织列表-->
 <view class="shadow">
