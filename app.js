@@ -27,7 +27,8 @@ App({
     controlOrgs: [],
     controlActs: []
   },
-  server : 'http://127.0.0.1:8000/',
+  server : 'http://rs.test/',
+  //server : 'http://127.0.0.1:8000/',
 
   onLaunch() {
     util.debug("launching app...")
