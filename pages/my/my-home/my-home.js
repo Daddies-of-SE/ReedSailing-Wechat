@@ -23,14 +23,14 @@ Page({
       })
     }
     this.setData({
-      havelogin : app.haveLogin(),
+      havelogin : app.haveRegistered(),
       nickName : app.loginData.nickName,
       motto : app.loginData.motto
     })
   },
 
   onShow: function (e) {
-    if (app.haveLogin()) {
+    if (app.haveRegistered()) {
         this.setData({
             havelogin : true,
             nickName : app.loginData.nickName,
@@ -40,18 +40,14 @@ Page({
   },
 
   callLogin: function (e) {
-    if (!app.haveLogin()) {
+    if (!app.haveRegistered()) {
       const login = require("../../../utils/login.js")
-      login.getCodeLogin().then(
-        (res) => {
-            if (app.haveLogin()) {
-                this.setData({
-                    havelogin : true,
-                    nickName : app.loginData.nickName,
-                    motto : app.loginData.motto
-                })
-            }
-        }
+      login.registerInfo().then(
+          this.setData({
+              havelogin: true,
+              nickName : app.loginData.nickName,
+              motto : app.loginData.motto
+          })
       )
     }
   },

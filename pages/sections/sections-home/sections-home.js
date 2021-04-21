@@ -56,7 +56,7 @@ Page({
      */
     onLoad: function (options) {
         this.setData({
-            havelogin : app.haveLogin()
+            havelogin : app.haveRegistered()
         })
         // interact.createBlock("社团")
         // interact.createBlock("博雅")
@@ -143,7 +143,7 @@ Page({
     },
 
     onShow: function (e) {
-        if (app.haveLogin()) {
+        if (app.haveRegistered()) {
             this.setData({
                 havelogin : true
             })
@@ -151,17 +151,13 @@ Page({
       },
 
     callLogin: function (e) {
-        if (!app.haveLogin()) {
-            const login = require("../../../utils/login.js")
-            login.getCodeLogin().then(
-            (res) => {
-                if (app.haveLogin()) {
-                    this.setData({
-                        havelogin : true
-                    })
-                }
-            }
-            )
-        }
+    if (!app.haveRegistered()) {
+        const login = require("../../../utils/login.js")
+        login.registerInfo().then(
+            this.setData({
+                havelogin: true
+            })
+        )
     }
+    },
 })

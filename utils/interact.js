@@ -9,6 +9,8 @@ function getAPIUrl(params) {
   return app.server + params;
 }
 
+module.exports.post_request = post_request
+
 //PUT请求函数 urlpath是请求路径（不包含前面的/） data是请求体 funcInfo是调用函数信息
 function put_request(urlpath, data, funcInfo) {
   lg.checkLoginData().then(login => {
@@ -493,4 +495,19 @@ module.exports.getAllFollowOrgs = function () {
         resolve: resolve
     })
   })  
+}
+
+module.exports.getAllManageOrgs = function() {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    get_request(`users/managed_organizations/${app.loginData.userId}/`, 
+      {
+        func: module.exports.getAllManageOrgs,
+        funcName: 'getAllManageOrgs',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
 }

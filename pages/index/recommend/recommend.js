@@ -14,34 +14,34 @@ Page({
     },
 
     onLoad: function (options) {
-      this.setData({
-          havelogin : app.haveLogin(),
-          info : JSON.stringify(app.loginData.userInfo)
-      })
+      const login = require("../../../utils/login.js")
+      login.newLogin().then(
+        (res) => {
+          this.setData({
+              havelogin : app.haveRegistered(),
+              info : JSON.stringify(app.loginData.nickName)
+          })
+        }
+      )
     },
 
     onShow: function (e) {
-      if (app.haveLogin()) {
+      if (app.haveRegistered()) {
           this.setData({
               havelogin : true,
-              info : JSON.stringify(app.loginData.userInfo)
+              info : JSON.stringify(app.loginData.nickName)
           })
       }
     },
 
     callLogin: function (e) {
-
-      if (!app.haveLogin()) {
+      if (!app.haveRegistered()) {
         const login = require("../../../utils/login.js")
-        login.getCodeLogin().then(
-          (res) => {
-              if (app.haveLogin()) {
-                  this.setData({
-                      havelogin : true,
-                      info : JSON.stringify(app.loginData.userInfo)
-                  })
-              }
-          }
+        login.registerInfo().then(
+            this.setData({
+                havelogin: true,
+                info : JSON.stringify(app.loginData.nickName)
+            })
         )
       }
     },

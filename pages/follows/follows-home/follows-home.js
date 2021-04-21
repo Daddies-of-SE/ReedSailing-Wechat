@@ -110,12 +110,12 @@ Page({
     onShareAppMessage: function () {
 
       this.setData({
-          havelogin : app.haveLogin()
+          havelogin : app.haveRegistered()
       })
     },
 
     onShow: function (e) {
-      if (app.haveLogin()) {
+      if (app.haveRegistered()) {
           this.setData({
               havelogin : true
           })
@@ -123,16 +123,12 @@ Page({
     },
 
     callLogin: function (e) {
-      if (!app.haveLogin()) {
+      if (!app.haveRegistered()) {
         const login = require("../../../utils/login.js")
-        login.getCodeLogin().then(
-          (res) => {
-              if (app.haveLogin()) {
-                  this.setData({
-                      havelogin : true
-                  })
-              }
-          }
+        login.registerInfo().then(
+            this.setData({
+                havelogin: true,
+            })
         )
       }
     }

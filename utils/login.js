@@ -12,21 +12,9 @@ function getAPIUrl(params) {
 
 
 //缓存用户登录数据
-function saveLoginData(userInfo, resData) {
-  //存储登录token等信息
-  // wx.request({
-  //   url: getAPIUrl(`users?id=${resData.id}`),
-  //   method: 'GET',
-  //   header: {
-  //     'Authorization': 'Bearer ' + resData.token
-  //   },
-  //   success : result => {
-
-  //   }
-  // })
+function saveLoginData(resData) {
   var dt = {
     token: resData.token,
-    userInfo: userInfo,
     email : resData.email,
     userExist : resData.userExist,
     userId : resData.id,
@@ -35,7 +23,7 @@ function saveLoginData(userInfo, resData) {
     motto : resData.sign,
     avatar : resData.avatar
   }
-  // util.debug("save login data: " + JSON.stringify(dt))
+  util.debug("save login data: " + JSON.stringify(dt))
   if (dt.email == null) {
     dt.email = ""
   }
@@ -61,8 +49,8 @@ module.exports.checkLoginData = function () {
         key: 'login',
         success: res => {
           let data = res.data;
-          if (data && data.token && data.userInfo) {
-            saveLoginData(data.userInfo, data)
+          if (data && data.token) {
+            saveLoginData(data)
             resolve(data)
           }
           else {
@@ -76,7 +64,7 @@ module.exports.checkLoginData = function () {
     if (!app.loginData) {
       getFunc();
     } else {
-      if (app.loginData.token && app.loginData.userInfo) {
+      if (app.loginData.token) {
         resolve(app.loginData)
       } else {
         getFunc()
@@ -93,10 +81,8 @@ module.exports.catchUnLogin = function(funcInfo) {
     //获取code
     wx.login({
       success: e => {
-        // util.debug("loginData.userInfo " + JSON.stringify(app.loginData.userInfo))
-        if (app.loginData.userInfo) {
-          module.exports.login({
-            userInfo: app.loginData.userInfo,
+        if (app.loginData) {
+          login_({
             code: e.code
           }).then(() => {
             //记录重复尝试次数
@@ -135,7 +121,7 @@ module.exports.catchUnLogin = function(funcInfo) {
 //success: 调用成功，返回结果的函数。
 //fail: 调用失败，返回错误信息的函数。
 //也可以使用Promise写法。例如调用时: api.login({code: res.code}).then((res)=>{/*正确登录的逻辑段*/}.catch((e)=>{/*发生错误*/}))
-module.exports.login = function (options) {
+function login_(options) {
   return new Promise((resolve, reject) => {
 
     //检查options
@@ -143,25 +129,21 @@ module.exports.login = function (options) {
       reject({ err: 'login: 未提供正确的code', errMsg: "未提供正确的code" });
       return false;
     }
-    if (!options.userInfo) {
-      reject({ err: 'login: 未提供正确的userInfo', errMsg: "未提供正确的userInfo" });
-      return false;
-    }
 
     //先检查是否处于登录态
     module.exports.checkLogin()
     //向后端请求登录
     wx.request({
-      url: getAPIUrl('login/'),
+      url: getAPIUrl('userLogin/'),
       data: {
-        code: options.code,
-        userInfo: options.userInfo
+        code: options.code
       },
       method: 'POST',
       success: function (res) {
         //如果返回数据存在token则记录并返回token
+        // util.debug("res" + JSON.stringify(res))
         if (res.data.token) {
-          saveLoginData(options.userInfo,res.data);
+          saveLoginData(res.data);
           util.debug("登录成功, id: " + res.data.id)
           if (options.success)
             options.success(res);
@@ -183,7 +165,7 @@ module.exports.login = function (options) {
   });
 }
 
-//检查是否处于登录态。如果是，回调函数中data将包含token和userInfo, 不是则进入fail
+//检查是否处于登录态。如果是，回调函数中data将包含token, 不是则进入fail
 module.exports.checkLogin = function (isDebug) {
   return new Promise((resolve, reject) => {
     //如果isDebug为true则跳过登录, 返回假token
@@ -191,7 +173,6 @@ module.exports.checkLogin = function (isDebug) {
       resolve({
         data: {
           token: 'hhh',
-          userinfo: 'hh'
         }
       })
       return;
@@ -223,70 +204,149 @@ function showFailModel (text) {
     success: res => {
       if (res.confirm) {
         wx.showLoading({ title: '正在重试', mask: true });
-        module.exports.getCodeLogin(userInfo);
+        module.exports.getCodeLogin();
       }
     }
   });
 }
 
-//获取登录用的Code并发送到服务器
-module.exports.getCodeLogin = function () {
-  // wx.login({
-  //   success(res) {
-  //     util.debug("wx.login登录成功")
-  //   }
-  // })
-  return new Promise((resolve, reject) => {
-    // util.debug("get code login init")
-    wx.getUserProfile({
-      desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        let userInfo = res.userInfo
-        wx.login({
-          success: res => {
-            // util.debug("get user profile登录成功")
-            if (res.code) {
-              module.exports.login({
-                code: res.code,
-                userInfo: userInfo,
-              }).then((result) => {
-                wx.showToast({
-                  title: '登录成功',
-                  icon: 'success'
-                })
 
-                interact.getAllFollowOrgs().then(
-                  (res_orgs) => {
-                    app.userData.followOrgInfo = res_orgs.data
-                    app.userData.followOrgs = []
-                    for (var org in res_orgs.data) {
-                      app.userData.followOrgs.push(res_orgs.data[org].org.id)
-                    }
-                    util.debug("关注的组织：" + app.userData.followOrgs)
-                    resolve(res)
-                  }
-                )
+// // deprecated
+// //获取登录用的Code并发送到服务器
+// module.exports.getCodeLogin = function () {
+//   // wx.login({
+//   //   success(res) {
+//   //     util.debug("wx.login登录成功")
+//   //   }
+//   // })
+//   return new Promise((resolve, reject) => {
+//     // util.debug("get code login init")
+//     wx.getUserProfile({
+//       desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+//       success: (res) => {
+//         let userInfo = res.userInfo
+//         wx.login({
+//           success: res => {
+//             // util.debug("get user profile登录成功")
+//             if (res.code) {
+//               login_({
+//                 code: res.code,
+//                 userInfo: userInfo,
+//               }).then((result) => {
+//                 wx.showToast({
+//                   title: '登录成功',
+//                   icon: 'success'
+//                 })
+
+//                 interact.getAllFollowOrgs().then(
+//                   (res_orgs) => {
+//                     app.userData.followOrgInfo = res_orgs.data
+//                     app.userData.followOrgs = []
+//                     for (var org in res_orgs.data) {
+//                       app.userData.followOrgs.push(res_orgs.data[org].org.id)
+//                     }
+//                     util.debug("关注的组织：" + app.userData.followOrgs)
+//                     resolve(res)
+//                   }
+//                 )
 
                 
+//               })
+//               // .catch((e) => {
+//               //   console.error("登录失败2：" + e.errMsg);
+//               //   if ((e.errMsg + '').indexOf('request:fail') != -1)
+//               //     showFailModel('请求时发生错误');
+//               //   else
+//               //     showFailModel(e.errMsg);
+//               // })
+//             } else {
+//               console.error("登录失败3：" + res.errMsg);
+//               showFailModel('未能获取登录授权码');
+//             }
+//           }
+//         })
+//       },
+//       fail : (res) => {
+//         util.debug("get user profile fail" + JSON.stringify(res))
+//       }
+//     })
+//   })
+
+// }
+
+module.exports.newLogin = function() {
+  return new Promise((resolve, reject) => {
+    wx.login({
+      success: res => {
+        if (res.code) {
+          login_({
+            code: res.code
+          }).then(
+            res => {
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success'
               })
-              // .catch((e) => {
-              //   console.error("登录失败2：" + e.errMsg);
-              //   if ((e.errMsg + '').indexOf('request:fail') != -1)
-              //     showFailModel('请求时发生错误');
-              //   else
-              //     showFailModel(e.errMsg);
-              // })
-            } else {
-              console.error("登录失败3：" + res.errMsg);
-              showFailModel('未能获取登录授权码');
+              resolve()
             }
-          }
-        })
-      },
-      fail : (res) => {
-        util.debug("get user profile fail" + JSON.stringify(res))
+          )
+        } else {
+          console.error("登录失败3：" + res.errMsg);
+          showFailModel('未能获取登录授权码');
+        }
       }
     })
   })
+}
 
+function register_(userInfo) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    interact.post_request("userRegister/",
+      {
+        id : app.loginData.userId,
+        userInfo: userInfo
+      },
+      {
+        func: module.exports.registerInfo,
+        funcName: 'registerInfo',
+        reject: reject,
+        resolve: resolve
+      }
+    )
+  })
+}
+
+module.exports.registerInfo = function () {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    wx.getUserProfile({
+      desc : '用于完善资料',
+      success : (res1) => {
+        register_(res1.userInfo).then(
+          res => {
+            if (res.data.status == 0) {
+              wx.showToast({
+                title: '注册成功',
+                icon: 'success'
+              })
+              saveLoginData({
+                token: app.loginData.token,
+                email : app.loginData.email,
+                userExist : 1,
+                id : app.loginData.userId,
+                name : res1.userInfo.nickName,
+                sign : app.loginData.motto,
+                avatar : res1.userInfo.avatarUrl
+              })
+            }
+          }
+        )
+      }
+    })
+  })
 }

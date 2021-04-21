@@ -6,7 +6,6 @@ const login = require('utils/login.js')
 App({
   loginData: {
     token: '',
-    userInfo: '',
     email : '',
     userExist : -1,
     userId : -1,
@@ -15,7 +14,6 @@ App({
     avatar : ''
   },
   globalData: {
-    userInfo: null,
     currentForum: null,
     currentForumID: null,
     currentOrg: null,
@@ -27,18 +25,22 @@ App({
     controlOrgs: [],
     controlActs: []
   },
-  server : 'http://rs.test/',
-  //server : 'http://127.0.0.1:8000/',
+  // server : 'http://rs.test/',
+  server : 'http://127.0.0.1:8000/',
 
   onLaunch() {
     util.debug("launching app...")
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
+
+
     wx.setStorageSync('logs', logs)
+
   },
 
-  haveLogin() {
-    return this.loginData.token != ""
+  haveRegistered() {
+    // util.debug("have register " + this.loginData.userExist)
+    return this.loginData.userExist == 1
   }
 })
