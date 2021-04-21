@@ -74,6 +74,7 @@ function post_request(urlpath, data, funcInfo) {
   if (!urlpath.endsWith("/")) {
     urlpath = urlpath + "/"
   }
+  // util.debug("path " + urlpath)
   lg.checkLoginData().then(login => {
     wx.request({
       url: getAPIUrl(urlpath),

@@ -29,7 +29,7 @@ App({
   // server : 'http://127.0.0.1:8000/',
 
   onLaunch() {
-    util.debug("launching app...")
+    util.debug("launching app... server is " + this.server)
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

@@ -166,6 +166,8 @@ Page({
             title: '修改成功',
             icon : 'success'
           })
+          app.loginData.nickName = this.data.inputNickName
+          app.loginData.motto = this.data.inputMotto
         } else {
           wx.showToast({
             title: '修改失败',
