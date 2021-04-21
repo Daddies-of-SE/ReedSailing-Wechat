@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -14,6 +15,7 @@
         {
           "name": "pages/follows/follows-home/follows-home",
           "pathName": "pages/follows/follows-home/follows-home",
+          "query": "",
           "scene": null
         }
       ]

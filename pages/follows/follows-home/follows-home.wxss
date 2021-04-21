@@ -2,7 +2,7 @@
 
 .org-wrap {
   margin-top: 10rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 10rpx;
   background: #fff;
 }
 
@@ -46,6 +46,10 @@
 
 }
 
+.org-wrap .org-list image  {
+  border-radius: 50%;
+}
+
 .org-wrap .org-item {
   display: block;
   height: 144rpx;
@@ -79,7 +83,7 @@
 .msg-item {
   display: block;
   margin-top: 20rpx;
-  background: #fff;
+  /* background: #fff; */
 }
 
 /*
