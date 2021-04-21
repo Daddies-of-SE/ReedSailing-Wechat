@@ -1,1 +1,89 @@
 /* pages/sections/act-detail/act-detail.wxss */
+
+.act-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90rpx;
+  padding: 0 30rpx;
+}
+
+.act-header .joinBtn{
+  width: 150rpx;
+  height: 60rpx;
+  background-color: rgba(19, 173, 245, 0.548);
+  color: white;
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}
+
+.act-header .unJoinBtn{
+  width: 150rpx;
+  height: 60rpx;
+  background-color: rgba(19, 173, 245, 0.548);
+  color: white;
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}
+
+.msg-item {
+  display: block;
+  margin-top: 20rpx;
+  background: #fff;
+}
+
+.msg-item ._infor_head {
+  color: rgb(0, 174, 255);
+}
+
+.msg-item .count {
+  display: block;
+  font-size: 35rpx;
+  font-weight: 500;
+}
+
+.msg-item .organizer {
+  display: block;
+  font-size: 35rpx;
+  font-weight: 500;
+  margin-top: 10rpx;
+}
+
+.msg-item .act_time {
+  display: block;
+  font-size: 35rpx;
+  font-weight: 500;
+  margin-top: 10rpx;
+}
+
+.msg-item .place {
+  display: block;
+  font-size: 35rpx;
+  font-weight: 500;
+  margin-top: 10rpx;
+}
+
+.msg-item .body {
+  font-size: 35rpx;
+  margin-top: 10rpx;
+}
+
+.comment-block {
+  margin-top: 40rpx;
+}
+
+.comment-block .title {
+  margin-left: 3%;
+}

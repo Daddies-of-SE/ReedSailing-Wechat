@@ -62,5 +62,22 @@ Page({
      */
     onShareAppMessage: function () {
 
-    }
+    },
+  
+    goFoundOrg: function() {
+      wx.navigateTo({
+        url: '/pages/my/new-org/new-org',
+      })
+    },
+    
+  goOrg(e) {
+    var appInstance = getApp()
+    appInstance.globalData.currentOrg = e.currentTarget.dataset.orgname
+    appInstance.globalData.currentOrgID = e.currentTarget.dataset.orgid
+    util.debug("org " + appInstance.globalData.currentOrgID + " " + appInstance.globalData.currentOrg)
+
+    wx.navigateTo({
+      url: '../act-list/act-list',
+    })
+  }
 })

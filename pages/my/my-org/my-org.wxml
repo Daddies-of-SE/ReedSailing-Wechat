@@ -1,2 +1,26 @@
 <!--pages/my/my-org/my-org.wxml-->
-<text>pages/my/my-org/my-org.wxml</text>
+
+<!--我的组织-->
+<view class="my-org-header">
+    <text class="text">我的组织</text>
+</view>
+
+<!--创建组织按钮-->
+<view class="found-org">
+    <button class='btn' bindtap='goFoundOrg'>
+        <image class='btnImg' src='/icon/found_org.png'></image>
+        <view>申请创建组织</view>
+    </button>
+</view>
+
+<!--组织列表-->
+<view class="shadow">
+    <block wx:for="{{forumInfo}}" wx:key="id">
+			<view class="cell" hover-class="hover-grey" hover-stay-time="300" bindtap="goOrg" data-orgid="{{item.id}}" data-orgname="{{item.name}}">
+				<view class="content one-line">
+					<view class="title">{{item.name}}</view>
+					<view class="arrow" />
+				</view>
+			</view>
+    </block>
+</view>

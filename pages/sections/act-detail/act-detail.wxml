@@ -1,2 +1,46 @@
 <!--pages/sections/act-detail/act-detail.wxml-->
-<text>pages/sections/act-detail/act-detail.wxml</text>
+
+<!--活动名称-->
+<view class="act-header">
+    <text class="text">{{actName}}</text>
+    <block wx:if="{{isRealAct && !hasJoined}}">
+      <button class='joinBtn' bindtap='joinAct'>报名</button>
+    </block>
+    <block wx:elif="{{isRealAct && hasJoined}}">
+      <button class='joinBtn' bindtap='unJoinAct'>取消报名</button>
+    </block>
+</view>
+
+
+<!--活动信息-->
+<view class="msg-wrap">
+  <scroll-view scroll-y="true" class="nav">
+    <view class="msg-item">
+        <view class="count"><span class="_infor_head">人数：</span>{{actInfo.joinedNum}} / {{actInfo.capacity}}</view>
+        <view class="organizer"><span class="_infor_head">组织者：</span>{{actInfo.organizer}}</view>
+        <view class="act_time"><span class="_infor_head">时间：</span> {{actInfo.start_time !== null ? actInfo.start_time : "暂无信息"}} 至 {{actInfo.end_time !== null ? actInfo.end_time : "暂无信息"}}</view>
+        <view class="place"><span class="_infor_head">地点：</span> {{actInfo.location !== null ? actInfo.location : "暂无信息"}}</view>
+        <view class="body"><span class="_infor_head">活动内容：</span>{{actInfo.description}}</view>
+    </view>  
+  </scroll-view>
+</view>
+
+
+<!--评论区-->
+<view class="comment-block">
+  <text class="title">评论区</text>
+  <scroll-view scroll-y="true" class="nav">
+    <view class="comment-item" wx:for="{{comment_list}}">
+      <view class="user">
+        <image class="headshot" src="{{item.headshotUrl}}"></image>
+        <text class="name">{{item.name}}</text>
+      </view>
+      <view class="comment">
+        <text class="words">{{item.comment}}</text>
+        <image class="like" src="{{likeUrl}}" bindtap='like'></image>
+        <button class="reply" bindtap="reply">回复</button>
+      </view>
+    </view>
+    
+  </scroll-view>
+</view>
