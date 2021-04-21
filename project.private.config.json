@@ -1,0 +1,22 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/follows/follows-home/follows-home",
+          "pathName": "pages/follows/follows-home/follows-home",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

@@ -72,12 +72,17 @@
 
 /*******************************************************/
 
+.card-demo image {
+  border-radius: 50%;
+}
+
 .msg-item {
   display: block;
   margin-top: 20rpx;
   background: #fff;
 }
 
+/*
 .msg-item .activity {
 }
 
@@ -127,29 +132,32 @@
   border-color: #666;
 }
 
-.msg-item .content-body .title {
+
+*/
+
+.msg-item  .title {
   margin-bottom: 15rpx;
 }
 
-.msg-item .content-body ._infor_head {
+.msg-item ._infor_head {
   color: rgb(0, 174, 255);
 }
 
-.msg-item .content-body .org_time {
+.msg-item .org_time {
   display: block;
   color: #999;
   font-size: 24rpx;
   font-weight: 500;
 }
 
-.msg-item .content-body .place {
+.msg-item  .place {
   display: block;
   color: #999;
   font-size: 24rpx;
   font-weight: 500;
 }
 
-.msg-item .content-body .body {
+.msg-item .body {
   font-size: 26rpx;
 }
 
@@ -168,4 +176,4 @@
 .msg-item .bottom-right .arrow {
   width: 13rpx;
   height: 25rpx;
-}
+} 

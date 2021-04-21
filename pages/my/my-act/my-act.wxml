@@ -1,2 +1,9 @@
 <!--pages/my/my-act/my-act.wxml-->
-<text>pages/my/my-act/my-act.wxml</text>
+<i-tabs current="{{ current }}" color="#f759ab" bindchange="handleChange">
+    <i-tab key="tab1" title="未进行">
+    
+    </i-tab>
+    <i-tab key="tab2" title="已进行">
+    
+    </i-tab>
+</i-tabs>

@@ -27,7 +27,7 @@
 </view>
 
 <!--message lists-->
-<view class="msg-wrap">
+<!-- <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
     <view class="msg-item" wx:for="{{msg_list}}">
       <view class="activity" wx:if="{{item.type === 'activity'}}">
@@ -49,13 +49,45 @@
           </view>
       </view>
       <view wx:elif="{{item.type === 'news'}}">
-        <!--TO DO-->
 
       </view>
       <view wx:elif="{{item.type === 'notice'}}">
-        <!--TO DO-->
+
       </view>
     </view>
     
+  </scroll-view>
+</view> -->
+
+
+
+<view class="msg-wrap">
+  <scroll-view scroll-y="true" class="nav">
+    <view class="msg-item" wx:for="{{msg_list}}">
+      <i-card wx:if="{{item.type === 'activity'}}" i-class="card-demo" 
+        title="{{item.org_name}}" extra="{{item.publish_time}}" thumb="{{item.avatorUrl}}">
+        <view slot="content">
+          <text calss="title">{{item.act_title}}</text>
+          <view class="org_time"><span class="_infor_head">时间：</span> {{item.start_time !== null ? item.start_time : "暂无信息"}} 至 {{item.end_time !== null ? item.end_time : "暂无信息"}}</view>
+          <view class="place"><span class="_infor_head">地点：</span> {{item.act_place !== null ? item.act_place : "暂无信息"}}</view>
+          <view class="place"><span class="_infor_head">类别：</span> 活动</view>
+          <view class="body"><span class="_infor_head">简介：</span>{{item.body}}</view>
+        </view>
+        <view slot="footer">
+          <view class="bottom-right" bindtap="toActivity">
+                  <image class="arrow" src="/icon/rightArrow.png"></image>
+                  <text class="txt">详情</text>
+              </view>
+        </view>
+      </i-card>
+
+      <i-card wx:elif="{{item.type === 'news'}}">
+        <!--TO DO-->
+
+      </i-card>
+      <i-card wx:elif="{{item.type === 'notice'}}">
+        <!--TO DO-->
+      </i-card>
+    </view>
   </scroll-view>
 </view>

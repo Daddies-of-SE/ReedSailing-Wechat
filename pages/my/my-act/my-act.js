@@ -5,7 +5,13 @@ Page({
      * 页面的初始数据
      */
     data: {
+        current: 'tab1',
+    },
 
+    handleChange ({ detail }) {
+        this.setData({
+            current: detail.key
+        });
     },
 
     /**

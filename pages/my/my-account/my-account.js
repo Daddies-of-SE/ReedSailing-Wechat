@@ -143,7 +143,7 @@ Page({
           }
           else if (res.data.status == 1) {
             wx.showToast({
-              title: '验证失败'
+              title: '验证失败，请重新输入验证码'
             })
           }
         }
