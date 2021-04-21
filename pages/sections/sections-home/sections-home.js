@@ -44,7 +44,7 @@ Page({
                 id : 4,
                 title : "个人",
                 hasOrgLevel: false,
-                picUrl : "/icon/person.png",
+                picUrl : "/icon/person_forum.png",
             },
 
         ],

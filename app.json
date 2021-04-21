@@ -29,25 +29,39 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
     
     "list": [
       {
+        "iconPath": "icon/home-outline.png",
+        "selectedIconPath": "icon/home.png",
         "pagePath": "pages/index/recommend/recommend",
         "text": "首页"
       },
       {
+        "iconPath": "icon/planet-outline.png",
+        "selectedIconPath": "icon/planet.png",
         "pagePath": "pages/sections/sections-home/sections-home",
         "text": "分区"
       },
       {
+        "iconPath": "icon/heart-circle-outline.png",
+        "selectedIconPath": "icon/heart-circle.png",
         "pagePath": "pages/follows/follows-home/follows-home",
         "text": "关注"
       },
       {
+        "iconPath": "icon/calendar-outline.png",
+        "selectedIconPath": "icon/calendar.png",
         "pagePath": "pages/schedule/schedule",
         "text": "日程"
       },
       {
+        "iconPath": "icon/person-outline.png",
+        "selectedIconPath": "icon/person.png",
         "pagePath": "pages/my/my-home/my-home",
         "text": "我的"
       }

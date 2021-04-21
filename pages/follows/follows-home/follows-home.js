@@ -19,17 +19,17 @@ Page({
     onLoad: function (options) {
         /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
         this.setData({
-            most_visited : app.userData.followOrgInfo,
-            // most_visited : [
-            //     {
-            //         name: "高工足球队",
-            //         avatorUrl: "/icon/gaogong_football.png",
-            //     },
-            //     {
-            //         name: "高工学生会",
-            //         avatorUrl: "/icon/gaogong_student_union.png",
-            //     },
-            // ],
+            //most_visited : app.userData.followOrgInfo,
+            most_visited : [
+                {
+                    org:{name: "高工足球队",
+                    avator: "/icon/gaogong_football.png",}
+                },
+                {
+                    org:{name: "高工学生会",
+                    avator: "/icon/gaogong_student_union.png",}
+                },
+            ],
 
             msg_list : [
                 {
