@@ -79,6 +79,10 @@
     "i-tabs": "lib/iview/dist/tabs/index",
     "i-tab": "/lib/iview/dist/tab/index",
     "i-card": "/lib/iview/dist/card/index",
+    "i-input": "/lib/iview/dist/input/index",
+    "i-panel": "/lib/iview/dist/panel/index",
+    "i-cell-group": "/lib/iview/dist/cell-group/index",
+    "i-cell": "/lib/iview/dist/cell/index",
 
     "van-search": "lib/vant-weapp/search/index",
     "van-panel": "lib/vant-weapp/panel/index",

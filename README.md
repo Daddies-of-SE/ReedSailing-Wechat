@@ -18,9 +18,17 @@
 
 - 不带头像的基本界面布局使用i-panel, i-cell-group, i-cell组件 
 
+- 列表类布局使用 i-cell-group, i-cell组件 
+
 - 顶部切换栏统一使用i-tabs和i-tab组件
 
 - 输入框统一使用 i-panel，i-input，i-button组件
+
+- 折叠面板使用i-collapse和i-collapse-item组件
+
+- 比较常见的图标可以在i-icon里面找
+
+- 下拉框使用微信自带的picker
 
   
 

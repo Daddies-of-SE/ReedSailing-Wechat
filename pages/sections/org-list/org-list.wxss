@@ -74,7 +74,7 @@
   width: 100%;
 }
 
-.shadow {
+/* .shadow {
   transition: ease-out 200ms;
   box-shadow: 0 0 18rpx rgb(236, 236, 236);
 }
@@ -111,8 +111,7 @@
   display: flex;
   background : white;
   border-bottom: 1px solid #f0f0f0;
-  /* border-bottom: 1px solid #ffffff; */
-}
+} */
 
 .auth-content {
   display: flex;
@@ -121,4 +120,11 @@
 
 .auth-content text {
   margin-bottom: 30rpx;
+}
+
+.org-wrap .org-avator {
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  border: darkslategrey;
 }

@@ -5,7 +5,13 @@ Page({
      * 页面的初始数据
      */
     data: {
+        type_array: ['活动','新闻','公告']
+    },
 
+    bindPickerChange: function(e) {
+        this.setData({
+            index: e.detail.value
+        })
     },
 
     /**
