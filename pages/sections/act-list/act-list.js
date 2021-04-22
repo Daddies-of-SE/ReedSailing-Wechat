@@ -19,7 +19,9 @@ Page({
         },
         hasOrgInfo: false,
         showIndex: 0,
-        hasFollowed: false
+        hasFollowed: false,
+        memList: [],
+        actList: []
     },
 
     /**

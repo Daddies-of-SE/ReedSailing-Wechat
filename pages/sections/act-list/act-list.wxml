@@ -33,6 +33,14 @@
       <view class='title_1'>管理员</view>
       <view class='title_2'><image src="/icon/{{showIndex == 2 ? 'up':'down'}}.png"></image></view>
     </view>
+    <view class='memList' wx:if="{{showIndex == 2}}">
+      <i-cell-group i-class="mem-wrap">
+        <block wx:for="{{memList}}" wx:key="id">
+          <image class="headShot" src="{{item.HeadShotUrl}}"></image>
+          <button class='editBtn' bindtap='editMemList'>编辑</button>
+        </block>
+      </i-cell-group>
+    </view>
     <view class='detail' wx:if="{{showIndex == 2}}">管理员跑路了</view>
     <button class='editBtn' bindtap='editMemList' wx:if="{{showIndex == 2}}">编辑</button>
   </view>
@@ -43,10 +51,21 @@
       <view class='title_1'>活动</view>
       <view class='title_2'><image src="/icon/{{showIndex == 3 ? 'up':'down'}}.png"></image></view>
     </view>
-    <view class='detail' wx:if="{{showIndex == 3}}">活动都是假的</view>
-    <view class="list" wx:if="{{showIndex == 3}}">
-      <button class='editBtn' bindtap='editActInfo' wx:if="{{showIndex == 3}}">编辑</button>
+    <view class='actList'  wx:if="{{showIndex == 3}}">
+      <i-cell-group i-class="act-wrap">
+        <i-cell title="测试" label="附加描述">
+
+        </i-cell> 
+        <block wx:for="{{actList}}" wx:key="id">
+        <i-cell title="{{item.name}}" label="附加描述" value="详细信息" data-orgid="{{item.id}}" data-orgname="{{item.name}}">
+
+        </i-cell> 
+        <button class='editBtn' bindtap='editActInfo'>编辑</button>
+        </block>
+      </i-cell-group>
     </view>
+    <view class='detail' wx:if="{{showIndex == 3}}">活动都是假的</view>
+    <button class='editBtn' bindtap='editActInfo' wx:if="{{showIndex == 3}}">编辑</button>
   </view>
 
 </view>

@@ -15,7 +15,7 @@
 
 <!--组织列表-->
 <view class="shadow">
-    <block wx:for="{{forumInfo}}" wx:key="id">
+    <block wx:for="{{orgList}}" wx:key="id">
 			<view class="cell" hover-class="hover-grey" hover-stay-time="300" bindtap="goOrg" data-orgid="{{item.id}}" data-orgname="{{item.name}}">
 				<view class="content one-line">
 					<view class="title">{{item.name}}</view>

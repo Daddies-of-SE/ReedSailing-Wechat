@@ -79,3 +79,8 @@
   writing-mode: vertical-lr;
   margin-right: 0%;
 }
+
+.folder .folder_item .headShot {
+  height: 80rpx;
+  width: 80rpx;
+}

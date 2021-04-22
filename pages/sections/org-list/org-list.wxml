@@ -73,6 +73,7 @@
 </view> -->
 
 <i-cell-group i-class="org-wrap">
+    <text>123</text>
     <block wx:for="{{forumInfo}}" wx:key="id">
         <i-cell title="{{item.name}}" label="附加描述" value="详细信息" is-link bindtap="goOrg" 
         data-orgid="{{item.id}}" data-orgname="{{item.name}}">

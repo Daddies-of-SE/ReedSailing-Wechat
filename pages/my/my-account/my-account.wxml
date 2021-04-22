@@ -29,11 +29,10 @@
     <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="warnWait">重新发送({{second}})</van-button>
   </view> 
   
-  
+  <!--label="验证码"-->
   <van-field
       center
       clearable
-      label="验证码"
       placeholder="请输入邮箱验证码"
       bindinput="inputVerifyCodeHandler"
       border="{{ true }}"
