@@ -14,23 +14,18 @@
 
 ## 统一样式
 
-- 活动详情/组织详情 的 头像和基本信息***界面布局***统一用i-card组件
-
+- 活动详情/组织详情 的 头像和基本信息***界面布局***统一用i-card组件（参考follow）
 - 不带头像的基本界面布局使用i-panel, i-cell-group, i-cell组件 
-
-- 列表类布局使用 i-cell-group, i-cell组件 
-
-- 顶部切换栏统一使用i-tabs和i-tab组件
-
-- 输入框统一使用 i-panel，i-input，i-button组件
-
+- 一行列表类布局使用 i-cell-group, i-cell组件 (参考org-list)
+- 顶部切换栏统一使用i-tabs和i-tab组件(参考my-org)
+- 输入框统一使用 i-panel，i-input，i-button组件(参考new-org)
 - 折叠面板使用i-collapse和i-collapse-item组件
-
 - 比较常见的图标可以在i-icon里面找
+- 下拉框使用微信自带的picker和微信官方wxss（参考new-org）
+- 带发送按钮的，参见微信官方的[一行写法](![img](file:///C:\Users\Administrator\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://github.com/Tencent/weui-wxss/blob/master/dist/example/input/input.wxml)； 如果文本比较长放不下，按钮可以换行
+- 按钮使用微信原生组件和官方wxss，[参考](https://github.com/Tencent/weui-wxss/blob/master/dist/example/button/button.wxml)
 
-- 下拉框使用微信自带的picker
 
-  
 
 ## 页面
 

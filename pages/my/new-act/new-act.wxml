@@ -1,14 +1,92 @@
 <!--pages/my/new-act/new-act.wxml-->
-<picker bindchange="bindPickerChange" value="{{index}}" range="{{type_array}}">
-                <a class="weui-btn weui-btn_default">单列选择器</a>
-    </picker>
 
+
+    
 
 
 <i-panel title="活动基本信息">
+    <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+        <view class="weui-cell__hd">
+            <label class="weui-label" style="width: 3em">板块</label>
+        </view>
+        <view class="weui-cell__bd">
+            <picker bindchange="bindPicker_1_Change" range="{{forum_array}}">
+                <view class="weui-select">{{forum_array[index1]}}</view>
+            </picker>
+        </view>
+    </view>
 
-    <i-input value="{{ value1 }}" title="" autofocus placeholder="名字" />
-    <i-input value="{{ value2 }}" type="number" title="联系电话" placeholder="请输入手机号" />
-    <i-input value="{{ value3 }}" type="textarea" title="详细地址" placeholder="请输入详细地址(最多50字)" maxlength="50" />
-    <i-input value="{{ value4 }}" title="用户信息" disabled />
+    <!---->
+    <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+        <view class="weui-cell__hd">
+            <label class="weui-label" style="width: 3em">组织</label>
+        </view>
+        <view class="weui-cell__bd">
+            <picker bindchange="bindPicker_2_Change" range="{{my_org}}" disabled="{{private}}">
+                <view class="weui-select">{{private ? '禁用' : my_org[index2]}}</view>
+            </picker>
+        </view>
+    </view>
+
+
+    <i-input value="{{ value1 }}" title="活动名称" placeholder="请输入活动名称" />
+    <i-input value="{{ value2 }}" title="活动描述(可选)" placeholder="请输入活动描述" />
+    <i-input value="{{ value3 }}" type="number" title="最大人数" placeholder="请输入大于0的整数" />
+
+    <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__hd">
+            <view class="weui-label">起始日期</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker mode="date" value="{{start_date}}" start="2021-04-22" end="2030-09-01" bindchange="bindStartDateChange">
+                <view class="weui-input">{{start_date}}</view>
+            </picker>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__hd">
+            <view class="weui-label">起始时间</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker mode="time" value="{{start_time}}" start="00:00" end="23:59" bindchange="bindStartTimeChange">
+                <view class="weui-input">{{start_time}}</view>
+            </picker>
+        </view>
+    </view>
+
+    <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__hd">
+            <view class="weui-label">结束日期</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker mode="date" value="{{end_date}}" start="2021-04-22" end="2030-09-01" bindchange="bindEndDateChange">
+                <view class="weui-input">{{end_date}}</view>
+            </picker>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_active">
+        <view class="weui-cell__hd">
+            <view class="weui-label">结束时间</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker mode="time" value="{{end_time}}" start="00:00" end="23:59" bindchange="bindEndTimeChange">
+                <view class="weui-input">{{end_time}}</view>
+            </picker>
+        </view>
+    </view>
+
+
+
+    <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+        <view class="weui-cell__hd">
+            <label class="weui-label" style="width: 3em">加入需要审核</label>
+        </view>
+        <view class="weui-cell__bd">
+            <picker bindchange="bindPicker_3_Change" range="{{flag}}">
+                <view class="weui-select check-right"> {{flag[index3]}}</view>
+            </picker>
+        </view>
+    </view>
+
 </i-panel>
+<a class="weui-btn weui-btn_primary">提交</a>

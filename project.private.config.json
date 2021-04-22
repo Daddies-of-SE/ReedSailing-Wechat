@@ -13,8 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/sections/org-list/org-list",
-          "pathName": "pages/sections/org-list/org-list",
+          "name": "pages/my/new-act/new-act",
+          "pathName": "pages/my/new-act/new-act",
           "query": "",
           "scene": null
         }

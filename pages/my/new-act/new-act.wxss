@@ -1,1 +1,4 @@
 /* pages/my/new-act/new-act.wxss */
+.check-right {
+  text-align: center;
+}
