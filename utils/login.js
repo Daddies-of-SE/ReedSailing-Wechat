@@ -23,7 +23,7 @@ function saveLoginData(resData) {
     motto : resData.sign,
     avatar : resData.avatar
   }
-  util.debug("save login data: " + JSON.stringify(dt))
+  // util.debug("save login data: " + JSON.stringify(dt))
   if (dt.email == null) {
     dt.email = ""
   }

@@ -1,4 +1,6 @@
 // pages/my/my-act/my-act.js
+const interact = require("../../../utils/interact.js")
+const util = require("../../../utils/util")
 Page({
 
     /**
@@ -6,6 +8,8 @@ Page({
      */
     data: {
         current: 'tab1',
+        ungoingActList : [],
+        goingActList : [],
     },
 
     handleChange ({ detail }) {
@@ -18,7 +22,15 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        interact.getMyActList().then(
+            (res) => {
+                //TODO: 区分已进行和未进行
+                this.setData({
+                    ungoingActList : res.data
+                })
+                util.debug(JSON.stringify(res.data))
+            }
+        )
     },
 
     /**

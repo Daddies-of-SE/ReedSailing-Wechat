@@ -512,3 +512,31 @@ module.exports.getAllManageOrgs = function() {
     })
   }) 
 }
+
+module.exports.getOrgActList = function (org_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`organizations/activities/${org_id}/`, 
+      {
+        func: module.exports.getOrgActList,
+        funcName: 'getOrgActList',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+
+module.exports.getMyActList = function () {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    get_request(`users/released_activities/${app.loginData.userId}/`, 
+      {
+        func: module.exports.getMyActList,
+        funcName: 'getMyActList',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}

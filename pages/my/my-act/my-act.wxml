@@ -1,8 +1,12 @@
 <!--pages/my/my-act/my-act.wxml-->
+
 <i-tabs current="{{ current }}" color="#f759ab" bindchange="handleChange">
     <i-tab key="tab1" title="未进行">
+        <text>asdffsfs</text>
         <i-cell-group i-class="act-wrap">
-            <block wx:for="{{ungoing-act-list}}" wx:key="id">
+            <i-cell title="测试" label="附加描述">
+            </i-cell> 
+            <block wx:for="{{ungoingActList}}" wx:key="id">
             <i-cell title="{{item.name}}" label="附加描述" value="详细信息" is-link bindtap="goOrg" 
                 data-orgid="{{item.id}}" data-orgname="{{item.name}}">
                 <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
@@ -12,9 +16,9 @@
     </i-tab>
     <i-tab key="tab2" title="已进行">
         <i-cell-group i-class="act-wrap">
-            <block wx:for="{{going-act-list}}" wx:key="id">
+            <block wx:for="{{goingActList}}" wx:key="id">
             <i-cell title="{{item.name}}" label="附加描述" value="详细信息" is-link bindtap="goOrg" 
-                data-orgid="{{item.id}}" data-orgname="{{item.name}}">
+                data-actid="{{item.id}}" data-actname="{{item.name}}">
                 <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
             </i-cell> 
             </block>

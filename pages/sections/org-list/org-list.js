@@ -36,7 +36,7 @@ onLoad: function (options) {
   onShow: function () {
     interact.getBlockOrgList(appInstance.globalData.currentForumID).then(
       (res) => {
-        console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
+        // console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
         this.setData({
           forumInfo: res.data,
           hasForumInfo: true,
