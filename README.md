@@ -18,12 +18,21 @@
 - 不带头像的基本界面布局使用i-panel, i-cell-group, i-cell组件 
 - 一行列表类布局使用 i-cell-group, i-cell组件 (参考org-list)
 - 顶部切换栏统一使用i-tabs和i-tab组件(参考my-org)
+  - 不同于原生微信接口 不能直接写在里面 要在外面用if渲染 [参考](https://github.com/TalkingData/iview-weapp/issues/179)
 - 输入框统一使用 i-panel，i-input，i-button组件(参考new-org)
 - 折叠面板使用i-collapse和i-collapse-item组件
 - 比较常见的图标可以在i-icon里面找
 - 下拉框使用微信自带的picker和微信官方wxss（参考new-org）
 - 带发送按钮的，参见微信官方的[一行写法](![img](file:///C:\Users\Administrator\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://github.com/Tencent/weui-wxss/blob/master/dist/example/input/input.wxml)； 如果文本比较长放不下，按钮可以换行
 - 按钮使用微信原生组件和官方wxss，[参考](https://github.com/Tencent/weui-wxss/blob/master/dist/example/button/button.wxml)
+
+
+
+~~致一个星期前(2021.04.14)的我：你真是个纯沙雕，美丽的iView和WeUI接口不用，去自己手搓丑到家的组件？~~
+
+~~另外跪下向Vant道歉，原以为是您辣鸡，原来是我自己垃圾~~
+
+~~所以前端的经验就是：千万不要自己手搓组件；找一个组件库不够，就找三个~~
 
 
 
