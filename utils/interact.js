@@ -526,15 +526,80 @@ module.exports.getOrgActList = function (org_id) {
 }
 
 
-module.exports.getMyActList = function () {
+// module.exports.getMyActList = function () {
+//   if (!app) {
+//     app = getApp()
+//   }
+//   return new Promise((resolve, reject) => {
+//     get_request(`users/released_activities/${app.loginData.userId}/`, 
+//       {
+//         func: module.exports.getMyActList,
+//         funcName: 'getMyActList',
+//         reject: reject,
+//         resolve: resolve
+//     })
+//   }) 
+// }
+
+module.exports.getUnstartManageActs = function () {
+  if (!app) {
+    app = getApp()
+  }
+  //TODO : urls of these 3 funcs are not `manage` but `join`
+  return new Promise((resolve, reject) => {
+    get_request(`user/joined_acts/unstart/${app.loginData.userId}/`, 
+      {
+        func: module.exports.getUnstartManageActs,
+        funcName: 'getUnstartManageActs',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+module.exports.getCurManageActs = function () {
   if (!app) {
     app = getApp()
   }
   return new Promise((resolve, reject) => {
-    get_request(`users/released_activities/${app.loginData.userId}/`, 
+    get_request(`user/joined_acts/cur/${app.loginData.userId}/`, 
       {
-        func: module.exports.getMyActList,
-        funcName: 'getMyActList',
+        func: module.exports.getCurManageActs,
+        funcName: 'getCurManageActs',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+module.exports.getEndManageActs = function () {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    get_request(`user/joined_acts/end/${app.loginData.userId}/`, 
+      {
+        func: module.exports.getEndManageActs,
+        funcName: 'getEndManageActs',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+module.exports.addOrgManager = function (org_id, user_id) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    post_request(`organizations/managers/`,
+      {
+        org : org_id,
+        person : user_id
+      },
+      {
+        func: module.exports.addOrgManager,
+        funcName: 'addOrgManager',
         reject: reject,
         resolve: resolve
     })

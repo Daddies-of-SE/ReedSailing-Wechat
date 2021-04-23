@@ -17,6 +17,7 @@ Page({
           create_time : "",
           description : ""
         },
+        orgId : -1,
         hasOrgInfo: false,
         showIndex: 0,
         hasFollowed: false,
@@ -28,7 +29,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      var orgId = app.globalData.currentOrgID
+      var orgId =options.orgId
+      this.setData({
+        orgId : orgId
+      })
       if (orgId == -1) {
         this.setData({
           orgName: "博雅活动列表",
@@ -83,12 +87,12 @@ Page({
 
     //关注页面
     followOrg: function() {
-      interact.followOrg(app.globalData.currentOrgID).then(
+      interact.followOrg(this.data.orgId).then(
         (res) => {
           wx.showToast({
             title: '关注成功',
           })
-          app.userData.followOrgs.push(app.globalData.currentOrgID)
+          app.userData.followOrgs.push(this.data.orgId)
           util.debug("当前关注组织：" + app.userData.followOrgs)
           this.setData({
             hasFollowed : true
@@ -98,12 +102,12 @@ Page({
     },
 
     unFollowOrg: function() {
-      interact.unFollowOrg(app.globalData.currentOrgID).then(
+      interact.unFollowOrg(this.data.orgId).then(
         (res) => {
           wx.showToast({
             title: '已取消关注',
           })
-          app.userData.followOrgs.splice(app.userData.followOrgs.indexOf(app.globalData.currentOrgID))
+          app.userData.followOrgs.splice(app.userData.followOrgs.indexOf(this.data.orgId))
           util.debug("当前关注组织：" + app.userData.followOrgs)
           this.setData({
             hasFollowed : false
@@ -114,7 +118,7 @@ Page({
   
     editOrgInfo: function() {
       wx.navigateTo({
-        url: '../org-detail/org-detail',
+        url: `../org-detail/org-detail?orgId=${this.data.orgId}`,
       })
     },
   

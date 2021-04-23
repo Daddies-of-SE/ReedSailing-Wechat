@@ -10,6 +10,7 @@ Page({
    */
   data: {
     forumName: null,
+    forumId: null,
     forumInfo: [],
     hasForumInfo: false
 },
@@ -18,8 +19,19 @@ Page({
  * 生命周期函数--监听页面加载
  */
 onLoad: function (options) {
-    this.setData({forumName: appInstance.globalData.currentForum})
-
+    this.setData({
+      forumName: options.forumName,
+      forumId: options.forumId
+    })
+    interact.getBlockOrgList(options.forumId).then(
+      (res) => {
+        // console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
+        this.setData({
+          forumInfo: res.data,
+          hasForumInfo: true,
+        })
+      }
+    )
   },
 
 
@@ -33,16 +45,8 @@ onLoad: function (options) {
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    interact.getBlockOrgList(appInstance.globalData.currentForumID).then(
-      (res) => {
-        // console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
-        this.setData({
-          forumInfo: res.data,
-          hasForumInfo: true,
-        })
-      }
-    )
+  onShow: function (options) {
+
   },
 
   /**
@@ -91,13 +95,8 @@ onLoad: function (options) {
   },
 
   goOrg(e) {
-    var appInstance = getApp()
-    appInstance.globalData.currentOrg = e.currentTarget.dataset.orgname
-    appInstance.globalData.currentOrgID = e.currentTarget.dataset.orgid
-    util.debug("org " + appInstance.globalData.currentOrgID + " " + appInstance.globalData.currentOrg)
-
     wx.navigateTo({
-      url: '../act-list/act-list',
+      url: `../act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
     })
   }
 })

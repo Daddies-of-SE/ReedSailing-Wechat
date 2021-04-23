@@ -1,29 +1,37 @@
 <!--pages/my/my-act/my-act.wxml-->
-<text>asdffsfs</text>
 
 <i-tabs current="{{ current }}" color="#f759ab" bindchange="handleChange">
-    <i-tab key="tab1" title="未进行">
-        
-        <i-cell-group i-class="act-wrap">
-            <i-cell title="测试" label="附加描述">
-            </i-cell> 
-            <block wx:for="{{ungoingActList}}" wx:key="id">
-            <i-cell title="{{item.name}}" label="附加描述" value="详细信息" is-link bindtap="goOrg" 
-                data-orgid="{{item.id}}" data-orgname="{{item.name}}">
-                <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
-            </i-cell> 
-            </block>
-        </i-cell-group>
-
-    </i-tab>
-    <i-tab key="tab2" title="已进行">
-        <i-cell-group i-class="act-wrap">
-            <block wx:for="{{goingActList}}" wx:key="id">
-            <i-cell title="{{item.name}}" label="附加描述" value="详细信息" is-link bindtap="goOrg" 
-                data-actid="{{item.id}}" data-actname="{{item.name}}">
-                <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
-            </i-cell> 
-            </block>
-        </i-cell-group>
-    </i-tab>
+    <i-tab key="tab1" title="进行中"></i-tab>
+    <i-tab key="tab2" title="未开始"></i-tab>
+    <i-tab key="tab3" title="已结束"></i-tab>
 </i-tabs>
+<view wx:if="{{current == 'tab1'}}">
+    <i-cell-group i-class="act-wrap">
+        <block wx:for="{{unstartActList}}" wx:key="id">
+            <i-cell title="{{item.act.name}}" label="{{item.act.description}}" is-link bindtap="goOrg" 
+                data-actid="{{item.act.id}}" data-actname="{{item.act.name}}">
+                <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
+            </i-cell> 
+        </block>
+    </i-cell-group>
+</view>
+<view wx:if="{{current == 'tab2'}}">
+    <i-cell-group i-class="act-wrap">
+        <block wx:for="{{curActList}}" wx:key="id">
+        <i-cell title="{{item.act.name}}" label="{{item.act.description}}" is-link bindtap="goOrg" 
+            data-actid="{{item.act.id}}" data-actname="{{item.act.name}}">
+            <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
+        </i-cell> 
+        </block>
+    </i-cell-group>
+</view>
+<view wx:if="{{current == 'tab3'}}">
+    <i-cell-group i-class="act-wrap">
+        <block wx:for="{{endActList}}" wx:key="id">
+        <i-cell title="{{item.act.name}}" label="{{item.act.description}}" is-link bindtap="goAct" 
+            data-actid="{{item.act.id}}" data-actname="{{item.act.name}}">
+            <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
+        </i-cell> 
+        </block>
+    </i-cell-group>
+</view>

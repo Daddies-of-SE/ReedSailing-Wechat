@@ -13,19 +13,14 @@ App({
     motto : '',
     avatar : ''
   },
-  globalData: {
-    currentForum: null,
-    currentForumID: null,
-    currentOrg: null,
-    currentOrgID: null // -1: 博雅 -2：个人
-  },
   userData: {
     followOrgs: [],
     followOrgInfo: [],
     controlOrgs: [],
     controlActs: []
   },
-  server : 'http://rs.test/',
+  server : 'http://www.reedsailing.xyz/',
+  // server : 'http://rs.test/',
   // server : 'http://127.0.0.1:8000/',
 
   onLaunch() {

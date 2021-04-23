@@ -11,7 +11,7 @@
         </view>
         <view class="weui-cell__bd">
             <picker bindchange="bindPicker_1_Change" range="{{forum_array}}">
-                <view class="weui-select">{{forum_array[index1]}}</view>
+                <view class="weui-select">{{forum_array[index1].name}}</view>
             </picker>
         </view>
     </view>
@@ -23,7 +23,7 @@
         </view>
         <view class="weui-cell__bd">
             <picker bindchange="bindPicker_2_Change" range="{{my_org}}" disabled="{{private}}">
-                <view class="weui-select">{{private ? '禁用' : my_org[index2]}}</view>
+                <view class="weui-select">{{private ? '无' : my_org[index2]}}</view>
             </picker>
         </view>
     </view>
@@ -89,4 +89,4 @@
     </view>
 
 </i-panel>
-<a class="weui-btn weui-btn_primary">提交</a>
+<a class="weui-btn weui-btn_primary" bindtap="submitAct">提交</a>

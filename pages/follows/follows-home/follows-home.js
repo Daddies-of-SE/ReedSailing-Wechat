@@ -66,9 +66,8 @@ Page({
     },
 
     toOrg(e) {
-        app.globalData.currentOrgID = e.currentTarget.dataset.orgid
         wx.navigateTo({
-            url: '../../sections/act-list/act-list',
+            url: `../../sections/act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
         })
     },
 

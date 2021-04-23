@@ -36,7 +36,7 @@ inputs: function (e) {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    interact.getOrgInfo(app.globalData.currentOrgID).then(
+    interact.getOrgInfo(options.orgId).then(
       (res) => {
         this.setData({
           orgName : res.data.name,

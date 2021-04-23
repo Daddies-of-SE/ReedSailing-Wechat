@@ -115,27 +115,20 @@ Page({
     },
 
     handleClick: function(e) {
-        // console.log(e)
-        var appInstance = getApp()
-        appInstance.globalData.currentForum = e.currentTarget.dataset.name
-        appInstance.globalData.currentForumID = e.currentTarget.dataset.forumid + 1
-        util.debug("forum " + appInstance.globalData.currentForumID + " " + appInstance.globalData.currentForum)
 
         if (e.currentTarget.dataset.hasOrg) {
             wx.navigateTo({
-                url: '../org-list/org-list',
+                url: `../org-list/org-list?forumId=${e.currentTarget.dataset.forumid+1}&forumName=${e.currentTarget.dataset.name}`,
               })
         } else {
             if (e.currentTarget.dataset.name == "博雅") {
-                appInstance.globalData.currentOrgID = -1
                 wx.navigateTo({
-                  url: '../act-list/act-list',
+                  url: `../act-list/act-list?orgId=-1`,
                 })
             }
             else {
-                appInstance.globalData.currentOrgID = -2
                 wx.navigateTo({
-                url: '../act-list/act-list',
+                    url: `../act-list/act-list?orgId=-2`,
                 })
             }
         }
@@ -151,13 +144,13 @@ Page({
       },
 
     callLogin: function (e) {
-    if (!app.haveRegistered()) {
-        const login = require("../../../utils/login.js")
-        login.registerInfo().then(
-            this.setData({
-                havelogin: true
-            })
-        )
-    }
+        if (!app.haveRegistered()) {
+            const login = require("../../../utils/login.js")
+            login.registerInfo().then(
+                this.setData({
+                    havelogin: true
+                })
+            )
+        }
     },
 })

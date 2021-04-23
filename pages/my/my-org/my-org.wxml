@@ -14,7 +14,7 @@
 </view>
 
 <!--组织列表-->
-<view class="shadow">
+<!-- <view class="shadow">
     <block wx:for="{{orgList}}" wx:key="id">
 			<view class="cell" hover-class="hover-grey" hover-stay-time="300" bindtap="goOrg" data-orgid="{{item.id}}" data-orgname="{{item.name}}">
 				<view class="content one-line">
@@ -23,4 +23,13 @@
 				</view>
 			</view>
     </block>
-</view>
+</view> -->
+
+
+<i-cell-group i-class="act-wrap">
+    <block wx:for="{{orgList}}" wx:key="id">
+    <i-cell title="{{item.org.name}}" label="{{item.org.description}}" is-link bindtap="goOrg" data-orgid="{{item.org.id}}" data-orgname="{{item.org.name}}">
+        <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
+    </i-cell> 
+    </block>
+</i-cell-group>

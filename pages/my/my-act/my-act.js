@@ -8,8 +8,9 @@ Page({
      */
     data: {
         current: 'tab1',
-        ungoingActList : [],
-        goingActList : [],
+        unstartActList : [],
+        curActList : [],
+        endActList : []
     },
 
     handleChange ({ detail }) {
@@ -22,15 +23,29 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        interact.getMyActList().then(
-            (res) => {
-                //TODO: 区分已进行和未进行
-                this.setData({
-                    ungoingActList : res.data
-                })
-                util.debug(JSON.stringify(res.data))
+        interact.getUnstartManageActs().then(
+            (res1) => {
+                interact.getCurManageActs().then(
+                    (res2) => {
+                        interact.getEndManageActs().then(
+                            (res3) => {
+                                this.setData({
+                                    unstartActList : res1.data,
+                                    curActList : res2.data,
+                                    endActList : res3.data
+                                })
+                            }
+                        )
+                    }
+                )
             }
         )
+    },
+
+    goAct: function(e) {
+        wx.navigateTo({
+        url: `../../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
+        })
     },
 
     /**

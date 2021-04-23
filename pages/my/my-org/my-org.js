@@ -1,4 +1,7 @@
 // pages/my/my-org/my-org.js
+const interact = require("../../../utils/interact.js")
+const util = require("../../../utils/util.js")
+
 Page({
 
     /**
@@ -12,7 +15,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+      interact.getAllManageOrgs().then(
+        (res) => {
+          this.setData({
+            orgList : res.data
+          })
+        }
+      )
     },
 
     /**
@@ -70,14 +79,9 @@ Page({
       })
     },
     
-  goOrg(e) {
-    var appInstance = getApp()
-    appInstance.globalData.currentOrg = e.currentTarget.dataset.orgname
-    appInstance.globalData.currentOrgID = e.currentTarget.dataset.orgid
-    util.debug("org " + appInstance.globalData.currentOrgID + " " + appInstance.globalData.currentOrg)
-
-    wx.navigateTo({
-      url: '../act-list/act-list',
-    })
-  }
+    goOrg(e) {
+      wx.navigateTo({
+        url: `../../sections/act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
+      })
+    }
 })

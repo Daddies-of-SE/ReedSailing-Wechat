@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        forum_array: ['社团','学生会','个人'],
+        forum_array: [],
         index1 : 0,
         // TODO: my_org应该设置为**所选forum下**，用户所管理的组织
         my_org:['高工足球队', '高工学生会'],
@@ -91,38 +91,7 @@ Page({
 
     },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
+    submitAct: function() {
 
     }
 })

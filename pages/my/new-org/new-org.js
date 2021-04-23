@@ -10,6 +10,7 @@ Page({
     data: {
         inputName : "",
         inputDescription : ""
+        //TODO: 增加版块选项
     },
 
     /**
@@ -31,10 +32,12 @@ Page({
         //TODO : change to createOrgApplication
         interact.createOrgDirectly(this.data.inputName, this.data.inputDescription, app.globalData.currentForumID).then(
             (res) => {
-            wx.showToast({
-              title: '提交成功',
-              icon : 'success'
-            })
+            interact.addOrgManager(res.data.id, app.loginData.userId).then(
+                wx.showToast({
+                    title: '提交成功',
+                    icon : 'success'
+                  })
+            )
         })
     }
 })
