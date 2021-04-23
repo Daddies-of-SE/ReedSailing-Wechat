@@ -1,12 +1,7 @@
 <!--pages/my/new-org/new-org.wxml-->
 
-<!-- <view>组织名称</view>
-<input value="{{inputName}}" placeholder="请输入组织名称" bindinput="inputNameHandler" style="width:50%"/>
-<view>组织描述</view>
-<input value="{{inputDescription}}" placeholder="请输入组织描述" bindinput="inputDescriptionHandler" style="width:50%"/>
-<button bindtap="submitOrg">提交申请</button> -->
 
-<van-field
+<!-- <van-field
       center
       clearable
       label="组织名称"
@@ -24,4 +19,25 @@
       border="{{ true }}"
     >
 </van-field>
-<van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitOrg">提交申请</van-button>
+<van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitOrg">提交申请</van-button> -->
+
+
+
+<i-panel title="组织基本信息">
+    <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+        <view class="weui-cell__hd">
+            <label class="weui-label" style="width: 3em">板块</label>
+        </view>
+        <view class="weui-cell__bd">
+            <picker bindchange="bindPicker_1_Change" range="{{forum_array}}" range-key="title">
+                <view class="weui-select">{{forum_array[index1].title}}</view>
+            </picker>
+        </view>
+    </view>
+
+
+    <i-input value="{{ inputName }}" bind:change="inputNameHandler" title="组织名称" placeholder="请输入组织名称" maxlength="20"/>
+    <i-input value="{{ inputDescription }}" bind:change="inputDescriptionHandler" title="组织描述(可选)" placeholder="请输入组织描述" maxlength="50"/>
+
+</i-panel>
+<a class="weui-btn weui-btn_primary" bindtap="submitOrg">提交</a>

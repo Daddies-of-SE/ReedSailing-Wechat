@@ -86,7 +86,7 @@ onLoad: function (options) {
   
   goFoundOrg: function() {
     wx.navigateTo({
-      url: '/pages/my/new-org/new-org',
+      url: `/pages/my/new-org/new-org?forumId=${this.data.forumId}`,
     })
   },
 

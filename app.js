@@ -19,6 +19,40 @@ App({
     controlOrgs: [],
     controlActs: []
   },
+  forumList : [
+    {
+        id : 1,
+        title : "社团",
+        hasOrgLevel: true,
+        picUrl : "/icon/club.png",
+    
+    },
+    {
+        id : 2,
+        title : "博雅",
+        hasOrgLevel: false,
+        picUrl : "/icon/boya.png",
+    },
+    {
+        id : 3,
+        title : "学生会",
+        hasOrgLevel: true,
+        picUrl : "/icon/student_union.png",
+    },
+    {
+        id : 4,
+        title : "志愿",
+        hasOrgLevel: true,
+        picUrl : "/icon/volunteer.png",
+    },
+    {
+        id : 5,
+        title : "个人",
+        hasOrgLevel: false,
+        picUrl : "/icon/person_forum.png",
+    },
+
+  ],
   server : 'http://www.reedsailing.xyz/',
   // server : 'http://rs.test/',
   // server : 'http://127.0.0.1:8000/',

@@ -12,42 +12,7 @@ Page({
         winHeight:0,
         currentTab:0,
         havelogin: false,
-
-        forum_list: [
-            // TODO： 暂时先随便放个图标，之后需更换为符合主题的图标
-            {
-                id : 0,
-                title : "社团",
-                hasOrgLevel: true,
-                picUrl : "/icon/club.png",
-            
-            },
-            {
-                id : 1,
-                title : "博雅",
-                hasOrgLevel: false,
-                picUrl : "/icon/boya.png",
-            },
-            {
-                id : 2,
-                title : "学生会",
-                hasOrgLevel: true,
-                picUrl : "/icon/student_union.png",
-            },
-            {
-                id : 3,
-                title : "志愿",
-                hasOrgLevel: true,
-                picUrl : "/icon/volunteer.png",
-            },
-            {
-                id : 4,
-                title : "个人",
-                hasOrgLevel: false,
-                picUrl : "/icon/person_forum.png",
-            },
-
-        ],
+        forum_list: []
         
     },
  
@@ -56,7 +21,8 @@ Page({
      */
     onLoad: function (options) {
         this.setData({
-            havelogin : app.haveRegistered()
+            havelogin : app.haveRegistered(),
+            forum_list: app.forumList 
         })
         // interact.createBlock("社团")
         // interact.createBlock("博雅")
@@ -118,7 +84,7 @@ Page({
 
         if (e.currentTarget.dataset.hasOrg) {
             wx.navigateTo({
-                url: `../org-list/org-list?forumId=${e.currentTarget.dataset.forumid+1}&forumName=${e.currentTarget.dataset.name}`,
+                url: `../org-list/org-list?forumId=${e.currentTarget.dataset.forumid}&forumName=${e.currentTarget.dataset.name}`,
               })
         } else {
             if (e.currentTarget.dataset.name == "博雅") {
