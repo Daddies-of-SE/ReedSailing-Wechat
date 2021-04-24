@@ -23,6 +23,7 @@
     </view>
     <view class='detail' wx:if="{{showIndex == 1}}">创建时间：{{orgInfo.create_time}}</view>
     <view class='detail' wx:if="{{showIndex == 1}}">介绍：{{orgInfo.description}}</view>
+    <view class='detail' wx:if="{{showIndex == 1}}">所属板块：{{orgInfo.belong_forum.name}}</view>
     <button class='editBtn' bindtap='editOrgInfo' wx:if="{{showIndex == 1}}">编辑</button>
   </view>
   </block>
@@ -60,12 +61,15 @@
         <i-cell title="{{item.name}}" label="附加描述" value="详细信息" data-orgid="{{item.id}}" data-orgname="{{item.name}}">
 
         </i-cell> 
-        <button class='editBtn' bindtap='editActInfo'>编辑</button>
         </block>
       </i-cell-group>
     </view>
     <view class='detail' wx:if="{{showIndex == 3}}">活动都是假的</view>
-    <button class='editBtn' bindtap='editActInfo' wx:if="{{showIndex == 3}}">编辑</button>
+    <!-- TODO：为啥这个if无效？ -->
+    <block wx:if="{{orgId != -1 && showIndex == 3}}}">
+      <button class='editBtn' bindtap='editActInfo' wx:if="{{showIndex == 3}}">编辑</button>
+      <button class='editBtn' bindtap='goNewAct' wx:if="{{showIndex == 3}}">新建</button>
+    </block>
   </view>
 
 </view>

@@ -5,7 +5,7 @@
 
 
 <i-panel title="活动基本信息">
-    <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+    <!-- <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
         <view class="weui-cell__hd">
             <label class="weui-label" style="width: 3em">板块</label>
         </view>
@@ -14,7 +14,7 @@
                 <view class="weui-select">{{forum_array[index1].name}}</view>
             </picker>
         </view>
-    </view>
+    </view> -->
 
     <!---->
     <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
@@ -22,23 +22,23 @@
             <label class="weui-label" style="width: 3em">组织</label>
         </view>
         <view class="weui-cell__bd">
-            <picker bindchange="bindPicker_2_Change" range="{{my_org}}" disabled="{{private}}">
-                <view class="weui-select">{{private ? '无' : my_org[index2]}}</view>
+            <picker bindchange="bindPicker_2_Change" range="{{my_org}}" range-key="name" disabled="{{presetOrgId != -1}}">
+                <view class="weui-select">{{presetOrgId == -1 ? my_org[index2].name : presetOrgName}}</view>
             </picker>
         </view>
     </view>
 
 
-    <i-input value="{{ value1 }}" title="活动名称" placeholder="请输入活动名称" />
-    <i-input value="{{ value2 }}" title="活动描述(可选)" placeholder="请输入活动描述" />
-    <i-input value="{{ value3 }}" type="number" title="最大人数" placeholder="请输入大于0的整数" />
+    <i-input value="{{ name }}" bind:change="inputNameHandler" maxlength="20" title="活动名称" placeholder="请输入活动名称" />
+    <i-input value="{{ description }}" bind:change="inputDesriptionHandler" maxlength="50" title="活动描述(可选)" placeholder="请输入活动描述" />
+    <i-input value="{{ numPeople }}" bind:change="inputNumPeopleHandler" maxlength="3" type="number" title="最大人数" placeholder="请输入大于0的整数" />
 
     <view class="weui-cell weui-cell_active">
         <view class="weui-cell__hd">
             <view class="weui-label">起始日期</view>
         </view>
         <view class="weui-cell__bd">
-            <picker mode="date" value="{{start_date}}" start="2021-04-22" end="2030-09-01" bindchange="bindStartDateChange">
+            <picker mode="date" value="{{start_date}}" bindchange="bindStartDateChange">
                 <view class="weui-input">{{start_date}}</view>
             </picker>
         </view>
@@ -48,7 +48,7 @@
             <view class="weui-label">起始时间</view>
         </view>
         <view class="weui-cell__bd">
-            <picker mode="time" value="{{start_time}}" start="00:00" end="23:59" bindchange="bindStartTimeChange">
+            <picker mode="time" value="{{start_time}}" bindchange="bindStartTimeChange">
                 <view class="weui-input">{{start_time}}</view>
             </picker>
         </view>
@@ -59,7 +59,7 @@
             <view class="weui-label">结束日期</view>
         </view>
         <view class="weui-cell__bd">
-            <picker mode="date" value="{{end_date}}" start="2021-04-22" end="2030-09-01" bindchange="bindEndDateChange">
+            <picker mode="date" value="{{end_date}}" bindchange="bindEndDateChange">
                 <view class="weui-input">{{end_date}}</view>
             </picker>
         </view>
@@ -69,7 +69,7 @@
             <view class="weui-label">结束时间</view>
         </view>
         <view class="weui-cell__bd">
-            <picker mode="time" value="{{end_time}}" start="00:00" end="23:59" bindchange="bindEndTimeChange">
+            <picker mode="time" value="{{end_time}}" bindchange="bindEndTimeChange">
                 <view class="weui-input">{{end_time}}</view>
             </picker>
         </view>

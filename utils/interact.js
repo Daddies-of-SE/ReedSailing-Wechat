@@ -547,7 +547,7 @@ module.exports.getUnstartManageActs = function () {
   }
   //TODO : urls of these 3 funcs are not `manage` but `join`
   return new Promise((resolve, reject) => {
-    get_request(`user/joined_acts/unstart/${app.loginData.userId}/`, 
+    get_request(`users/released_activities/unstart/${app.loginData.userId}/`, 
       {
         func: module.exports.getUnstartManageActs,
         funcName: 'getUnstartManageActs',
@@ -562,7 +562,7 @@ module.exports.getCurManageActs = function () {
     app = getApp()
   }
   return new Promise((resolve, reject) => {
-    get_request(`user/joined_acts/cur/${app.loginData.userId}/`, 
+    get_request(`users/released_activities/cur/${app.loginData.userId}/`, 
       {
         func: module.exports.getCurManageActs,
         funcName: 'getCurManageActs',
@@ -577,7 +577,7 @@ module.exports.getEndManageActs = function () {
     app = getApp()
   }
   return new Promise((resolve, reject) => {
-    get_request(`user/joined_acts/end/${app.loginData.userId}/`, 
+    get_request(`users/released_activities/end/${app.loginData.userId}/`, 
       {
         func: module.exports.getEndManageActs,
         funcName: 'getEndManageActs',
@@ -600,6 +600,34 @@ module.exports.addOrgManager = function (org_id, user_id) {
       {
         func: module.exports.addOrgManager,
         funcName: 'addOrgManager',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+
+/*
+{
+  name: "活动1",							   //必填，活动名称
+  begin_time: "2021-04-16T14:19:18",		//必填，活动开始时间
+  end_time: "2021-04-16T14:19:18",			//必填，活动结束时间
+  contain: 100,								//必填，活动人数限制，该值必须大于等于1
+  description: "这个是活动描述",			   //选填，活动描述
+  review: false,							//必填，加入该活动是否需要审核
+  owner: 5,									//必填，创建该活动的用户id
+  type: 1,									//选填，该活动的分类
+  org: null,								//选填，该活动的组织的id（若为个人活动则可以不填）
+  location: 1,								//必填，该活动的地址的id
+  block: 1	
+}
+*/
+module.exports.createAct = function (options) {
+  return new Promise((resolve, reject) => {
+    post_request(`activities/`, options,
+      {
+        func: module.exports.createAct,
+        funcName: 'createAct',
         reject: reject,
         resolve: resolve
     })

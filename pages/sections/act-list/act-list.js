@@ -21,6 +21,7 @@ Page({
         hasOrgInfo: false,
         showIndex: 0,
         hasFollowed: false,
+        belongForumId: -1,
         memList: [],
         actList: []
     },
@@ -55,7 +56,8 @@ Page({
             orgName : res.data.name,
             orgInfo : {
               description : res.data.description,
-              create_time : res.data.create_time.split("T")[0]
+              create_time : res.data.create_time.split("T")[0],
+              belong_forum : res.data.block
             }
           })
           if (res.data.avatar != null) {
@@ -134,58 +136,20 @@ Page({
       })
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+    goNewAct: function() {
+      if (this.data.orgId == -1) {
+        
+      }
+      else if (this.data.orgId == -2) {
+        //发布个人活动
+        wx.navigateTo({
+          url: `../../my/new-act/new-act`,
+        })
+      }
+      else  {
+        wx.navigateTo({
+          url: `../../my/new-act/new-act?orgId=${this.data.orgId}&orgName=${this.data.orgName}&forumId=${this.data.orgInfo.belong_forum.id}`,
+        })
+      }
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
-  
-  goFoundOrg: function() {
-    wx.navigateTo({
-      url: '/pages/my/new-org/new-org',
-    })
-  }
 })
