@@ -19,11 +19,13 @@ Page({
         },
         orgId : -1,
         hasOrgInfo: false,
-        showIndex: 0,
+        showIndex: [true, true, true, true, false],
         hasFollowed: false,
         belongForumId: -1,
         memList: [],
-        actList: []
+        unstartActList : [],
+        curActList : [],
+        endActList : []
     },
 
     /**
@@ -73,16 +75,41 @@ Page({
           }
         }
       )
-      },
+      
+      interact.getStatusOrgActs('unstart', this.data.orgId).then(
+        res1 => {
+            this.setData({
+                unstartActList : res1.data
+            })
+      })
+      interact.getStatusOrgActs('cur', this.data.orgId).then(
+          res2 => {
+              this.setData({
+                  curActList : res2.data
+              })
+      })
+      interact.getStatusOrgActs('end', this.data.orgId).then(
+          res3 => {
+              this.setData({
+                  unstartActList : res3.data
+              })
+      })
+    },
 
     panel: function (e) {
-      if (e.currentTarget.dataset.index != this.data.showIndex) {
+      var index = e.currentTarget.dataset.index
+      if (!this.data.showIndex[index]) {
+        //此前未show
+        var newIndex = this.data.showIndex
+        newIndex[index] = true
         this.setData({
-          showIndex: e.currentTarget.dataset.index
+          showIndex: newIndex
         })
       } else {
+        var newIndex = this.data.showIndex
+        newIndex[index] = false
         this.setData({
-          showIndex: 0
+          showIndex: newIndex
         })
       }
     },
@@ -151,5 +178,11 @@ Page({
           url: `../../my/new-act/new-act?orgId=${this.data.orgId}&orgName=${this.data.orgName}&forumId=${this.data.orgInfo.belong_forum.id}`,
         })
       }
+    },
+
+    goAct: function(e) {
+      wx.navigateTo({
+          url: `../../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
+      })
     },
 })

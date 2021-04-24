@@ -8,7 +8,7 @@
 <view wx:if="{{current == 'tab1'}}">
     <i-cell-group i-class="act-wrap">
         <block wx:for="{{unstartActList}}" wx:key="id">
-            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goOrg" 
+            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
                 data-actid="{{item.id}}" data-actname="{{item.name}}">
                 <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
             </i-cell> 
@@ -18,7 +18,7 @@
 <view wx:if="{{current == 'tab2'}}">
     <i-cell-group i-class="act-wrap">
         <block wx:for="{{curActList}}" wx:key="id">
-        <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goOrg" 
+        <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
             data-actid="{{item.id}}" data-actname="{{item.name}}">
             <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
         </i-cell> 

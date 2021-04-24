@@ -541,50 +541,45 @@ module.exports.getOrgActList = function (org_id) {
 //   }) 
 // }
 
-module.exports.getUnstartManageActs = function () {
+
+module.exports.getStatusManageActs = function (status) {
   if (!app) {
     app = getApp()
   }
-  //TODO : urls of these 3 funcs are not `manage` but `join`
   return new Promise((resolve, reject) => {
-    get_request(`users/released_activities/unstart/${app.loginData.userId}/`, 
+    get_request(`users/released_activities/${status}/${app.loginData.userId}/`, 
       {
-        func: module.exports.getUnstartManageActs,
-        funcName: 'getUnstartManageActs',
+        func: module.exports.getStatusManageActs,
+        funcName: 'getStatusManageActs',
         reject: reject,
         resolve: resolve
     })
   }) 
 }
 
-module.exports.getCurManageActs = function () {
-  if (!app) {
-    app = getApp()
+module.exports.getStatusOrgActs = function (status, org_id) {
+  if (org_id == -1 || org_id == -2) {
+    //博雅
+    var block_id = org_id == -1 ? 2 : 5;
+    return new Promise((resolve, reject) => {
+      get_request(`blocks/activities/${block_id}/`, 
+        {
+          func: module.exports.getStatusOrgActs,
+          funcName: 'getStatusOrgActs',
+          reject: reject,
+          resolve: resolve
+      })
+    })
   }
   return new Promise((resolve, reject) => {
-    get_request(`users/released_activities/cur/${app.loginData.userId}/`, 
+    get_request(`organizations/activities/${status}/${org_id}/`, 
       {
-        func: module.exports.getCurManageActs,
-        funcName: 'getCurManageActs',
+        func: module.exports.getStatusOrgActs,
+        funcName: 'getStatusOrgActs',
         reject: reject,
         resolve: resolve
     })
-  }) 
-}
-
-module.exports.getEndManageActs = function () {
-  if (!app) {
-    app = getApp()
-  }
-  return new Promise((resolve, reject) => {
-    get_request(`users/released_activities/end/${app.loginData.userId}/`, 
-      {
-        func: module.exports.getEndManageActs,
-        funcName: 'getEndManageActs',
-        reject: reject,
-        resolve: resolve
-    })
-  }) 
+  })
 }
 
 module.exports.addOrgManager = function (org_id, user_id) {

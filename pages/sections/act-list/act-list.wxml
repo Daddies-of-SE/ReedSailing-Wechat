@@ -17,24 +17,24 @@
 
   <block wx:if="{{isRealOrg}}">
   <view class='folder_item'>
-    <view class='title' data-index='1' catchtap='panel'>
+    <view class='title' data-index='0' catchtap='panel'>
       <view class='title_1'>信息</view>
-      <view class='title_2'><image src="/icon/{{showIndex == 1 ? 'up':'down'}}.png"></image></view>
+      <view class='title_2'><image src="/icon/{{showIndex[0]? 'up':'down'}}.png"></image></view>
     </view>
-    <view class='detail' wx:if="{{showIndex == 1}}">创建时间：{{orgInfo.create_time}}</view>
-    <view class='detail' wx:if="{{showIndex == 1}}">介绍：{{orgInfo.description}}</view>
-    <view class='detail' wx:if="{{showIndex == 1}}">所属板块：{{orgInfo.belong_forum.name}}</view>
-    <button class='editBtn' bindtap='editOrgInfo' wx:if="{{showIndex == 1}}">编辑</button>
+    <view class='detail' wx:if="{{showIndex[0]}}">创建时间：{{orgInfo.create_time}}</view>
+    <view class='detail' wx:if="{{showIndex[0]}}">介绍：{{orgInfo.description}}</view>
+    <view class='detail' wx:if="{{showIndex[0]}}">所属板块：{{orgInfo.belong_forum.name}}</view>
+    <button class='editBtn' bindtap='editOrgInfo' wx:if="{{showIndex[0]}}">编辑</button>
   </view>
   </block>
 
   <block wx:if="{{isRealOrg}}">
   <view class='folder_item'>
-    <view class='title' data-index='2' catchtap='panel'>
+    <view class='title' data-index='1' catchtap='panel'>
       <view class='title_1'>管理员</view>
-      <view class='title_2'><image src="/icon/{{showIndex == 2 ? 'up':'down'}}.png"></image></view>
+      <view class='title_2'><image src="/icon/{{showIndex[1]? 'up':'down'}}.png"></image></view>
     </view>
-    <view class='memList' wx:if="{{showIndex == 2}}">
+    <view class='memList' wx:if="{{showIndex[1]}}">
       <i-cell-group i-class="mem-wrap">
         <block wx:for="{{memList}}" wx:key="id">
           <image class="headShot" src="{{item.HeadShotUrl}}"></image>
@@ -42,34 +42,58 @@
         </block>
       </i-cell-group>
     </view>
-    <view class='detail' wx:if="{{showIndex == 2}}">管理员跑路了</view>
-    <button class='editBtn' bindtap='editMemList' wx:if="{{showIndex == 2}}">编辑</button>
+    <view class='detail' wx:if="{{showIndex[1]}}">管理员跑路了</view>
+    <button class='editBtn' bindtap='editMemList' wx:if="{{showIndex[1]}}">编辑</button>
   </view>
   </block>
 
   <view class='folder_item'>
-    <view class='title' data-index='3' catchtap='panel'>
-      <view class='title_1'>活动</view>
-      <view class='title_2'><image src="/icon/{{showIndex == 3 ? 'up':'down'}}.png"></image></view>
+    <view class='title' data-index='2' catchtap='panel'>
+      <view class='title_1'>未开始活动</view>
+      <view class='title_2'><image src="/icon/{{showIndex[2]? 'up':'down'}}.png"></image></view>
     </view>
-    <view class='actList'  wx:if="{{showIndex == 3}}">
+    <view class='actList'  wx:if="{{showIndex[2]}}">
       <i-cell-group i-class="act-wrap">
-        <i-cell title="测试" label="附加描述">
-
-        </i-cell> 
-        <block wx:for="{{actList}}" wx:key="id">
-        <i-cell title="{{item.name}}" label="附加描述" value="详细信息" data-orgid="{{item.id}}" data-orgname="{{item.name}}">
-
-        </i-cell> 
+        <button class='editBtn' bindtap='goNewAct' wx:if="{{orgId != -1}}">新建</button>
+        <block wx:for="{{unstartActList}}" wx:key="id">
+            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
+                data-actid="{{item.id}}" data-actname="{{item.name}}">
+            </i-cell> 
         </block>
       </i-cell-group>
     </view>
-    <view class='detail' wx:if="{{showIndex == 3}}">活动都是假的</view>
-    <!-- TODO：为啥这个if无效？ -->
-    <block wx:if="{{orgId != -1 && showIndex == 3}}}">
-      <button class='editBtn' bindtap='editActInfo' wx:if="{{showIndex == 3}}">编辑</button>
-      <button class='editBtn' bindtap='goNewAct' wx:if="{{showIndex == 3}}">新建</button>
-    </block>
+    
   </view>
 
+  <view class='folder_item'>
+    <view class='title' data-index='3' catchtap='panel'>
+      <view class='title_1'>进行中活动</view>
+      <view class='title_2'><image src="/icon/{{showIndex[3]? 'up':'down'}}.png"></image></view>
+    </view>
+    <view class='actList'  wx:if="{{showIndex[3]}}">
+      <i-cell-group i-class="act-wrap">
+        <block wx:for="{{curActList}}" wx:key="id">
+            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
+                data-actid="{{item.id}}" data-actname="{{item.name}}">
+            </i-cell> 
+        </block>
+      </i-cell-group>
+    </view>
+  </view>
+
+  <view class='folder_item'>
+    <view class='title' data-index='4' catchtap='panel'>
+      <view class='title_1'>已结束活动</view>
+      <view class='title_2'><image src="/icon/{{showIndex[4]? 'up':'down'}}.png"></image></view>
+    </view>
+    <view class='actList'  wx:if="{showIndex[4]}}">
+      <i-cell-group i-class="act-wrap">
+        <block wx:for="{{endActList}}" wx:key="id">
+            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
+                data-actid="{{item.id}}" data-actname="{{item.name}}">
+            </i-cell> 
+        </block>
+      </i-cell-group>
+    </view>
+  </view>
 </view>
