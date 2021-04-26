@@ -156,12 +156,6 @@ Page({
         url: '../act-list/mem-list/mem-list',
       })
     },
-  
-    editActInfo: function() {
-      wx.navigateTo({
-        url: '../act-detail/act-detail',
-      })
-    },
 
     goNewAct: function() {
       if (this.data.orgId == -1) {

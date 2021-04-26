@@ -18,7 +18,6 @@ function saveLoginData(resData) {
     email : resData.email,
     userExist : resData.userExist,
     userId : resData.id,
-    //TODO
     nickName : resData.name,
     motto : resData.sign,
     avatar : resData.avatar

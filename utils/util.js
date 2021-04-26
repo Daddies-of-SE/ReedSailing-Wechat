@@ -18,7 +18,17 @@ const debug = str => {
   console.warn("DEBUG INFO: " + str)
 }
 
+const err = str => {
+  console.err("ERR INFO: " + str)
+}
+
+const getTimeMinute = rawTime => {
+  return (rawTime.split(":")[0] + ":" + rawTime.split(":")[1]).replace("T", " ")
+}
+
 module.exports = {
+  err,
   debug,
-  formatTime
+  formatTime,
+  getTimeMinute
 }

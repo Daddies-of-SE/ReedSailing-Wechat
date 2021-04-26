@@ -108,8 +108,6 @@ Page({
         }
       }
     )
-    //TODO
-    //TODO: 60秒间隔
   },
 
   warnWait(e) {

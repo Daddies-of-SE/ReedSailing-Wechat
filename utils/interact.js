@@ -282,7 +282,7 @@ module.exports.getBlockOrgList = function (block_id) {
 
 module.exports.getOrgInfo = function (org_id) {
   return new Promise((resolve, reject) => {
-    get_request(`organizations/?org=${org_id}`, 
+    get_request(`organizations/${org_id}/`, 
       {
         func: module.exports.getOrgInfo,
         funcName: 'getOrgInfo',
@@ -386,7 +386,7 @@ module.exports.createOrgDirectly = function (name, description, blockid) {
     post_request(`organizations/`,
       {
         name: name,
-        description: description, //TODO
+        description: description,
         owner: app.loginData.userId,
         block: blockid
       }, 
@@ -627,4 +627,16 @@ module.exports.createAct = function (options) {
         resolve: resolve
     })
   }) 
+}
+
+module.exports.getActInfo = function (act_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`activities/${act_id}/`, 
+      {
+        func: module.exports.getActInfo,
+        funcName: 'getActInfo',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
 }

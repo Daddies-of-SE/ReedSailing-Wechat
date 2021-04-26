@@ -17,7 +17,7 @@
     </view> -->
 
     <!---->
-    <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+    <view wx:if="{{actId == -1}}" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
         <view class="weui-cell__hd">
             <label class="weui-label" style="width: 3em">组织</label>
         </view>
@@ -29,9 +29,9 @@
     </view>
 
 
-    <i-input value="{{ name }}" bind:change="inputNameHandler" maxlength="20" title="活动名称" placeholder="请输入活动名称" />
-    <i-input value="{{ description }}" bind:change="inputDesriptionHandler" maxlength="50" title="活动描述(可选)" placeholder="请输入活动描述" />
-    <i-input value="{{ numPeople }}" bind:change="inputNumPeopleHandler" maxlength="3" type="number" title="最大人数" placeholder="请输入大于0的整数" />
+    <i-input value="{{ name }}" bind:change="inputNameHandler" maxlength="20" title="活动名称" placeholder="{{actInfo.name ? actInfo.name : '请输入活动名称'}}" />
+    <i-input value="{{ description }}" bind:change="inputDesriptionHandler" maxlength="50" title="活动描述(可选)" placeholder="{{actInfo.description ? actInfo.description : '请输入活动描述'}}" />
+    <i-input value="{{ numPeople }}" bind:change="inputNumPeopleHandler" maxlength="3" type="number" title="最大人数" placeholder="{{actInfo.contain ? actInfo.contain : '请输入正整数'}}" />
 
     <view class="weui-cell weui-cell_active">
         <view class="weui-cell__hd">

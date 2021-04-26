@@ -2,7 +2,7 @@
 
 <!--活动名称-->
 <view class="act-header">
-    <text class="text">{{actName}}</text>
+    <text class="text">{{actInfo.name}}</text>
     <block wx:if="{{isRealAct && !hasJoined}}">
       <button class='joinBtn' bindtap='joinAct'>报名</button>
     </block>
@@ -16,11 +16,21 @@
 <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
     <view class="msg-item">
-        <view class="count"><span class="_infor_head">人数：</span>{{actInfo.joinedNum}} / {{actInfo.capacity}}</view>
-        <view class="organizer"><span class="_infor_head">组织者：</span>{{actInfo.organizer}}</view>
-        <view class="act_time"><span class="_infor_head">时间：</span> {{actInfo.start_time !== null ? actInfo.start_time : "暂无信息"}} 至 {{actInfo.end_time !== null ? actInfo.end_time : "暂无信息"}}</view>
-        <view class="place"><span class="_infor_head">地点：</span> {{actInfo.location !== null ? actInfo.location : "暂无信息"}}</view>
-        <view class="body"><span class="_infor_head">活动内容：</span>{{actInfo.description}}</view>
+        
+        <view class="organizer"><span class="_infor_head">发起者：</span>{{actInfo.owner.name}}</view>
+        <view class="organizer"><span class="_infor_head">发布时间：</span>{{actInfo.pub_time}}</view>
+        <view wx:if="{{actInfo.org != null}}"><span class="_infor_head">所属组织：</span>{{actInfo.org.name}}</view>
+        <view wx:if="{{actInfo.blobk != null}}"><span class="_infor_head">所属版块：</span>{{actInfo.blobk.name}}</view>
+
+        <view class="act_time"><span class="_infor_head">进行时间：</span> {{actInfo.begin_time !== null ? actInfo.begin_time : "暂无信息"}} 至 {{actInfo.end_time !== null ? actInfo.end_time : "暂无信息"}}</view>
+        <view class="place"><span class="_infor_head">地点：</span> {{actInfo.location !== null ? actInfo.location.name : "暂无信息"}}</view>
+        <view class="count"><span class="_infor_head">人数：</span>TODO / {{actInfo.contain}}</view>
+
+        <view class="body"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view>
+        <view class="body"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
+
+        <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view>
+        <button bind:tap="editAct">编辑</button>
     </view>  
   </scroll-view>
 </view>

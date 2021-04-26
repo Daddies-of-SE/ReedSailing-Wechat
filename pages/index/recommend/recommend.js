@@ -49,9 +49,9 @@ Page({
     debugFunc: function(e) {
       //For debugging
       // interact.getUserControlOrgs(1)
-      wx.navigateTo({
-        url: '../../sections/act-detail/act-detail',
-      })
+      // wx.navigateTo({
+      //   url: '../../sections/act-detail/act-detail',
+      // })
     }
 
 })

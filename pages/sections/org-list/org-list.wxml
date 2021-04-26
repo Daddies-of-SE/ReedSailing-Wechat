@@ -14,7 +14,6 @@
 </view>
 
 <!--搜索框-->
-<!--TODO：搜索框会盖住组织列表-->
 
 <view class="search-bar">
     <view class="search" bindtap="goSearchOrg">

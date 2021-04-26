@@ -1,5 +1,6 @@
 // pages/my/new-act/new-act.js
 const interact = require("../../../utils/interact.js")
+const util = require("../../../utils/util.js")
 
 Page({
 
@@ -9,7 +10,8 @@ Page({
     data: {
         // forum_array: [],
         // index1 : 0,
-        // TODO: my_org应该设置为**所选forum下**，用户所管理的组织
+        actId : -1,
+        actInfo : {},
         my_org:[],
         index2: 0,
         flag : ['否','是'],
@@ -91,6 +93,28 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        if (options.actId) {
+            this.setData({
+                actId: options.actId
+            })
+            interact.getActInfo(options.actId).then(
+                (res) => {
+                  var r = res.data
+                  r.pub_time = util.getTimeMinute(r.pub_time)
+                  r.begin_time = util.getTimeMinute(r.begin_time)
+                  r.end_time = util.getTimeMinute(r.end_time)
+                  this.setData({
+                    actInfo: r,
+                    start_date : r.begin_time.split(" ")[0],
+                    end_date : r.end_time.split(" ")[0],
+                    start_time : r.begin_time.split(" ")[1],
+                    end_time : r.end_time.split(" ")[1],
+                    index3 : r.review ? 1 : 0
+                  })
+                }
+              )
+            return
+        }
         if (options.orgId) {
             this.setData({
                 presetOrgId : options.orgId,

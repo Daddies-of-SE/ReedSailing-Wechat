@@ -37,7 +37,7 @@
 
 
     <i-input value="{{ inputName }}" bind:change="inputNameHandler" title="组织名称" placeholder="请输入组织名称" maxlength="20"/>
-    <i-input value="{{ inputDescription }}" bind:change="inputDescriptionHandler" title="组织描述(可选)" placeholder="请输入组织描述" maxlength="50"/>
+    <i-input value="{{ inputDescription }}" bind:change="inputDescriptionHandler" title="申请理由(可选)" placeholder="请输入申请理由" maxlength="50"/>
 
 </i-panel>
 <a class="weui-btn weui-btn_primary" bindtap="submitOrg">提交</a>

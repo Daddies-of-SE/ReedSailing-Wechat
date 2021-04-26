@@ -12,7 +12,6 @@ Page({
         index1 : 0,
         inputName : "",
         inputDescription : ""
-        //TODO: 增加版块选项
     },
 
     /**
