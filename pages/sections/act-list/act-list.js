@@ -21,6 +21,8 @@ Page({
         hasOrgInfo: false,
         showIndex: [true, true, true, true, false],
         hasFollowed: false,
+        isManager : false,
+        isOwner : false,
         belongForumId: -1,
         memList: [],
         unstartActList : [],
@@ -67,12 +69,16 @@ Page({
               orgPicUrl : res.data.avatar,
             })
           }
-          if (app.userData.followOrgs.indexOf(orgId) != -1) {
-            this.setData({
-              hasFollowed : true
-            })
-            util.debug(this.data.hasFollowed + "   " + this.data.isRealOrg)
-          }
+        }
+      )
+
+      interact.getUserOrgRelation(orgId).then(
+        (res) => {
+          this.setData({
+            hasFollowed : res.data.isFollower,
+            isManager : res.data.isManager,
+            isOwner : res.data.isOwner
+          })
         }
       )
       
@@ -121,8 +127,6 @@ Page({
           wx.showToast({
             title: '关注成功',
           })
-          app.userData.followOrgs.push(this.data.orgId)
-          util.debug("当前关注组织：" + app.userData.followOrgs)
           this.setData({
             hasFollowed : true
           })
@@ -136,8 +140,6 @@ Page({
           wx.showToast({
             title: '已取消关注',
           })
-          app.userData.followOrgs.splice(app.userData.followOrgs.indexOf(this.data.orgId))
-          util.debug("当前关注组织：" + app.userData.followOrgs)
           this.setData({
             hasFollowed : false
           })

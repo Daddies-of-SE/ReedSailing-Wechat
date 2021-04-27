@@ -19,6 +19,7 @@ Page({
       //   joinedNum : 99,
       //   capacity : 100,
       // },
+      actId : -1,
       actInfo : {
         id : -1,
         owner: {
@@ -54,6 +55,8 @@ Page({
       hasActInfo: false,
       showIndex: 0,
       hasJoined: false,
+      isManager: false,
+      isOwner: false,
       comment_list : [],
       likeUrl : "/icon/like.png"
     },
@@ -95,6 +98,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      this.setData({
+        actId: options.actId
+      })
 
       interact.getActInfo(options.actId).then(
         (res) => {
@@ -104,6 +110,43 @@ Page({
           r.end_time = util.getTimeMinute(r.end_time)
           this.setData({
             actInfo: r
+          })
+        }
+      )
+
+      interact.getUserActRelation(options.actId).then(
+        (res) => {
+          this.setData({
+            hasJoined : res.data.hasJoined,
+            isOwner: res.data.isOwner,
+            isManager : res.data.isManager
+          })
+        }
+      )
+    },
+
+    //加入活动
+    joinAct: function() {
+      interact.joinAct(this.data.actId).then(
+        (res) => {
+          wx.showToast({
+            title: '报名成功',
+          })
+          this.setData({
+            hasJoined : true
+          })
+        }
+      )
+    },
+
+    exitAct: function() {
+      interact.exitAct(this.data.actId).then(
+        (res) => {
+          wx.showToast({
+            title: '已取消报名',
+          })
+          this.setData({
+            hasJoined : false
           })
         }
       )

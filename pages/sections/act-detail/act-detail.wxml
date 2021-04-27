@@ -3,11 +3,11 @@
 <!--活动名称-->
 <view class="act-header">
     <text class="text">{{actInfo.name}}</text>
-    <block wx:if="{{isRealAct && !hasJoined}}">
+    <block wx:if="{{!hasJoined}}">
       <button class='joinBtn' bindtap='joinAct'>报名</button>
     </block>
-    <block wx:elif="{{isRealAct && hasJoined}}">
-      <button class='joinBtn' bindtap='unJoinAct'>取消报名</button>
+    <block wx:elif="{{hasJoined}}">
+      <button class='joinBtn' bindtap='exitAct'>取消报名</button>
     </block>
 </view>
 

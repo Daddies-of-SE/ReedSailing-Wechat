@@ -14,10 +14,10 @@ App({
     avatar : ''
   },
   userData: {
-    followOrgs: [],
-    followOrgInfo: [],
-    controlOrgs: [],
-    controlActs: []
+    // followOrgs: [],
+    // followOrgInfo: [],
+    // controlOrgs: [],
+    // controlActs: []
   },
   forumList : [
     {

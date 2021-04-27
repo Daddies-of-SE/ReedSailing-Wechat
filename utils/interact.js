@@ -640,3 +640,75 @@ module.exports.getActInfo = function (act_id) {
     })
   })  
 }
+
+module.exports.getUserOrgRelation = function(org_id) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    post_request(`userOrgRelation/`,
+      {
+        user: app.loginData.userId,
+        org: org_id
+      }, 
+      {
+        func: module.exports.getUserOrgRelation,
+        funcName: 'getUserOrgRelation',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.getUserActRelation = function(act_id) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    post_request(`userActRelation/`,
+      {
+        user: app.loginData.userId,
+        act: act_id
+      }, 
+      {
+        func: module.exports.getUserActRelation,
+        funcName: 'getUserActRelation',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.joinAct = function(act_id) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    post_request(`activities/participants/`,
+      {
+        person: app.loginData.userId,
+        act: act_id
+      }, 
+      {
+        func: module.exports.joinAct,
+        funcName: 'joinAct',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.exitAct = function(act_id) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    delete_request(`activities/participants/?person=${app.loginData.userId}&act=${act_id}`,
+      {
+        func: module.exports.exitAct,
+        funcName: 'exitAct',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}

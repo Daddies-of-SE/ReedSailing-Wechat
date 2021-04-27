@@ -19,7 +19,6 @@ Page({
     onLoad: function (options) {
         /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
         this.setData({
-            //most_visited : app.userData.followOrgInfo,
             most_visited : [
                 {
                     org:{name: "高工足球队",
@@ -83,7 +82,7 @@ Page({
      */
     onShow: function () {
         this.setData({
-            most_visited : app.userData.followOrgInfo,
+            // TODO
         })
     },
 
