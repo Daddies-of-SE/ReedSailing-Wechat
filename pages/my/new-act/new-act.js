@@ -169,6 +169,9 @@ Page({
             block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[index2].belong_forum.id
         }).then(
            res => {
+            wx.navigateBack({
+                delta: 0,
+            })
             wx.showToast({
               title: '创建成功',
             })

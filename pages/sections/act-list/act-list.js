@@ -13,12 +13,8 @@ Page({
         isRealOrg : true,
         orgName: "",
         orgPicUrl: "/icon/sample.png",
-        orgInfo: {
-          create_time : "",
-          description : ""
-        },
+        orgInfo: {},
         orgId : -1,
-        hasOrgInfo: false,
         showIndex: [true, true, true, true, false],
         hasFollowed: false,
         isManager : false,
@@ -38,6 +34,26 @@ Page({
       this.setData({
         orgId : orgId
       })
+      
+      interact.getStatusOrgActs('unstart', this.data.orgId).then(
+        res1 => {
+            this.setData({
+                unstartActList : res1.data
+            })
+      })
+      interact.getStatusOrgActs('cur', this.data.orgId).then(
+          res2 => {
+              this.setData({
+                  curActList : res2.data
+              })
+      })
+      interact.getStatusOrgActs('end', this.data.orgId).then(
+          res3 => {
+              this.setData({
+                  unstartActList : res3.data
+              })
+      })
+
       if (orgId == -1) {
         this.setData({
           orgName: "博雅活动列表",
@@ -61,7 +77,9 @@ Page({
             orgInfo : {
               description : res.data.description,
               create_time : res.data.create_time.split("T")[0],
-              belong_forum : res.data.block
+              belong_forum : res.data.block,
+              avatar : res.data.avatar,
+              owner: res.data.owner
             }
           })
           if (res.data.avatar != null) {
@@ -81,25 +99,6 @@ Page({
           })
         }
       )
-      
-      interact.getStatusOrgActs('unstart', this.data.orgId).then(
-        res1 => {
-            this.setData({
-                unstartActList : res1.data
-            })
-      })
-      interact.getStatusOrgActs('cur', this.data.orgId).then(
-          res2 => {
-              this.setData({
-                  curActList : res2.data
-              })
-      })
-      interact.getStatusOrgActs('end', this.data.orgId).then(
-          res3 => {
-              this.setData({
-                  unstartActList : res3.data
-              })
-      })
     },
 
     panel: function (e) {

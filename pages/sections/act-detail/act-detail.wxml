@@ -20,7 +20,7 @@
         <view class="organizer"><span class="_infor_head">发起者：</span>{{actInfo.owner.name}}</view>
         <view class="organizer"><span class="_infor_head">发布时间：</span>{{actInfo.pub_time}}</view>
         <view wx:if="{{actInfo.org != null}}"><span class="_infor_head">所属组织：</span>{{actInfo.org.name}}</view>
-        <view wx:if="{{actInfo.blobk != null}}"><span class="_infor_head">所属版块：</span>{{actInfo.blobk.name}}</view>
+        <view wx:if="{{actInfo.block != null}}"><span class="_infor_head">所属版块：</span>{{actInfo.block.name}}</view>
 
         <view class="act_time"><span class="_infor_head">进行时间：</span> {{actInfo.begin_time !== null ? actInfo.begin_time : "暂无信息"}} 至 {{actInfo.end_time !== null ? actInfo.end_time : "暂无信息"}}</view>
         <view class="place"><span class="_infor_head">地点：</span> {{actInfo.location !== null ? actInfo.location.name : "暂无信息"}}</view>
@@ -30,7 +30,9 @@
         <view class="body"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
 
         <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view>
-        <button bind:tap="editAct">编辑</button>
+        <view wx:if="isManager">
+          <button bind:tap="editAct">编辑</button>
+        </view>
     </view>  
   </scroll-view>
 </view>

@@ -21,10 +21,14 @@
       <view class='title_1'>信息</view>
       <view class='title_2'><image src="/icon/{{showIndex[0]? 'up':'down'}}.png"></image></view>
     </view>
-    <view class='detail' wx:if="{{showIndex[0]}}">创建时间：{{orgInfo.create_time}}</view>
-    <view class='detail' wx:if="{{showIndex[0]}}">介绍：{{orgInfo.description}}</view>
-    <view class='detail' wx:if="{{showIndex[0]}}">所属板块：{{orgInfo.belong_forum.name}}</view>
-    <button class='editBtn' bindtap='editOrgInfo' wx:if="{{showIndex[0]}}">编辑</button>
+    <block wx:if="{{showIndex[0]}}">
+      <view class='detail'>所属板块：{{orgInfo.belong_forum.name}}</view>
+      <view class='detail'>创建时间：{{orgInfo.create_time}}</view>
+      <view class='detail'>负责人：{{orgInfo.owner.name}}</view>
+      <view class='detail'>介绍：{{orgInfo.description}}</view>
+    </block>
+    
+    <button class='editBtn' bindtap='editOrgInfo' wx:if="{{isManager && showIndex[0]}}">编辑</button>
   </view>
   </block>
 
@@ -38,12 +42,14 @@
       <i-cell-group i-class="mem-wrap">
         <block wx:for="{{memList}}" wx:key="id">
           <image class="headShot" src="{{item.HeadShotUrl}}"></image>
-          <button class='editBtn' bindtap='editMemList'>编辑</button>
+          <view wx:if="isManager">
+            <button class='editBtn' bindtap='editMemList'>编辑</button>
+          </view>
         </block>
       </i-cell-group>
     </view>
     <view class='detail' wx:if="{{showIndex[1]}}">管理员跑路了</view>
-    <button class='editBtn' bindtap='editMemList' wx:if="{{showIndex[1]}}">编辑</button>
+    <button class='editBtn' bindtap='editMemList' wx:if="{{isManager && showIndex[1]}}">编辑</button>
   </view>
   </block>
 
@@ -54,7 +60,7 @@
     </view>
     <view class='actList'  wx:if="{{showIndex[2]}}">
       <i-cell-group i-class="act-wrap">
-        <button class='editBtn' bindtap='goNewAct' wx:if="{{orgId != -1}}">新建</button>
+        <button class='editBtn' bindtap='goNewAct' wx:if="{{isManager && orgId != -1}}">新建</button>
         <block wx:for="{{unstartActList}}" wx:key="id">
             <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
                 data-actid="{{item.id}}" data-actname="{{item.name}}">

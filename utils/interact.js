@@ -562,7 +562,7 @@ module.exports.getStatusOrgActs = function (status, org_id) {
     //博雅
     var block_id = org_id == -1 ? 2 : 5;
     return new Promise((resolve, reject) => {
-      get_request(`blocks/activities/${block_id}/`, 
+      get_request(`blocks/activities/${status}/${block_id}/`, 
         {
           func: module.exports.getStatusOrgActs,
           funcName: 'getStatusOrgActs',
@@ -710,5 +710,24 @@ module.exports.exitAct = function(act_id) {
         reject: reject,
         resolve: resolve
     })
+  })  
+}
+
+module.exports.submitFeedback = function(content) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    post_request(`feedbacks/`,
+      {
+        user : app.loginData.userId,
+        content : content
+      },{
+        func: module.exports.submitFeedback,
+        funcName: 'submitFeedback',
+        reject: reject,
+        resolve: resolve
+    }
+    )
   })  
 }

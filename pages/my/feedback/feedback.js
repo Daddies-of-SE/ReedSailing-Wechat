@@ -1,3 +1,5 @@
+const interact = require("../../../utils/interact.js")
+
 // pages/my/feedback/feedback.js
 Page({
 
@@ -5,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    contact : "",
+    content : "",
   },
 
   /**
@@ -22,45 +25,30 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  contactHandler: function (e) {
+    this.data.contact = e.detail.detail.value
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  contentHandler: function (e) {
+      this.data.content = e.detail.detail.value
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  submitFB: function(e) {
+    var msg = this.data.content
+    if (this.data.contact != "") {
+      msg += "\n联系方式：" + this.data.contact
+    }
+    interact.submitFeedback(msg).then(
+      (res) => {
+        wx.navigateBack({
+          delta: 0,
+        })
+        wx.showToast({
+          title: '提交成功',
+        })
+      }
 
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    )
+    
   }
 })

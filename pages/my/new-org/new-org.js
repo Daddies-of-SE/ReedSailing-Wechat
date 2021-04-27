@@ -42,10 +42,15 @@ Page({
         interact.createOrgDirectly(this.data.inputName, this.data.inputDescription, this.data.forum_array[this.data.index1].id).then(
             (res) => {
             interact.addOrgManager(res.data.id, app.loginData.userId).then(
-                wx.showToast({
-                    title: '提交成功',
-                    icon : 'success'
-                  })
+                (res) => {
+                    wx.navigateBack({
+                        delta: 0,
+                    })
+                    wx.showToast({
+                        title: '提交成功',
+                        icon : 'success'
+                    })
+                }
             )
         })
     },
