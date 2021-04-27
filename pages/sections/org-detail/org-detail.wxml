@@ -1,31 +1,43 @@
 <!--pages/sections/org-detail/org-detail.wxml-->
 
-<view class="org-name">
+<i-panel title="组织基本信息">
+
+    <i-input value="{{ inputName }}" bind:change="inputNameHandler" title="组织名称" placeholder="{{inputName}}" maxlength="20"/>
+    <view class="org-pic">
+        <text class="text">头像：</text>
+        <view class="picture">
+        <image src="{{orgPicUrl}}" class="pictureSize"></image>
+        </view>
+        <button class='uploadBtn' bindtap='uploadPic'>上传</button>
+    </view>
+    <i-input value="{{ inputDescription }}" bind:change="inputDescriptionHandler" title="组织描述(可选)" placeholder="{{inputDescription}}" maxlength="50"/>
+
+</i-panel>
+<a class="weui-btn weui-btn_primary" bindtap="submitOrg">提交</a>
+
+
+
+
+<!-- <view class="org-name">
     <text class="text">组织id：{{orgId}}</text>
-</view>
+</view> -->
 
 <!--组织名称-->
-<view class="org-name">
+<!-- <view class="org-name">
     <text class="text">名称：</text>
     <input class="input" name="orgName" placeholder="{{orgName}}" bindinput="orgNameInput"/>
-</view>
+</view> -->
 
 <!--组织头像-->
-<view class="org-pic">
-    <text class="text">头像：</text>
-    <view class="picture">
-      <image src="{{orgPicUrl}}" class="pictureSize"></image>
-    </view>
-    <button class='uploadBtn' bindtap='upload'>上传</button>
-</view>
+
 
 <!--介绍信息-->
-<view class="org-info">
+<!-- <view class="org-info">
     <text class="text">介绍信息：</text>
     <textarea class="areas" placeholder='{{orgInfo}}' maxlength="{{max}}" bindinput="inputs"> 
         <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
         <text class="hint">{{texts}}</text>
     </textarea>
-</view>
+</view> -->
 
-<button class='submitBtn' bindtap='submit'>提交</button>
+<!-- <button class='submitBtn' bindtap='submit'>提交</button> -->

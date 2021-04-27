@@ -73,7 +73,7 @@
 
 <i-cell-group i-class="org-wrap">
     <block wx:for="{{forumInfo}}" wx:key="id">
-        <i-cell title="{{item.name}}" label="附加描述" is-link bindtap="goOrg" 
+        <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goOrg" 
         data-orgid="{{item.id}}" data-orgname="{{item.name}}">
             <image class="org-avator" src="/icon/like.png"  slot="icon"></image>
         </i-cell> 

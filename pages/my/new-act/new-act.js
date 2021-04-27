@@ -104,6 +104,9 @@ Page({
                   r.begin_time = util.getTimeMinute(r.begin_time)
                   r.end_time = util.getTimeMinute(r.end_time)
                   this.setData({
+                    name: r.name,
+                    description: r.description,
+                    numPeople: r.contain,
                     actInfo: r,
                     start_date : r.begin_time.split(" ")[0],
                     end_date : r.end_time.split(" ")[0],
@@ -156,6 +159,7 @@ Page({
     submitAct: function() {
         var d = this.data
         interact.createAct({
+            id: d.actId,
             name: d.name,
             begin_time: d.start_date + "T" + d.start_time,
             end_time: d.end_date + "T" + d.end_time,
@@ -167,14 +171,21 @@ Page({
             org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[index2].id,
             location: 1, //TODO
             block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[index2].belong_forum.id
-        }).then(
+        }, d.actId == -1).then(
            res => {
             wx.navigateBack({
                 delta: 0,
             })
-            wx.showToast({
-              title: '创建成功',
-            })
+            if (this.data.actId == -1) {
+                wx.showToast({
+                    title: '创建成功',
+                })
+            }
+            else {
+                wx.showModal({
+                    title: '修改成功\n请重新打开活动页',
+                })
+            }
         })
     }
 })

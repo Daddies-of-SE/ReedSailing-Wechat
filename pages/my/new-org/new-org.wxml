@@ -1,28 +1,5 @@
 <!--pages/my/new-org/new-org.wxml-->
 
-
-<!-- <van-field
-      center
-      clearable
-      label="组织名称"
-      placeholder="请输入组织名称"
-      bindinput="inputNameHandler"
-      border="{{ true }}"
-    >
-</van-field>
-<van-field
-      center
-      clearable
-      label="申请原因"
-      placeholder="请输入申请原因"
-      bindinput="inputDescriptionHandler"
-      border="{{ true }}"
-    >
-</van-field>
-<van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitOrg">提交申请</van-button> -->
-
-
-
 <i-panel title="组织基本信息">
     <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
         <view class="weui-cell__hd">

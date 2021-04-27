@@ -617,15 +617,26 @@ module.exports.addOrgManager = function (org_id, user_id) {
   block: 1	
 }
 */
-module.exports.createAct = function (options) {
+module.exports.createAct = function (options, isNew) {
   return new Promise((resolve, reject) => {
-    post_request(`activities/`, options,
-      {
-        func: module.exports.createAct,
-        funcName: 'createAct',
-        reject: reject,
-        resolve: resolve
-    })
+    if (isNew) {
+      post_request(`activities/`, options,
+        {
+          func: module.exports.createAct,
+          funcName: 'createAct',
+          reject: reject,
+          resolve: resolve
+      })
+    }
+    else {
+      put_request(`activities/${options.id}/`, options,
+        {
+          func: module.exports.createAct,
+          funcName: 'createAct',
+          reject: reject,
+          resolve: resolve
+      })
+    }
   }) 
 }
 
@@ -729,5 +740,22 @@ module.exports.submitFeedback = function(content) {
         resolve: resolve
     }
     )
+  })  
+}
+
+module.exports.updateOrgInfo = function (org_id, name, description, avatar) {
+  return new Promise((resolve, reject) => {
+    put_request(`organizations/${org_id}/`,
+      {
+        name : name,
+        description : description,
+        avatar : avatar
+      }, 
+      {
+        func: module.exports.updateOrgInfo,
+        funcName: 'updateOrgInfo',
+        reject: reject,
+        resolve: resolve
+    })
   })  
 }
