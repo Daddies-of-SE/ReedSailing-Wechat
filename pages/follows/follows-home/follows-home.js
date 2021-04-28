@@ -28,6 +28,22 @@ Page({
                     org:{name: "高工学生会",
                     avator: "/icon/gaogong_student_union.png",}
                 },
+                {
+                    org:{name: "高工足球队",
+                    avator: "/icon/gaogong_football.png",}
+                },
+                {
+                    org:{name: "高工学生会",
+                    avator: "/icon/gaogong_student_union.png",}
+                },
+                {
+                    org:{name: "高工足球队",
+                    avator: "/icon/gaogong_football.png",}
+                },
+                {
+                    org:{name: "高工学生会",
+                    avator: "/icon/gaogong_student_union.png",}
+                },
             ], 
 
             msg_list : [
