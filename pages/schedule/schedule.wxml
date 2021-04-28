@@ -1,24 +1,84 @@
 <!--pages/schedule/schedule.wxml-->
 <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
 
-<view class="swiper-tab">
+<!-- <view class="swiper-tab">
     <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">活动日历</view>
     <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">活动列表</view>
+</view> -->
+ 
+<!-- <swiper current="{{currentTab}}" class="swiper" duration="300" style="height:{{winHeight - 30}}px" bindchange="bindChange"> -->
+    <!-- <swiper-item> -->
+        <!--活动日历-->
+        <!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
+    </swiper-item> -->
+
+
+    <!-- <swiper-item> -->
+        <!--活动列表-->
+        <!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
+
+        
+
+    <!-- </swiper-item>
+</swiper> -->
+
+<i-tabs current="{{ current }}" color="#f759ab" bindchange="handleChange">
+    <i-tab key="tab1" title="活动日历"></i-tab>
+    <i-tab key="tab2" title="活动列表"></i-tab>
+</i-tabs>
+
+<view wx:if="{{current == 'tab1'}}">
+
 </view>
 
+<view wx:if="{{current == 'tab2'}}">
+<view class='folder'>
+    <view class='folder_item'>
+        <view class='title' data-index='0' catchtap='panel'>
+        <view class='title_1'>进行中活动</view>
+        <view class='title_2'><image src="/icon/{{showIndex[0]? 'up':'down'}}.png"></image></view>
+        </view>
+        <view class='actList'  wx:if="{{showIndex[0]}}">
+            <i-cell-group i-class="act-wrap">
+                <block wx:for="{{curActList}}" wx:key="id">
+                    <i-cell title="{{item.act.name}}" label="{{item.act.description}}" is-link bindtap="goAct" 
+                        data-actid="{{item.act.id}}" data-actname="{{item.act.name}}">
+                    </i-cell> 
+                </block>
+            </i-cell-group>
+        </view>
+    </view>
 
- 
-<swiper current="{{currentTab}}" class="swiper" duration="300" style="height:{{winHeight - 30}}px" bindchange="bindChange">
-    <swiper-item>
-        <!--活动日历-->
-        <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
-    </swiper-item>
+    <view class='folder_item'>
+        <view class='title' data-index='1' catchtap='panel'>
+        <view class='title_1'>未开始活动</view>
+        <view class='title_2'><image src="/icon/{{showIndex[1]? 'up':'down'}}.png"></image></view>
+        </view>
+        <view class='actList'  wx:if="{{showIndex[1]}}">
+            <i-cell-group i-class="act-wrap">
+                <block wx:for="{{unstartActList}}" wx:key="id">
+                    <i-cell title="{{item.act.name}}" label="{{item.act.description}}" is-link bindtap="goAct" 
+                        data-actid="{{item.act.id}}" data-actname="{{item.act.name}}">
+                    </i-cell> 
+                </block>
+            </i-cell-group>
+        </view>
+    </view>
 
-
-    <swiper-item>
-        <!--活动列表-->
-        <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
-    </swiper-item>
-</swiper>
-
-
+    <view class='folder_item'>
+        <view class='title' data-index='2' catchtap='panel'>
+        <view class='title_1'>已结束活动</view>
+        <view class='title_2'><image src="/icon/{{showIndex[2]? 'up':'down'}}.png"></image></view>
+        </view>
+        <view class='actList'  wx:if="{{showIndex[2]}}">
+            <i-cell-group i-class="act-wrap">
+                <block wx:for="{{endActList}}" wx:key="id">
+                    <i-cell title="{{item.act.name}}" label="{{item.act.description}}" is-link bindtap="goAct" 
+                        data-actid="{{item.act.id}}" data-actname="{{item.act.name}}">
+                    </i-cell> 
+                </block>
+            </i-cell-group>
+        </view>
+    </view>
+</view>
+</view>

@@ -1,7 +1,7 @@
 // pages/sections/org-detail/org-detail.js
 
 const interact = require("../../../utils/interact.js")
-const app = getApp()
+// const app = getApp()
 const util = require("../../../utils/util.js")
 
 Page({

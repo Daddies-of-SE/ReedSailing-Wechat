@@ -20,3 +20,90 @@
   color: red;  
   border-bottom: 5rpx solid red;
 }
+
+/* pages/sections/act-list/act-list.wxss */
+
+.org-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90rpx;
+  padding: 0 30rpx;
+}
+
+.org-header .picture {
+  height: 90rpx;
+  width: 90rpx;
+}
+
+.org-header .followBtn{
+  width: 150rpx;
+  height: 60rpx;
+  background-color: rgba(19, 173, 245, 0.548);
+  color: white;
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}
+
+
+.folder {
+  width: 700rpx;
+  margin: 0 auto;
+}
+.folder .folder_item {
+  margin: 10rpx auto;
+}
+.folder .folder_item .title {
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #e2e2e2;
+  display: flex;
+}
+.folder .folder_item .title .title_1 {
+  width: 630rpx;
+  height: 60rpx;
+  padding-left: 20rpx;
+}
+.folder .folder_item .title .title_2 {
+  width: 50rpx;
+  height: 60rpx;
+  text-align: center;
+}
+.folder .folder_item .title .title_2 image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 10rpx auto;
+}
+.folder .folder_item .detail {
+  margin: 10rpx auto;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  text-indent: 2em;
+}
+
+.folder .folder_item .editBtn{
+  width: 100rpx;
+  height: 50rpx;
+  background-color: rgba(200, 212, 218, 0.548);
+  color: rgb(43, 37, 37);
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}
+
+.folder .folder_item .headShot {
+  height: 80rpx;
+  width: 80rpx;
+}

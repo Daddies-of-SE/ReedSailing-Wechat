@@ -38,7 +38,7 @@ Page({
         interact.getStatusManageActs('end').then(
             res3 => {
                 this.setData({
-                    unstartActList : res3.data
+                    endActList : res3.data
                 })
         })
     },

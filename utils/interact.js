@@ -541,6 +541,20 @@ module.exports.getOrgActList = function (org_id) {
 //   }) 
 // }
 
+module.exports.getStatusJoinActs = function (status) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    get_request(`user/joined_acts/${status}/${app.loginData.userId}/`, 
+      {
+        func: module.exports.getStatusJoinActs,
+        funcName: 'getStatusJoinActs',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
 
 module.exports.getStatusManageActs = function (status) {
   if (!app) {
@@ -754,6 +768,18 @@ module.exports.updateOrgInfo = function (org_id, name, description, avatar) {
       {
         func: module.exports.updateOrgInfo,
         funcName: 'updateOrgInfo',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+module.exports.getActNumPeople = function (act_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`activities/joined_numbers/${act_id}/`, 
+      {
+        func: module.exports.getActNumPeople,
+        funcName: 'getActNumPeople',
         reject: reject,
         resolve: resolve
     })

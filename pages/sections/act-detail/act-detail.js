@@ -33,6 +33,7 @@ Page({
         begin_time: "2021-04-16T14:19:18",
         end_time: "2021-04-16T14:19:18",
         pub_time: "2021-04-19T14:31:05.291480",
+        currentNumPeople : -1,
         contain: 100,
         description: "这个是活动描述",
         review: false,
@@ -114,6 +115,14 @@ Page({
         }
       )
 
+      interact.getActNumPeople(options.actId).then(
+        (res) => {
+          this.setData({
+            currentNumPeople : res.data.number
+          })
+        }
+      )
+
       interact.getUserActRelation(options.actId).then(
         (res) => {
           this.setData({
@@ -135,6 +144,13 @@ Page({
           this.setData({
             hasJoined : true
           })
+          interact.getActNumPeople(this.data.actId).then(
+            (res) => {
+              this.setData({
+                currentNumPeople : res.data.number
+              })
+            }
+          )
         }
       )
     },
@@ -148,6 +164,13 @@ Page({
           this.setData({
             hasJoined : false
           })
+          interact.getActNumPeople(this.data.actId).then(
+            (res) => {
+              this.setData({
+                currentNumPeople : res.data.number
+              })
+            }
+          )
         }
       )
     },

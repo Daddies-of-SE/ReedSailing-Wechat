@@ -24,7 +24,7 @@
 
         <view class="act_time"><span class="_infor_head">进行时间：</span> {{actInfo.begin_time !== null ? actInfo.begin_time : "暂无信息"}} 至 {{actInfo.end_time !== null ? actInfo.end_time : "暂无信息"}}</view>
         <view class="place"><span class="_infor_head">地点：</span> {{actInfo.location !== null ? actInfo.location.name : "暂无信息"}}</view>
-        <view class="count"><span class="_infor_head">人数：</span>TODO / {{actInfo.contain}}</view>
+        <view class="count"><span class="_infor_head">人数：</span>{{currentNumPeople}} / {{actInfo.contain}}</view>
 
         <view class="body"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view>
         <view class="body"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
