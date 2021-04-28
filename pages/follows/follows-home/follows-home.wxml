@@ -7,11 +7,11 @@
 <view class="org-wrap">
   <view class="header">
     <!-- TODO: 增加下拉框 -->
-      <text class="txt">最常访问</text>
-      <view class="right" id="0" bindtap="toFollowOrg">
+      <text class="txt">关注的组织</text>
+      <!-- <view class="right" id="0" bindtap="toFollowOrg">
         <text class="all">查看全部</text>
         <image class="arrow" src="/icon/rightArrow.png"></image>
-      </view>
+      </view> -->
   </view>
   <view class="org-list">
     <view class="org-item" wx:for="{{most_visited}}" data-orgid="{{item.org.id}}" bindtap="toOrg">

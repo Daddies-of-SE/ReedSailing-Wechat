@@ -1,5 +1,6 @@
 const app = getApp()
 const util = require("../../../utils/util.js")
+const interact = require("../../../utils/interact.js")
 
 // pages/follows/follows-home/follows-home.js
 Page({
@@ -19,32 +20,32 @@ Page({
     onLoad: function (options) {
         /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
         this.setData({
-            most_visited : [
-                {
-                    org:{name: "高工足球队",
-                    avator: "/icon/gaogong_football.png",}
-                },
-                {
-                    org:{name: "高工学生会",
-                    avator: "/icon/gaogong_student_union.png",}
-                },
-                {
-                    org:{name: "高工足球队",
-                    avator: "/icon/gaogong_football.png",}
-                },
-                {
-                    org:{name: "高工学生会",
-                    avator: "/icon/gaogong_student_union.png",}
-                },
-                {
-                    org:{name: "高工足球队",
-                    avator: "/icon/gaogong_football.png",}
-                },
-                {
-                    org:{name: "高工学生会",
-                    avator: "/icon/gaogong_student_union.png",}
-                },
-            ], 
+        //     most_visited : [
+        //         {
+        //             org:{name: "高工足球队",
+        //             avator: "/icon/gaogong_football.png",}
+        //         },
+        //         {
+        //             org:{name: "高工学生会",
+        //             avator: "/icon/gaogong_student_union.png",}
+        //         },
+        //         {
+        //             org:{name: "高工足球队",
+        //             avator: "/icon/gaogong_football.png",}
+        //         },
+        //         {
+        //             org:{name: "高工学生会",
+        //             avator: "/icon/gaogong_student_union.png",}
+        //         },
+        //         {
+        //             org:{name: "高工足球队",
+        //             avator: "/icon/gaogong_football.png",}
+        //         },
+        //         {
+        //             org:{name: "高工学生会",
+        //             avator: "/icon/gaogong_student_union.png",}
+        //         },
+        //     ], 
 
             msg_list : [
                 {
@@ -69,14 +70,10 @@ Page({
                     end_time : "2021-04-14 16:30",
                     act_place : "教（一） 307",
                     body : "阿巴阿巴",
-
                 },
-
             ]
 
         })
-
-        util.debug(JSON.stringify(this.data.most_visited))
 
     },
 
@@ -97,44 +94,21 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.setData({
-            // TODO
-        })
+        if (app.haveRegistered()) {
+            this.setData({
+                havelogin : true
+            })
+        }
+        interact.getAllFollowOrgs().then(
+            (res) => {
+                this.setData({
+                    most_visited : res.data
+                })
+            }
+            
+        )
     },
 
-    
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-      this.setData({
-          havelogin : app.haveRegistered()
-      })
-    },
-
-    onShow: function (e) {
-      if (app.haveRegistered()) {
-          this.setData({
-              havelogin : true
-          })
-      }
-    },
 
     callLogin: function (e) {
       if (!app.haveRegistered()) {

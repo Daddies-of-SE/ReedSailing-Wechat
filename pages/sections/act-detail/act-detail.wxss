@@ -108,6 +108,6 @@
 }
 
 .msg-item .bottom-right .arrow {
-  width: 13rpx;
-  height: 25rpx;
+  width: 20rpx;
+  height: 30rpx;
 } 
