@@ -19,8 +19,8 @@
           "scene": null
         },
         {
-          "name": "pages/sections/org-detail/org-detail",
-          "pathName": "pages/sections/org-detail/org-detail",
+          "name": "pages/sections/org-edit/org-edit",
+          "pathName": "pages/sections/org-edit/org-edit",
           "query": "",
           "scene": null
         }

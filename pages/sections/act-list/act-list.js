@@ -1,4 +1,4 @@
-// pages/sections/org-detail/org-detail.js
+// pages/sections/org-edit/org-edit.js
 
 const interact = require("../../../utils/interact.js")
 // const app = getApp()
@@ -148,7 +148,7 @@ Page({
   
     editOrgInfo: function() {
       wx.navigateTo({
-        url: `../org-detail/org-detail?orgId=${this.data.orgId}`,
+        url: `../org-edit/org-edit?orgId=${this.data.orgId}`,
       })
     },
   

@@ -1,4 +1,4 @@
-// pages/sections/org-detail/org-detail.js
+// pages/sections/org-edit/org-edit.js
 
 const interact = require("../../../utils/interact.js")
 const app = getApp()
