@@ -1,20 +1,20 @@
 <!--pages/sections/org-detail/org-detail.wxml-->
 
 <i-panel title="组织基本信息">
-
-    <i-input value="{{ inputName }}" bind:change="inputNameHandler" title="组织名称" placeholder="{{inputName}}" maxlength="20"/>
+    <i-input value="{{ inputName }}" bind:change="inputNameHandler" title="组织名称" mode="wrapped" placeholder="{{inputName}}" maxlength="20"/>
     <view class="org-pic">
-        <text class="text">头像：</text>
+        <view class="text">头像</view>
         <view class="picture">
         <image src="{{orgPicUrl}}" class="pictureSize"></image>
         </view>
-        <button class='uploadBtn' bindtap='uploadPic'>上传</button>
+        <view class='uploadBtnWrap'>
+        <a class='weui-btn weui-btn_default weui-btn_mini' bindtap='uploadPic'>上传</a>
+        </view>
     </view>
-    <i-input value="{{ inputDescription }}" bind:change="inputDescriptionHandler" title="组织描述(可选)" placeholder="{{inputDescription}}" maxlength="50"/>
+    <i-input value="{{ inputDescription }}" bind:change="inputDescriptionHandler" title="组织描述(可选)" mode="wrapped" placeholder="{{inputDescription}}" maxlength="50"/>
 
 </i-panel>
 <a class="weui-btn weui-btn_primary" bindtap="submitOrg">提交</a>
-
 
 
 

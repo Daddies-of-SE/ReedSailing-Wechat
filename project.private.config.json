@@ -17,6 +17,12 @@
           "pathName": "pages/my/my-act/my-act",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/sections/org-detail/org-detail",
+          "pathName": "pages/sections/org-detail/org-detail",
+          "query": "",
+          "scene": null
         }
       ]
     }

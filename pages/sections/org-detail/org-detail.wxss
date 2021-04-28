@@ -1,19 +1,22 @@
 /* pages/sections/org-detail/org-detail.wxss */
 
-text {
-  font-size: 20px;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 2px;
+.text {
+
+  color: #495060;
+  margin-left: 67rpx;
 }
-input{
+
+
+/* input{
   border:1px black solid;
   margin-inline: 15px;
   border-radius: 5px;
   margin-bottom: 20px;
-}
+} */
+
+/* .org-pic {
+  border: 3rpx;
+} */
 
 .org-pic .picture {
   display: flex;
@@ -25,7 +28,12 @@ input{
   height: 200rpx;
 }
 
-.org-pic .uploadBtn{
+.org-pic .uploadBtnWrap{
+  display: flex;
+  justify-content: center;
+} 
+
+/* .org-pic .uploadBtn{
   width: 120rpx;
   height: 60rpx;
   background-color: rgba(200, 212, 218, 0.548);
@@ -38,9 +46,9 @@ input{
   font-size: 30rpx;
   writing-mode: vertical-lr;
   margin-bottom: 20px;
-}
+} */
 
-.areas{
+/* .areas{
   height:240rpx;
   font-size: 35rpx;
   text-indent: 28rpx;
@@ -79,4 +87,4 @@ input{
   font-size: 40rpx;
   writing-mode: vertical-lr;
   margin-right: 0%;
-}
+} */
