@@ -39,11 +39,23 @@
   margin-right: 0%;
 }
 
-/* 活动信息 */
+
+.msg-item-wide {
+
+}
+
 .msg-item {
   display: block;
   margin-top: 20rpx;
   background: #fff;
+}
+
+.msg-item .title {
+  margin-bottom: 15rpx;
+}
+
+.card-demo image {
+  border-radius: 50%;
 }
 
 .msg-item ._infor_head {
@@ -80,19 +92,6 @@
 .msg-item .body {
   font-size: 35rpx;
   margin-top: 10rpx;
-}
-
-/* 评论区 */
-
-.card-demo image {
-  border-radius: 50%;
-}
-
-.msg-item .title {
-  margin-bottom: 15rpx;
-}
-
-.msg-item .body {
   font-size: 26rpx;
 }
 
@@ -112,12 +111,3 @@
   width: 13rpx;
   height: 25rpx;
 } 
-
-
-.comment-block {
-  margin-top: 40rpx;
-}
-
-.comment-block .title {
-  margin-left: 3%;
-}

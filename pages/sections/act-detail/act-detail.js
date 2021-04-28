@@ -25,7 +25,7 @@ Page({
         owner: {
             id: 5,
             name: "dd",
-            avatar: "111",
+            avatar: "/icon/sample.png",
             email: "1111@qq.com",
             sign: ""
         },

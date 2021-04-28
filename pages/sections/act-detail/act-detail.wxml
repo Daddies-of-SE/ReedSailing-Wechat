@@ -13,11 +13,10 @@
 
 
 <!--活动信息-->
-<view class="msg-wrap">
-  <scroll-view scroll-y="true" class="nav">
-    <view class="msg-item">
-        
-        <view class="organizer"><span class="_infor_head">发起者：</span>{{actInfo.owner.name}}</view>
+<view class="msg-item">
+    <i-card i-class="card-demo card-demo-full"  full
+      title="{{actInfo.owner.name}}" extra="发布者信息" thumb="/icon/sample.png">  
+      <view slot="content">
         <view class="organizer"><span class="_infor_head">发布时间：</span>{{actInfo.pub_time}}</view>
         <view wx:if="{{actInfo.org != null}}"><span class="_infor_head">所属组织：</span>{{actInfo.org.name}}</view>
         <view wx:if="{{actInfo.block != null}}"><span class="_infor_head">所属版块：</span>{{actInfo.block.name}}</view>
@@ -28,35 +27,19 @@
 
         <view class="body"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view>
         <view class="body"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
-
         <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view>
-        <view wx:if="isManager">
-          <button bind:tap="editAct">编辑</button>
+      </view>
+      <view wx:if="isManager" slot="footer">
+        <view class="bottom-right" bind:tap="editAct">
+                  <image class="arrow" src="/icon/rightArrow.png"></image>
+                  <text class="txt">编辑</text>
         </view>
-    </view>  
-  </scroll-view>
+      </view>
+    </i-card>
 </view>
 
 
 <!--评论区-->
-<!-- <view class="comment-block">
-  <text class="title">评论区</text>
-  <scroll-view scroll-y="true" class="nav">
-    <view class="comment-item" wx:for="{{comment_list}}">
-      <view class="user">
-        <image class="headshot" src="{{item.user.avatar}}"></image>
-        <text class="name">{{item.user.name}}</text>
-      </view>
-      <view class="comment">
-        <text class="words">{{item.content}}</text>
-        <text class="words">打分：{{item.score}}</text>
-        <image class="like-icon" src="{{likeUrl}}" bindtap='like'></image>
-      </view>
-    </view> -->
-    <!-- TODO：需要新建/修改评论；需要在上面显示平均打分 -->
-  <!-- </scroll-view>
-</view> -->
-
 <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
     <view class="msg-item" wx:for="{{comment_list}}">
