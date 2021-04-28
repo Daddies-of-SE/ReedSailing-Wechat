@@ -25,6 +25,7 @@
 - 下拉框使用微信自带的picker和微信官方wxss（参考new-org）
 - 带发送按钮的，参见微信官方的[一行写法](![img](file:///C:\Users\Administrator\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://github.com/Tencent/weui-wxss/blob/master/dist/example/input/input.wxml)； 如果文本比较长放不下，按钮可以换行
 - 按钮使用微信原生组件和官方wxss，[参考](https://github.com/Tencent/weui-wxss/blob/master/dist/example/button/button.wxml)
+- 打分栏（分为可输入和只显示两种），使用vant组件的vant-rate(不用iview的原因是iview的rate组件不允许半星)
 
 
 

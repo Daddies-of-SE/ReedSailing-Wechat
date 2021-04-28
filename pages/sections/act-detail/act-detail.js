@@ -58,7 +58,28 @@ Page({
       hasJoined: false,
       isManager: false,
       isOwner: false,
-      comment_list : [],
+      comment_list : [
+        {
+          user : {
+            avator : '/icon/sample.png',
+            name : 'yy',
+          },
+          publish_time : '10分钟前',
+          content : 'yy yydfive',
+          rate : 5,
+
+        },
+        {
+          user : {
+            avator : '/icon/sample.png',
+            name : 'yy',
+          },
+          publish_time : '30分钟前',
+          content : 'yy tcl',
+          rate : 3.5,
+
+        }
+      ],
       likeUrl : "/icon/like.png"
     },
 
@@ -79,21 +100,21 @@ Page({
       })
     },
     
-    reply: function (options) {
-      //TODO
-      wx.request({
-        url: 'url',
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          console.log(res) //控制台打印
-          this.setData({
+    // reply: function (options) {
+    //   //TODO
+    //   wx.request({
+    //     url: 'url',
+    //     header: {
+    //       'content-type': 'application/json'
+    //     },
+    //     success: res => {
+    //       console.log(res) //控制台打印
+    //       this.setData({
             
-          })
-        }
-      })
-    },
+    //       })
+    //     }
+    //   })
+    // },
 
     /**
      * 生命周期函数--监听页面加载
@@ -123,13 +144,13 @@ Page({
         }
       )
 
-      interact.getActComments(options.actId).then(
-        (res) => {
-          this.setData({
-            comment_list : res.data
-          })
-        }
-      )
+      // interact.getActComments(options.actId).then(
+      //   (res) => {
+      //     this.setData({
+      //       comment_list : res.data
+      //     })
+      //   }
+      // )
 
       interact.getUserActRelation(options.actId).then(
         (res) => {

@@ -1,5 +1,6 @@
 /* pages/sections/act-detail/act-detail.wxss */
 
+/* 活动名称 */
 .act-header {
   display: flex;
   align-items: center;
@@ -38,6 +39,7 @@
   margin-right: 0%;
 }
 
+/* 活动信息 */
 .msg-item {
   display: block;
   margin-top: 20rpx;
@@ -79,6 +81,38 @@
   font-size: 35rpx;
   margin-top: 10rpx;
 }
+
+/* 评论区 */
+
+.card-demo image {
+  border-radius: 50%;
+}
+
+.msg-item .title {
+  margin-bottom: 15rpx;
+}
+
+.msg-item .body {
+  font-size: 26rpx;
+}
+
+.msg-item .bottom-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.msg-item .bottom-right .txt {
+  color: #666;
+  font-size: 25rpx;
+  margin-right: 10rpx;
+}
+
+.msg-item .bottom-right .arrow {
+  width: 13rpx;
+  height: 25rpx;
+} 
+
 
 .comment-block {
   margin-top: 40rpx;

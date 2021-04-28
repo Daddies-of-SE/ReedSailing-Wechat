@@ -80,8 +80,6 @@
               </view>
         </view>
       </i-card>
-
-
     </view>
   </scroll-view>
 </view>
