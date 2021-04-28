@@ -123,6 +123,14 @@ Page({
         }
       )
 
+      interact.getActComments(options.actId).then(
+        (res) => {
+          this.setData({
+            comment_list : res.data
+          })
+        }
+      )
+
       interact.getUserActRelation(options.actId).then(
         (res) => {
           this.setData({
@@ -179,5 +187,9 @@ Page({
       wx.navigateTo({
         url: `../../my/new-act/new-act?actId=${this.data.actInfo.id}`
       })
+    },
+
+    createComment() {
+      //TODO
     }
 })

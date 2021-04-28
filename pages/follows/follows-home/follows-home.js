@@ -28,7 +28,7 @@ Page({
                     org:{name: "高工学生会",
                     avator: "/icon/gaogong_student_union.png",}
                 },
-            ],
+            ], 
 
             msg_list : [
                 {

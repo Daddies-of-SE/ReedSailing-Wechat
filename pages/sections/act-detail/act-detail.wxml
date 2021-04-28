@@ -44,15 +44,16 @@
   <scroll-view scroll-y="true" class="nav">
     <view class="comment-item" wx:for="{{comment_list}}">
       <view class="user">
-        <image class="headshot" src="{{item.headshotUrl}}"></image>
-        <text class="name">{{item.name}}</text>
+        <image class="headshot" src="{{item.user.avatar}}"></image>
+        <text class="name">{{item.user.name}}</text>
       </view>
       <view class="comment">
-        <text class="words">{{item.comment}}</text>
+        <text class="words">{{item.content}}</text>
+        <text class="words">打分：{{item.score}}</text>
         <image class="like" src="{{likeUrl}}" bindtap='like'></image>
         <button class="reply" bindtap="reply">回复</button>
       </view>
     </view>
-    
+    <!-- TODO：需要新建/修改评论；需要在上面显示平均打分 -->
   </scroll-view>
 </view>

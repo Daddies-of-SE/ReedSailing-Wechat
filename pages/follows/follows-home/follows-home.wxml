@@ -81,13 +81,7 @@
         </view>
       </i-card>
 
-      <i-card wx:elif="{{item.type === 'news'}}">
-        <!--TO DO-->
 
-      </i-card>
-      <i-card wx:elif="{{item.type === 'notice'}}">
-        <!--TO DO-->
-      </i-card>
     </view>
   </scroll-view>
 </view>

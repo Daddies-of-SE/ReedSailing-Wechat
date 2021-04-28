@@ -783,5 +783,38 @@ module.exports.getActNumPeople = function (act_id) {
         reject: reject,
         resolve: resolve
     })
+  })
+}
+
+module.exports.submitComment = function(act_id, score, content) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    post_request(`activities/comments/`,
+      {
+        user : app.loginData.userId,
+        content : content,
+        act : act_id,
+        score : score
+      },{
+        func: module.exports.submitComment,
+        funcName: 'submitComment',
+        reject: reject,
+        resolve: resolve
+    }
+    )
   })  
+}
+
+module.exports.getActComments = function (act_id) {
+  return new Promise((resolve, reject) => {
+    get_request(`activities/${act_id}/comments/`, 
+      {
+        func: module.exports.getActComments,
+        funcName: 'getActComments',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
 }
