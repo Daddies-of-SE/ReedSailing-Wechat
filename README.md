@@ -14,18 +14,56 @@
 
 ## 统一样式
 
-- 活动详情/组织详情 的 头像和基本信息***界面布局***统一用i-card组件（参考follow）
-- 不带头像的基本界面布局使用i-panel, i-cell-group, i-cell组件 
-- 一行列表类布局使用 i-cell-group, i-cell组件 (参考org-list)
-- 顶部切换栏统一使用i-tabs和i-tab组件(参考my-org)
-  - 不同于原生微信接口 不能直接写在里面 要在外面用if渲染 [参考](https://github.com/TalkingData/iview-weapp/issues/179)
-- 输入框统一使用 i-panel，i-input，i-button组件(参考new-org)
-- 折叠面板使用i-collapse和i-collapse-item组件
-- 比较常见的图标可以在i-icon里面找
-- 下拉框使用微信自带的picker和微信官方wxss（参考new-org）
-- 带发送按钮的，参见微信官方的[一行写法](![img](file:///C:\Users\Administrator\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://github.com/Tencent/weui-wxss/blob/master/dist/example/input/input.wxml)； 如果文本比较长放不下，按钮可以换行
-- 按钮使用微信原生组件和官方wxss，[参考](https://github.com/Tencent/weui-wxss/blob/master/dist/example/button/button.wxml)
-- 打分栏（分为可输入和只显示两种），使用vant组件的vant-rate(不用iview的原因是iview的rate组件不允许半星)
+### 指南
+
+- 前端设计主要从i-view, WeUI(微信官方组件), vant中选择组件
+
+- i开头代表iview组件库里面的组件； vant开头代表vant组件库里面的组件。
+- WeUI的wxss文件已经放入app.wxss中，直接通过类名选择器使用。
+
+### 各组件库参考链接
+
+| 组件库 | 参考文档                                                     | 代码                                                         |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| i-view | http://inmap.talkingdata.com/wx/index_prod.html#/components/button | https://github.com/TalkingData/iview-weapp/tree/master/examples/pages |
+| WeUI   | https://github.com/Tencent/weui-wxss/                        | https://weui.io/                                             |
+| vant   | https://youzan.github.io/vant-weapp/#/calendar               | https://github.com/youzan/vant-weapp/tree/dev/example/pages  |
+
+### 小程序体验码
+
+iview
+
+![img](README.assets/code.jpg)
+
+WeUI
+
+![https://weui.io](README.assets/178efd46-2725-11e6-8952-09d7836e968d.png)
+
+vant
+
+![img](README.assets/68747470733a2f2f696d672e797a63646e2e636e2f76616e742d77656170702f7172636f64652d3230313830383130313131342e6a7067)
+
+
+
+### 样式规定
+
+| 名称                         | 使用的组件                        | 备注                                                         |
+| ---------------------------- | --------------------------------- | ------------------------------------------------------------ |
+| 头像和基本信息***界面布局*** | i-card组件                        | 参考follow-home                                              |
+| 不带头像的基本界面布局       | i-panel, i-cell-group, i-cell组件 |                                                              |
+| 列表类布局                   | i-cell-group, i-cell              | 参考org-list                                                 |
+| 顶部切换栏                   | i-tabs和i-tab组件                 | 参考my-org； 不同于原生微信接口 不能直接写在里面 要在外面用if渲染 [参考](https://github.com/TalkingData/iview-weapp/issues/179) |
+| 输入框                       | i-panel，i-input，i-button        | 参考new-org                                                  |
+| 带发送按钮的输入框           |                                   | 参见微信官方的[一行写法](![img](file:///C:\Users\Administrator\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://github.com/Tencent/weui-wxss/blob/master/dist/example/input/input.wxml)； 如果文本比较长放不下，按钮可以换行 |
+| 折叠面板                     | i-collapse和i-collapse-item       |                                                              |
+| 图标                         | i-icon                            | 比较常见的图标可以在i-icon里面找                             |
+| 下拉框                       | 微信自带的picker和微信官方wxss    | 参考new-org                                                  |
+| 按钮                         | 微信原生组件和官方wxss            | [参考](https://github.com/Tencent/weui-wxss/blob/master/dist/example/button/button.wxml) |
+| 打分栏                       | vant-rate                         | 分为可输入和只显示两种；不用iview的原因是iview的rate组件不允许半星 |
+|                              |                                   |                                                              |
+|                              |                                   |                                                              |
+
+
 
 
 
@@ -60,6 +98,7 @@
 | 17 | 用户反馈 |  | my/feedback | | 7 |  |  |
 | 18   | 我的账户     |              | my/my-account           | 邮箱认证、修改昵称签名等   | 7              |                                                            | 100% |
 | 19 | 搜索结果 | | my/org-list/search |  | 8；9 | |  |
+| 20 | 新建评论 | | sections/act-detail/new-comment | | 10 | | |
 
 * 新增一个页面page，你需要：
   * 创建一个目录page

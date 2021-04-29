@@ -5,22 +5,21 @@
     "pages/follows/follows-home/follows-home",
     "pages/my/my-home/my-home",
     "pages/schedule/schedule",
-
     "pages/sections/sections-home/sections-home",
     "pages/sections/act-list/act-list",
     "pages/sections/act-list/mem-list/mem-list",
     "pages/sections/act-detail/act-detail",
     "pages/sections/org-edit/org-edit",
-
     "pages/my/my-org/my-org",
     "pages/my/my-act/my-act",
     "pages/my/new-act/new-act",
     "pages/my/new-org/new-org",
     "pages/my/my-account/my-account",
-    
     "pages/sections/org-list/org-list",
     "pages/my/feedback/feedback",
-    "pages/sections/org-list/search/search"
+    "pages/sections/org-list/search/search",
+    "pages/sections/act-detail/new-comment",
+    "pages/sections/act-detail/new-comment/new-comment"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -33,7 +32,6 @@
     "selectedColor": "#3cc51f",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
-    
     "list": [
       {
         "iconPath": "icon/home-outline.png",
@@ -84,14 +82,12 @@
     "i-cell-group": "/lib/iview/dist/cell-group/index",
     "i-cell": "/lib/iview/dist/cell/index",
     "i-button": "/lib/iview/dist/button/index",
-
     "van-search": "lib/vant-weapp/search/index",
     "van-panel": "lib/vant-weapp/panel/index",
     "van-cell": "lib/vant-weapp/cell/index",
     "van-cell-group": "lib/vant-weapp/cell-group/index",
     "van-field": "lib/vant-weapp/field/index",
     "van-button": "lib/vant-weapp/button/index",
-    "van-rate" : "lib/vant-weapp/rate/index"
-
+    "van-rate": "lib/vant-weapp/rate/index"
   }
 }
