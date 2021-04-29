@@ -1,6 +1,7 @@
 // pages/sections/act-detail/act-detail.js
 const interact = require("../../../utils/interact.js")
 const util = require("../../../utils/util.js")
+const app = getApp()
 
 Page({
 
@@ -55,31 +56,34 @@ Page({
       },
       hasActInfo: false,
       showIndex: 0,
+      userId: -1,
       hasJoined: false,
       isManager: false,
       isOwner: false,
-      comment_list : [
-        {
-          user : {
-            avator : '/icon/sample.png',
-            name : 'yy',
-          },
-          publish_time : '10分钟前',
-          content : 'yy yydfive',
-          score : 5,
+      comment_list: [],
+    //   comment_list : [
+    //     {
+    //       user : {
+    //         avator : '/icon/sample.png',
+    //         name : 'yy',
+    //       },
+    //       publish_time : '10分钟前',
+    //       content : 'yy yydfive',
+    //       score : 5,
 
-        },
-        {
-          user : {
-            avator : '/icon/sample.png',
-            name : 'yy',
-          },
-          publish_time : '30分钟前',
-          content : 'yy tcl',
-          score : 3.5,
+    //     },
+    //     {
+    //       user : {
+    //         avator : '/icon/sample.png',
+    //         name : 'yy',
+    //       },
+    //       publish_time : '30分钟前',
+    //       content : 'yy tcl',
+    //       score : 3.5,
 
-        }
-      ],
+    //     }
+    //   ],
+
       likeUrl : "/icon/like.png"
     },
 
@@ -87,6 +91,26 @@ Page({
       // util.debug('tap a tap!')
       wx.navigateTo({
         url: `./new-comment/new-comment?actId=${this.data.actId}`,
+      })
+    },
+
+    goEditComment: function(e) {
+      var commentId = e.currentTarget.dataset.commentId
+      // util.debug('edited comment id is '+commentId)
+      wx.navigateTo({
+        url: `./new-comment/new-comment?actId=${this.data.actId}&commentId=${commentId}`,
+      })
+    },
+
+    delComment: function(e) {
+      var commentId = e.currentTarget.dataset.commentId
+      wx.showModal({
+        title: '确定删除评论?',
+        success: function(res) {
+          if (res.confirm) {
+            interact.deleteComment(commentId)
+          } 
+        }
       })
     },
 
@@ -128,10 +152,15 @@ Page({
      */
     onLoad: function (options) {
       this.setData({
-        actId: options.actId
+        actId: options.actId,
+        userId: app.loginData.userId,
       })
 
-      interact.getActInfo(options.actId).then(
+     
+    },
+
+    onShow: function() {
+      interact.getActInfo(this.data.actId).then(
         (res) => {
           var r = res.data
           r.pub_time = util.getTimeMinute(r.pub_time)
@@ -143,7 +172,7 @@ Page({
         }
       )
 
-      interact.getActNumPeople(options.actId).then(
+      interact.getActNumPeople(this.data.actId).then(
         (res) => {
           this.setData({
             currentNumPeople : res.data.number
@@ -151,7 +180,7 @@ Page({
         }
       )
 
-      interact.getActComments(options.actId).then(
+      interact.getActComments(this.data.actId).then(
         (res) => {
           this.setData({
             comment_list : res.data
@@ -159,7 +188,7 @@ Page({
         }
       )
 
-      interact.getUserActRelation(options.actId).then(
+      interact.getUserActRelation(this.data.actId).then(
         (res) => {
           this.setData({
             hasJoined : res.data.hasJoined,

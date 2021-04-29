@@ -4,15 +4,15 @@
 <view class="weui-cells weui-cells_form">
   <view class="weui-cell">
       <view class="weui-cell__bd">
-        <textarea class="weui-textarea" bindblur="bindTextAreaBlur"  rows="3"
-          placeholder="请输入评论" placeholder-class="weui-input__placeholder" maxlength="{{10000}}" />
+        <textarea class="weui-textarea" value="{{comment}}" bindblur="bindTextAreaBlur"  rows="3"
+          placeholder="请输入评论(选填)" placeholder-class="weui-input__placeholder" maxlength="{{10000}}" />
           <!-- <view class="weui-textarea-counter"><span>0</span>/200</view> -->
       </view>
   </view>
 </view>
 
 <view class="rate-wrap">
-  <view class="txt">评分</view>
+  <view class="txt">评分(必填)</view>
   <van-rate custom-class="rate" model:value="{{ rate}}" bind:change="onChange" size="{{ 25 }}"
   allow-half void-icon="star"/>
 </view>
