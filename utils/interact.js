@@ -807,6 +807,50 @@ module.exports.submitComment = function(act_id, score, content) {
   })  
 }
 
+module.exports.getComment = function (commentId, actId) {
+  return new Promise((resolve, reject) => {
+    get_request(`activities/${actId}/comments//`, 
+      {
+        func: module.exports.getActComments,
+        funcName: 'getActComments',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+module.exports.editComment = function(commentId, score, content) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    put_request(`activities/comments/${commentId}/`,
+      {
+        content : content,
+        score : score
+      },{
+        func: module.exports.editComment,
+        funcName: 'editComment',
+        reject: reject,
+        resolve: resolve
+    }
+    )
+  })  
+}
+
+module.exports.deleteComment = function (commentId) {
+  return new Promise((resolve, reject) => {
+    delete_request(`activities/comments/${commentId}/`, 
+      {
+        func: module.exports.deleteComment,
+        funcName: 'deleteComment',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+
 module.exports.getActComments = function (act_id) {
   return new Promise((resolve, reject) => {
     get_request(`activities/${act_id}/comments/`, 
@@ -818,3 +862,5 @@ module.exports.getActComments = function (act_id) {
     })
   }) 
 }
+
+
