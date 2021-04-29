@@ -42,8 +42,8 @@
 <!--评论区-->
 <view class="comment-header">
       <text class="txt">评论区</text>
-      <view class="right" bindtap="createComment">
-        <text class="right-txt">新建评论</text>
+      <view class="right" bindtap="goCreateComment">
+        <text class="right-txt" style="font-size: 35rpx;">新建评论</text>
         <!-- <image class="arrow" src="/icon/rightArrow.png"></image> -->
         <i-icon type="add" />
       </view>
@@ -56,7 +56,7 @@
         <view slot="content">
           <view>{{item.content}}</view>
           <view>
-          <van-rate custom-class="rate" model:value="{{ item.rate }}" size="{{ 25 }}"
+          <van-rate custom-class="rate" model:value="{{ item.score }}" size="{{ 25 }}"
            readonly allow-half color="#ee0a24" void-color="#eee" void-icon="star"/>
           </view>
         </view>

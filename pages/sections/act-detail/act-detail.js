@@ -66,7 +66,7 @@ Page({
           },
           publish_time : '10分钟前',
           content : 'yy yydfive',
-          rate : 5,
+          score : 5,
 
         },
         {
@@ -76,16 +76,17 @@ Page({
           },
           publish_time : '30分钟前',
           content : 'yy tcl',
-          rate : 3.5,
+          score : 3.5,
 
         }
       ],
       likeUrl : "/icon/like.png"
     },
-    createComment: function() {
-      util.debug('tap a tap!')
+
+    goCreateComment: function() {
+      // util.debug('tap a tap!')
       wx.navigateTo({
-        url: './new-comment/new-comment',
+        url: `./new-comment/new-comment?actId=${this.data.actId}`,
       })
     },
 
@@ -150,13 +151,13 @@ Page({
         }
       )
 
-      // interact.getActComments(options.actId).then(
-      //   (res) => {
-      //     this.setData({
-      //       comment_list : res.data
-      //     })
-      //   }
-      // )
+      interact.getActComments(options.actId).then(
+        (res) => {
+          this.setData({
+            comment_list : res.data
+          })
+        }
+      )
 
       interact.getUserActRelation(options.actId).then(
         (res) => {

@@ -18,6 +18,6 @@
 </view>
 
 
-<a class="weui-btn weui-btn_primary" bindtap="submitOrg">提交</a>
+<a class="weui-btn weui-btn_primary" bindtap="createComment">提交</a>
 
 
