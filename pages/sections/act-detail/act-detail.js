@@ -82,6 +82,12 @@ Page({
       ],
       likeUrl : "/icon/like.png"
     },
+    createComment: function() {
+      util.debug('tap a tap!')
+      wx.navigateTo({
+        url: './new-comment/new-comment',
+      })
+    },
 
     like: function (options) {
       //TODO
@@ -209,8 +215,4 @@ Page({
         url: `../../my/new-act/new-act?actId=${this.data.actInfo.id}`
       })
     },
-
-    createComment() {
-      //TODO
-    }
 })

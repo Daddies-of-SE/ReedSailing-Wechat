@@ -23,6 +23,12 @@
           "pathName": "pages/sections/org-edit/org-edit",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/sections/act-detail/new-comment/new-comment",
+          "pathName": "pages/sections/act-detail/new-comment/new-comment",
+          "query": "",
+          "scene": null
         }
       ]
     }

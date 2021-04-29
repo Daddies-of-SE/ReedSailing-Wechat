@@ -1,1 +1,4 @@
 /* pages/sections/act-detail/new-comment/new-comment.wxss */
+.rate-wrap {
+  margin-left: 20rpx;
+}

@@ -40,7 +40,16 @@
 
 
 <!--评论区-->
-<view class="msg-wrap">
+<view class="comment-header">
+      <text class="txt">评论区</text>
+      <view class="right" bindtap="createComment">
+        <text class="right-txt">新建评论</text>
+        <!-- <image class="arrow" src="/icon/rightArrow.png"></image> -->
+        <i-icon type="add" />
+      </view>
+  </view>
+
+<view class="msg-wrap comment-wrap">
   <scroll-view scroll-y="true" class="nav">
     <view class="msg-item" wx:for="{{comment_list}}">
       <i-card i-class="card-demo" title="{{item.user.name}}" extra="{{item.publish_time}}" thumb="{{item.user.avator}}">

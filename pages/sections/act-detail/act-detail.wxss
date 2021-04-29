@@ -40,8 +40,29 @@
 }
 
 
-.msg-item-wide {
+.comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90rpx;
+  padding: 0 30rpx;
+}
 
+.comment-header .txt {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.comment-header .right {
+  display: flex;
+  align-items: center;
+}
+
+.comment-header .right-txt {
+  color: #666;
+  font-size: 25rpx;
+  margin-right: 10rpx;
 }
 
 .msg-item {

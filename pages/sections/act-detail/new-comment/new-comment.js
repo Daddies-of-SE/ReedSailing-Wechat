@@ -1,11 +1,24 @@
 // pages/sections/act-detail/new-comment/new-comment.js
+const utils = require('../../../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    comment : "",
+    rate : 0,
+  },
 
+  bindTextAreaBlur: function(e) {
+    // utils.debug(e.detail.value)
+    this.data.comment = e.detail.value
+  },
+
+  onChange: function(e) {
+    // utils.debug(e.detail)
+    this.data.rate = e.detail
   },
 
   /**

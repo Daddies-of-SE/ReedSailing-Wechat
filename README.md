@@ -26,7 +26,7 @@
 | 组件库 | 参考文档                                                     | 代码                                                         |
 | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | i-view | http://inmap.talkingdata.com/wx/index_prod.html#/components/button | https://github.com/TalkingData/iview-weapp/tree/master/examples/pages |
-| WeUI   | https://github.com/Tencent/weui-wxss/                        | https://weui.io/                                             |
+| WeUI   | https://weui.io/                                             | https://github.com/Tencent/weui-wxss/tree/master/dist/example |
 | vant   | https://youzan.github.io/vant-weapp/#/calendar               | https://github.com/youzan/vant-weapp/tree/dev/example/pages  |
 
 ### 小程序体验码
@@ -54,6 +54,7 @@ vant
 | 列表类布局                   | i-cell-group, i-cell              | 参考org-list                                                 |
 | 顶部切换栏                   | i-tabs和i-tab组件                 | 参考my-org； 不同于原生微信接口 不能直接写在里面 要在外面用if渲染 [参考](https://github.com/TalkingData/iview-weapp/issues/179) |
 | 输入框                       | i-panel，i-input，i-button        | 参考new-org                                                  |
+| 可以换行的输入框（文本域）   | WeUI的textarea                    | 参考https://github.com/Tencent/weui-wxss/blob/master/dist/example/form/form_textarea.wxml |
 | 带发送按钮的输入框           |                                   | 参见微信官方的[一行写法](![img](file:///C:\Users\Administrator\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://github.com/Tencent/weui-wxss/blob/master/dist/example/input/input.wxml)； 如果文本比较长放不下，按钮可以换行 |
 | 折叠面板                     | i-collapse和i-collapse-item       |                                                              |
 | 图标                         | i-icon                            | 比较常见的图标可以在i-icon里面找                             |
@@ -62,6 +63,8 @@ vant
 | 打分栏                       | vant-rate                         | 分为可输入和只显示两种；不用iview的原因是iview的rate组件不允许半星 |
 |                              |                                   |                                                              |
 |                              |                                   |                                                              |
+
+
 
 
 
