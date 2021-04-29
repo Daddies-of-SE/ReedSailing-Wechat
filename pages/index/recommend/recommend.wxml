@@ -1,25 +1,53 @@
 <!--pages/index/recommend.wxml-->
 
 <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
-<text>pages/index/recommend.wxml\n\n</text>
 
-<!-- <view wx:if="{{!haveLogin}}">
-	<mp-dialog title="授权提示" show="{{loginDialogShow}}" bindbuttontap="loginDialogTap" buttons="{{[{text: '取消'}]}}" bindbuttontap="loginDialogClose">
-		<view class="auth-content">
-			<text>授权使用用户信息后才可使用全部功能，是否授权？</text>
-			<button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">去授权</button>
-		</view>
-	</mp-dialog>
-</view> -->
-
-
-<view wx:if="{{!havelogin}}">未登录，点页面任何位置触发登录按钮</view>
-<view wx:else>
-	<!--用于debug-->>
-	<view>已成功登录</view>
-	<view style='word-break:break-all;'>{{info}}</view>
+<!--recommend-orgs-->
+<view class="org-wrap">
+  <view class="header">
+      <text class="txt">推荐的组织</text>
+      <!-- <view class="right" id="0" bindtap="toFollowOrg">
+        <text class="all">查看全部</text>
+        <image class="arrow" src="/icon/rightArrow.png"></image>
+      </view> -->
+  </view>
+  <view class="org-list">
+    <view class="org-item" wx:for="{{most_visited}}" data-orgid="{{item.org.id}}" bindtap="toOrg">
+      <block wx:if="{{item.org.avator != null}}"> 
+        <image class="org-avator" src="{{item.org.avator}}"></image>
+      </block>
+      <block wx:else> 
+        <image class="org-avator" src="/icon/sample.png"></image>
+      </block>
+      <text class="org-name">{{item.org.name}}</text>
+    </view>
+  </view>
 </view>
 
-<text>\n</text>
+<!--recommend-acts-->
+<view class="act-header">
+      <text class="txt">推荐的活动</text>
+</view>
 
-<view bind:tap="debugFunc">【这是一个debug用的区域，可以设置tap响应事件】</view>
+<view class="msg-wrap">
+  <scroll-view scroll-y="true" class="nav">
+    <view class="msg-item" wx:for="{{msg_list}}">
+      <i-card wx:if="{{item.type === 'activity'}}" i-class="card-demo" 
+        title="{{item.org_name}}" extra="{{item.publish_time}}" thumb="{{item.avatorUrl}}">
+        <view slot="content">
+          <text calss="title">{{item.act_title}}</text>
+          <view class="org_time"><span class="_infor_head">时间：</span> {{item.start_time !== null ? item.start_time : "暂无信息"}} 至 {{item.end_time !== null ? item.end_time : "暂无信息"}}</view>
+          <view class="place"><span class="_infor_head">地点：</span> {{item.act_place !== null ? item.act_place : "暂无信息"}}</view>
+          <view class="place"><span class="_infor_head">类别：</span> 活动</view>
+          <view class="body"><span class="_infor_head">简介：</span>{{item.body}}</view>
+        </view>
+        <view slot="footer">
+          <view class="bottom-right" bindtap="toActivity">
+                  <image class="arrow" src="/icon/rightArrow.png"></image>
+                  <text class="txt">详情</text>
+              </view>
+        </view>
+      </i-card>
+    </view>
+  </scroll-view>
+</view>

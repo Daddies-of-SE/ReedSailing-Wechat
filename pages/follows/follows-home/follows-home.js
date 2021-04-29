@@ -12,8 +12,6 @@ Page({
         most_visited : null,
         org_list : null,
         msg_list : null,
-
-
         havelogin : false
     },
 
