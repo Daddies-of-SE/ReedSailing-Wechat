@@ -8,8 +8,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-        // forum_array: [],
-        // index1 : 0,
         actId : -1,
         actInfo : {},
         my_org:[],
@@ -21,7 +19,6 @@ Page({
         presetOrgName : "",
         presetOrgForumId: -1,
 
-        // private : false, // 是否是个人活动
         check : false, // 是否需要审核
         name: '',
         description: '',
@@ -46,13 +43,6 @@ Page({
         this.data.numPeople = e.detail.detail.value
     },
 
-    // bindPicker_1_Change: function(e) {
-    //     this.setData({
-    //         index1: e.detail.value,
-    //         private: this.data.forum_array[e.detail.value] == '个人' ? true : false
-    //     })
-    // },
-
     bindPicker_2_Change: function(e) {
         this.setData({
             index2: e.detail.value
@@ -62,7 +52,6 @@ Page({
     bindPicker_3_Change: function(e) {
         this.setData({
             index3: e.detail.value,
-            // private: this.data.flag[e.detail.value] == '是' ? true : false
         })
 
     },
@@ -93,6 +82,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var time = util.formatTime(new Date()).split("T")
+        this.setData({
+            start_date : time[0],
+            start_time : time[1],
+            end_date : time[0],
+            end_time : time[1]
+        })
         if (options.actId) {
             this.setData({
                 actId: options.actId
@@ -112,7 +108,7 @@ Page({
      */
     onShow: function () {
         if (this.data.actId != -1) {
-            interact.getActInfo(options.actId).then(
+            interact.getActInfo(this.data.actId).then(
                 (res) => {
                   var r = res.data
                   r.pub_time = util.getTimeMinute(r.pub_time)

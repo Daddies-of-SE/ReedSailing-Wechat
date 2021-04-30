@@ -13,8 +13,7 @@
 
 <view class="rate-wrap">
   <view class="txt">评分(必填)</view>
-  <van-rate custom-class="rate" model:value="{{ rate}}" bind:change="onChange" size="{{ 25 }}"
-  allow-half void-icon="star"/>
+  <van-rate custom-class="rate" model:value="{{ rate}}" bind:change="onChange" size="{{ 25 }}" void-icon="star"/>
 </view>
 
 

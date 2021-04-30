@@ -26,6 +26,7 @@ Page({
           })
         }
       )
+    //   util.debug(util.formatTime(new Date()))
 
       /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
       this.setData({

@@ -807,18 +807,6 @@ module.exports.submitComment = function(act_id, score, content) {
   })  
 }
 
-module.exports.getComment = function (commentId, actId) {
-  return new Promise((resolve, reject) => {
-    get_request(`activities/${actId}/comments//`, 
-      {
-        func: module.exports.getActComments,
-        funcName: 'getActComments',
-        reject: reject,
-        resolve: resolve
-    })
-  }) 
-}
-
 module.exports.editComment = function(commentId, score, content) {
   if (!app) {
     app = getApp()
@@ -861,6 +849,10 @@ module.exports.getActComments = function (act_id) {
         resolve: resolve
     })
   }) 
+}
+
+module.exports.getCommentById = function (comment_id) {
+  //TODO
 }
 
 
