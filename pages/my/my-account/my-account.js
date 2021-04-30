@@ -25,9 +25,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.setData({
       verifiedEmail : app.loginData.email,
-      // verifiedEmail : "yuey23@buaa.edu.cn",
       userId : app.loginData.userId,
       nickName : app.loginData.nickName,
       motto : app.loginData.motto,
@@ -35,56 +40,6 @@ Page({
       inputMotto : app.loginData.motto,
     })
     util.debug("user's email: " + this.data.verifiedEmail)
-    // util.debug("logindata email" + app.loginData.email)
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   },
 
   submitVerifyEmail(e) {

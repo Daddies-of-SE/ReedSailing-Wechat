@@ -97,6 +97,21 @@ Page({
             this.setData({
                 actId: options.actId
             })
+        }
+        else if (options.orgId) {
+            this.setData({
+                presetOrgId : options.orgId,
+                presetOrgName : options.orgName,
+                presetOrgForumId : options.forumId
+            })
+        }
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+        if (this.data.actId != -1) {
             interact.getActInfo(options.actId).then(
                 (res) => {
                   var r = res.data
@@ -113,19 +128,11 @@ Page({
                     start_time : r.begin_time.split(" ")[1],
                     end_time : r.end_time.split(" ")[1],
                     index3 : r.review ? 1 : 0
-                  })
-                }
-              )
-            return
+                })
+            }
+            )
         }
-        if (options.orgId) {
-            this.setData({
-                presetOrgId : options.orgId,
-                presetOrgName : options.orgName,
-                presetOrgForumId : options.forumId
-            })
-        }
-        else {
+        else if (this.data.presetOrgId == -1) {
             interact.getAllManageOrgs().then(
                 (res) => {
                     var dt = [{
@@ -140,20 +147,6 @@ Page({
                 }
             )
         }
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
     },
 
     submitAct: function() {

@@ -34,11 +34,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    interact.getOrgInfo(options.orgId).then(
+    this.setData({
+      orgId : options.orgId
+    })
+  },
+
+  onShow: function () {
+    interact.getOrgInfo(this.data.orgId).then(
       (res) => {
         this.setData({
           inputName : res.data.name,
-          orgId : res.data.id,
           inputDescription : res.data.description
         })
         if (res.data.avatar != null) {

@@ -30,11 +30,12 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      var orgId =options.orgId
       this.setData({
-        orgId : orgId
+        orgId : options.orgId
       })
-      
+    },
+
+    onShow: function () {
       interact.getStatusOrgActs('unstart', this.data.orgId).then(
         res1 => {
             this.setData({
@@ -54,7 +55,7 @@ Page({
               })
       })
 
-      if (orgId == -1) {
+      if (this.data.orgId == -1) {
         this.setData({
           orgName: "博雅活动列表",
           orgPicUrl : "/icon/boya.png",
@@ -62,7 +63,7 @@ Page({
         })
         return
       }
-      else if (orgId == -2) {
+      else if (this.data.orgId == -2) {
         this.setData({
           orgName: "个人活动列表",
           orgPicUrl : "/icon/person.png",
@@ -70,7 +71,7 @@ Page({
         })
         return
       }
-      interact.getOrgInfo(orgId).then(
+      interact.getOrgInfo(this.data.orgId).then(
         (res) => {
           this.setData({
             orgName : res.data.name,
@@ -90,7 +91,7 @@ Page({
         }
       )
 
-      interact.getUserOrgRelation(orgId).then(
+      interact.getUserOrgRelation(this.data.orgId).then(
         (res) => {
           this.setData({
             hasFollowed : res.data.isFollower,

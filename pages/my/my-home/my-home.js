@@ -16,7 +16,12 @@ Page({
   bindViewTap() {
     
   },
+  
   onLoad() {
+    
+  },
+
+  onShow: function (e) {
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true,
@@ -27,9 +32,6 @@ Page({
       nickName : app.loginData.nickName,
       motto : app.loginData.motto
     })
-  },
-
-  onShow: function (e) {
     if (app.haveRegistered()) {
         this.setData({
             havelogin : true,

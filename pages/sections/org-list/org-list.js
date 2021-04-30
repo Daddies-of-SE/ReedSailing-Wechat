@@ -13,17 +13,23 @@ Page({
     forumId: null,
     forumInfo: [],
     hasForumInfo: false
-},
+  },
 
-/**
- * 生命周期函数--监听页面加载
- */
-onLoad: function (options) {
-    this.setData({
-      forumName: options.forumName,
-      forumId: options.forumId
-    })
-    interact.getBlockOrgList(options.forumId).then(
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+      this.setData({
+        forumName: options.forumName,
+        forumId: options.forumId
+      })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    interact.getBlockOrgList(this.data.forumId).then(
       (res) => {
         // console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
         this.setData({
@@ -32,21 +38,6 @@ onLoad: function (options) {
         })
       }
     )
-  },
-
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function (options) {
-
   },
 
   /**

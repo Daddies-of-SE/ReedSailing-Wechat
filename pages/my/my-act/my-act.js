@@ -23,6 +23,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+    },
+
+    onShow: function (options) {
         interact.getStatusManageActs('unstart').then(
             res1 => {
                 this.setData({

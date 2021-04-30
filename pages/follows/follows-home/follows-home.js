@@ -17,6 +17,8 @@ Page({
 
     onLoad: function (options) {
         /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
+
+        //TODO
         this.setData({
         //     most_visited : [
         //         {

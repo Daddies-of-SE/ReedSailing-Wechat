@@ -24,6 +24,9 @@ Page({
                 index1 : id == 1 ? 0 : id == 3? 1 : id == 4 ? 2 : -1
             })
         }
+    },
+
+    onShow: function () {
         this.setData({
             forum_array : [app.forumList[0],app.forumList[2],app.forumList[3]]
         })
