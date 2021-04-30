@@ -147,34 +147,71 @@ Page({
 
     submitAct: function() {
         var d = this.data
-        interact.createAct({
-            id: d.actId,
-            name: d.name,
-            begin_time: d.start_date + "T" + d.start_time,
-            end_time: d.end_date + "T" + d.end_time,
-            contain: d.numPeople,
-            description: d.description,
-            review: d.check,
-            owner: getApp().loginData.userId,
-            type: 1, //TODO
-            org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[index2].id,
-            location: 1, //TODO
-            block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[index2].belong_forum.id
-        }, d.actId == -1).then(
-           res => {
-            wx.navigateBack({
-                delta: 0,
+        var start_datetime = d.start_date + "T" + d.start_time
+        var end_datetime = d.end_date + "T" + d.end_time
+        var start = new Date(Date.parse(start_datetime))
+        var end = new Date(Date.parse(end_datetime))
+        if (d.name == "") {
+            wx.showToast({
+              title: '请输入名称',
+              icon : 'none'
             })
-            if (this.data.actId == -1) {
-                wx.showToast({
-                    title: '创建成功',
+        }
+        else if (d.numPeople == "") {
+            wx.showToast({
+              title: '请输入人数',
+              icon : 'none'
+            })
+        }
+        else if (!(/(^[1-9]\d*$)/.test(d.numPeople))) {
+            wx.showToast({
+              title: '人数请输入正整数',
+              icon : 'none'
+            })
+        }
+        else if (start >= end) {
+            wx.showToast({
+                title: '开始时间应早于结束时间',
+                icon : 'none'
+            })
+        }
+        else if (end <= new Date()) {
+            wx.showToast({
+                title: '结束时间应晚于当前时间',
+                icon : 'none'
+            })
+        }
+        else {
+            interact.createAct({
+                id: d.actId,
+                name: d.name,
+                begin_time: start_datetime,
+                end_time: end_datetime,
+                contain: d.numPeople,
+                description: d.description,
+                review: d.check,
+                owner: getApp().loginData.userId,
+                type: 1, //TODO
+                org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[index2].id,
+                location: 1, //TODO
+                block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[index2].belong_forum.id
+                //创建还是修改，通过下面一行的d.actId == -1来判断
+            }, d.actId == -1).then(
+                res => {
+                    wx.navigateBack({
+                        delta: 0,
+                    })
+                    if (this.data.actId == -1) {
+                        wx.showToast({
+                            title: '创建成功',
+                        })
+                    }
+                    else {
+                        wx.showToast({
+                            title: '修改成功',
+                        })
+                    }
                 })
-            }
-            else {
-                wx.showModal({
-                    title: '修改成功\n请重新打开活动页',
-                })
-            }
-        })
+        }
     }
 })

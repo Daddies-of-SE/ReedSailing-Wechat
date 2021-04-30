@@ -26,7 +26,6 @@ Page({
           })
         }
       )
-    //   util.debug(util.formatTime(new Date()))
 
       /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
       this.setData({
@@ -105,11 +104,6 @@ Page({
     },
 
     debugFunc: function(e) {
-      //For debugging
-      // interact.getUserControlOrgs(1)
-      // wx.navigateTo({
-      //   url: '../../sections/act-detail/act-detail',
-      // })
     }
 
 })

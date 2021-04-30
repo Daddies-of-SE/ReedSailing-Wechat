@@ -68,15 +68,21 @@ Page({
   },
 
   submitOrg: function (e) {
-    //TODO : change to createOrgApplication
+    if (this.data.inputName == "") {
+      wx.showToast({
+        title: '名称不能为空',
+        icon : "none"
+      })
+      return
+    }
     interact.updateOrgInfo(this.data.orgId, this.data.inputName, this.data.inputDescription, this.data.orgPicUrl).then(
         (res) => {
           wx.navigateBack({
             delta: 0,
           })
-          wx.showModal({
-            title: '修改成功\n请重新打开组织页',
-        })
+          wx.showToast({
+            title: '修改成功',
+          })
     })
 },
 

@@ -41,20 +41,22 @@ Page({
     },
 
     submitOrg: function (e) {
-        //TODO : change to createOrgApplication
-        interact.createOrgDirectly(this.data.inputName, this.data.inputDescription, this.data.forum_array[this.data.index1].id).then(
+        if (this.data.inputName == "") {
+            wx.showToast({
+              title: '名称不能为空',
+              icon : "none"
+            })
+            return
+        }
+        interact.createOrgApplication(this.data.inputName, this.data.inputDescription, this.data.forum_array[this.data.index1].id).then(
             (res) => {
-            interact.addOrgManager(res.data.id, app.loginData.userId).then(
-                (res) => {
-                    wx.navigateBack({
-                        delta: 0,
-                    })
-                    wx.showToast({
-                        title: '提交成功',
-                        icon : 'success'
-                    })
-                }
-            )
+                wx.navigateBack({
+                    delta: 0,
+                })
+                wx.showToast({
+                    title: '申请已提交',
+                    icon : 'success'
+                })
         })
     },
 

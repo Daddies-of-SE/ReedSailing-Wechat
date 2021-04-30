@@ -78,6 +78,7 @@ Page({
         title: "请输入验证码",
         icon: 'none'
       })
+      return
     }
     else {
       var addr = this.data.inputEmailAddress + "@buaa.edu.cn"

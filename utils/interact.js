@@ -28,10 +28,9 @@ function put_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
         if ('status' in result.data && result.data.status != 0) {
-          util.debug("result.data.status in post_request: " + result.data.status)
           wx.hideToast()
           wx.showModal({
-            title: funcInfo.funcName + "请求失败 (errCode:" + result.data.errCode + ")",
+            title: funcInfo.funcName + "请求失败",
             content: result.data.msg,
             showCancel: true,
             confirmText: '确认',
@@ -43,7 +42,13 @@ function put_request(urlpath, data, funcInfo) {
         if (s == 401) {
           login.catchUnLogin(funcInfo);
           return
-        } else if (s != 200 && s != 201 && s != 202) { // 如果状态码不是200
+        } else if (s != 200 && s != 201 && s != 204) {
+            wx.showModal({
+              title: funcInfo.funcName + "请求失败",
+              content: result.data.detail ? result.data.detail : result.data.name[0],
+              showCancel: true,
+              confirmText: '确认',
+            })
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         } 
         funcInfo.resolve(result);
@@ -90,10 +95,9 @@ function post_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
         if ('status' in result.data && result.data.status != 0) {
-          util.debug("result.data.status in post_request: " + result.data.status)
           wx.hideToast()
           wx.showModal({
-            title: funcInfo.funcName + "请求失败 (errCode:" + result.data.errCode + ")",
+            title: funcInfo.funcName + "请求失败",
             content: result.data.msg,
             showCancel: true,
             confirmText: '确认',
@@ -105,7 +109,13 @@ function post_request(urlpath, data, funcInfo) {
         if (s == 401) {
           login.catchUnLogin(funcInfo);
           return
-        } else if (s != 200 && s != 201 && s != 202) { // 如果状态码不是200
+        } else if (s != 200 && s != 201 && s != 204) {
+            wx.showModal({
+              title: funcInfo.funcName + "请求失败",
+              content: result.data.detail ? result.data.detail : result.data.name[0],
+              showCancel: true,
+              confirmText: '确认',
+            })
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         } 
         funcInfo.resolve(result);
@@ -148,10 +158,9 @@ function get_request(urlpath, funcInfo) {
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
         if ('status' in result.data && result.data.status != 0) {
-          util.debug("result.data.status in get_request: " + result.data.status)
           wx.hideToast()
           wx.showModal({
-            title: funcInfo.funcName + "请求失败 (errCode:" + result.data.errCode + ")",
+            title: funcInfo.funcName + "请求失败",
             content: result.data.msg,
             showCancel: true,
             confirmText: '确认',
@@ -159,10 +168,17 @@ function get_request(urlpath, funcInfo) {
         }
 
         //如果状态码为401 Unauthorized
-        if (result.statusCode == 401) {
-          lg.catchUnLogin(funcInfo);
+        var s = result.statusCode
+        if (s == 401) {
+          login.catchUnLogin(funcInfo);
           return
-        } else if (result.statusCode != 200) { // 如果状态码不是200
+        } else if (s != 200 && s != 201 && s != 204) {
+            wx.showModal({
+              title: funcInfo.funcName + "请求失败",
+              content: result.data.detail ? result.data.detail : result.data.name[0],
+              showCancel: true,
+              confirmText: '确认',
+            })
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         } 
         funcInfo.resolve(result);
@@ -202,11 +218,28 @@ function delete_request(urlpath, funcInfo) {
         console.log(funcInfo.funcName + "请求链接：", urlpath);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
+        if ('status' in result.data && result.data.status != 0) {
+          wx.hideToast()
+          wx.showModal({
+            title: funcInfo.funcName + "请求失败",
+            content: result.data.msg,
+            showCancel: true,
+            confirmText: '确认',
+          })
+        }
+
         //如果状态码为401 Unauthorized
-        if (result.statusCode == 401) {
-          lg.catchUnLogin(funcInfo);
+        var s = result.statusCode
+        if (s == 401) {
+          login.catchUnLogin(funcInfo);
           return
-        } else if (result.statusCode != 204) { // 如果状态码不是200
+        } else if (s != 200 && s != 201 && s != 204) {
+            wx.showModal({
+              title: funcInfo.funcName + "请求失败",
+              content: result.data.detail ? result.data.detail : result.data.name[0],
+              showCancel: true,
+              confirmText: '确认',
+            })
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         } 
         funcInfo.resolve(result);
@@ -377,27 +410,27 @@ module.exports.createOrgApplication = function (name, description, blockid) {
 }
 
 // for develop
-module.exports.createOrgDirectly = function (name, description, blockid) {
-  if (!app) {
-    app = getApp()
-  }
-  util.debug("creating org dicrectly " + name)
-  return new Promise((resolve, reject) => {
-    post_request(`organizations/`,
-      {
-        name: name,
-        description: description,
-        owner: app.loginData.userId,
-        block: blockid
-      }, 
-      {
-        func: module.exports.createOrgDirectly,
-        funcName: 'createOrgDirectly',
-        reject: reject,
-        resolve: resolve
-    })
-  })
-}
+// module.exports.createOrgDirectly = function (name, description, blockid) {
+//   if (!app) {
+//     app = getApp()
+//   }
+//   util.debug("creating org dicrectly " + name)
+//   return new Promise((resolve, reject) => {
+//     post_request(`organizations/`,
+//       {
+//         name: name,
+//         description: description,
+//         owner: app.loginData.userId,
+//         block: blockid
+//       }, 
+//       {
+//         func: module.exports.createOrgDirectly,
+//         funcName: 'createOrgDirectly',
+//         reject: reject,
+//         resolve: resolve
+//     })
+//   })
+// }
 
 // for develop
 // module.exports.approveMyFirstCreateOrgApply = function () {

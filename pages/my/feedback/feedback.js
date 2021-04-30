@@ -21,6 +21,13 @@ Page({
 
   submitFB: function(e) {
     var msg = this.data.content
+    if (msg == "") {
+      wx.showToast({
+        title: '请填写反馈内容',
+        icon : 'none'
+      })
+      return
+    }
     if (this.data.contact != "") {
       msg += "\n联系方式：" + this.data.contact
     }

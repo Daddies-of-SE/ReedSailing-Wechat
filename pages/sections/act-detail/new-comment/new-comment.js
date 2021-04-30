@@ -15,7 +15,7 @@ Page({
     rate : 0,
   },
 
-  bindTextAreaBlur: function(e) {
+  bindTextAreaInput: function(e) {
     // utils.debug(e.detail.value)
     this.data.comment = e.detail.value
   },
@@ -37,6 +37,20 @@ Page({
   },
 
   createComment : function () {
+    if (this.data.comment == "") {
+      wx.showToast({
+        title: '请输入评论内容',
+        icon : 'none'
+      })
+      return
+    }
+    if (this.data.rate == 0) {
+      wx.showToast({
+        title: '请评分',
+        icon : 'none'
+      })
+      return
+    }
     // util.debug(this.data.commentId)
     if (this.data.commentId != -1) {
       interact.editComment(this.data.commentId, this.data.rate, this.data.comment).then(res => {
