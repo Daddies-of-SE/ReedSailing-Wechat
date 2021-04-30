@@ -1,5 +1,4 @@
 // pages/sections/act-detail/new-comment/new-comment.js
-const utils = require('../../../../utils/util.js')
 const interact = require("../../../../utils/interact.js")
 const util = require('../../../../utils/util.js')
 
@@ -29,10 +28,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.actId = options.actId
+    this.setData({
+      actId : options.actId
+    })
     if (options.commentId) {  // 不要把条件写成 options.commentId != -1，因为可能的取值是undefine,条件成立
-      this.data.commentId = options.commentId
-      // TODO: 获取评论原本的内容，等后端的接口
+      this.setData({
+        commentId : options.commentId
+      })
+    }
+  },
+
+  onShow: function () {
+    if (this.data.commentId != -1) {
+      interact.getCommentById(this.data.commentId).then(
+        (res) => {
+          this.setData({
+            comment : res.data.content,
+            rate: res.data.score
+          })
+        }
+      )
     }
   },
 

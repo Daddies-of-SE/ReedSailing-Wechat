@@ -13,7 +13,7 @@
       </view> -->
   </view>
   <view class="org-list">
-    <view class="org-item" wx:for="{{most_visited}}" data-orgid="{{item.org.id}}" bindtap="toOrg">
+    <view class="org-item" wx:for="{{org_list}}" data-orgid="{{item.org.id}}" bindtap="toOrg">
       <block wx:if="{{item.org.avator != null}}"> 
         <image class="org-avator" src="{{item.org.avator}}"></image>
       </block>
@@ -28,7 +28,7 @@
 <!--message lists-->
 <!-- <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
-    <view class="msg-item" wx:for="{{msg_list}}">
+    <view class="msg-item" wx:for="{{act_list}}">
       <view class="activity" wx:if="{{item.type === 'activity'}}">
           <image class="org-avator" src="{{item.avatorUrl}}"></image>
           <view class="content relative">
@@ -62,15 +62,15 @@
 
 <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
-    <view class="msg-item" wx:for="{{msg_list}}">
-      <i-card wx:if="{{item.type === 'activity'}}" i-class="card-demo" 
-        title="{{item.org_name}}" extra="{{item.publish_time}}" thumb="{{item.avatorUrl}}">
+    <view class="msg-item" wx:for="{{act_list}}">
+      <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}">
+      <!-- TODO: 上一行avatar换成活动图片 -->
         <view slot="content">
-          <text calss="title">{{item.act_title}}</text>
-          <view class="org_time"><span class="_infor_head">时间：</span> {{item.start_time !== null ? item.start_time : "暂无信息"}} 至 {{item.end_time !== null ? item.end_time : "暂无信息"}}</view>
-          <view class="place"><span class="_infor_head">地点：</span> {{item.act_place !== null ? item.act_place : "暂无信息"}}</view>
+          <text calss="title">{{item.name}}</text>
+          <view class="org_time"><span class="_infor_head">时间：</span> {{item.begin_time ? item.begin_time: "暂无信息"}} 至 {{item.end_time ? item.end_time: "暂无信息"}}</view>
+          <view class="place"><span class="_infor_head">地点：</span> {{item.location ? item.location.name : "暂无信息"}}</view>
           <view class="place"><span class="_infor_head">类别：</span> 活动</view>
-          <view class="body"><span class="_infor_head">简介：</span>{{item.body}}</view>
+          <view class="body"><span class="_infor_head">简介：</span>{{item.description != "" ? item.description : "无"}}</view>
         </view>
         <view slot="footer">
           <view class="bottom-right" bindtap="toActivity">

@@ -18,7 +18,8 @@
     "pages/sections/org-list/org-list",
     "pages/my/feedback/feedback",
     "pages/sections/org-list/search/search",
-    "pages/sections/act-detail/new-comment/new-comment"
+    "pages/sections/act-detail/new-comment/new-comment",
+    "pages/sections/act-detail/participants/participants"
   ],
   "window": {
     "backgroundTextStyle": "light",

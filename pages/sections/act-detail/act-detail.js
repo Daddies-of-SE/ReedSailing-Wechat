@@ -21,6 +21,7 @@ Page({
       //   capacity : 100,
       // },
       actId : -1,
+      avg_score : 0,
       actInfo : {
         id : -1,
         owner: {
@@ -103,12 +104,20 @@ Page({
     },
 
     delComment: function(e) {
+      var that = this
       var commentId = e.currentTarget.dataset.commentId
       wx.showModal({
         title: '确定删除评论?',
         success: function(res) {
           if (res.confirm) {
-            interact.deleteComment(commentId)
+            interact.deleteComment(commentId).then(
+              (res) => {
+                wx.showToast({
+                  title: '删除成功',
+                })
+                that.onShow()
+              }
+            )
           } 
         }
       })
@@ -182,8 +191,13 @@ Page({
 
       interact.getActComments(this.data.actId).then(
         (res) => {
+          var score_sum = 0
+          for (var i = 0; i < res.data.length; i++) {
+            score_sum += res.data[i].score
+          }
           this.setData({
-            comment_list : res.data
+            comment_list : res.data,
+            avg_score : score_sum / res.data.length
           })
         }
       )
@@ -242,7 +256,13 @@ Page({
 
     editAct() {
       wx.navigateTo({
-        url: `../../my/new-act/new-act?actId=${this.data.actInfo.id}`
+        url: `../../my/new-act/new-act?actId=${this.data.actId}`
       })
     },
+
+    goParticipants() {
+      wx.navigateTo({
+        url: `./participants/participants?actId=${this.data.actId}`,
+      })
+    }
 })

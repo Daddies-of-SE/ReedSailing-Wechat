@@ -218,15 +218,6 @@ function delete_request(urlpath, funcInfo) {
         console.log(funcInfo.funcName + "请求链接：", urlpath);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if ('status' in result.data && result.data.status != 0) {
-          wx.hideToast()
-          wx.showModal({
-            title: funcInfo.funcName + "请求失败",
-            content: result.data.msg,
-            showCancel: true,
-            confirmText: '确认',
-          })
-        }
 
         //如果状态码为401 Unauthorized
         var s = result.statusCode
@@ -885,7 +876,51 @@ module.exports.getActComments = function (act_id) {
 }
 
 module.exports.getCommentById = function (comment_id) {
-  //TODO
+  return new Promise((resolve, reject) => {
+    get_request(`/activities/comments/${comment_id}/`, 
+      {
+        func: module.exports.getCommentById,
+        funcName: 'getCommentById',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
 }
 
+
+module.exports.getRecommendOrgs = function () {
+  return new Promise((resolve, reject) => {
+    get_request(`recommended/organizations/`, 
+      {
+        func: module.exports.getRecommendOrgs,
+        funcName: 'getRecommendOrgs',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+module.exports.getRecommendActs = function () {
+  return new Promise((resolve, reject) => {
+    get_request(`recommended/activities`, 
+      {
+        func: module.exports.getRecommendActs,
+        funcName: 'getRecommendActs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.getFollowOrgActs = function () {
+  return new Promise((resolve, reject) => {
+    get_request(`users/followed_organizations/activities/${getApp().loginData.userId}/`, 
+      {
+        func: module.exports.getFollowOrgActs,
+        funcName: 'getFollowOrgActs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
 
