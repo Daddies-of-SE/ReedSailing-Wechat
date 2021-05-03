@@ -29,6 +29,12 @@
           "pathName": "pages/sections/act-detail/new-comment/new-comment",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/sections/act-list/mem-list/mem-list",
+          "pathName": "pages/sections/act-list/mem-list/mem-list",
+          "query": "",
+          "scene": null
         }
       ]
     }

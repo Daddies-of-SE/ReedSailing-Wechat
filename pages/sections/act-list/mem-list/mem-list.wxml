@@ -2,6 +2,42 @@
 
 <!--组织名称-->
 <view class="org-header">
-    <text class="text">{{orgName}}组织</text>
+    <text class="text">{{orgName}}</text>
     <image class="picture" src="{{orgPicUrl}}"></image>
 </view>
+
+<!--添加管理员-->
+<view class="add-manager-wrap">
+    <text class="text">添加管理员</text>
+    <van-search
+    model:value="{{ searchInput }}"
+    placeholder="请输入用户id"
+    bind:search="onSearch"
+  />
+</view>
+
+
+<!-- <van-dialog
+  use-slot
+  title="{{searchResult.name}}"
+  show="{{ showSearchResult }}"
+  show-cancel-button
+  bind:confirm="confirmAdd"
+  bind:close="onClose"
+>
+  <image
+    class="avator"
+    src="{{searchResult.avatar}}"
+  />
+</van-dialog> -->
+
+<daddy-dialog
+  title="{{searchResult.name}}"
+  show="{{ showSearchResult }}"
+  src="{{searchResult.avatar}}"
+  show-cancel-button
+  bind:confirmTap="confirm"
+  bind:cancelTap="cancel"
+/>
+
+

@@ -330,7 +330,7 @@ module.exports.getOrgAdmins = function (org_id) {
 
 module.exports.getUserInfo = function (user_id) {
   return new Promise((resolve, reject) => {
-    get_request(`users/?id=${user_id}`, 
+    get_request(`users/${user_id}`, 
       {
         func: module.exports.getUserInfo,
         funcName: 'getUserInfo',

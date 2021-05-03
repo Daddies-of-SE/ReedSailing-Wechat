@@ -1,0 +1,8 @@
+
+.avatar {
+  display: block;
+  width: 128rpx;
+  height: 128rpx;
+  margin: auto;
+  border-radius: 50%;
+}

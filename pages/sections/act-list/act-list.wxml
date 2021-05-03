@@ -42,13 +42,14 @@
       <i-cell-group i-class="mem-wrap">
         <block wx:for="{{memList}}" wx:key="id">
           <image class="headShot" src="{{item.HeadShotUrl}}"></image>
-          <view wx:if="isManager">
+          <!-- <view wx:if="isManager"> -->
+          <view wx:if="isOwner">
             <button class='editBtn' bindtap='editMemList'>编辑</button>
           </view>
         </block>
       </i-cell-group>
     </view>
-    <view class='detail' wx:if="{{showIndex[1]}}">管理员跑路了</view>
+    <!-- <view class='detail' wx:if="{{showIndex[1]}}">管理员跑路了</view> -->
     <button class='editBtn' bindtap='editMemList' wx:if="{{isManager && showIndex[1]}}">编辑</button>
   </view>
   </block>

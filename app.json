@@ -74,6 +74,7 @@
   "sitemapLocation": "sitemap.json",
   "themeLocation": "theme.json",
   "usingComponents": {
+    "daddy-dialog": "/components/dialog/index",
     "i-tabs": "lib/iview/dist/tabs/index",
     "i-tab": "/lib/iview/dist/tab/index",
     "i-card": "/lib/iview/dist/card/index",
@@ -90,5 +91,6 @@
     "van-field": "lib/vant-weapp/field/index",
     "van-button": "lib/vant-weapp/button/index",
     "van-rate": "lib/vant-weapp/rate/index"
+    
   }
 }

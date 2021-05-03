@@ -17,7 +17,8 @@
 ### 指南
 
 - 前端设计主要从i-view, WeUI(微信官方组件), vant中选择组件
-
+- 如果已有的组件库不能满足需求，可以在componant目录下**自定义组件**
+  - 自定义组件时记得properties属性的type一定不可省略，会报property name of undefine
 - i开头代表iview组件库里面的组件； vant开头代表vant组件库里面的组件。
 - WeUI的wxss文件已经放入app.wxss中，直接通过类名选择器使用。
 
@@ -47,22 +48,22 @@ vant
 
 ### 样式规定
 
-| 名称                         | 使用的组件                        | 备注                                                         |
-| ---------------------------- | --------------------------------- | ------------------------------------------------------------ |
-| 头像和基本信息***界面布局*** | i-card组件                        | 参考follow-home                                              |
-| 不带头像的基本界面布局       | i-panel, i-cell-group, i-cell组件 |                                                              |
-| 列表类布局                   | i-cell-group, i-cell              | 参考org-list                                                 |
-| 顶部切换栏                   | i-tabs和i-tab组件                 | 参考my-org； 不同于原生微信接口 不能直接写在里面 要在外面用if渲染 [参考](https://github.com/TalkingData/iview-weapp/issues/179) |
-| 输入框                       | i-panel，i-input，i-button        | 参考new-org                                                  |
-| 可以换行的输入框（文本域）   | WeUI的textarea                    | 参考https://github.com/Tencent/weui-wxss/blob/master/dist/example/form/form_textarea.wxml |
-| 带发送按钮的输入框           |                                   | 参见微信官方的[一行写法](![img](file:///C:\Users\Administrator\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://github.com/Tencent/weui-wxss/blob/master/dist/example/input/input.wxml)； 如果文本比较长放不下，按钮可以换行 |
-| 折叠面板                     | i-collapse和i-collapse-item       |                                                              |
-| 图标                         | i-icon                            | 比较常见的图标可以在i-icon里面找                             |
-| 下拉框                       | 微信自带的picker和微信官方wxss    | 参考new-org                                                  |
-| 按钮                         | 微信原生组件和官方wxss            | [参考](https://github.com/Tencent/weui-wxss/blob/master/dist/example/button/button.wxml) |
-| 打分栏                       | vant-rate                         | 分为可输入和只显示两种；不用iview的原因是iview的rate组件不允许半星 |
-|                              |                                   |                                                              |
-|                              |                                   |                                                              |
+| 名称                         | 使用的组件                                                   | 备注                                                         |
+| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 头像和基本信息***界面布局*** | i-card组件                                                   | 参考follow-home                                              |
+| 不带头像的基本界面布局       | i-panel, i-cell-group, i-cell组件                            |                                                              |
+| 列表类布局                   | i-cell-group, i-cell                                         | 参考org-list                                                 |
+| 顶部切换栏                   | i-tabs和i-tab组件                                            | 参考my-org； 不同于原生微信接口 不能直接写在里面 要在外面用if渲染 [参考](https://github.com/TalkingData/iview-weapp/issues/179) |
+| 输入框                       | i-panel，i-input，i-button                                   | 参考new-org                                                  |
+| 可以换行的输入框（文本域）   | WeUI的textarea                                               | 参考https://github.com/Tencent/weui-wxss/blob/master/dist/example/form/form_textarea.wxml |
+| 带发送按钮的输入框           |                                                              | 参见微信官方的[一行写法](![img](file:///C:\Users\Administrator\AppData\Roaming\Tencent\QQTempSys\%W@GJ$ACOF(TYDYECOKVDYB.png)https://github.com/Tencent/weui-wxss/blob/master/dist/example/input/input.wxml)； 如果文本比较长放不下，按钮可以换行 |
+| 折叠面板                     | i-collapse和i-collapse-item                                  |                                                              |
+| 图标                         | i-icon                                                       | 比较常见的图标可以在i-icon里面找                             |
+| 下拉框                       | 微信自带的picker和微信官方wxss                               | 参考new-org                                                  |
+| 按钮                         | 微信原生组件和官方wxss                                       | [参考](https://github.com/Tencent/weui-wxss/blob/master/dist/example/button/button.wxml) |
+| 打分栏                       | vant-rate                                                    | 分为可输入和只显示两种；不用iview的原因是iview的rate组件不允许半星 |
+| 搜索栏                       | vant-search                                                  | 参考mem-list                                                 |
+| 带图片的弹出框               | ~~qnmd的vant，对齐又出问题了~~ 俺自己手搓了一个，在lib/daddy/dialog | 参考mem-list                                                 |
 
 
 
@@ -73,6 +74,8 @@ vant
 ~~致一个星期前(2021.04.14)的我：你真是个纯沙雕，美丽的iView和WeUI接口不用，去自己手搓丑到家的组件？~~
 
 ~~另外跪下向Vant道歉，原以为是您辣鸡，原来是我自己垃圾~~
+
+qnmd的vant，dialog的对齐又出问题了...俺还是自己手搓吧（其实是网上抄的）
 
 ~~所以前端的经验就是：千万不要自己手搓组件；找一个组件库不够，就找三个~~
 

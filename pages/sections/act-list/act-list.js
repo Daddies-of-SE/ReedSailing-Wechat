@@ -155,7 +155,7 @@ Page({
   
     editMemList: function() {
       wx.navigateTo({
-        url: '../act-list/mem-list/mem-list',
+        url: `../act-list/mem-list/mem-list?orgId=${this.data.orgId}`,
       })
     },
 

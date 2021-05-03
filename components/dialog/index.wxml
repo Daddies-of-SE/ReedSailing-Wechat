@@ -1,0 +1,7 @@
+<!--lib/daddy/dialog/index.wxml-->
+
+<!-- 图文弹框 -->
+<modal title="{{title}}" hidden="{{!show}}" bindconfirm="confirm" bindcancel="cancel">
+<image class="avatar" src="{{src}}"></image>
+<view>{{desc}}</view>
+</modal>

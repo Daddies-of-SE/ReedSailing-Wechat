@@ -1,3 +1,6 @@
+const util = require("../../../../utils/util.js")
+const interact = require("../../../../utils/interact")
+
 // pages/sections/act-list/mem-list/mem-list.js
 Page({
 
@@ -5,64 +8,66 @@ Page({
    * 页面的初始数据
    */
   data: {
+    orgId : null,
     orgName: null,
     orgPicUrl: "/icon/sample.png",
+    memList: [],
 
+    searchInput : '',
+    showSearchResult: false,
+    searchResult: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+    this.setData({
+      orgId : options.orgId
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    interact.getOrgInfo(this.data.orgId).then(
+      (res) => {
+        this.setData({
+          orgName : res.data.name,
+        })
+        if (res.data.avatar != null) {
+          this.setData({
+            orgPicUrl : res.data.avatar,
+          })
+        }
+      }
+    )
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  onSearch: function() {
+    interact.getUserInfo(this.data.searchInput).then(
+      (res) => {
+        // util.debug(res.data.name)
+        this.setData({
+          searchResult: res.data,
+          showSearchResult: true,
+        })
+      }
+    )
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  confirm: function() {
+    interact.addOrgManager(this.data.orgId, this.data.searchResult.id)
+    this.setData({
+      showSearchResult: false,
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  cancel: function() {
+    this.setData({
+      showSearchResult: false,
+    })
   }
+
 })
