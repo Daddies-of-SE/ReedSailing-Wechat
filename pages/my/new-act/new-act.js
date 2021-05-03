@@ -24,11 +24,14 @@ Page({
         description: '',
         numPeople: '',
 
-        start_date: "2021-04-22",
-        start_time: "00:00",
-        end_date: "2021-04-22",
-        end_time: "23:59",
-
+        // start_date: "2021-04-22",
+        // start_time: "00:00",
+        // end_date: "2021-04-22",
+        // end_time: "23:59",
+        start_date: null,
+        start_time: null,
+        end_date: null,
+        end_time: null,
     },
 
     inputNameHandler: function (e) {

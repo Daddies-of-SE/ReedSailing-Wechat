@@ -51,7 +51,7 @@ Page({
       interact.getStatusOrgActs('end', this.data.orgId).then(
           res3 => {
               this.setData({
-                  unstartActList : res3.data
+                  endActList : res3.data
               })
       })
 
