@@ -318,7 +318,7 @@ module.exports.getOrgInfo = function (org_id) {
 
 module.exports.getOrgAdmins = function (org_id) {
   return new Promise((resolve, reject) => {
-    get_request(`organizations/managers/?org=${org_id}`, 
+    get_request(`organizations/managers/${org_id}`, 
       {
         func: module.exports.getOrgAdmins,
         funcName: 'getOrgAdmins',

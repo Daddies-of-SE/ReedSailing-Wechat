@@ -71,6 +71,7 @@ Page({
         })
         return
       }
+      // 非个人活动列表和博雅活动列表
       interact.getOrgInfo(this.data.orgId).then(
         (res) => {
           this.setData({
@@ -97,6 +98,14 @@ Page({
             hasFollowed : res.data.isFollower,
             isManager : res.data.isManager,
             isOwner : res.data.isOwner
+          })
+        }
+      )
+
+      interact.getOrgAdmins(this.data.orgId).then(
+        (res) => {
+          this.setData({
+            memList: res.data
           })
         }
       )

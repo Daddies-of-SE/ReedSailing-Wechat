@@ -33,21 +33,18 @@
   </block>
 
   <block wx:if="{{isRealOrg}}">
-  <view class='folder_item'>
+  <view class='folder_item mem-wrap'>
     <view class='title' data-index='1' catchtap='panel'>
       <view class='title_1'>管理员</view>
       <view class='title_2'><image src="/icon/{{showIndex[1]? 'up':'down'}}.png"></image></view>
     </view>
-    <view class='memList' wx:if="{{showIndex[1]}}">
-      <i-cell-group i-class="mem-wrap">
-        <block wx:for="{{memList}}" wx:key="id">
-          <image class="headShot" src="{{item.HeadShotUrl}}"></image>
-          <!-- <view wx:if="isManager"> -->
-          <view wx:if="isOwner">
-            <button class='editBtn' bindtap='editMemList'>编辑</button>
-          </view>
-        </block>
-      </i-cell-group>
+    <view class='mem-list' wx:if="{{showIndex[1]}}">
+          <view class="mem-item" wx:for="{{memList}}" wx:key="{{irem.person.id}}">
+            <block> 
+              <image class="mem-avator" src="{{item.person.avatar}}"></image>
+            </block>
+            <text class="mem-name">{{item.person.name}}</text>
+        </view>
     </view>
     <!-- <view class='detail' wx:if="{{showIndex[1]}}">管理员跑路了</view> -->
     <button class='editBtn' bindtap='editMemList' wx:if="{{isManager && showIndex[1]}}">编辑</button>
