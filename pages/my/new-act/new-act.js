@@ -88,9 +88,9 @@ Page({
         var time = util.formatTime(new Date()).split("T")
         this.setData({
             start_date : time[0],
-            start_time : time[1],
+            start_time : time[1].split(":")[0] + time[1].split(":")[1],
             end_date : time[0],
-            end_time : time[1]
+            end_time : time[1].split(":")[0] + time[1].split(":")[1]
         })
         if (options.actId) {
             this.setData({
@@ -178,12 +178,12 @@ Page({
                 icon : 'none'
             })
         }
-        else if (end <= new Date()) {
-            wx.showToast({
-                title: '结束时间应晚于当前时间',
-                icon : 'none'
-            })
-        }
+        // else if (end <= new Date()) {
+        //     wx.showToast({
+        //         title: '结束时间应晚于当前时间',
+        //         icon : 'none'
+        //     })
+        // }
         else {
             interact.createAct({
                 id: d.actId,

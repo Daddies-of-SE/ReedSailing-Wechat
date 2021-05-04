@@ -25,7 +25,7 @@
       <view class='detail'>所属板块：{{orgInfo.belong_forum.name}}</view>
       <view class='detail'>创建时间：{{orgInfo.create_time}}</view>
       <view class='detail'>负责人：{{orgInfo.owner.name}}</view>
-      <view class='detail'>介绍：{{orgInfo.description}}</view>
+      <view class='detail'>介绍：{{orgInfo.description ? orgInfo.description : "暂无"}}</view>
     </block>
     
     <button class='editBtn' bindtap='editOrgInfo' wx:if="{{isManager && showIndex[0]}}">编辑</button>

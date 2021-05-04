@@ -155,7 +155,11 @@ function login_(options) {
         }
       },
       fail: function (res) {
-        if (options.fail)
+        wx.showToast({
+          title: '无法连接服务器',
+          icon: 'none'
+        })
+        if (options.fail) 
           options.fail({ err: res, errMsg: "请求时发生错误" });
         else
           reject({ err: res, errMsg: "请求时发生错误" });

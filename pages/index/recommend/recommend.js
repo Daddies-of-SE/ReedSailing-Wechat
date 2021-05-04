@@ -23,6 +23,29 @@ Page({
               havelogin : app.haveRegistered(),
               info : JSON.stringify(app.loginData.nickName)
           })
+          interact.getRecommendOrgs().then(
+            (res) => {
+                this.setData({
+                  org_list : res.data.slice(0,10)
+                })
+            }
+        )
+  
+        interact.getRecommendActs().then(
+          (res) => {
+              var lst = []
+              for (var i = 0; i < 10; i++) {
+                  var v = res.data[i]
+                  v.pub_time = res.data[i].pub_time.split(".")[0].replace("T", " ")
+                  v.begin_time = res.data[i].begin_time.replace("T", " ")
+                  v.end_time = res.data[i].end_time.replace("T", " ")
+                  lst.push(v)
+              }
+              
+              this.setData({
+                act_list : lst
+              })
+          })
         }
       )
 
@@ -88,31 +111,6 @@ Page({
               info : JSON.stringify(app.loginData.nickName)
           })
       }
-
-      interact.getRecommendOrgs().then(
-          (res) => {
-              this.setData({
-                org_list : res.data.slice(0,10)
-              })
-          }
-      )
-
-      interact.getRecommendActs().then(
-        (res) => {
-            var lst = []
-            for (var i = 0; i < 10; i++) {
-                var v = res.data[i]
-                v.pub_time = res.data[i].pub_time.split(".")[0].replace("T", " ")
-                v.begin_time = res.data[i].begin_time.replace("T", " ")
-                v.end_time = res.data[i].end_time.replace("T", " ")
-                lst.push(v)
-            }
-            
-            this.setData({
-              act_list : lst
-            })
-        }
-      )
         
     },
 

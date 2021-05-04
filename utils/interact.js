@@ -832,9 +832,6 @@ module.exports.submitComment = function(act_id, score, content) {
 }
 
 module.exports.editComment = function(commentId, score, content) {
-  if (!app) {
-    app = getApp()
-  }
   return new Promise((resolve, reject) => {
     put_request(`activities/comments/${commentId}/`,
       {
@@ -889,8 +886,11 @@ module.exports.getCommentById = function (comment_id) {
 
 
 module.exports.getRecommendOrgs = function () {
+  if (!app) {
+    app = getApp()
+  }
   return new Promise((resolve, reject) => {
-    get_request(`recommended/organizations/`, 
+    get_request(`recommended/organizations/${app.loginData.userId}/`, 
       {
         func: module.exports.getRecommendOrgs,
         funcName: 'getRecommendOrgs',
@@ -901,8 +901,11 @@ module.exports.getRecommendOrgs = function () {
 }
 
 module.exports.getRecommendActs = function () {
+  if (!app) {
+    app = getApp()
+  }
   return new Promise((resolve, reject) => {
-    get_request(`recommended/activities`, 
+    get_request(`recommended/activities/${app.loginData.userId}/`, 
       {
         func: module.exports.getRecommendActs,
         funcName: 'getRecommendActs',
