@@ -53,7 +53,7 @@ App({
     },
 
   ],
-  server : 'http://www.reedsailing.xyz/',
+  server : 'https://www.reedsailing.xyz/',
   // server : 'http://rs.test/',
   // server : 'http://127.0.0.1:8000/',
 

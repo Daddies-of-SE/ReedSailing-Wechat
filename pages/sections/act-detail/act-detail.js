@@ -31,13 +31,13 @@ Page({
             email: "1111@qq.com",
             sign: ""
         },
-        name: "活动1",
+        name: "加载中",
         begin_time: "2021-04-16T14:19:18",
         end_time: "2021-04-16T14:19:18",
         pub_time: "2021-04-19T14:31:05.291480",
         currentNumPeople : -1,
         contain: 100,
-        description: "这个是活动描述",
+        description: "加载中",
         review: false,
         type: {
             id: 1,
@@ -46,13 +46,13 @@ Page({
         org: null,
         location: {
             id: 1,
-            name: "篮球场",
+            name: "加载中",
             longitude: "123.123000",
             latitude: "123.123000"
         },
         block: {
             id: 1,
-            name: "博雅"
+            name: "加载中"
         }
       },
       hasActInfo: false,

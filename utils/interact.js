@@ -45,7 +45,7 @@ function put_request(urlpath, data, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : result.data.name[0],
+              content: result.data.detail ? result.data.detail : JSON.stringfy(result.data),
               showCancel: true,
               confirmText: '确认',
             })
@@ -112,7 +112,7 @@ function post_request(urlpath, data, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : result.data.name[0],
+              content: result.data.detail ? result.data.detail : JSON.stringfy(result.data),
               showCancel: true,
               confirmText: '确认',
             })
@@ -175,7 +175,7 @@ function get_request(urlpath, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : result.data.name[0],
+              content: result.data.detail ? result.data.detail : JSON.stringfy(result.data),
               showCancel: true,
               confirmText: '确认',
             })
@@ -227,7 +227,7 @@ function delete_request(urlpath, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : result.data.name[0],
+              content: result.data.detail ? result.data.detail : JSON.stringfy(result.data),
               showCancel: true,
               confirmText: '确认',
             })

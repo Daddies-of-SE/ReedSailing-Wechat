@@ -88,9 +88,9 @@ Page({
         var time = util.formatTime(new Date()).split("T")
         this.setData({
             start_date : time[0],
-            start_time : time[1].split(":")[0] + time[1].split(":")[1],
+            start_time : time[1].split(":")[0] + ":" + time[1].split(":")[1],
             end_date : time[0],
-            end_time : time[1].split(":")[0] + time[1].split(":")[1]
+            end_time : time[1].split(":")[0] + ":" + time[1].split(":")[1]
         })
         if (options.actId) {
             this.setData({
@@ -178,12 +178,12 @@ Page({
                 icon : 'none'
             })
         }
-        // else if (end <= new Date()) {
-        //     wx.showToast({
-        //         title: '结束时间应晚于当前时间',
-        //         icon : 'none'
-        //     })
-        // }
+        else if (start <= new Date()) {
+            wx.showToast({
+                title: '开始时间应晚于当前时间',
+                icon : 'none'
+            })
+        }
         else {
             interact.createAct({
                 id: d.actId,
@@ -195,9 +195,9 @@ Page({
                 review: d.check,
                 owner: getApp().loginData.userId,
                 type: 1, //TODO
-                org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[index2].id,
+                org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[d.index2].id,
                 location: 1, //TODO
-                block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[index2].belong_forum.id
+                block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[d.index2].block.id
                 //创建还是修改，通过下面一行的d.actId == -1来判断
             }, d.actId == -1).then(
                 res => {
