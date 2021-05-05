@@ -30,7 +30,7 @@
         <!-- <view class="organizer"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view> -->
         <view class="organizer"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
         <!-- <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view> -->
-        <view class="organizer"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>
+        <view class="organizer"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" readonly allow-half model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>
       </view>
       <view wx:if="{{isManager}}" slot="footer">
         <view class="bottom-right" bind:tap="goParticipants">
@@ -68,12 +68,12 @@
            readonly allow-half/>
           </view>
         </view>
-        <view wx:if="{{item.user.id == userId}}" slot="footer">
-          <view class="bottom-right" bind:tap="goEditComment" data-comment-id="{{item.id}}">
+        <view slot="footer">
+          <view wx:if="{{item.user.id == userId}}" class="bottom-right" bind:tap="goEditComment" data-comment-id="{{item.id}}">
             <i-icon type="editor" />
             <text class="txt" style="font-size: 35rpx;"> 编辑</text>
           </view>
-          <view class="bottom-right" bind:tap="delComment" data-comment-id="{{item.id}}">
+          <view wx:if="{{item.user.id == userId || isManager}}" class="bottom-right" bind:tap="delComment" data-comment-id="{{item.id}}">
             <i-icon type="delete" />
             <text class="txt" style="font-size: 35rpx;"> 删除</text>
         </view>
