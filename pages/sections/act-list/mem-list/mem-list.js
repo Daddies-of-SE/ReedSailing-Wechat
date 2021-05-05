@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userId : -1,
     orgId : null,
     orgName: null,
     orgPicUrl: "/icon/sample.png",
@@ -41,7 +42,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      orgId : options.orgId
+      orgId : options.orgId,
+      userId : getApp().loginData.userId
     })
   },
 
@@ -83,8 +85,65 @@ Page({
     )
   },
 
+  deleteMem: function(e) {
+    // util.debug(JSON.stringify(e))
+    var that = this
+    var dataset = e.currentTarget.dataset
+    wx.showModal({
+      title : '确认删除管理员？',
+      content : "用户： " + dataset.personname,
+      success: function(res) {
+        if (res.cancel) {
+
+        } else {
+          interact.deleteOrgManager(that.data.orgId, dataset.personid).then(
+            res2 => {
+              wx.showToast({
+                title: '删除成功',
+              })
+              that.onShow()
+            }
+          )
+        }
+      }
+    })
+    
+  },
+
+  changeOwner: function(e) {
+    var that = this
+    var dataset = e.currentTarget.dataset
+    wx.showModal({
+      title : '确认转让负责人？',
+      content : "用户： " + dataset.personname,
+      success: function(res) {
+        if (res.cancel) {
+
+        } else {
+          interact.changeOrgOwner(that.data.orgId, dataset.personid).then(
+            res2 => {
+              wx.navigateBack({
+                delta: 0,
+              })
+              wx.showToast({
+                title: '转让成功',
+              })
+            }
+          )
+        }
+      }
+    })
+  },
+
   confirm: function() {
-    interact.addOrgManager(this.data.orgId, this.data.searchResult.id)
+    interact.addOrgManager(this.data.orgId, this.data.searchResult.id).then(
+      (res) => {
+        wx.showToast({
+          title: '添加成功',
+        })
+        this.onShow()
+      }
+    )
     this.setData({
       showSearchResult: false,
     })

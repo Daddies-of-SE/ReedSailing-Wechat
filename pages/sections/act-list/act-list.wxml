@@ -43,11 +43,11 @@
             <block> 
               <image class="mem-avator" src="{{item.person.avatar}}"></image>
             </block>
-            <text class="mem-name">{{item.person.name}}</text>
+            <text class="mem-name">{{item.person.id == orgInfo.owner.id ? item.person.name+"(负责人)" : item.person.name}}</text>
         </view>
     </view>
     <!-- <view class='detail' wx:if="{{showIndex[1]}}">管理员跑路了</view> -->
-    <button class='editBtn' bindtap='editMemList' wx:if="{{isManager && showIndex[1]}}">编辑</button>
+    <button class='editBtn' bindtap='editMemList' wx:if="{{isOwner && showIndex[1]}}">编辑</button>
   </view>
   </block>
 

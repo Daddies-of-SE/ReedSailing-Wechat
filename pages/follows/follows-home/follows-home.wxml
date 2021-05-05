@@ -68,7 +68,8 @@
         <view slot="content">
           <text calss="title">{{item.name}}</text>
           <view class="org_time"><span class="_infor_head">时间：</span> {{item.begin_time ? item.begin_time: "暂无信息"}} 至 {{item.end_time ? item.end_time: "暂无信息"}}</view>
-          <view class="place"><span class="_infor_head">地点：</span> {{item.location ? item.location.name : "暂无信息"}}</view>
+          <!-- TODO-->
+          <!-- <view class="place"><span class="_infor_head">地点：</span> {{item.location ? item.location.name : "暂无信息"}}</view> -->
           <view class="place"><span class="_infor_head">类别：</span> 活动</view>
           <view class="body"><span class="_infor_head">简介：</span>{{item.description != "" ? item.description : "无"}}</view>
         </view>
