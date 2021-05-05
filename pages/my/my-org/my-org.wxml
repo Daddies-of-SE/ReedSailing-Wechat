@@ -26,10 +26,11 @@
 </view> -->
 
 
-<i-cell-group i-class="act-wrap">
+<i-cell-group i-class="org-wrap">
     <block wx:for="{{orgList}}" wx:key="id">
     <i-cell title="{{item.org.name}}" label="{{item.org.description}}" is-link bindtap="goOrg" data-orgid="{{item.org.id}}" data-orgname="{{item.org.name}}">
-        <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
+        <image class="org-avator" src="/icon/like.png"  slot="icon"></image>
     </i-cell> 
     </block>
 </i-cell-group>
+

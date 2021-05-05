@@ -84,6 +84,7 @@
     "i-cell": "/lib/iview/dist/cell/index",
     "i-button": "/lib/iview/dist/button/index",
     "i-icon": "/lib/iview/dist/icon/index",
+    "i-swipeout": "/lib/iview/dist/swipeout/index",
     "van-search": "lib/vant-weapp/search/index",
     "van-panel": "lib/vant-weapp/panel/index",
     "van-cell": "lib/vant-weapp/cell/index",

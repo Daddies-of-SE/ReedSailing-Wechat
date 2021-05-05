@@ -52,7 +52,7 @@ vant
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 头像和基本信息***界面布局*** | i-card组件                                                   | 参考follow-home                                              |
 | 不带头像的基本界面布局       | i-panel, i-cell-group, i-cell组件                            |                                                              |
-| 列表类布局                   | i-cell-group, i-cell                                         | 参考org-list                                                 |
+| 带头像的列表类布局           | i-cell-group, i-cell                                         | 参考org-list                                                 |
 | 顶部切换栏                   | i-tabs和i-tab组件                                            | 参考my-org； 不同于原生微信接口 不能直接写在里面 要在外面用if渲染 [参考](https://github.com/TalkingData/iview-weapp/issues/179) |
 | 输入框                       | i-panel，i-input，i-button                                   | 参考new-org                                                  |
 | 可以换行的输入框（文本域）   | WeUI的textarea                                               | 参考https://github.com/Tencent/weui-wxss/blob/master/dist/example/form/form_textarea.wxml |
@@ -64,6 +64,7 @@ vant
 | 打分栏                       | vant-rate                                                    | 分为可输入和只显示两种；不用iview的原因是iview的rate组件不允许半星 |
 | 搜索栏                       | vant-search                                                  | 参考mem-list                                                 |
 | 带图片的弹出框               | ~~qnmd的vant，对齐又出问题了~~ 俺自己手搓了一个，在lib/daddy/dialog | 参考mem-list                                                 |
+| 滑动栏                       | i-swipeout                                                   | 参考mem-list                                                 |
 
 
 

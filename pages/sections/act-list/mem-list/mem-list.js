@@ -16,6 +16,24 @@ Page({
     searchInput : '',
     showSearchResult: false,
     searchResult: null,
+
+    actions : [
+      {
+        name : '移除',
+        color : '#fff',
+        fontsize : '20',
+        width : 100,
+        icon : 'delete',
+        background : '#ed3f14'
+    },
+    {
+        name : '转让',
+        color : '#80848f',
+        width : 100,
+        fontsize : '20',
+        icon : 'group'
+    }
+    ]
   },
 
   /**
@@ -43,6 +61,14 @@ Page({
         }
       }
     )
+
+    interact.getOrgAdmins(this.data.orgId).then(
+      (res) => {
+        this.setData({
+          memList: res.data
+        })
+      }
+    )
   },
 
   onSearch: function() {
@@ -68,6 +94,18 @@ Page({
     this.setData({
       showSearchResult: false,
     })
-  }
+  },
+
+  handleSwipeClick: function(e) {
+    let index = e.detail.index
+    if (index == 0){
+      util.debug("click left")
+    }
+    else if (index == 1) {
+      util.debug("click right")
+
+    }
+  },
+
 
 })
