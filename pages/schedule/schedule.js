@@ -20,7 +20,10 @@ Page({
       dateArr: [],
       isToday: 0,
       isTodayWeek: false,
-      todayIndex: 0
+      todayIndex: 0,
+      actList: [],
+      showDateActList: false,
+      DateActList: [],
     },
 
    /**
@@ -56,8 +59,9 @@ Page({
         year: year,
         month: month,
         isToday: '' + year + month + now.getDate()
-      })
+      });
     },
+
     dateInit: function (setYear, setMonth) {
       //全部时间的月份都是按0~11基准，显示月份才+1
       let dateArr = [];                        //需要遍历的日历数组数据
@@ -83,13 +87,23 @@ Page({
           obj = {
             isToday: '' + year + (month + 1) + num,
             dateNum: num,
-            weight: 5
+            weight: 5,
+            hasAct: false,
+            actList: []
           }
         } else {
           obj = {};
         }
         dateArr[i] = obj;
       }
+      
+      //TODO: 加载活动列表，处理日期
+      for (let i = 0; i < 0; i++)
+      {
+        dateArr[actList[i].date].hasAct = true;
+        dateArr[actList[i].date].actList.push(actList[i]);
+      }
+
       this.setData({
         dateArr: dateArr
       })
@@ -134,6 +148,12 @@ Page({
         month: (month + 1)
       })
       this.dateInit(year, month);
+    },
+
+    showActList: function (e) {
+      let date = e.currentTarget.dataset.date;
+      showDateActList = date.hasAct;
+      DateActList = date.actList;
     },
 
     panel: function (e) {

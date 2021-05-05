@@ -207,6 +207,15 @@
   color: #22A7F6;
 }
 
+.point {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #ff876d;
+  margin: 0 auto;
+  margin-top: 5rpx;
+}
+
 .one{
   position: absolute;
   bottom: 0;
