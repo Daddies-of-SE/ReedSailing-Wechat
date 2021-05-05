@@ -1,1 +1,46 @@
 /* pages/sections/act-detail/participants/participants.wxss */
+.mem-wrap .mem-avator {
+  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+/*滑动栏*/
+.mem-item {
+  height: 90rpx;
+
+}
+
+.i-swipeout-demo-item{
+  border-bottom:#333 solid 1px;
+}
+.i-cell-padding{
+  padding:5px 0px!important;
+  font-size:14px;
+}
+.i-swipeout-demo-title{
+  height:30px;
+  padding:0 15px;
+  line-height:30px;
+  margin-top:20px;
+  margin-bottom:5px;
+}
+.i-swipeout-demo-des{
+  padding:0 15px;
+  margin-bottom:10px;
+  font-size:12px;
+  color:#ff9900;
+}
+
+.i-swipeout-image{ /*左中右结构*/
+  float:left;
+  width:80rpx;
+  height:80rpx;
+  line-height:80rpx;
+  text-align:center;
+  border-radius:80rpx;
+  background: #2d8cf0;
+}
+.i-swipeout-des{
+  margin-left:50px;
+}

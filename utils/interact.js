@@ -810,6 +810,28 @@ module.exports.getActNumPeople = function (act_id) {
   })
 }
 
+module.exports.getActParticipantList = function(act_id) {
+  
+}
+
+module.exports.deleteActParticipant = function(act_id, person_id) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    delete_request(`activities/participants/?person=${person_id}&act=${act_id}`,
+      {
+        func: module.exports.deleteActParticipant,
+        funcName: 'deleteActParticipant',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}
+
+
+
+
 module.exports.submitComment = function(act_id, score, content) {
   if (!app) {
     app = getApp()

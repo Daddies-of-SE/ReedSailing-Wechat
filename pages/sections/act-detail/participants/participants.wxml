@@ -1,2 +1,21 @@
 <!--pages/sections/act-detail/participants/participants.wxml-->
-<text>pages/sections/act-detail/participants/participants.wxml</text>
+<view class="mem-wrap">
+  <view class="i-swipeout-demo-title">活动参与者列表</view>
+  <view class="i-swipeout-demo-des">
+        提示：左滑成员可以选择将参与者移除出活动
+    </view>
+
+  <block class="mem-item" wx:for="{{participantList}}" wx:key="id">
+    <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actions}}"  bindchange="handleSwipeClick"
+        data-personname="{{item.person.name}}" data-personid="{{item.person.id}}">
+      <view slot="content">
+        <view class="i-swipeout-image" style="background:#ff9900;">
+          <image class="mem-avator" src="{{item.person.avatar}}"  slot="icon"></image>
+        </view>
+        <view class="i-swipeout-des">
+          <view class="i-swipeout-des-h2">{{item.person.name}}</view>
+        </view>
+      </view>
+    </i-swipeout>
+  </block>
+</view>

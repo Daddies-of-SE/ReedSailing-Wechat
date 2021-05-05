@@ -85,6 +85,38 @@ Page({
     )
   },
 
+  confirm: function() {
+    interact.addOrgManager(this.data.orgId, this.data.searchResult.id).then(
+      (res) => {
+        wx.showToast({
+          title: '添加成功',
+        })
+        this.onShow()
+      }
+    )
+    this.setData({
+      showSearchResult: false,
+    })
+  },
+
+  cancel: function() {
+    this.setData({
+      showSearchResult: false,
+    })
+  },
+
+  handleSwipeClick: function(e) {
+    let index = e.detail.index
+    if (index == 0){
+      // util.debug("click left")
+      this.deleteMem(e)
+    }
+    else if (index == 1) {
+      // util.debug("click right")
+      this.changeOwner(e)
+    }
+  },
+
   deleteMem: function(e) {
     // util.debug(JSON.stringify(e))
     var that = this
@@ -135,36 +167,6 @@ Page({
     })
   },
 
-  confirm: function() {
-    interact.addOrgManager(this.data.orgId, this.data.searchResult.id).then(
-      (res) => {
-        wx.showToast({
-          title: '添加成功',
-        })
-        this.onShow()
-      }
-    )
-    this.setData({
-      showSearchResult: false,
-    })
-  },
-
-  cancel: function() {
-    this.setData({
-      showSearchResult: false,
-    })
-  },
-
-  handleSwipeClick: function(e) {
-    let index = e.detail.index
-    if (index == 0){
-      util.debug("click left")
-    }
-    else if (index == 1) {
-      util.debug("click right")
-
-    }
-  },
 
 
 })
