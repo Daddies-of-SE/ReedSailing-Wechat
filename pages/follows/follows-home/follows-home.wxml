@@ -63,7 +63,7 @@
 <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
     <view class="msg-item" wx:for="{{act_list}}">
-      <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}">
+      <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}" bindtap="toActivity" data-actid="{{item.id}}">
       <!-- TODO: 上一行avatar换成活动图片 -->
         <view slot="content">
           <text calss="title">{{item.name}}</text>
@@ -73,12 +73,12 @@
           <view class="place"><span class="_infor_head">类别：</span> 活动</view>
           <view class="body"><span class="_infor_head">简介：</span>{{item.description != "" ? item.description : "无"}}</view>
         </view>
-        <view slot="footer">
+        <!-- <view slot="footer">
           <view class="bottom-right" bindtap="toActivity">
                   <image class="arrow" src="/icon/rightArrow.png"></image>
                   <text class="txt">详情</text>
               </view>
-        </view>
+        </view> -->
       </i-card>
     </view>
   </scroll-view>

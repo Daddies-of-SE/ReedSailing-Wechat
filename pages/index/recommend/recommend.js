@@ -17,6 +17,10 @@ Page({
 
     onLoad: function (options) {
       const login = require("../../../utils/login.js")
+      // login.registerInfo().then(
+      //   util.debug("asdasdas")
+      // )
+
       login.newLogin().then(
         (res) => {
           this.setData({
@@ -131,5 +135,11 @@ Page({
         wx.navigateTo({
           url: `../../sections/act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
         })
+    },
+
+    toActivity(e) {
+      wx.navigateTo({
+        url: `../../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
+      })
     }
 })

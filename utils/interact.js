@@ -975,3 +975,15 @@ module.exports.changeOrgOwner = function (orgId, personId) {
     })
   }) 
 }
+
+module.exports.deleteAct = function (actId) {
+  return new Promise((resolve, reject) => {
+    delete_request(`activities/${actId}/`, 
+      {
+        func: module.exports.deleteAct,
+        funcName: 'deleteAct',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}

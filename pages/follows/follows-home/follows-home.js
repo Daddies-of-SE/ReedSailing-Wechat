@@ -133,6 +133,11 @@ Page({
             })
         )
       }
-    }
+    },
 
+    toActivity(e) {
+        wx.navigateTo({
+            url: `../../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
+        })
+    }
 })

@@ -22,7 +22,7 @@
   </view>
 </view>
 
-<button bind:tap="toMyAccount" class="Btn accountBtn">我的账户</button>
+<button bind:tap="toMyAccount" class="Btn accountBtn">个人信息</button>
 <button bind:tap="toMyOrg" class="Btn orgBtn">我管理的组织</button>
 <button bind:tap="toMyAct" class="Btn actBtn">我管理的活动</button>
 <button bind:tap="toNewAct" class="Btn pubBtn">活动发布</button>

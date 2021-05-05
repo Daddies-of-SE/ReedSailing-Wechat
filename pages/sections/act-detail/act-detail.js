@@ -264,5 +264,29 @@ Page({
       wx.navigateTo({
         url: `./participants/participants?actId=${this.data.actId}`,
       })
+    },
+
+    deleteAct() {
+      var that = this
+      wx.showModal({
+        title : '确认删除活动？',
+        content : that.data.actInfo.name,
+        success: function(res) {
+          if (res.cancel) {
+  
+          } else {
+            interact.deleteAct(that.data.actId).then(
+              res2 => {
+                wx.navigateBack({
+                  delta: 0,
+                })
+                wx.showToast({
+                  title: '删除成功',
+                })
+              }
+            )
+          }
+        }
+      })
     }
 })

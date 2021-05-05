@@ -121,6 +121,13 @@ Page({
     // util.debug(JSON.stringify(e))
     var that = this
     var dataset = e.currentTarget.dataset
+    if (dataset.personid == this.data.userId) {
+      wx.showToast({
+        title: '不能删除自己',
+        icon: 'none'
+      })
+      return
+    }
     wx.showModal({
       title : '确认删除管理员？',
       content : "用户： " + dataset.personname,
@@ -145,6 +152,13 @@ Page({
   changeOwner: function(e) {
     var that = this
     var dataset = e.currentTarget.dataset
+    if (dataset.personid == this.data.userId) {
+      wx.showToast({
+        title: '您已是负责人',
+        icon: 'none'
+      })
+      return
+    }
     wx.showModal({
       title : '确认转让负责人？',
       content : "用户： " + dataset.personname,
