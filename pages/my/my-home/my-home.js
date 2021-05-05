@@ -22,6 +22,7 @@ Page({
   },
 
   onShow: function (e) {
+    
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true,
@@ -32,6 +33,7 @@ Page({
       nickName : app.loginData.nickName,
       motto : app.loginData.motto
     })
+    // util.debug("onshow called" + app.loginData.nickName)
     if (app.haveRegistered()) {
         this.setData({
             havelogin : true,

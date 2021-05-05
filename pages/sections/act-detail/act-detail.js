@@ -193,7 +193,7 @@ Page({
         (res) => {
           var score_sum = 0
           for (var i = 0; i < res.data.length; i++) {
-            score_sum += res.data[i].score
+            score_sum += parseFloat(res.data[i].score)
           }
           this.setData({
             comment_list : res.data,

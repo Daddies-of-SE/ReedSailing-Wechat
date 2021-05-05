@@ -7,7 +7,7 @@
       <view class="userinfo-avatar" bind:tap="bindViewTap">
         <open-data type="userAvatarUrl"></open-data>
       </view>
-      <open-data type="userNickName"></open-data>
+        <text class="userinfo-nickname">{{nickName}}</text>
     </block>
     <block wx:elif="{{!hasUserInfo}}">
       <button wx:if="{{canIUseGetUserProfile}}" bind:tap="getUserProfile"> 获取头像昵称 </button>
