@@ -13,3 +13,25 @@
   width: 90rpx;
 }
 
+.mem-avatar {
+  display: block;
+  height: 101rpx;
+  width: 101rpx;
+  margin: auto;
+  
+}
+
+.btn {
+  width: 50rpx;
+  height: 50rpx;
+  background-color: rgba(200, 212, 218, 0.548);
+  color: rgb(43, 37, 37);
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}

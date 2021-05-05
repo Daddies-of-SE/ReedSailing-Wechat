@@ -6,12 +6,24 @@
     <image class="picture" src="{{orgPicUrl}}"></image>
 </view>
 
+<i-cell-group i-class="act-wrap">
+  <block wx:for="{{memList}}" wx:key="id">
+      <i-cell title="{{item.person.name}}">
+        <image class="mem-avatar" src="{{item.person.avatar}}"></image>
+        <block wx:if="{{item.person.id != userId}}">
+          <button class='btn' bindtap='deleteMem' data-personid="{{item.person.id}}" data-personname="{{item.person.name}}">删除</button>
+          <button class='btn' bindtap='changeOwner' data-personid="{{item.person.id}}" data-personname="{{item.person.name}}">转让</button>
+        </block>
+      </i-cell> 
+  </block>
+</i-cell-group>
+
 <!--添加管理员-->
 <view class="add-manager-wrap">
     <text class="text">添加管理员</text>
     <van-search
     model:value="{{ searchInput }}"
-    placeholder="请输入用户id"
+    placeholder="请输入用户id(可在“我的账户“页面查看)"
     bind:search="onSearch"
   />
 </view>

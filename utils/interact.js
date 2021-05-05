@@ -45,7 +45,7 @@ function put_request(urlpath, data, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : JSON.stringfy(result.data),
+              content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
               showCancel: true,
               confirmText: '确认',
             })
@@ -112,7 +112,7 @@ function post_request(urlpath, data, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : JSON.stringfy(result.data),
+              content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
               showCancel: true,
               confirmText: '确认',
             })
@@ -175,7 +175,7 @@ function get_request(urlpath, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : JSON.stringfy(result.data),
+              content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
               showCancel: true,
               confirmText: '确认',
             })
@@ -227,7 +227,7 @@ function delete_request(urlpath, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : JSON.stringfy(result.data),
+              content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
               showCancel: true,
               confirmText: '确认',
             })
@@ -927,3 +927,29 @@ module.exports.getFollowOrgActs = function () {
   })
 }
 
+module.exports.deleteOrgManager = function (orgId, personId) {
+  return new Promise((resolve, reject) => {
+    delete_request(`organizations/managers/?user=${personId}&org=${orgId}`, 
+      {
+        func: module.exports.deleteOrgManager,
+        funcName: 'deleteOrgManager',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+module.exports.changeOrgOwner = function (orgId, personId) {
+  return new Promise((resolve, reject) => {
+    post_request(`organizations/owner/${orgId}`,
+      {
+        owner: personId 
+      },
+      {
+        func: module.exports.changeOrgOwner,
+        funcName: 'changeOrgOwner',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}

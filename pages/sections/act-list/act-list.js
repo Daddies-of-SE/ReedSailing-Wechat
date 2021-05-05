@@ -31,7 +31,7 @@ Page({
      */
     onLoad: function (options) {
       this.setData({
-        orgId : options.orgId
+        orgId : options.orgId,
       })
     },
 
