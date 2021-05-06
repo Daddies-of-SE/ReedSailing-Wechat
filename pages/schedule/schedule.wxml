@@ -50,7 +50,6 @@
                     <view class="point" wx:if="{{item.hasAct}}"></view>
                     <view class="select" wx:if="{{item.selected}}"></view>
                 </view>
-                <!-- <view class='date-weight'>{{item.weight}}</view> -->
             </view>
         </view>
     </view>

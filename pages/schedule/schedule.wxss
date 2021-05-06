@@ -221,7 +221,8 @@
   border-radius: 50%;
   text-align: center;
   color: #fff;
-  background-color: #29f622;
+  border: 5rpx solid #22A7F6;
+  border-radius: 10rpx;
   margin: 0 auto;
 }
 
