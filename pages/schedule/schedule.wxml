@@ -48,6 +48,7 @@
                 <view class='date-head' bindtap='showActList' data-date="{{item}}">
                     <view>{{item.dateNum}}</view>
                     <view class="point" wx:if="{{item.hasAct}}"></view>
+                    <view class="select" wx:if="{{item.selected}}"></view>
                 </view>
                 <!-- <view class='date-weight'>{{item.weight}}</view> -->
             </view>

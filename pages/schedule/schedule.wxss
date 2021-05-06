@@ -216,6 +216,15 @@
   margin-top: 5rpx;
 }
 
+.select {
+  width: 60rpx;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  background-color: #29f622;
+  margin: 0 auto;
+}
+
 .one{
   position: absolute;
   bottom: 0;
