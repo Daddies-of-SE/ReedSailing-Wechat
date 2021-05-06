@@ -995,3 +995,15 @@ module.exports.deleteAct = function (actId) {
     })
   }) 
 }
+
+module.exports.getJoinedMonthActs = function (year, month) {
+  return new Promise((resolve, reject) => {
+    get_request(`users/joined_acts/${getApp().loginData.userId}/${year}/${month}/`, 
+      {
+        func: module.exports.getJoinedMonthAct,
+        funcName: 'getJoinedMonthAct',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}

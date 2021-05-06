@@ -62,6 +62,11 @@
 
 <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
+    <view class="msg-item" wx:if="{{act_list.length == 0}}">
+      <i-card i-class="card-demo">
+        <view slot="content">您还没有关注任何组织哦</view>
+      </i-card>
+    </view>
     <view class="msg-item" wx:for="{{act_list}}">
       <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}" bindtap="toActivity" data-actid="{{item.id}}">
       <!-- TODO: 上一行avatar换成活动图片 -->

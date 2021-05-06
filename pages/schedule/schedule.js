@@ -1,5 +1,6 @@
 const app = getApp()
 const interact = require("../../utils/interact.js")
+const util = require("../../utils/util.js")
 
 // pages/schedule/schedule.js
 Page({
@@ -12,6 +13,7 @@ Page({
       unstartActList : [],
       curActList : [],
       endActList : [],
+      monthActList : {},
       current : "tab1",
       showIndex: [true, true, false],
       year: 0,
@@ -58,8 +60,20 @@ Page({
       this.setData({
         year: year,
         month: month,
-        isToday: '' + year + month + now.getDate()
+        isToday: '' + year + month + now.getDate(),
+        DateActList : []
       });
+      this.getMonthActs(this.data.year, this.data.month)
+    },
+
+    getMonthActs : function(year, month) {
+      interact.getJoinedMonthActs(year, month).then(
+        (res) => {
+          this.setData({
+            monthActList : res.data
+          })
+        }
+      )
     },
 
     dateInit: function (setYear, setMonth) {
@@ -128,6 +142,7 @@ Page({
           todayIndex: -1
         })
       }
+      
     },
     
     lastMonth: function () {
@@ -136,9 +151,11 @@ Page({
       let month = this.data.month - 2 < 0 ? 11 : this.data.month - 2;
       this.setData({
         year: year,
-        month: (month + 1)
+        month: (month + 1),
+        DateActList : []
       })
       this.dateInit(year, month);
+      this.getMonthActs(this.data.year, this.data.month)
     },
     
     nextMonth: function () {
@@ -147,20 +164,38 @@ Page({
       let month = this.data.month > 11 ? 0 : this.data.month;
       this.setData({
         year: year,
-        month: (month + 1)
+        month: (month + 1),
+        DateActList : []
       })
       this.dateInit(year, month);
+      this.getMonthActs(this.data.year, this.data.month)
     },
 
     showActList: function (e) {
-      let date = e.currentTarget.dataset.date;
-      showDateActList = date.hasAct;
-      DateActList = date.actList;
-      for (let i = 0; i < dateArr.length; i++)
+      var month = this.data.month < 10 ? "0" + this.data.month : this.data.month
+      var date = e.currentTarget.dataset.datenum
+      date = date < 10 ? "0" + date : date
+      var todayAct = this.data.monthActList[`${this.data.year}-${month}-${date}`]
+      this.setData({
+        DateActList : todayAct ? todayAct : [],
+        showDateActList : true
+      })
+      console.log(this.data.DateActList)
+      // let date = e.currentTarget.dataset.date;
+      // showDateActList = date.hasAct;
+      // DateActList = date.actList;
+      var newDateArr = this.data.dateArr
+      for (let i = 0; i < this.data.dateArr.length; i++)
       {
-        dateArr[i].selected = false;
+        newDateArr[i].selected = false;
       }
-      date.selected = true;
+      // console.log(newDateArr.indexOf(e.currentTarget.dataset.date))
+      // console.log(e.currentTarget.dataset.date)
+      newDateArr[e.currentTarget.dataset.index].selected = true;
+      this.setData({
+        dateArr : newDateArr
+      })
+      // util.debug(date)
     },
 
     panel: function (e) {

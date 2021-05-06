@@ -45,7 +45,7 @@
        </view>
        <view class='date-box'>
            <view wx:for='{{dateArr}}' class='{{isToday == item.isToday ? "nowDay" : ""}}' data-date='{{item.isToday}}'>            
-                <view class='date-head' bindtap='showActList' data-date="{{item}}">
+                <view class='date-head' bindtap='showActList' data-datenum="{{item.dateNum}}" data-index="{{index}}">
                     <view>{{item.dateNum}}</view>
                     <view class="point" wx:if="{{item.hasAct}}"></view>
                     <view class="select" wx:if="{{item.selected}}"></view>
@@ -56,11 +56,12 @@
     <!--某一天的活动-->
     <view class='actList'  wx:if="{{showDateActList}}">
         <i-cell-group i-class="act-wrap">
-            <block wx:for="{{DatetActList}}" wx:key="id">
+            <block wx:for="{{DateActList}}" wx:key="id">
                 <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
                     data-actid="{{item.id}}" data-actname="{{item.name}}">
                 </i-cell> 
             </block>
+            <view wx:if="{{DatetActList.length == 0}}">本日没有活动</view>
         </i-cell-group>
     </view>
 </view>

@@ -1,5 +1,6 @@
 const app = getApp()
 const util = require('../../../utils/util.js')
+const interact = require('../../../utils/interact.js')
 
 Page({
   data: {
@@ -18,7 +19,20 @@ Page({
   },
   
   onLoad() {
-    
+    //创建博雅
+    // interact.createAct({
+    //   name: "党史知识竞赛",
+    //   begin_time: "2021-05-23T15:40",
+    //   end_time: "2021-05-23T17:40",
+    //   contain: 100,
+    //   description: "纪念100周年系列活动",
+    //   review: false,
+    //   owner: getApp().loginData.userId,
+    //   type: 1, //TODO
+    //   org: null,
+    //   location: 1, //TODO
+    //   block: 2
+    // }, true)
   },
 
   onShow: function (e) {
