@@ -61,7 +61,7 @@
                     data-actid="{{item.id}}" data-actname="{{item.name}}">
                 </i-cell> 
             </block>
-            <view wx:if="{{DatetActList.length == 0}}">本日没有活动</view>
+            <view wx:if="{{DateActList.length == 0}}">本日没有活动</view>
         </i-cell-group>
     </view>
 </view>
