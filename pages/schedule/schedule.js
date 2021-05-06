@@ -89,7 +89,8 @@ Page({
             dateNum: num,
             weight: 5,
             hasAct: false,
-            actList: []
+            actList: [],
+            selected: false
           }
         } else {
           obj = {};
@@ -98,6 +99,7 @@ Page({
       }
       
       //TODO: 加载活动列表，处理日期
+      //for (let i = 0; i < actList.length; i++)
       for (let i = 0; i < 0; i++)
       {
         dateArr[actList[i].date].hasAct = true;
@@ -154,6 +156,11 @@ Page({
       let date = e.currentTarget.dataset.date;
       showDateActList = date.hasAct;
       DateActList = date.actList;
+      for (let i = 0; i < dateArr.length; i++)
+      {
+        dateArr[i].selected = false;
+      }
+      date.selected = true;
     },
 
     panel: function (e) {
