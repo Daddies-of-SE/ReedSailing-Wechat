@@ -64,7 +64,7 @@
             <view wx:if="{{DateActList.length == 0}}">本日没有活动</view>
         </i-cell-group>
     </view>
-</view>
+</view> 
 
 <view wx:if="{{current == 'tab2'}}">
 <view class='folder'>

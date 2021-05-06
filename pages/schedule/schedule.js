@@ -72,6 +72,23 @@ Page({
           this.setData({
             monthActList : res.data
           })
+          //新复制一个，目的是可以使用setData赋值，否则页面视图层无法刷新
+          var newDateArr = this.data.dateArr
+          for (let i = 0; i < this.data.dateArr.length; i++) {
+            var date = newDateArr[i].dateNum
+            var m = month < 10 ? "0" + month : month
+            date = date < 10 ? "0" + date : date
+            var todayAct = this.data.monthActList[`${year}-${m}-${date}`]
+            // console.log(i, todayAct)
+            if (todayAct) {
+              newDateArr[i].actList = todayAct
+              newDateArr[i].hasAct = true
+            }
+            
+          }
+          this.setData({
+            dateArr : newDateArr
+          })
         }
       )
     },
@@ -172,12 +189,13 @@ Page({
     },
 
     showActList: function (e) {
-      var month = this.data.month < 10 ? "0" + this.data.month : this.data.month
-      var date = e.currentTarget.dataset.datenum
-      date = date < 10 ? "0" + date : date
-      var todayAct = this.data.monthActList[`${this.data.year}-${month}-${date}`]
+      // var month = this.data.month < 10 ? "0" + this.data.month : this.data.month
+      // var date = e.currentTarget.dataset.datenum
+      // date = date < 10 ? "0" + date : date
+      // var todayAct = this.data.monthActList[`${this.data.year}-${month}-${date}`]
       this.setData({
-        DateActList : todayAct ? todayAct : [],
+        // DateActList : todayAct ? todayAct : [],
+        DateActList : this.data.dateArr[e.currentTarget.dataset.index].actList,
         showDateActList : true
       })
       console.log(this.data.DateActList)
