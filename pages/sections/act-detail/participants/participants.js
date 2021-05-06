@@ -35,20 +35,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // interact.getActParticipantList(this.data.actId)
+    var that = this
+    interact.getActParticipantList(this.data.actId).then(
+      (res) => {
+        that.setData({
+          participantList: res.data
+        })
+      }
+    )
 
-    this.setData({
-      participantList: [
-        {
-          "person": {
-            id : 2,
-            avatar: "/icon/sample.png",
-            name: "walker",
-          }
-          
-        }
-      ]
-    })
   },
 
   handleSwipeClick: function(e) {

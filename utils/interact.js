@@ -811,7 +811,15 @@ module.exports.getActNumPeople = function (act_id) {
 }
 
 module.exports.getActParticipantList = function(act_id) {
-  
+  return new Promise((resolve, reject) => {
+    get_request(`activities/${act_id}/participants/`, 
+      {
+        func: module.exports.getActParticipantList,
+        funcName: 'getActParticipantList',
+        reject: reject,
+        resolve: resolve
+    })
+  })
 }
 
 module.exports.deleteActParticipant = function(act_id, person_id) {
