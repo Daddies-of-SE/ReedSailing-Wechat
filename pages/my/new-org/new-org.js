@@ -27,6 +27,10 @@ Page({
     },
 
     onShow: function () {
+        if (!getApp().haveRegistered()) {
+            getApp().goCertificate()
+            return
+        }
         this.setData({
             forum_array : [app.forumList[0],app.forumList[2],app.forumList[3]]
         })

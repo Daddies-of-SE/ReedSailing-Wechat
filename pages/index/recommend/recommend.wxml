@@ -1,6 +1,6 @@
 <!--pages/index/recommend.wxml-->
 
-<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
+<!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
 
 <!--recommend-orgs-->
 <view class="org-wrap">

@@ -86,17 +86,25 @@ Page({
   },
 
   confirm: function() {
-    interact.addOrgManager(this.data.orgId, this.data.searchResult.id).then(
-      (res) => {
-        wx.showToast({
-          title: '添加成功',
-        })
-        this.onShow()
-      }
-    )
-    this.setData({
-      showSearchResult: false,
-    })
+    if (this.data.searchResult.email && this.data.searchResult.email != "") {
+      interact.addOrgManager(this.data.orgId, this.data.searchResult.id).then(
+        (res) => {
+          wx.showToast({
+            title: '添加成功',
+          })
+          this.onShow()
+        }
+      )
+      this.setData({
+        showSearchResult: false,
+      })
+    }
+    else {
+      wx.showToast({
+        title: '该用户未认证，不能添加为管理员',
+        icon : 'none'
+      })
+    }
   },
 
   cancel: function() {

@@ -27,7 +27,7 @@ function put_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if ('status' in result.data && result.data.status != 0) {
+        if (result.data.status && result.data.status != 0) {
           wx.hideToast()
           wx.showModal({
             title: funcInfo.funcName + "请求失败",
@@ -94,7 +94,7 @@ function post_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if ('status' in result.data && result.data.status != 0) {
+        if (result.data.status && result.data.status != 0) {
           wx.hideToast()
           wx.showModal({
             title: funcInfo.funcName + "请求失败",
@@ -157,7 +157,7 @@ function get_request(urlpath, funcInfo) {
         console.log(funcInfo.funcName + "请求链接：", urlpath);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if ('status' in result.data && result.data.status != 0) {
+        if (result.data.status && result.data.status != 0) {
           wx.hideToast()
           wx.showModal({
             title: funcInfo.funcName + "请求失败",

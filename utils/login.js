@@ -12,7 +12,7 @@ function getAPIUrl(params) {
 
 
 //缓存用户登录数据
-function saveLoginData(resData) {
+module.exports.saveLoginData = function (resData) {
   var dt = {
     token: resData.token,
     email : resData.email,
@@ -49,7 +49,7 @@ module.exports.checkLoginData = function () {
         success: res => {
           let data = res.data;
           if (data && data.token) {
-            saveLoginData(data)
+            module.exports.saveLoginData(data)
             resolve(data)
           }
           else {
@@ -142,7 +142,7 @@ function login_(options) {
         //如果返回数据存在token则记录并返回token
         // util.debug("res" + JSON.stringify(res))
         if (res.data.token) {
-          saveLoginData(res.data);
+          module.exports.saveLoginData(res.data)
           util.debug("登录成功, id: " + res.data.id)
           if (options.success)
             options.success(res);
@@ -302,7 +302,7 @@ module.exports.newLogin = function() {
   })
 }
 
-function register_(userInfo) {
+module.exports.register_ = function (userInfo) {
   if (!app) {
     app = getApp()
   }
@@ -330,14 +330,14 @@ module.exports.registerInfo = function () {
     wx.getUserProfile({
       desc : '用于完善资料',
       success : (res1) => {
-        register_(res1.userInfo).then(
+        module.exports.register_(res1.userInfo).then(
           res => {
             if (res.data.status == 0) {
               wx.showToast({
                 title: '注册成功',
                 icon: 'success'
               })
-              saveLoginData({
+              module.exports.saveLoginData({
                 token: app.loginData.token,
                 email : app.loginData.email,
                 userExist : 1,
@@ -351,5 +351,21 @@ module.exports.registerInfo = function () {
         )
       }
     })
+  })
+}
+
+module.exports.consistentAskingGetUserProfile = function () {
+  wx.showModal({
+    content : "需要注册才能继续使用",
+    showCancel : false,
+    success (res) {
+      wx.getUserProfile({
+        desc : '用于完善资料',
+        success : (res1) => {  
+          util.debug("授权成功")
+        },
+        fail : module.exports.consistentAskingGetUserProfile
+      })
+    }
   })
 }

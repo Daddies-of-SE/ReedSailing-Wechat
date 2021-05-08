@@ -2,6 +2,7 @@
 
 const util = require('../../../utils/util.js')
 const interact = require('../../../utils/interact.js')
+const login = require('../../../utils/login.js')
 const app = getApp()
 
 Page({
@@ -72,16 +73,8 @@ Page({
     })
   },
 
-  submitVerifyCode(e) {
-    if (this.data.inputVerifyCode == "") {
-      wx.showToast({
-        title: "请输入验证码",
-        icon: 'none'
-      })
-      return
-    }
-    else {
-      var addr = this.data.inputEmailAddress + "@buaa.edu.cn"
+  submitVerifyCode() {
+    var addr = this.data.inputEmailAddress + "@buaa.edu.cn"
       util.debug("submit verify code: " + this.data.inputVerifyCode)
       interact.submitVerifyCode(addr, this.data.inputVerifyCode).then(
         (res) => {
@@ -102,6 +95,47 @@ Page({
           }
         }
       )
+  },
+
+  submitCertificate(e) {
+    if (this.data.inputVerifyCode == "") {
+      wx.showToast({
+        title: "请输入验证码",
+        icon: 'none'
+      })
+      return
+    }
+    else {
+      wx.getUserProfile({
+        desc : '用于完善资料',
+        success : (res1) => {
+          login.register_(res1.userInfo).then(
+            res => {
+              if (res.data.status == 0) {
+                login.saveLoginData({
+                  token: app.loginData.token,
+                  email : app.loginData.email,
+                  userExist : 1,
+                  id : app.loginData.userId,
+                  name : res1.userInfo.nickName,
+                  sign : app.loginData.motto,
+                  avatar : res1.userInfo.avatarUrl
+                })
+
+                this.submitVerifyCode()
+    
+              }
+            }
+          )
+        },
+        fail : (res2) => {
+          wx.showToast({
+            title: '请允许授权',
+            icon: 'none'
+          })
+        }
+      })
+
     }
   },
 

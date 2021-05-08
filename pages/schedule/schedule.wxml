@@ -1,5 +1,5 @@
 <!--pages/schedule/schedule.wxml-->
-<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
+<!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
 
 <!-- <view class="swiper-tab">
     <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">活动日历</view>

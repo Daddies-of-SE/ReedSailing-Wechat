@@ -1,6 +1,6 @@
 <!--pages/sections/sections-home/sections-home.wxml-->
 
-<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
+<!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
 
 <!--板块界面-->
 <view class="forum">

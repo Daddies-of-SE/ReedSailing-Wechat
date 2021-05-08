@@ -131,6 +131,10 @@ Page({
 
     //关注页面
     followOrg: function() {
+      if (!getApp().haveRegistered()) {
+        getApp().goCertificate()
+        return
+      }
       interact.followOrg(this.data.orgId).then(
         (res) => {
           wx.showToast({

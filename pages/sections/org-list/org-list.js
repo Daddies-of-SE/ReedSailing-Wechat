@@ -76,6 +76,10 @@ Page({
   },
   
   goFoundOrg: function() {
+    if (!getApp().haveRegistered()) {
+      getApp().goCertificate()
+      return
+  }
     wx.navigateTo({
       url: `/pages/my/new-org/new-org?forumId=${this.data.forumId}`,
     })

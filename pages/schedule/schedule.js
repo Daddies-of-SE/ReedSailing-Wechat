@@ -32,6 +32,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onShow: function () {
+      if (!getApp().haveRegistered()) {
+        wx.navigateBack({
+          delta: 0,
+        })
+        getApp().goCertificate()
+        return
+      }
       interact.getStatusJoinActs('unstart').then(
         res1 => {
             this.setData({

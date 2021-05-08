@@ -97,7 +97,12 @@ Page({
             this.setData({
                 havelogin : true
             })
+        } 
+        else {
+            app.goCertificate()
+            return
         }
+
         interact.getAllFollowOrgs().then(
             (res) => {
                 this.setData({

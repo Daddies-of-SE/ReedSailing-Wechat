@@ -71,12 +71,43 @@ App({
 
     wx.setStorageSync('logs', logs)
 
-    login.newLogin()
+    login.newLogin().then(
+      res => {
+        // wx.hideToast({
+        //   success: (res) => {},
+        // })
+        // login.consistentAskingGetUserProfile()
+      }
+    )
+
+    
   },
 
   haveRegistered() {
     // util.debug("have register " + this.loginData.userExist)
-    return this.loginData.userExist == 1
-    // return false
+    // return this.loginData.userExist == 1
+    return this.loginData.email && this.loginData.email != ""
+  },
+
+  goCertificate() {
+    return new Promise((resolve, reject)  =>{
+      wx.showModal({
+        title : '提示',
+        content : '您还没有认证，点击跳转到认证页面',
+        success: function (res) {
+          if (!res.cancel) {
+              wx.navigateTo({
+                  url: '../../my/my-account/my-account',
+              })
+              console.log("asd")
+              resolve()
+          }
+          else {
+            console.log("fds")
+            reject()
+          }
+        }
+      })
+    })
   }
 })

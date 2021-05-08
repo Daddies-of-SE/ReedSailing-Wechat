@@ -91,6 +91,10 @@ Page({
     },
 
     goCreateComment: function() {
+      if (!getApp().haveRegistered()) {
+        getApp().goCertificate()
+        return
+      }
       if (!this.data.hasBegun) {
         wx.showToast({
           title: '活动尚未开始，不能评论',
@@ -236,6 +240,10 @@ Page({
 
     //加入活动
     joinAct: function() {
+      if (!getApp().haveRegistered()) {
+        getApp().goCertificate()
+        return
+      }
       if (this.data.hasEnded) {
         wx.showToast({
           title: '活动已结束，不能报名',

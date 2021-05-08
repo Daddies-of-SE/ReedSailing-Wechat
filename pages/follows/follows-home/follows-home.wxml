@@ -1,6 +1,6 @@
 <!--pages/follows/follows-home/follows-home.wxml-->
 
-<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view>
+<!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
 
 
 <!--follow-orgs-->
@@ -62,7 +62,12 @@
 
 <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
-    <view class="msg-item" wx:if="{{act_list.length == 0}}">
+    <view class="msg-item" wx:if="{{!havelogin}}">
+      <i-card i-class="card-demo">
+        <view slot="content">您还没有认证，请进入“我的”—“个人信息”页面进行认证</view>
+      </i-card>
+    </view>
+    <view class="msg-item" wx:if="{{havelogin && act_list.length == 0}}">
       <i-card i-class="card-demo">
         <view slot="content">您还没有关注任何组织哦</view>
       </i-card>
