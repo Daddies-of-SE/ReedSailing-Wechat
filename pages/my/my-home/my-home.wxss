@@ -41,20 +41,25 @@
   
   .orgBtn {
     /* background-color: rgba(19, 245, 215, 0.548); */
-    top: -580rpx;
+    top: -590rpx;
   }
   
   .actBtn {
     /* background-color: rgba(19, 125, 245, 0.548); */
-    top: -560rpx;
+    top: -580rpx;
   }
   
   .pubBtn {
     /* background-color: rgba(19, 61, 245, 0.548); */
-    top: -540rpx;
+    top: -570rpx;
   }
   
   .fdbBtn {
     /* background-color: rgba(245, 19, 189, 0.548); */
-    top: -520rpx;
+    top: -560rpx;
+  }
+
+  .shareBtn {
+    /* background-color: rgba(245, 19, 189, 0.548); */
+    top: -550rpx;
   }

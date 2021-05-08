@@ -77,5 +77,6 @@ App({
   haveRegistered() {
     // util.debug("have register " + this.loginData.userExist)
     return this.loginData.userExist == 1
+    // return false
   }
 })

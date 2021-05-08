@@ -27,3 +27,4 @@
 <button bind:tap="toMyAct" class="Btn actBtn">我管理的活动</button>
 <button bind:tap="toNewAct" class="Btn pubBtn">活动发布</button>
 <button bind:tap="toFeedback" class="Btn fdbBtn">提交反馈</button>
+<button open-type="share" class="Btn shareBtn">分享小程序</button>
