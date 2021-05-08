@@ -27,15 +27,15 @@ function put_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if (result.data.status && result.data.status != 0) {
-          wx.hideToast()
-          wx.showModal({
-            title: funcInfo.funcName + "请求失败",
-            content: result.data.msg,
-            showCancel: true,
-            confirmText: '确认',
-          })
-        }
+        // if (result.data.status && result.data.status != 0) {
+        //   wx.hideToast()
+        //   wx.showModal({
+        //     title: funcInfo.funcName + "请求失败",
+        //     content: result.data.msg,
+        //     showCancel: true,
+        //     confirmText: '确认',
+        //   })
+        // }
 
         //如果状态码为401 Unauthorized
         var s = result.statusCode
@@ -94,15 +94,15 @@ function post_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if (result.data.status && result.data.status != 0) {
-          wx.hideToast()
-          wx.showModal({
-            title: funcInfo.funcName + "请求失败",
-            content: result.data.msg,
-            showCancel: true,
-            confirmText: '确认',
-          })
-        }
+        // if (result.data.status && result.data.status != 0) {
+        //   wx.hideToast()
+        //   wx.showModal({
+        //     title: funcInfo.funcName + "请求失败",
+        //     content: result.data.msg,
+        //     showCancel: true,
+        //     confirmText: '确认',
+        //   })
+        // }
 
         //如果状态码为401 Unauthorized
         var s = result.statusCode
@@ -157,15 +157,15 @@ function get_request(urlpath, funcInfo) {
         console.log(funcInfo.funcName + "请求链接：", urlpath);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        if (result.data.status && result.data.status != 0) {
-          wx.hideToast()
-          wx.showModal({
-            title: funcInfo.funcName + "请求失败",
-            content: result.data.msg,
-            showCancel: true,
-            confirmText: '确认',
-          })
-        }
+        // if (result.data.status && result.data.status != 0) {
+        //   wx.hideToast()
+        //   wx.showModal({
+        //     title: funcInfo.funcName + "请求失败",
+        //     content: result.data.msg,
+        //     showCancel: true,
+        //     confirmText: '确认',
+        //   })
+        // }
 
         //如果状态码为401 Unauthorized
         var s = result.statusCode
