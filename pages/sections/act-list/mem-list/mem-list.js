@@ -11,7 +11,7 @@ Page({
     userId : -1,
     orgId : null,
     orgName: null,
-    orgPicUrl: "/icon/sample.png",
+    orgPicUrl: "/icon/person.png",
     memList: [],
 
     searchInput : '',

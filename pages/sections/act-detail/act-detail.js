@@ -27,7 +27,7 @@ Page({
         owner: {
             id: 5,
             name: "dd",
-            avatar: "/icon/sample.png",
+            avatar: "/icon/person.png",
             email: "1111@qq.com",
             sign: ""
         },
@@ -55,6 +55,8 @@ Page({
             name: "加载中"
         }
       },
+      hasBegun : false,
+      hasEnded : false,
       hasActInfo: false,
       showIndex: 0,
       userId: -1,
@@ -89,6 +91,13 @@ Page({
     },
 
     goCreateComment: function() {
+      if (!this.data.hasBegun) {
+        wx.showToast({
+          title: '活动尚未开始，不能评论',
+          icon: 'none'
+        })
+        return
+      }
       // util.debug('tap a tap!')
       wx.navigateTo({
         url: `./new-comment/new-comment?actId=${this.data.actId}`,
@@ -175,6 +184,18 @@ Page({
           r.pub_time = util.getTimeMinute(r.pub_time)
           r.begin_time = util.getTimeMinute(r.begin_time)
           r.end_time = util.getTimeMinute(r.end_time)
+          var begin_time = new Date(Date.parse(r.begin_time))
+          var end_time = new Date(Date.parse(r.end_time))
+          if (begin_time < new Date()) {
+            this.setData({
+              hasBegun : true
+            })
+          }
+          if (end_time < new Date()) { 
+            this.setData({
+              hasEnded : true
+            })
+          }
           this.setData({
             actInfo: r
           })
@@ -215,6 +236,13 @@ Page({
 
     //加入活动
     joinAct: function() {
+      if (this.data.hasEnded) {
+        wx.showToast({
+          title: '活动已结束，不能报名',
+          icon: 'none'
+        })
+        return
+      }
       interact.joinAct(this.data.actId).then(
         (res) => {
           wx.showToast({
@@ -235,6 +263,13 @@ Page({
     },
 
     exitAct: function() {
+      if (this.data.hasEnded) {
+        wx.showToast({
+          title: '活动已结束，不能退出报名',
+          icon: 'none'
+        })
+        return
+      }
       interact.exitAct(this.data.actId).then(
         (res) => {
           wx.showToast({
@@ -288,5 +323,18 @@ Page({
           }
         }
       })
-    }
+    },
+
+    onShareAppMessage: function (res) {
+      return {
+        title: this.data.actInfo.name + " — 一苇以航",
+        path: `pages/sections/act-detail/act-detail?actId=${this.data.actId}`,
+        imageUrl: this.data.actInfo.avatar ? this.data.actInfo.avatar : app.shareData.imageUrl,
+        success: function (res) {
+          wx.showToast({
+            title: '分享成功',
+          })
+        }
+      }
+    },
 })

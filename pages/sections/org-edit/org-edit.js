@@ -12,7 +12,7 @@ Page({
     orgId : -1,
     inputName : "",
     inputDescription : "",
-    orgPicUrl : "/icon/sample.png"
+    orgPicUrl : "/icon/person.png"
   },
 
   //字数限制  

@@ -15,11 +15,12 @@
 <!--活动信息-->
 <view class="msg-item">
     <i-card i-class="card-demo card-demo-full"  full
-      title="{{actInfo.owner.name}}" extra="发布者" thumb="/icon/sample.png">  
+      title="{{actInfo.owner.name}}" extra="发布者" thumb="/icon/person.png">  
       <view slot="content">
         <view class="organizer"><span class="_infor_head">发布时间：</span>{{actInfo.pub_time}}</view>
         <view class="organizer" wx:if="{{actInfo.org != null}}"><span class="_infor_head">所属组织：</span>{{actInfo.org.name}}</view>
         <view class="organizer" wx:if="{{actInfo.block != null}}"><span class="_infor_head">所属版块：</span>{{actInfo.block.name}}</view>
+        <view class="organizer"><span class="_infor_head">状态：</span>{{!hasBegun ? "未开始" : hasEnded ? "已结束" : "进行中"}}</view>
 
         <view class="organizer"><span class="_infor_head">进行时间：</span> {{actInfo.begin_time !== null ? actInfo.begin_time : "暂无信息"}} 至 {{actInfo.end_time !== null ? actInfo.end_time : "暂无信息"}}</view>
         <!-- TODO -->

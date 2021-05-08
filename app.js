@@ -57,6 +57,11 @@ App({
   // server : 'http://rs.test/',
   // server : 'http://127.0.0.1:8000/',
 
+  shareData : {
+    title : "一苇以航活动发布社交平台",
+    imageUrl: 'https://www.hualigs.cn/image/609625f87beca.jpg',
+  },
+
   onLaunch() {
     util.debug("launching app... server is " + this.server)
     // 展示本地存储能力
@@ -66,6 +71,7 @@ App({
 
     wx.setStorageSync('logs', logs)
 
+    login.newLogin()
   },
 
   haveRegistered() {

@@ -89,5 +89,18 @@ Page({
     wx.navigateTo({
       url: `../act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
     })
-  }
+  },
+
+  onShareAppMessage: function (res) {
+    return {
+      title: this.data.forumName + " — 一苇以航",
+      path: `pages/sections/org-list/org-list?forumId=${this.data.forumId}`,
+      imageUrl: appInstance.forumList[this.data.forumId-1].picUrl,
+      success: function (res) {
+        wx.showToast({
+          title: '分享成功',
+        })
+      }
+    }
+  },
 })

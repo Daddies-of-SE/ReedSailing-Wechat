@@ -18,7 +18,7 @@
         <image class="org-avator" src="{{item.org.avator}}"></image>
       </block>
       <block wx:else> 
-        <image class="org-avator" src="/icon/sample.png"></image>
+        <image class="org-avator" src="/icon/person.png"></image>
       </block>
       <text class="org-name">{{item.org.name}}</text>
     </view>

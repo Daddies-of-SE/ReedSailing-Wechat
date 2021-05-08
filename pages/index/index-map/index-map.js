@@ -60,7 +60,16 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-
-    }
+    onShareAppMessage: function (res) {
+        return {
+          title: app.shareData.title,
+          path: 'pages/index/recommend/recommend',
+          imageUrl: app.shareData.imageUrl,
+          success: function (res) {
+            wx.showToast({
+              title: '分享成功',
+            })
+          }
+        }
+    },
 })

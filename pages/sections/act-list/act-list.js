@@ -1,7 +1,7 @@
 // pages/sections/org-edit/org-edit.js
 
 const interact = require("../../../utils/interact.js")
-// const app = getApp()
+const app = getApp()
 const util = require("../../../utils/util.js")
 
 Page({
@@ -12,7 +12,7 @@ Page({
     data: {
         isRealOrg : true,
         orgName: "",
-        orgPicUrl: "/icon/sample.png",
+        orgPicUrl: "/icon/person.png",
         orgInfo: {},
         orgId : -1,
         showIndex: [true, true, true, true, false],
@@ -170,7 +170,7 @@ Page({
 
     goNewAct: function() {
       if (this.data.orgId == -1) {
-        
+        console.log("无事发生")
       }
       else if (this.data.orgId == -2) {
         //发布个人活动
@@ -189,5 +189,21 @@ Page({
       wx.navigateTo({
           url: `../../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
       })
+    },
+
+    onShareAppMessage: function (res) {
+      return {
+        title: this.data.orgName + " — 一苇以航",
+        path: `pages/sections/act-list/act-list?orgId=${this.data.orgId}`,
+        imageUrl: this.data.orgId == -1 ? app.forumList[1].picUrl : 
+                  this.data.orgId == -2 ? app.forumList[4].picUrl : 
+                  this.data.orgInfo.avatar ? this.data.orgInfo.avatar : 
+                  app.shareData.imageUrl,
+        success: function (res) {
+          wx.showToast({
+            title: '分享成功',
+          })
+        }
+      }
     },
 })
