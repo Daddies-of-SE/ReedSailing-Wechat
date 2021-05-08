@@ -1007,3 +1007,28 @@ module.exports.getJoinedMonthActs = function (year, month) {
     })
   })
 }
+
+module.exports.getAllActCategories = function () {
+  return new Promise((resolve, reject) => {
+    get_request(`/activities/categories/`, 
+      {
+        func: module.exports.getAllActCategories,
+        funcName: 'getAllActCategories',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.createActCategory = function (name) {
+  return new Promise((resolve, reject) => {
+    post_request(`/activities/categories/`, 
+      {name : name},
+      {
+        func: module.exports.createActCategory,
+        funcName: 'createActCategory',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}

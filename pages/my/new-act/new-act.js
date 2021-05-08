@@ -11,9 +11,12 @@ Page({
         actId : -1,
         actInfo : {},
         my_org:[],
+        categories : [],
         index2: 0,
         flag : ['否','是'],
         index3 : 0,
+        index1 : 0,
+        createNewCategory : false,
 
         presetOrgId : -1,
         presetOrgName : "",
@@ -23,6 +26,7 @@ Page({
         name: '',
         description: '',
         numPeople: '',
+        newCategory: '',
 
         // start_date: "2021-04-22",
         // start_time: "00:00",
@@ -44,6 +48,21 @@ Page({
 
     inputNumPeopleHandler: function (e) {
         this.data.numPeople = e.detail.detail.value
+    },
+
+    inputNewCategoryHandler: function (e) {
+        this.data.newCategory = e.detail.detail.value
+    },
+
+    bindPicker_1_Change: function(e) {
+        this.setData({
+            index1: e.detail.value
+        })
+        if (this.data.categories[this.data.index1].create) {
+            this.setData({
+                createNewCategory: true
+            })
+        }
     },
 
     bindPicker_2_Change: function(e) {
@@ -110,6 +129,16 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        interact.getAllActCategories().then(
+            (res) => {
+                var r = res.data
+                r.push({name : "新建类别", create : true})
+                this.setData({
+                    categories: r
+                })
+                // console.log(this.data.categories)
+            }
+        )
         if (this.data.actId != -1) {
             interact.getActInfo(this.data.actId).then(
                 (res) => {
@@ -172,6 +201,12 @@ Page({
               icon : 'none'
             })
         }
+        else if (d.createNewCategory && d.newCategory == "") {
+            wx.showToast({
+                title: '请输入新类别',
+                icon : 'none'
+            })
+        }
         else if (start >= end) {
             wx.showToast({
                 title: '开始时间应早于结束时间',
@@ -185,36 +220,49 @@ Page({
             })
         }
         else {
-            interact.createAct({
-                id: d.actId,
-                name: d.name,
-                begin_time: start_datetime,
-                end_time: end_datetime,
-                contain: d.numPeople,
-                description: d.description,
-                review: d.check,
-                owner: getApp().loginData.userId,
-                type: 1, //TODO
-                org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[d.index2].id,
-                location: 1, //TODO
-                block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[d.index2].block.id
-                //创建还是修改，通过下面一行的d.actId == -1来判断
-            }, d.actId == -1).then(
-                res => {
-                    wx.navigateBack({
-                        delta: 0,
-                    })
-                    if (this.data.actId == -1) {
-                        wx.showToast({
-                            title: '创建成功',
-                        })
+            if (d.createNewCategory) {
+                interact.createActCategory(d.newCategory).then(
+                    (res) => {
+                        this.newActWrap(d, start_datetime, end_datetime, res.data.id)
                     }
-                    else {
-                        wx.showToast({
-                            title: '修改成功',
-                        })
-                    }
-                })
+                )
+            } 
+            else {
+                this.newActWrap(d, start_datetime, end_datetime, d.categories[d.index1].id)
+            }
         }
+    },
+
+    newActWrap: function(d, start_datetime, end_datetime, type_id) {
+        interact.createAct({
+            id: d.actId,
+            name: d.name,
+            begin_time: start_datetime,
+            end_time: end_datetime,
+            contain: d.numPeople,
+            description: d.description,
+            review: false,
+            owner: getApp().loginData.userId,
+            type: type_id,
+            org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[d.index2].id,
+            location: 1, //TODO
+            block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[d.index2].block.id
+            //创建还是修改，通过下面一行的d.actId == -1来判断
+        }, d.actId == -1).then(
+            res => {
+                wx.navigateBack({
+                    delta: 0,
+                })
+                if (this.data.actId == -1) {
+                    wx.showToast({
+                        title: '创建成功',
+                    })
+                }
+                else {
+                    wx.showToast({
+                        title: '修改成功',
+                    })
+                }
+            })
     }
 })

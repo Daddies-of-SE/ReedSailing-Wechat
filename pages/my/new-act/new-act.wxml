@@ -36,6 +36,21 @@
     <i-input bind:change="inputNameHandler" maxlength="20" title="活动名称" placeholder="{{actInfo.name ? actInfo.name : '请输入活动名称'}}" />
     <i-input bind:change="inputDescriptionHandler" maxlength="50" title="活动描述(可选)" placeholder="{{actInfo.description ? actInfo.description : '请输入活动描述'}}" />
     <i-input bind:change="inputNumPeopleHandler" maxlength="3" type="number" title="最大人数" placeholder="{{actInfo.contain ? actInfo.contain : '请输入正整数'}}" />
+
+    <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+        <view class="weui-cell__hd">
+            <label class="weui-label" style="width: 3em">类别</label>
+        </view>
+        <view class="weui-cell__bd">
+            <picker bindchange="bindPicker_1_Change" range="{{categories}}" range-key="name">
+                <view class="weui-select">{{actId == -1 ? categories[index1].name : actInfo.type.name}}</view>
+            </picker>
+        </view>
+    </view>
+    <view wx:if="{{createNewCategory}}">
+        <i-input bind:change="inputNewCategoryHandler" maxlength="10" title="新类别" placeholder="{{'请输入新建类别名称'}}" />
+    </view>
+
     <view class="weui-cell weui-cell_active">
         <view class="weui-cell__hd">
             <view class="weui-label">起始日期</view>
@@ -80,7 +95,7 @@
 
 
 
-    <view wx:if="{{actId == -1}}" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+    <!-- <view wx:if="{{actId == -1}}" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
         <view class="weui-cell__hd">
             <label class="weui-label" style="width: 3em">加入需要审核</label>
         </view>
@@ -89,7 +104,7 @@
                 <view class="weui-select check-right"> {{flag[index3]}}</view>
             </picker>
         </view>
-    </view>
+    </view> -->
 
 </i-panel>
 <a class="weui-btn weui-btn_primary" bindtap="submitAct">提交</a>
