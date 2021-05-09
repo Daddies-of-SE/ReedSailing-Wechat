@@ -65,6 +65,9 @@ vant
 | 搜索栏                       | vant-search                                                  | 参考mem-list                                                 |
 | 带图片的弹出框               | ~~qnmd的vant，对齐又出问题了~~ 俺自己手搓了一个，在lib/daddy/dialog | 参考mem-list                                                 |
 | 滑动栏                       | i-swipeout                                                   | 参考mem-list                                                 |
+| 分割线                       | 自定义样式，见app.wxss；**请勿修改已有的样式**，可自行添加需要的样式 | 参考act-list                                                 |
+
+
 
 
 

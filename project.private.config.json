@@ -35,6 +35,11 @@
           "pathName": "pages/sections/act-list/mem-list/mem-list",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/sections/act-list/act-list",
+          "pathName": "pages/sections/act-list/act-list",
+          "scene": null
         }
       ]
     }

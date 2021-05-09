@@ -34,13 +34,14 @@
   margin: 0 auto;
 }
 .folder .folder_item {
-  margin: 10rpx auto;
+  /* margin: 10rpx auto; */
+  background: white;
 }
 .folder .folder_item .title {
   font-size: 30rpx;
   height: 60rpx;
   line-height: 60rpx;
-  background: #e2e2e2;
+  
   display: flex;
 }
 .folder .folder_item .title .title_1 {
@@ -48,18 +49,25 @@
   height: 60rpx;
   padding-left: 20rpx;
 }
-.folder .folder_item .title .title_2 {
+.folder .folder_item .title .title_arrow {
   width: 50rpx;
   height: 60rpx;
   text-align: center;
 }
-.folder .folder_item .title .title_2 image {
+.folder .folder_item .title .title_arrow image {
   width: 40rpx;
   height: 40rpx;
   margin: 10rpx auto;
 }
 .folder .folder_item .detail {
   margin: 10rpx auto;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  text-indent: 2em;
+}
+
+.folder .folder_item .detail-last {
+  margin: 10rpx auto 0 auto;
   font-size: 30rpx;
   line-height: 50rpx;
   text-indent: 2em;
@@ -83,6 +91,10 @@
 .folder .folder_item .headShot {
   height: 80rpx;
   width: 80rpx;
+}
+
+._infor_head {
+  color: rgb(0, 174, 255);
 }
 
 .mem-wrap .mem-list  {

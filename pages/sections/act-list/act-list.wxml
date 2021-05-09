@@ -18,25 +18,32 @@
   <block wx:if="{{isRealOrg}}">
   <view class='folder_item'>
     <view class='title' data-index='0' catchtap='panel'>
+      <view class='title_arrow'>
+        <!-- <image src="/icon/{{showIndex[0]? 'up':'down'}}.png"></image> -->
+        <van-icon name="{{showIndex[0]? 'arrow-down':'arrow'}}" />
+      </view>
       <view class='title_1'>信息</view>
-      <view class='title_2'><image src="/icon/{{showIndex[0]? 'up':'down'}}.png"></image></view>
     </view>
     <block wx:if="{{showIndex[0]}}">
-      <view class='detail'>所属板块：{{orgInfo.belong_forum.name}}</view>
-      <view class='detail'>创建时间：{{orgInfo.create_time}}</view>
-      <view class='detail'>负责人：{{orgInfo.owner.name}}</view>
-      <view class='detail'>介绍：{{orgInfo.description ? orgInfo.description : "暂无"}}</view>
+      <view class='detail'><span class="_infor_head">所属板块：</span>{{orgInfo.belong_forum.name}}</view>
+      <view class='detail'><span class="_infor_head">创建时间：</span>{{orgInfo.create_time}}</view>
+      <view class='detail'><span class="_infor_head">负责人：</span>{{orgInfo.owner.name}}</view>
+      <view class='detail detail-last'><span class="_infor_head">介绍：</span>{{orgInfo.description ? orgInfo.description : "暂无"}}</view>
     </block>
     
     <button class='editBtn' bindtap='editOrgInfo' wx:if="{{isManager && showIndex[0]}}">编辑</button>
   </view>
+  <view class='divLine'></view>
   </block>
 
   <block wx:if="{{isRealOrg}}">
   <view class='folder_item mem-wrap'>
     <view class='title' data-index='1' catchtap='panel'>
+      <view class='title_arrow'>
+        <!-- <image src="/icon/{{showIndex[1]? 'up':'down'}}.png"></image> -->
+        <van-icon name="{{showIndex[1]? 'arrow-down':'arrow'}}" />
+      </view>
       <view class='title_1'>管理员</view>
-      <view class='title_2'><image src="/icon/{{showIndex[1]? 'up':'down'}}.png"></image></view>
     </view>
     <view class='mem-list' wx:if="{{showIndex[1]}}">
           <view class="mem-item" wx:for="{{memList}}">
@@ -46,15 +53,18 @@
             <text class="mem-name">{{item.person.id == orgInfo.owner.id ? item.person.name+"(负责人)" : item.person.name}}</text>
         </view>
     </view>
-    <!-- <view class='detail' wx:if="{{showIndex[1]}}">管理员跑路了</view> -->
     <button class='editBtn' bindtap='editMemList' wx:if="{{isOwner && showIndex[1]}}">编辑</button>
   </view>
+  <view class='divLine'></view>
   </block>
 
   <view class='folder_item'>
     <view class='title' data-index='2' catchtap='panel'>
+      <view class='title_arrow'>
+        <!-- <image src="/icon/{{showIndex[2]? 'up':'down'}}.png"></image> -->
+        <van-icon name="{{showIndex[2]? 'arrow-down':'arrow'}}" />
+      </view>
       <view class='title_1'>未开始活动</view>
-      <view class='title_2'><image src="/icon/{{showIndex[2]? 'up':'down'}}.png"></image></view>
     </view>
     <view class='actList'  wx:if="{{showIndex[2]}}">
       <i-cell-group i-class="act-wrap">
@@ -66,13 +76,16 @@
         </block>
       </i-cell-group>
     </view>
-    
+    <view class='divLine'></view>
   </view>
 
   <view class='folder_item'>
     <view class='title' data-index='3' catchtap='panel'>
+      <view class='title_arrow'>
+        <!-- <image src="/icon/{{showIndex[3]? 'up':'down'}}.png"></image> -->
+        <van-icon name="{{showIndex[3]? 'arrow-down':'arrow'}}" />
+      </view>
       <view class='title_1'>进行中活动</view>
-      <view class='title_2'><image src="/icon/{{showIndex[3]? 'up':'down'}}.png"></image></view>
     </view>
     <view class='actList'  wx:if="{{showIndex[3]}}">
       <i-cell-group i-class="act-wrap">
@@ -83,14 +96,18 @@
         </block>
       </i-cell-group>
     </view>
+    <view class='divLine'></view>
   </view>
 
   <view class='folder_item'>
     <view class='title' data-index='4' catchtap='panel'>
+      <view class='title_arrow'>
+        <!-- <image src="/icon/{{showIndex[4]? 'up':'down'}}.png"></image> -->
+        <van-icon name="{{showIndex[4]? 'arrow-down':'arrow'}}" />
+      </view>
       <view class='title_1'>已结束活动</view>
-      <view class='title_2'><image src="/icon/{{showIndex[4]? 'up':'down'}}.png"></image></view>
     </view>
-    <view class='actList'  wx:if="{showIndex[4]}}">
+    <view class='actList'  wx:if="{{showIndex[4]}}">
       <i-cell-group i-class="act-wrap">
         <block wx:for="{{endActList}}" wx:key="id">
             <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
@@ -100,4 +117,5 @@
       </i-cell-group>
     </view>
   </view>
+  <view class='divLine'></view>
 </view>

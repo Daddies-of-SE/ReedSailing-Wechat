@@ -21,6 +21,22 @@ page {
 }
 
 
+.divLine{
+  background: #d1d1d1;
+  width: 85%;
+  margin: 0 0 0 auto;
+  height: 1px;
+  transform: scaleY(0.5);
+}
+
+.divLine-full{
+  background: black;
+  width: 100%;
+  margin: auto;
+  height: 2rpx;
+} 
+
+
 /*!
  * 引用了微信官方style对微信原生组件进行样式设计
  * WeUI v2.4.4 (https://github.com/weui/weui-wxss)
