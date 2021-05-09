@@ -62,7 +62,7 @@
 
 <view class="msg-wrap comment-wrap">
   <scroll-view scroll-y="true" class="nav">
-    <view class="msg-item" wx:for="{{comment_list}}">
+    <view class="msg-item" wx:for="{{comment_list}}" wx:key='id'>
       <i-card i-class="card-demo" title="{{item.user.name}}" extra="{{item.publish_time}}" thumb="{{item.user.avator}}">
         <view slot="content">
           <view>{{item.content}}</view>

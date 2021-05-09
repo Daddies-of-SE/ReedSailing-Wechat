@@ -11,7 +11,31 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'),
     nickName : '',
-    motto : ''
+    motto : '',
+    jumpItem: [
+      {
+        name:'个人信息',
+        url:'../my-account/my-account'
+      },
+      {
+        name:'我管理的组织',
+        url:'../my-org/my-org'
+      },
+      {
+        name:'我管理的活动',
+        url:'../my-act/my-act'
+      },
+      {
+        name:'活动发布',
+        url:'../new-act/new-act'
+      },
+      {
+        name:'提交反馈',
+        url:'../feedback/feedback'
+      }
+    ]
+
+
   },
   // 事件处理函数
   bindViewTap() {
@@ -83,35 +107,36 @@ Page({
     })
   },
 
-  toMyAccount() {
-    wx.navigateTo({
-      url: '../my-account/my-account',
-    })
-  },
+  // toMyAccount() {
+  //   wx.navigateTo({
+  //     url: '../my-account/my-account',
+  //   })
+  // },
 
-  toMyOrg() {
-    wx.navigateTo({
-      url: '../my-org/my-org',
-    })
-  },
+  // toMyOrg() {
+  //   wx.navigateTo({
+  //     url: '../my-org/my-org',
+  //   })
+  // },
 
-  toMyAct() {
-    wx.navigateTo({
-      url: '../my-act/my-act',
-    })
-  },
+  // toMyAct() {
+  //   wx.navigateTo({
+  //     url: '../my-act/my-act',
+  //   })
+  // },
 
-  toNewAct() {
-    wx.navigateTo({
-      url: '../new-act/new-act',
-    })
-  },
+  // toNewAct() {
+  //   wx.navigateTo({
+  //     url: '../new-act/new-act',
+  //   })
+  // },
 
-  toFeedback() {
-    wx.navigateTo({
-      url: '../feedback/feedback',
-    })
-  },
+  // toFeedback() {
+  //   wx.navigateTo({
+  //     url: '../feedback/feedback',
+  //   })
+  // },
+
 
   onShareAppMessage: function (res) {
     return {

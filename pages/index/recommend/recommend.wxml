@@ -12,7 +12,7 @@
       </view> -->
   </view>
   <view class="org-list">
-    <view class="org-item" wx:for="{{org_list}}" data-orgid="{{item.id}}" bindtap="toOrg">
+    <view class="org-item" wx:for="{{org_list}}" wx:key='id' data-orgid="{{item.id}}" bindtap="toOrg">
       <block wx:if="{{item.avator != null}}"> 
         <image class="org-avator" src="{{item.avator}}"></image>
       </block>
@@ -31,7 +31,7 @@
 
 <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
-    <view class="msg-item" wx:for="{{act_list}}">
+    <view class="msg-item" wx:for="{{act_list}}" wx:key='id'>
       <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}" bindtap="toActivity" data-actid="{{item.id}}">
       <!-- TODO: 上一行avatar换成活动图片 -->
         <view slot="content">

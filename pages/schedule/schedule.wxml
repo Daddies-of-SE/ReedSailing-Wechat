@@ -41,7 +41,7 @@
            </view>
        </view>
        <view class='header'>
-           <view wx:for='{{date}}' class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>{{item}}<view></view></view>
+           <view wx:for='{{date}}' wx:key='*this' class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>{{item}}<view></view></view>
        </view>
        <view class='date-box'>
            <view wx:for='{{dateArr}}' class='{{isToday == item.isToday ? "nowDay" : ""}}' data-date='{{item.isToday}}'>            

@@ -45,7 +45,7 @@
     <!-- 搜索结果 -->
     <scroll-view bindscrolltolower="scrollListen" scroll-y enable-flex class="result" wx:if="{{ result.length>0 && searchStatus }}">
     <view style="height:208rpx;width:750rpx"></view>
-    <view class="item" wx:for="{{result}}" wx:for-item="item" wx:key="{{item.id}}" data-value="{{item}}" bindtap="handleClick">
+    <view class="item" wx:for="{{result}}" wx:for-item="item" wx:key="id" data-value="{{item}}" bindtap="handleClick">
         <product-big data="{{item}}" border="false"></product-big>
     </view>
     </scroll-view>

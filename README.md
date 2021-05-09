@@ -51,7 +51,7 @@ vant
 | 名称                         | 使用的组件                                                   | 备注                                                         |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 头像和基本信息***界面布局*** | i-card组件                                                   | 参考follow-home                                              |
-| 不带头像的基本界面布局       | i-panel, i-cell-group, i-cell组件                            |                                                              |
+| 列表                         | WeUI的navigator                                              | 参见my-home                                                  |
 | 带头像的列表类布局           | i-cell-group, i-cell                                         | 参考org-list                                                 |
 | 顶部切换栏                   | i-tabs和i-tab组件                                            | 参考my-org； 不同于原生微信接口 不能直接写在里面 要在外面用if渲染 [参考](https://github.com/TalkingData/iview-weapp/issues/179) |
 | 输入框                       | i-panel，i-input，i-button                                   | 参考new-org                                                  |

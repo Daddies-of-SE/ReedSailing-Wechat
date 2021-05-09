@@ -2,29 +2,47 @@
 <!--<view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
 
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
+  <view class="userinfo-wrap">
+    <image class="background" src='/icon/beihang_background.png'/>
+
+    
+    <view class="userinfo" wx:if="{{canIUseOpenData}}" >
       <view class="userinfo-avatar" bind:tap="bindViewTap">
         <open-data type="userAvatarUrl"></open-data>
       </view>
         <text class="userinfo-nickname">{{nickName}}</text>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
+    </view>
+    <view wx:elif="{{!hasUserInfo}}">
       <button wx:if="{{canIUseGetUserProfile}}" bind:tap="getUserProfile"> 获取头像昵称 </button>
       <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
       <view wx:else> 无法进行微信认证登录，请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
+    </view>
+    <view wx:else class="userinfo">
       <image bind:tap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{nickName}}</text>
       <text class="userinfo-nickname">{{motto}}</text>
-    </block>
+    </view>
   </view>
+
+  <view class="item-wrap">
+    <navigator wx:for="{{jumpItem}}" wx:key='name' url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">{{item.name}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+
+  <!--分享功能好像只能用button触发，目前还没想好怎么用button和上面的格式对齐； 分享按钮感觉不做也行-->
+  <!-- <view class="weui-cell">
+    <view class="weui-cell__bd">分享小程序</view>
+    <view class="weui-cell__ft"></view>
+  </view> -->
+
 </view>
 
-<button bind:tap="toMyAccount" class="Btn accountBtn">个人信息</button>
+<!-- <button bind:tap="toMyAccount" class="Btn accountBtn">个人信息</button>
 <button bind:tap="toMyOrg" class="Btn orgBtn">我管理的组织</button>
 <button bind:tap="toMyAct" class="Btn actBtn">我管理的活动</button>
 <button bind:tap="toNewAct" class="Btn pubBtn">活动发布</button>
 <button bind:tap="toFeedback" class="Btn fdbBtn">提交反馈</button>
-<button open-type="share" class="Btn shareBtn">分享小程序</button>
+<button open-type="share" class="Btn shareBtn">分享小程序</button> -->
+
