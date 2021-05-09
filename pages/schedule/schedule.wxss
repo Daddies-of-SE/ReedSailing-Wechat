@@ -55,6 +55,7 @@
 .folder {
   width: 700rpx;
   margin: 0 auto;
+  background: white;
 }
 .folder .folder_item {
   margin: 10rpx auto;
@@ -65,6 +66,7 @@
   line-height: 60rpx;
   background: #e2e2e2;
   display: flex;
+  background: white;
 }
 .folder .folder_item .title .title_1 {
   width: 630rpx;

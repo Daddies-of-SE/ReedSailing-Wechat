@@ -33,6 +33,11 @@ Page({
       this.setData({
         orgId : options.orgId,
       })
+      if (options.orgId == -1 || options.orgId == -2) {
+        wx.setNavigationBarTitle({
+          title: '活动列表',
+        })
+      }
     },
 
     onShow: function () {
@@ -56,8 +61,9 @@ Page({
       })
 
       if (this.data.orgId == -1) {
+        
         this.setData({
-          orgName: "博雅活动列表",
+          orgName: "博雅活动",
           orgPicUrl : "/icon/boya.png",
           isRealOrg : false
         })
@@ -65,7 +71,7 @@ Page({
       }
       else if (this.data.orgId == -2) {
         this.setData({
-          orgName: "个人活动列表",
+          orgName: "个人活动",
           orgPicUrl : "/icon/person.png",
           isRealOrg : false
         })

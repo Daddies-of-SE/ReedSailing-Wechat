@@ -7,7 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        current: 'tab1',
+        current: 'unstart',
         unstartActList : [],
         curActList : [],
         endActList : []

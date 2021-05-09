@@ -13,7 +13,7 @@
 
 <view class="forum">
     <view class="item" wx:for="{{forum_list}}" wx:key='id'
-     data-name="{{item.title}}" data-has-org="{{item.hasOrgLevel}}" data-forumid="{{index+1}}" wx:key="id" bindtap="handleClick">
+     data-name="{{item.title}}" data-has-org="{{item.hasOrgLevel}}" data-forumid="{{index+1}}" wx:key="id" bindtap="handleClick" hover-class="weui-cell_active">
         <image class="icon" src="{{item.picUrl}}"></image>
         <text class="text">{{item.title}}</text>
     </view>

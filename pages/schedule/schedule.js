@@ -26,6 +26,7 @@ Page({
       actList: [],
       showDateActList: false,
       DateActList: [],
+      init : true,
     },
 
    /**
@@ -71,6 +72,7 @@ Page({
         DateActList : []
       });
       this.getMonthActs(this.data.year, this.data.month)
+      
     },
 
     getMonthActs : function(year, month) {
@@ -176,7 +178,8 @@ Page({
       this.setData({
         year: year,
         month: (month + 1),
-        DateActList : []
+        DateActList : [],
+        init : true
       })
       this.dateInit(year, month);
       this.getMonthActs(this.data.year, this.data.month)
@@ -189,7 +192,8 @@ Page({
       this.setData({
         year: year,
         month: (month + 1),
-        DateActList : []
+        DateActList : [],
+        init : true
       })
       this.dateInit(year, month);
       this.getMonthActs(this.data.year, this.data.month)
@@ -218,7 +222,8 @@ Page({
       // console.log(e.currentTarget.dataset.date)
       newDateArr[e.currentTarget.dataset.index].selected = true;
       this.setData({
-        dateArr : newDateArr
+        dateArr : newDateArr,
+        init : false
       })
       // util.debug(date)
     },

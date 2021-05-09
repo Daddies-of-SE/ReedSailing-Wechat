@@ -1,21 +1,20 @@
 <!--pages/my/my-act/my-act.wxml-->
 
 <i-tabs current="{{ current }}" color="#f759ab" bindchange="handleChange">
-    <i-tab key="tab1" title="进行中"></i-tab>
-    <i-tab key="tab2" title="未开始"></i-tab>
-    <i-tab key="tab3" title="已结束"></i-tab>
+    <i-tab key="unstart" title="未开始"></i-tab>
+    <i-tab key="cur" title="进行中"></i-tab>
+    <i-tab key="end" title="已结束"></i-tab>
 </i-tabs>
-<view wx:if="{{current == 'tab1'}}">
+<view wx:if="{{current == 'cur'}}">
     <i-cell-group i-class="act-wrap">
         <block wx:for="{{curActList}}" wx:key="id">
-            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
-                data-actid="{{item.id}}" data-actname="{{item.name}}">
+            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" data-actid="{{item.id}}" data-actname="{{item.name}}">
                 <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
             </i-cell> 
         </block>
     </i-cell-group>
 </view>
-<view wx:if="{{current == 'tab2'}}">
+<view wx:if="{{current == 'unstart'}}">
     <i-cell-group i-class="act-wrap">
         <block wx:for="{{unstartActList}}" wx:key="id">
         <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
@@ -25,7 +24,7 @@
         </block>
     </i-cell-group>
 </view>
-<view wx:if="{{current == 'tab3'}}">
+<view wx:if="{{current == 'end'}}">
     <i-cell-group i-class="act-wrap">
         <block wx:for="{{endActList}}" wx:key="id">
         <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 

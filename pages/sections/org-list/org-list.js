@@ -23,6 +23,9 @@ Page({
         forumName: options.forumName,
         forumId: options.forumId
       })
+      wx.setNavigationBarTitle({
+        title: this.data.forumName + "版块",
+      })
   },
 
   /**

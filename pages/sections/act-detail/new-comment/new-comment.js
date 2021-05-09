@@ -35,6 +35,9 @@ Page({
       this.setData({
         commentId : options.commentId
       })
+      wx.setNavigationBarTitle({
+        title: '编辑评论',
+      })
     }
   },
 

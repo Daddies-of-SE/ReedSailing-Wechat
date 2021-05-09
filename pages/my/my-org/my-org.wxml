@@ -1,13 +1,13 @@
 <!--pages/my/my-org/my-org.wxml-->
 
 <!--我的组织-->
-<view class="my-org-header">
+<!-- <view class="my-org-header">
     <text class="text">我的组织</text>
-</view>
+</view> -->
 
 <!--创建组织按钮-->
 <view class="found-org">
-    <button class='btn' bindtap='goFoundOrg'>
+    <button class='btn' bindtap='goFoundOrg' hover-class="weui-cell_active">
         <image class='btnImg' src='/icon/found_org.png'></image>
         <view>申请创建组织</view>
     </button>

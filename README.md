@@ -101,14 +101,14 @@ qnmd的vant，dialog的对齐又出问题了...俺还是自己手搓吧（其实
 | 10   | 活动详情     | 6            | sections/act-detail     | 1；2；4；9；12 | 新建/编辑活动—20；参与者—6 | 100% |
 | 11   | 我管理的组织 | 11           | my/my-org               | 7              | “组织创建”—14；某组织—9                                   | 100% |
 | 12 | 我管理的活动 | 14           | my/my-act               | 7              | 某活动—10                                                  | 100% |
-| 13 | 活动发布     | 12           | my/new-act              | 7              |                                                            | 100% |
+| 13 | 活动发布/活动编辑 | 12           | my/new-act              | 7              |                                                            | 100% |
 | 14   | 组织创建     | 13           | my/new-org              | 8；11          |                                                            | 100% |
 | 15 | 组织成员管理 | 4.12图5 | my/act-list/mem-list | 9 |  |  |
 | 16 | 组织信息编辑 | 4.12图6 | sections/org-edit | 9 |  | 100% |
 | 17 | 用户反馈 |  | my/feedback | 7 |  | 100% |
-| 18   | 我的账户     |              | my/my-account           | 7              |                                                            | 100% |
+| 18   | 个人信息     |              | my/my-account           | 7              |                                                            | 100% |
 | 19 | 搜索结果 | | my/org-list/search | 8；9 | | — |
-| 20 | 新建评论 | | sections/act-detail/new-comment | 10 | | 100% |
+| 20 | 新建评论/编辑评论 | | sections/act-detail/new-comment | 10 | | 100% |
 
 
 

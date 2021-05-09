@@ -5,7 +5,7 @@
 
 <!--follow-orgs-->
 <view class="org-wrap">
-  <view class="header">
+  <view class="header" wx:if="{{havelogin && act_list.length != 0}}">
       <text class="txt">关注的组织</text>
       <!-- <view class="right" id="0" bindtap="toFollowOrg">
         <text class="all">查看全部</text>
@@ -13,7 +13,7 @@
       </view> -->
   </view>
   <view class="org-list">
-    <view class="org-item" wx:for="{{org_list}}" wx:key='id' data-orgid="{{item.org.id}}" bindtap="toOrg">
+    <view class="org-item" wx:for="{{org_list}}" wx:key='id' data-orgid="{{item.org.id}}" bindtap="toOrg" hover-class="weui-cell_active">
       <block wx:if="{{item.org.avator != null}}"> 
         <image class="org-avator" src="{{item.org.avator}}"></image>
       </block>

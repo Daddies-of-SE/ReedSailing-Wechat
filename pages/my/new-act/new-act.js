@@ -147,6 +147,9 @@ Page({
             }
         )
         if (this.data.actId != -1) {
+            wx.setNavigationBarTitle({
+              title: '活动编辑',
+            })
             interact.getActInfo(this.data.actId).then(
                 (res) => {
                   var r = res.data

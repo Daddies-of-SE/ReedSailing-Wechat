@@ -4,12 +4,12 @@
 <view class="org-header">
     <text class="text">{{orgName}}</text>
     <image class="picture" src="{{orgPicUrl}}"></image>
-    <block wx:if="{{isRealOrg && !hasFollowed}}">
+    <view wx:if="{{isRealOrg && !hasFollowed}}" hover-class="weui-cell_active">
       <button class='followBtn' bindtap='followOrg'>关注</button>
-    </block>
-    <block wx:elif="{{isRealOrg && hasFollowed}}">
+    </view>
+    <view wx:elif="{{isRealOrg && hasFollowed}}" hover-class="weui-cell_active">
       <button class='followBtn' bindtap='unFollowOrg'>取消关注</button>
-    </block>
+    </view>
 </view>
 
 <!--信息、管理员、活动-->
@@ -31,7 +31,7 @@
       <view class='detail detail-last'><span class="_infor_head">介绍：</span>{{orgInfo.description ? orgInfo.description : "暂无"}}</view>
     </block>
     
-    <button class='editBtn' bindtap='editOrgInfo' wx:if="{{isManager && showIndex[0]}}">编辑</button>
+    <button class='editBtn' bindtap='editOrgInfo' wx:if="{{isManager && showIndex[0]}}" hover-class="weui-cell_active">编辑</button>
   </view>
   <view class='divLine'></view>
   </block>
@@ -53,7 +53,7 @@
             <text class="mem-name">{{item.person.id == orgInfo.owner.id ? item.person.name+"(负责人)" : item.person.name}}</text>
         </view>
     </view>
-    <button class='editBtn' bindtap='editMemList' wx:if="{{isOwner && showIndex[1]}}">编辑</button>
+    <button class='editBtn' bindtap='editMemList' wx:if="{{isOwner && showIndex[1]}}" hover-class="weui-cell_active">编辑</button>
   </view>
   <view class='divLine'></view>
   </block>
@@ -68,7 +68,7 @@
     </view>
     <view class='actList'  wx:if="{{showIndex[2]}}">
       <i-cell-group i-class="act-wrap">
-        <button class='editBtn' bindtap='goNewAct' wx:if="{{isManager && orgId != -1}}">新建</button>
+        <button class='editBtn' bindtap='goNewAct' wx:if="{{isManager && orgId != -1}}" hover-class="weui-cell_active">新建</button>
         <block wx:for="{{unstartActList}}" wx:key="id">
             <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
                 data-actid="{{item.id}}" data-actname="{{item.name}}">

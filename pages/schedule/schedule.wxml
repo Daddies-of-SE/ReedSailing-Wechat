@@ -61,8 +61,15 @@
                     data-actid="{{item.id}}" data-actname="{{item.name}}">
                 </i-cell> 
             </block>
-            <view wx:if="{{DateActList.length == 0}}">本日没有活动</view>
+            
         </i-cell-group>
+    </view>
+
+    <view wx:if="{{init}}">
+        <i-cell title="点击日期可查看已报名的活动"></i-cell>
+    </view>
+    <view wx:if="{{DateActList.length == 0 && !init}}">
+        <i-cell title="本日没有已报名的活动"></i-cell>
     </view>
 </view> 
 
@@ -70,8 +77,9 @@
 <view class='folder'>
     <view class='folder_item'>
         <view class='title' data-index='0' catchtap='panel'>
+        <van-icon name="{{showIndex[0]? 'arrow-down':'arrow'}}" />
         <view class='title_1'>进行中活动</view>
-        <view class='title_2'><image src="/icon/{{showIndex[0]? 'up':'down'}}.png"></image></view>
+        <!-- <view class='title_2'><image src="/icon/{{showIndex[0]? 'up':'down'}}.png"></image></view> -->
         </view>
         <view class='actList'  wx:if="{{showIndex[0]}}">
             <i-cell-group i-class="act-wrap">
@@ -86,8 +94,9 @@
 
     <view class='folder_item'>
         <view class='title' data-index='1' catchtap='panel'>
+        <van-icon name="{{showIndex[1]? 'arrow-down':'arrow'}}" />
         <view class='title_1'>未开始活动</view>
-        <view class='title_2'><image src="/icon/{{showIndex[1]? 'up':'down'}}.png"></image></view>
+        <!-- <view class='title_2'><image src="/icon/{{showIndex[1]? 'up':'down'}}.png"></image></view> -->
         </view>
         <view class='actList'  wx:if="{{showIndex[1]}}">
             <i-cell-group i-class="act-wrap">
@@ -102,8 +111,9 @@
 
     <view class='folder_item'>
         <view class='title' data-index='2' catchtap='panel'>
+        <van-icon name="{{showIndex[2]? 'arrow-down':'arrow'}}" />
         <view class='title_1'>已结束活动</view>
-        <view class='title_2'><image src="/icon/{{showIndex[2]? 'up':'down'}}.png"></image></view>
+        <!-- <view class='title_2'><image src="/icon/{{showIndex[2]? 'up':'down'}}.png"></image></view> -->
         </view>
         <view class='actList'  wx:if="{{showIndex[2]}}">
             <i-cell-group i-class="act-wrap">

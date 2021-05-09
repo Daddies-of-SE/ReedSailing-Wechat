@@ -12,7 +12,7 @@
       </view> -->
   </view>
   <view class="org-list">
-    <view class="org-item" wx:for="{{org_list}}" wx:key='id' data-orgid="{{item.id}}" bindtap="toOrg">
+    <view class="org-item" wx:for="{{org_list}}" wx:key='id' data-orgid="{{item.id}}" bindtap="toOrg" hover-class="weui-cell_active">
       <block wx:if="{{item.avator != null}}"> 
         <image class="org-avator" src="{{item.avator}}"></image>
       </block>

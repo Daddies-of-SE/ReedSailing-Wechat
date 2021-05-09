@@ -15,7 +15,7 @@
   margin-bottom: 20rpx;
   background-color: white;
   color: #999999;
-  border-radius: 0rpx;
+  border-radius: 60rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
