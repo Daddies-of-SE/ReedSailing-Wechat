@@ -76,9 +76,10 @@
 .folder .folder_item .editBtn{
   width: 100rpx;
   height: 50rpx;
-  background-color: rgba(200, 212, 218, 0.548);
+  background-color: white;
   color: rgb(43, 37, 37);
   border-radius: 49rpx;
+  border-style: inset;
   display: flex;
   flex-direction: row;
   align-items: center;
