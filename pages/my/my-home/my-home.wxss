@@ -3,6 +3,10 @@
     position: relative;
     height: 40%;
     /* background-image: url('/icon/beihang_background.png'); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
 .background {
@@ -15,12 +19,13 @@
   z-index: -1;
 }
 
-  .userinfo {
-    margin: 120rpx;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
   
   .userinfo-avatar {
     overflow: hidden;
@@ -36,51 +41,5 @@
   }
   
   .usermotto {
-    margin-top: 200px;
-  }
-
-  .Btn {
-    width: 80rpx;
-    height: 80rpx;
-    color: white;
-    border-radius: 49rpx;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    font-size: 40rpx;
-    writing-mode: vertical-lr;
-    margin-right: 0%;
-
-    background-color: rgba(19, 125, 245, 0.548);
-  }
-
-  .accountBtn {
-    /* background-color: rgba(19, 245, 94, 0.548); */
-    top: -600rpx;
-  }
-  
-  .orgBtn {
-    /* background-color: rgba(19, 245, 215, 0.548); */
-    top: -590rpx;
-  }
-  
-  .actBtn {
-    /* background-color: rgba(19, 125, 245, 0.548); */
-    top: -580rpx;
-  }
-  
-  .pubBtn {
-    /* background-color: rgba(19, 61, 245, 0.548); */
-    top: -570rpx;
-  }
-  
-  .fdbBtn {
-    /* background-color: rgba(245, 19, 189, 0.548); */
-    top: -560rpx;
-  }
-
-  .shareBtn {
-    /* background-color: rgba(245, 19, 189, 0.548); */
-    top: -550rpx;
+    text-align: center;
   }

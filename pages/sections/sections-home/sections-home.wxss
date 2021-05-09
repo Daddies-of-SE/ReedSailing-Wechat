@@ -33,7 +33,6 @@
 }
 
 .forum .item {
-  display: block;
   height: 200rpx;
   width: 210rpx;
   margin-right: 47rpx;
@@ -45,6 +44,7 @@
 }
 
 .forum .item .icon {
+  display: block;
   height: 149rpx;
   width: 187rpx;
   border-radius: 25px;

@@ -50,19 +50,14 @@
 
 
 .org-wrap .org-item {
-  display: block;
   height: 144rpx;
   width: 156rpx;
   margin-right: 18rpx;
   flex-shrink: 0;
 }
 
-.org-wrap .org-item image  {
-  border-radius: 50%;
-}
-
-
 .org-wrap .org-item .org-avator {
+  border-radius: 50%;
   display: block;
   height: 101rpx;
   width: 101rpx;
@@ -94,14 +89,14 @@
   font-weight: 500;
 }
 
-.card-demo image {
-  border-radius: 50%;
-}
-
 .msg-item {
   display: block;
-  margin-top: 20rpx;
+  /* margin-top: 20rpx; */
   /* background: #fff; */
+}
+
+.card-demo image {
+  border-radius: 50%;
 }
 
 

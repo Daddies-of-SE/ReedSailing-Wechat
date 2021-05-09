@@ -111,23 +111,18 @@
 
 
 .mem-wrap .mem-item {
-  display: block;
   height: 144rpx;
   width: 156rpx;
   margin-right: 18rpx;
   flex-shrink: 0;
 }
 
-.mem-wrap .mem-item image  {
-  border-radius: 50%;
-}
-
-
 .mem-wrap .mem-item .mem-avator {
   display: block;
   height: 101rpx;
   width: 101rpx;
   margin: auto;
+  border-radius: 50%;
 }
 
 .mem-wrap .mem-item .mem-name {
