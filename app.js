@@ -90,24 +90,18 @@ App({
   },
 
   goCertificate() {
-    return new Promise((resolve, reject)  =>{
-      wx.showModal({
-        title : '提示',
-        content : '您还没有认证，点击跳转到认证页面',
-        success: function (res) {
-          if (!res.cancel) {
-              wx.navigateTo({
-                  url: '../../my/my-account/my-account',
-              })
-              console.log("asd")
-              resolve()
-          }
-          else {
-            console.log("fds")
-            reject()
-          }
+    wx.showModal({
+      title : '提示',
+      content : '您还没有认证，点击跳转到认证页面',
+      success: function (res) {
+        if (!res.cancel) {
+            wx.navigateTo({
+                url: '../../my/my-account/my-account',
+            })
         }
-      })
+        else {
+        }
+      }
     })
   }
 })

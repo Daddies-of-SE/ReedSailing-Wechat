@@ -33,10 +33,20 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onShow: function () {
+      this.setData({
+          havelogin : app.haveRegistered()
+      })
+      let now = new Date();
+      let year = now.getFullYear();
+      let month = now.getMonth() + 1;
+      this.dateInit();
+      this.setData({
+        year: year,
+        month: month,
+        isToday: '' + year + month + now.getDate(),
+        DateActList : []
+      });
       if (!getApp().haveRegistered()) {
-        wx.navigateBack({
-          delta: 0,
-        })
         getApp().goCertificate()
         return
       }
@@ -58,19 +68,7 @@ Page({
                 endActList : res3.data
             })
       })
-      this.setData({
-          havelogin : app.haveRegistered()
-      })
-      let now = new Date();
-      let year = now.getFullYear();
-      let month = now.getMonth() + 1;
-      this.dateInit();
-      this.setData({
-        year: year,
-        month: month,
-        isToday: '' + year + month + now.getDate(),
-        DateActList : []
-      });
+      
       this.getMonthActs(this.data.year, this.data.month)
       
     },

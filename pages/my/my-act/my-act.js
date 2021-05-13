@@ -26,13 +26,16 @@ Page({
     },
 
     onShow: function (options) {
-        if (!getApp().haveRegistered()) {
-            wx.navigateBack({
-                delta: 0,
-              })
-            getApp().goCertificate()
-            return
-        }
+        // if (!getApp().haveRegistered()) {
+        //     wx.navigateBack({
+        //         delta: 0,
+        //       }).then(
+        //         setTimeout(function () {
+        //           getApp().goCertificate()
+        //         }, 500)
+        //       )
+        //     return
+        // }
         interact.getStatusManageActs('unstart').then(
             res1 => {
                 this.setData({

@@ -27,10 +27,10 @@ Page({
     },
 
     onShow: function () {
-        if (!getApp().haveRegistered()) {
-            getApp().goCertificate()
-            return
-        }
+        // if (!getApp().haveRegistered()) {
+        //     getApp().goCertificate()
+        //     return
+        // }
         this.setData({
             forum_array : [app.forumList[0],app.forumList[2],app.forumList[3]]
         })
@@ -48,6 +48,13 @@ Page({
         if (this.data.inputName == "") {
             wx.showToast({
               title: '名称不能为空',
+              icon : "none"
+            })
+            return
+        }
+        if (this.data.inputDescription == "") {
+            wx.showToast({
+              title: '申请理由不能为空',
               icon : "none"
             })
             return

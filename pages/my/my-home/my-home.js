@@ -18,18 +18,6 @@ Page({
         url:'../my-account/my-account'
       },
       {
-        name:'我管理的组织',
-        url:'../my-org/my-org'
-      },
-      {
-        name:'我管理的活动',
-        url:'../my-act/my-act'
-      },
-      {
-        name:'活动发布',
-        url:'../new-act/new-act'
-      },
-      {
         name:'提交反馈',
         url:'../feedback/feedback'
       }
@@ -60,6 +48,35 @@ Page({
   },
 
   onShow: function (e) {
+    if (!getApp().haveRegistered()) {
+      getApp().goCertificate()
+    }
+    else {
+      this.setData({
+        jumpItem : [
+          {
+            name:'个人信息',
+            url:'../my-account/my-account'
+          },
+          {
+            name:'我管理的组织',
+            url:'../my-org/my-org'
+          },
+          {
+            name:'我管理的活动',
+            url:'../my-act/my-act'
+          },
+          {
+            name:'活动发布',
+            url:'../new-act/new-act'
+          },
+          {
+            name:'提交反馈',
+            url:'../feedback/feedback'
+          }
+        ]
+      })
+    }
     
     if (wx.getUserProfile) {
       this.setData({
