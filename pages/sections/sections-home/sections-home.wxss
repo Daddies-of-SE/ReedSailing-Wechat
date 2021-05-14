@@ -35,13 +35,12 @@
 .forum .item {
   height: 200rpx;
   width: 210rpx;
-  margin-right: 47rpx;
   margin-top: 15rpx;
 }
 
-.forum .last {
+/* .forum .last {
   margin-right: 0rpx;
-}
+} */
 
 .forum .item .icon {
   display: block;
