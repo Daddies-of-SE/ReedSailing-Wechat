@@ -19,7 +19,8 @@
     "pages/my/feedback/feedback",
     "pages/sections/org-list/search/search",
     "pages/sections/act-detail/new-comment/new-comment",
-    "pages/sections/act-detail/participants/participants"
+    "pages/sections/act-detail/participants/participants",
+    "pages/sections/user-info/user-info"
   ],
   "window": {
     "backgroundTextStyle": "light",

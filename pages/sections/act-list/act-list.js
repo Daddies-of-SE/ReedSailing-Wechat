@@ -41,80 +41,83 @@ Page({
     },
 
     onShow: function () {
-      interact.getStatusOrgActs('unstart', this.data.orgId).then(
-        res1 => {
-            this.setData({
-                unstartActList : res1.data
-            })
-      })
-      interact.getStatusOrgActs('cur', this.data.orgId).then(
-          res2 => {
-              this.setData({
-                  curActList : res2.data
-              })
-      })
-      interact.getStatusOrgActs('end', this.data.orgId).then(
-          res3 => {
-              this.setData({
-                  endActList : res3.data
-              })
-      })
-
-      if (this.data.orgId == -1) {
-        
-        this.setData({
-          orgName: "博雅活动",
-          orgPicUrl : "/icon/boya.png",
-          isRealOrg : false
-        })
-        return
-      }
-      else if (this.data.orgId == -2) {
-        this.setData({
-          orgName: "个人活动",
-          orgPicUrl : "/icon/person.png",
-          isRealOrg : false
-        })
-        return
-      }
-      // 非个人活动列表和博雅活动列表
-      interact.getOrgInfo(this.data.orgId).then(
-        (res) => {
-          this.setData({
-            orgName : res.data.name,
-            orgInfo : {
-              description : res.data.description,
-              create_time : res.data.create_time.split("T")[0],
-              belong_forum : res.data.block,
-              avatar : res.data.avatar,
-              owner: res.data.owner
-            }
+      getApp().globalLogin().then(
+        (res0) => {
+          interact.getStatusOrgActs('unstart', this.data.orgId).then(
+            res1 => {
+                this.setData({
+                    unstartActList : res1.data
+                })
           })
-          if (res.data.avatar != null) {
+          interact.getStatusOrgActs('cur', this.data.orgId).then(
+              res2 => {
+                  this.setData({
+                      curActList : res2.data
+                  })
+          })
+          interact.getStatusOrgActs('end', this.data.orgId).then(
+              res3 => {
+                  this.setData({
+                      endActList : res3.data
+                  })
+          })
+
+          if (this.data.orgId == -1) {
+            
             this.setData({
-              orgPicUrl : res.data.avatar,
+              orgName: "博雅活动",
+              orgPicUrl : "/icon/boya.png",
+              isRealOrg : false
             })
+            return
           }
-        }
-      )
+          else if (this.data.orgId == -2) {
+            this.setData({
+              orgName: "个人活动",
+              orgPicUrl : "/icon/person.png",
+              isRealOrg : false
+            })
+            return
+          }
+          // 非个人活动列表和博雅活动列表
+          else {
+            interact.getOrgInfo(this.data.orgId).then(
+              (res) => {
+                this.setData({
+                  orgName : res.data.name,
+                  orgInfo : {
+                    description : res.data.description,
+                    create_time : res.data.create_time.split("T")[0],
+                    belong_forum : res.data.block,
+                    avatar : res.data.avatar,
+                    owner: res.data.owner
+                  }
+                })
+                if (res.data.avatar != null) {
+                  this.setData({
+                    orgPicUrl : res.data.avatar,
+                  })
+                }
+            })
 
-      interact.getUserOrgRelation(this.data.orgId).then(
-        (res) => {
-          this.setData({
-            hasFollowed : res.data.isFollower,
-            isManager : res.data.isManager,
-            isOwner : res.data.isOwner
-          })
-        }
-      )
+            interact.getUserOrgRelation(this.data.orgId).then(
+              (res) => {
+                this.setData({
+                  hasFollowed : res.data.isFollower,
+                  isManager : res.data.isManager,
+                  isOwner : res.data.isOwner
+                })
+            })
 
-      interact.getOrgAdmins(this.data.orgId).then(
-        (res) => {
-          this.setData({
-            memList: res.data
-          })
-        }
-      )
+            interact.getOrgAdmins(this.data.orgId).then(
+              (res) => {
+                this.setData({
+                  memList: res.data
+                })
+              }
+          )
+          }
+        })
     },
 
     panel: function (e) {

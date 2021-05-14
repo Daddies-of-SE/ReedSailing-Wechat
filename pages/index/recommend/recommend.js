@@ -16,31 +16,32 @@ Page({
     },
 
     onLoad: function (options) {
-      const login = require("../../../utils/login.js")
+      // const login = require("../../../utils/login.js")
       // login.registerInfo().then(
       //   util.debug("asdasdas")
       // )
 
-      if (app.loginData.userId != -1) {
-        interact.getRecommendActs().then(
-          (res) => {
-              var lst = []
-              for (var i = 0; i < 10; i++) {
-                  var v = res.data[i]
-                  v.pub_time = res.data[i].pub_time.split(".")[0].replace("T", " ")
-                  v.begin_time = res.data[i].begin_time.replace("T", " ")
-                  v.end_time = res.data[i].end_time.replace("T", " ")
-                  lst.push(v)
-              }
+      // if (app.loginData.userId != -1) {
+      //   interact.getRecommendActs().then(
+      //     (res) => {
+      //         var lst = []
+      //         for (var i = 0; i < 10; i++) {
+      //             var v = res.data[i]
+      //             v.pub_time = res.data[i].pub_time.split(".")[0].replace("T", " ")
+      //             v.begin_time = res.data[i].begin_time.replace("T", " ")
+      //             v.end_time = res.data[i].end_time.replace("T", " ")
+      //             v.relative_pub_time = util.getRelativeTime(v.pub_time)
+      //             console.warn(v.relative_pub_time)
+      //             lst.push(v)
+      //         }
               
-              this.setData({
-                act_list : lst
-              })
-        })
-      }
+      //         this.setData({
+      //           act_list : lst
+      //         })
+      //   })
+      // }
 
-      else {
-      login.newLogin().then(
+      getApp().globalLogin().then(
         (res) => {
           this.setData({
               havelogin : app.haveRegistered(),
@@ -62,6 +63,7 @@ Page({
                   v.pub_time = res.data[i].pub_time.split(".")[0].replace("T", " ")
                   v.begin_time = res.data[i].begin_time.replace("T", " ")
                   v.end_time = res.data[i].end_time.replace("T", " ")
+                  v.relative_pub_time = util.getRelativeTime(v.pub_time)
                   lst.push(v)
               }
               
@@ -70,11 +72,11 @@ Page({
               })
           })
         }
-      )}
+      )
 
       /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
-      this.setData({
-            org_list : [
+      // this.setData({
+      //       org_list : [
                 // {
                 //     org:{name: "高工足球队",
                 //     avator: "/icon/gaogong_football.png",}
@@ -96,9 +98,9 @@ Page({
                 //     avator: "/icon/sample.png",}
                 // },
                
-            ], 
+            // ], 
 
-            act_list : [
+            // act_list : [
                 // {
                 //     type : "activity",
                 //     org_name : "高工足球队",
@@ -122,9 +124,9 @@ Page({
                 //     act_place : "教（一） 307",
                 //     body : "阿巴阿巴",
                 // },
-            ]
+        //     ]
 
-        })
+        // })
     },
 
     onShow: function (e) {

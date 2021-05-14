@@ -118,6 +118,7 @@ Page({
                     v.pub_time = res.data[i].pub_time.split(".")[0].replace("T", " ")
                     v.begin_time = res.data[i].begin_time.replace("T", " ")
                     v.end_time = res.data[i].end_time.replace("T", " ")
+                    v.relative_pub_time = util.getRelativeTime(v.pub_time)
                     lst.push(v)
                 }
                 

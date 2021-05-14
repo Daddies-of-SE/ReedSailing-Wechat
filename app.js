@@ -71,15 +71,33 @@ App({
 
     wx.setStorageSync('logs', logs)
 
-    login.newLogin().then(
-      res => {
-        // wx.hideToast({
-        //   success: (res) => {},
-        // })
-        // login.consistentAskingGetUserProfile()
-      }
-    )
+    // 考虑通过二维码直接进入某一界面的情况，不能只允许recommend页面进行newLogin
+    // this.globalLogin().then(
+    //   res => {
+    //     // wx.hideToast({
+    //     //   success: (res) => {},
+    //     // })
+    //     // login.consistentAskingGetUserProfile()
+    //   }
+    // )
 
+    // console.log(util.getRelativeTime("2020-12-01 01:18"))
+
+    
+  },
+
+  globalLogin() {
+    return new Promise( (resolve, reject) => {
+      if (this.loginData.userId == -1) {
+        login.newLogin().then(
+          (res) => {
+            resolve()
+          }
+        )
+      } else {
+        resolve()
+      }
+    })
     
   },
 
