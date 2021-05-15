@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/index/recommend/recommend",
-    "pages/index/index-map/index-map",
-    "pages/follows/follows-home/follows-home",
+    "pages/index/index",
+    "pages/follows/follows",
     "pages/my/my-home/my-home",
     "pages/schedule/schedule",
     "pages/sections/sections-home/sections-home",
@@ -38,7 +37,7 @@
       {
         "iconPath": "icon/home-outline.png",
         "selectedIconPath": "icon/home.png",
-        "pagePath": "pages/index/recommend/recommend",
+        "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
@@ -50,7 +49,7 @@
       {
         "iconPath": "icon/heart-circle-outline.png",
         "selectedIconPath": "icon/heart-circle.png",
-        "pagePath": "pages/follows/follows-home/follows-home",
+        "pagePath": "pages/follows/follows",
         "text": "关注"
       },
       {

@@ -26,12 +26,17 @@
 
         <view class="organizer"><span class="_infor_head">状态：</span>{{!hasBegun ? "未开始" : hasEnded ? "已结束" : "进行中"}}</view>
         <view class="organizer"><span class="_infor_head">地点：</span> {{actInfo.location? actInfo.location.name : "暂无信息"}}</view>
+
+        
+
         <view class="organizer"><span class="_infor_head">人数：</span>{{currentNumPeople}} / {{actInfo.contain}}</view>
 
         <view class="organizer"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view>
         <view class="organizer"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
         <!-- <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view> -->
         <view class="organizer"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" readonly allow-half model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>
+
+  
       </view>
       <view wx:if="{{isManager}}" slot="footer">
         <view class="bottom-right" bind:tap="goParticipants">
@@ -47,9 +52,17 @@
                   <view style="font-size: 35rpx;" hover-class="weui-cell_active">删除活动</view>
         </view>
       </view>
+      
     </i-card>
+    
 </view>
 
+<map id="myMap"
+  style="width: 100%; height: 30%;"
+  latitude="{{latitude}}"
+  longitude="{{longitude}}"
+  markers="{{markers}}"
+></map>
 
 <!--评论区-->
 <view class="comment-header">
@@ -63,6 +76,13 @@
 
 <view class="msg-wrap comment-wrap">
   <scroll-view scroll-y="true" class="nav">
+    <view class="msg-item" wx:if="{{comment_list.length == 0}}">
+      <i-card i-class="card-demo">
+        <view slot="content">
+          <view>暂无评论</view>
+        </view>
+      </i-card>
+    </view>
     <view class="msg-item" wx:for="{{comment_list}}" wx:key='id'>
       <i-card i-class="card-demo" title="{{item.user.name}}" extra="{{item.publish_time}}" thumb="{{item.user.avator}}">
         <view slot="content">

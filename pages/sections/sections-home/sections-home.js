@@ -69,7 +69,7 @@ Page({
     onShareAppMessage: function (res) {
         return {
           title: app.shareData.title,
-          path: 'pages/index/recommend/recommend',
+          path: 'pages/index/index',
           imageUrl: app.shareData.imageUrl,
           success: function (res) {
             wx.showToast({

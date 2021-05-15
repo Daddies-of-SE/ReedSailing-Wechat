@@ -5,10 +5,6 @@ const chooseLocation = requirePlugin('chooseLocation');
 
 const key = 'GEUBZ-V2TRO-SEPW7-S3UZV-QJDE6-OUFE4'; //使用在腾讯位置服务申请的key
 const referer = '一苇以航-地图'; //调用插件的app的名称
-const location = JSON.stringify({
-  latitude: 39.89631551,
-  longitude: 116.323459711
-});
 const category = '生活服务';
 
 Page({
@@ -325,7 +321,7 @@ Page({
 
     toMap : function() {
         wx.navigateTo({
-            url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer + '&location=' + location + '&category=' + category
+            url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer + '&location=' + JSON.stringify(getApp().buaaLocation) + '&category=' + category
         });
         // this.setData({
         //     haveLocation : true

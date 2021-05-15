@@ -14,12 +14,6 @@ App({
     avatar : '',
     contact : ''
   },
-  userData: {
-    // followOrgs: [],
-    // followOrgInfo: [],
-    // controlOrgs: [],
-    // controlActs: []
-  },
   forumList : [
     {
         id : 1,
@@ -60,6 +54,11 @@ App({
   shareData : {
     title : "一苇以航活动发布社交平台",
     imageUrl: 'https://www.hualigs.cn/image/609625f87beca.jpg',
+  },
+
+  buaaLocation : {
+    latitude: 39.981891,
+    longitude: 116.347256
   },
 
   onLaunch() {
