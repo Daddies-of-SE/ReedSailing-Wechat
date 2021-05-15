@@ -97,7 +97,7 @@ App({
       }
     )
 
-    console.log(util.getRelativeTime("2020-12-01 01:18"))
+    // console.log(util.getRelativeTime("2020-12-01 01:18"))
 
     // set up socket link
 

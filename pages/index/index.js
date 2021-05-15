@@ -14,8 +14,8 @@ Page({
         org_list : null,
         act_list : null,
         current : "tab1",
-        longitude: 40,
-        latitude : 116,
+        longitude: 116,
+        latitude : 40,
         markers : []
     },
 
@@ -48,39 +48,6 @@ Page({
       //         })
       //   })
       // }
-
-      getApp().globalLogin().then(
-        (res) => {
-          this.setData({
-              havelogin : app.haveRegistered(),
-              info : JSON.stringify(app.loginData.nickName)
-          })
-          interact.getRecommendOrgs().then(
-            (res) => {
-                this.setData({
-                  org_list : res.data.slice(0,10)
-                })
-            }
-        )
-  
-        interact.getRecommendActs().then(
-          (res) => {
-              var lst = []
-              for (var i = 0; i < 10; i++) {
-                  var v = res.data[i]
-                  v.pub_time = res.data[i].pub_time.split(".")[0].replace("T", " ")
-                  v.begin_time = res.data[i].begin_time.replace("T", " ")
-                  v.end_time = res.data[i].end_time.replace("T", " ")
-                  v.relative_pub_time = util.getRelativeTime(v.pub_time)
-                  lst.push(v)
-              }
-              
-              this.setData({
-                act_list : lst
-              })
-          })
-        }
-      )
 
       /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
       // this.setData({
@@ -144,7 +111,48 @@ Page({
               info : JSON.stringify(app.loginData.nickName)
           })
       }
-        
+      
+      getApp().globalLogin().then(
+        (res) => {
+          this.setData({
+              havelogin : app.haveRegistered(),
+              info : JSON.stringify(app.loginData.nickName)
+          })
+          interact.getRecommendOrgs().then(
+            (res) => {
+                this.setData({
+                  org_list : res.data.slice(0,10)
+                })
+            }
+        )
+  
+        interact.getRecommendActs().then(
+          (res) => {
+              var lst = []
+              var locations = []
+              for (var i = 0; i < 10; i++) {
+                  var v = res.data[i]
+                  v.pub_time = v.pub_time.split(".")[0].replace("T", " ")
+                  v.begin_time = v.begin_time.replace("T", " ")
+                  v.end_time = v.end_time.replace("T", " ")
+                  v.relative_pub_time = util.getRelativeTime(v.pub_time)
+                  lst.push(v)
+                  locations.push({
+                    id: v.id,
+                    latitude: v.location.latitude,
+                    longitude: v.location.longitude,
+                    name: v.name,
+                    callout : {content : v.name}
+                  })
+              }
+              
+              this.setData({
+                act_list : lst,
+                markers : locations
+              })
+          })
+        }
+      )
     },
 
     // callLogin: function (e) {
@@ -190,4 +198,10 @@ Page({
           current: detail.key
       });
     },
+
+    goMarker (e) {
+      wx.navigateTo({
+        url: `../sections/act-detail/act-detail?actId=${e.detail.markerId}`,
+      })
+    }
 })

@@ -27,7 +27,6 @@
         <view class="organizer"><span class="_infor_head">状态：</span>{{!hasBegun ? "未开始" : hasEnded ? "已结束" : "进行中"}}</view>
         <view class="organizer"><span class="_infor_head">地点：</span> {{actInfo.location? actInfo.location.name : "暂无信息"}}</view>
 
-        
 
         <view class="organizer"><span class="_infor_head">人数：</span>{{currentNumPeople}} / {{actInfo.contain}}</view>
 
@@ -57,8 +56,8 @@
     
 </view>
 
-<map id="myMap"
-  style="width: 100%; height: 30%;"
+<map id="detailMap"
+  style="width: 100%; height: 30%; "
   latitude="{{latitude}}"
   longitude="{{longitude}}"
   markers="{{markers}}"
