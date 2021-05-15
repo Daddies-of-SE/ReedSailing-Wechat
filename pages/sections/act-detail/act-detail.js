@@ -64,6 +64,9 @@ Page({
       isManager: false,
       isOwner: false,
       comment_list: [],
+      longitude: 116,
+      latitude : 40,
+      markers : [],
     //   comment_list : [
     //     {
     //       user : {
@@ -87,7 +90,7 @@ Page({
     //     }
     //   ],
 
-      likeUrl : "/icon/like.png"
+      // likeUrl : "/icon/like.png"
     },
 
     goCreateComment: function() {
@@ -136,25 +139,22 @@ Page({
       })
     },
 
-    like: function (options) {
-      //TODO
-      wx.request({
-        url: 'url',
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          console.log(res) //控制台打印
-          this.setData({
-            //TODO: newurl for like
-            likeUrl: "newUrl"
-          })
-        }
-      })
-    },
+    // like: function (options) {
+    //   wx.request({
+    //     url: 'url',
+    //     header: {
+    //       'content-type': 'application/json'
+    //     },
+    //     success: res => {
+    //       console.log(res) //控制台打印
+    //       this.setData({
+    //         likeUrl: "newUrl"
+    //       })
+    //     }
+    //   })
+    // },
     
     // reply: function (options) {
-    //   //TODO
     //   wx.request({
     //     url: 'url',
     //     header: {
@@ -176,6 +176,8 @@ Page({
       this.setData({
         actId: options.actId,
         userId: app.loginData.userId,
+        longitude: app.buaaLocation.longitude,
+        latitude: app.buaaLocation.latitude
       })
     },
 
@@ -202,7 +204,15 @@ Page({
               }
               this.setData({
                 actInfo: r,
-                pub_time : util.getRelativeTime(r.pub_time)
+                pub_time : util.getRelativeTime(r.pub_time),
+                latitude: r.location.latitude,
+                longitude: r.location.longitude,
+                markers : [{
+                  id: 1,
+                  latitude: r.location.latitude,
+                  longitude: r.location.longitude,
+                  name: r.name
+                }]
               })
             }
           )

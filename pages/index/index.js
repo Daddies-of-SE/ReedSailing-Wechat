@@ -1,6 +1,6 @@
 const app = getApp()
-const interact = require("../../../utils/interact.js")
-const util = require("../../../utils/util.js")
+const interact = require("../../utils/interact.js")
+const util = require("../../utils/util.js")
 
 // pages/index/recommend.js
 Page({
@@ -13,9 +13,17 @@ Page({
         info : "",
         org_list : null,
         act_list : null,
+        current : "tab1",
+        longitude: 40,
+        latitude : 116,
+        markers : []
     },
 
     onLoad: function (options) {
+      this.setData({
+        longitude: app.buaaLocation.longitude,
+        latitude: app.buaaLocation.latitude
+      })
       // const login = require("../../../utils/login.js")
       // login.registerInfo().then(
       //   util.debug("asdasdas")
@@ -154,20 +162,20 @@ Page({
     
     toOrg(e) {
         wx.navigateTo({
-          url: `../../sections/act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
+          url: `../sections/act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
         })
     },
 
     toActivity(e) {
       wx.navigateTo({
-        url: `../../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
+        url: `../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
       })
     },
 
     onShareAppMessage: function (res) {
       return {
         title: app.shareData.title,
-        path: 'pages/index/recommend/recommend',
+        path: 'pages/index/index',
         imageUrl: app.shareData.imageUrl,
         success: function (res) {
           wx.showToast({
@@ -175,5 +183,11 @@ Page({
           })
         }
       }
+    },
+
+    handleChange ({ detail }) {
+      this.setData({
+          current: detail.key
+      });
     },
 })

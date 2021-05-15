@@ -1033,3 +1033,25 @@ module.exports.createActCategory = function (name) {
     })
   })
 }
+
+module.exports.createActAddress = function (name, long, lat, isNew) {
+  if (!isNew) {
+    return new Promise((resolve, reject) => {
+      resolve()
+    })
+  }
+  return new Promise((resolve, reject) => {
+    post_request(`activities/addresses/`, 
+      {
+        name : name,
+        longitude : long,
+        latitude : lat
+      },
+      {
+        func: module.exports.createActAddress,
+        funcName: 'createActAddress',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}

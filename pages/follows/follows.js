@@ -1,6 +1,6 @@
 const app = getApp()
-const util = require("../../../utils/util.js")
-const interact = require("../../../utils/interact.js")
+const util = require("../../utils/util.js")
+const interact = require("../../utils/interact.js")
 
 // pages/follows/follows-home/follows-home.js
 Page({
@@ -17,7 +17,6 @@ Page({
     onLoad: function (options) {
         /*应该从后端获取数据，这里手动设置数据，便于查看效果*/
 
-        //TODO
         this.setData({
         //     org_list : [
         //         {
@@ -78,7 +77,7 @@ Page({
 
     toOrg(e) {
         wx.navigateTo({
-            url: `../../sections/act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
+            url: `../sections/act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
         })
     },
 
@@ -143,14 +142,14 @@ Page({
 
     toActivity(e) {
         wx.navigateTo({
-            url: `../../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
+            url: `../sections/act-detail/act-detail?actId=${e.currentTarget.dataset.actid}`,
         })
     },
 
     onShareAppMessage: function (res) {
         return {
           title: app.shareData.title,
-          path: 'pages/index/recommend/recommend',
+          path: 'pages/index/index',
           imageUrl: app.shareData.imageUrl,
           success: function (res) {
             wx.showToast({
