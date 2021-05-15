@@ -20,6 +20,8 @@ App({
     // controlOrgs: [],
     // controlActs: []
   },
+  // allNotifList : [],
+  unreadNotifList : [],
   forumList : [
     {
         id : 1,
@@ -54,9 +56,11 @@ App({
     },
 
   ],
-  // server : 'https://www.reedsailing.xyz/api/',
+  server : 'https://www.reedsailing.xyz/api/',
+  ws_werver: 'wss://www.reedsailing.xyz/ws/',
   // server : 'http://rs.test/',
-  server : 'http://127.0.0.1:8000/api/',
+  // server : 'http://127.0.0.1:8000/api/',
+  // ws_werver: 'ws://127.0.0.1:8000/ws/',
 
   shareData : {
     title : "一苇以航活动发布社交平台",
@@ -73,32 +77,35 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 考虑通过二维码直接进入某一界面的情况，不能只允许recommend页面进行newLogin
-    // this.globalLogin().then(
-    //   res => {
-    //     // wx.hideToast({
-    //     //   success: (res) => {},
-    //     // })
-    //     // login.consistentAskingGetUserProfile()
-    //   }
-    // )
+    this.globalLogin().then(
+      res => {
+        // wx.hideToast({
+        //   success: (res) => {},
+        // })
+        // login.consistentAskingGetUserProfile()
+        wx.connectSocket({
+          url: this.ws_werver + `link/${this.loginData.userId}/`,
+          timeout: 1000,
+          success: res=>{
+            console.log("创建socket连接成功")
+            console.log(res)
+          },
+          fail: res=>{
+            console.log('创建socket连接失败')
+            console.log(res)
+          }
+        })
+      }
+    )
 
-    // console.log(util.getRelativeTime("2020-12-01 01:18"))
+    console.log(util.getRelativeTime("2020-12-01 01:18"))
 
     // set up socket link
-    wx.connectSocket({
-      url: this.server + 'link/',
-      // timeout: 10000，
-      success: res=>{
-        console.log("socket连接成功")
-      },
-      fail: res=>{
-        console.log('socket连接失败')
-        console.log(res)
-      }
-    })
+
 
      //连接成功
      wx.onSocketOpen(function() {
+      console.log("websocket连接服务器成功")
       wx.sendSocketMessage({
         data: 'This is a test from the client',
       })
@@ -106,7 +113,8 @@ App({
 
     //接收数据
     wx.onSocketMessage(function(data) {
-        console.log(data.data);
+        console.log('服务器返回的数据: ' + data.data);
+        // this.notificationList = 
     })
 
   },

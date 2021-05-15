@@ -21,7 +21,8 @@
     "pages/sections/act-detail/new-comment/new-comment",
     "pages/sections/act-detail/participants/participants",
     "pages/sections/user-info/user-info",
-    "pages/my/msg-list/msg-list"
+    "pages/my/msg-list/msg-list",
+    "pages/my/my-notif/my-notif"
   ],
   "window": {
     "backgroundTextStyle": "light",
