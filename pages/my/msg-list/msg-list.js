@@ -1,4 +1,4 @@
-// pages/sections/org-list/search/search.js
+// pages/my/msg-list/msg-list.js
 Page({
 
   /**
@@ -56,4 +56,11 @@ Page({
   onReachBottom: function () {
 
   },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

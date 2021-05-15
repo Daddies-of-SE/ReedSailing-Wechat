@@ -177,65 +177,67 @@ Page({
         actId: options.actId,
         userId: app.loginData.userId,
       })
-
-     
     },
 
     onShow: function() {
-      interact.getActInfo(this.data.actId).then(
-        (res) => {
-          var r = res.data
-          r.pub_time = util.getTimeMinute(r.pub_time)
-          r.begin_time = util.getTimeMinute(r.begin_time)
-          r.end_time = util.getTimeMinute(r.end_time)
-          var begin_time = new Date(Date.parse(r.begin_time))
-          var end_time = new Date(Date.parse(r.end_time))
-          if (begin_time < new Date()) {
-            this.setData({
-              hasBegun : true
-            })
-          }
-          if (end_time < new Date()) { 
-            this.setData({
-              hasEnded : true
-            })
-          }
-          this.setData({
-            actInfo: r
-          })
-        }
-      )
+      getApp().globalLogin().then(
+        (res0) =>{
+          interact.getActInfo(this.data.actId).then(
+            (res) => {
+              var r = res.data
+              r.pub_time = util.getTimeMinute(r.pub_time)
+              r.begin_time = util.getTimeMinute(r.begin_time)
+              r.end_time = util.getTimeMinute(r.end_time)
+              var begin_time = new Date(Date.parse(r.begin_time))
+              var end_time = new Date(Date.parse(r.end_time))
+              if (begin_time < new Date()) {
+                this.setData({
+                  hasBegun : true
+                })
+              }
+              if (end_time < new Date()) { 
+                this.setData({
+                  hasEnded : true
+                })
+              }
+              this.setData({
+                actInfo: r,
+                pub_time : util.getRelativeTime(r.pub_time)
+              })
+            }
+          )
 
-      interact.getActNumPeople(this.data.actId).then(
-        (res) => {
-          this.setData({
-            currentNumPeople : res.data.number
-          })
-        }
-      )
+          interact.getActNumPeople(this.data.actId).then(
+            (res) => {
+              this.setData({
+                currentNumPeople : res.data.number
+              })
+            }
+          )
 
-      interact.getActComments(this.data.actId).then(
-        (res) => {
-          var score_sum = 0
-          for (var i = 0; i < res.data.length; i++) {
-            score_sum += parseFloat(res.data[i].score)
-          }
-          this.setData({
-            comment_list : res.data,
-            avg_score : score_sum / res.data.length
-          })
-        }
-      )
+          interact.getActComments(this.data.actId).then(
+            (res) => {
+              var score_sum = 0
+              for (var i = 0; i < res.data.length; i++) {
+                score_sum += parseFloat(res.data[i].score)
+              }
+              this.setData({
+                comment_list : res.data,
+                avg_score : score_sum / res.data.length
+              })
+            }
+          )
 
-      interact.getUserActRelation(this.data.actId).then(
-        (res) => {
-          this.setData({
-            hasJoined : res.data.hasJoined,
-            isOwner: res.data.isOwner,
-            isManager : res.data.isManager
-          })
-        }
-      )
+          interact.getUserActRelation(this.data.actId).then(
+            (res) => {
+              this.setData({
+                hasJoined : res.data.hasJoined,
+                isOwner: res.data.isOwner,
+                isManager : res.data.isManager
+              })
+            }
+          )
+        })
     },
 
     //加入活动
@@ -345,4 +347,35 @@ Page({
         }
       }
     },
+
+    goOrg: function () {
+      wx.navigateTo({
+        url: `../act-list/act-list?orgId=${this.data.actInfo.org.id}`,
+      })
+    },
+
+    goBlock: function () {
+      var forumId = this.data.actInfo.block.id
+      if (forumId == 2) {
+        wx.navigateTo({
+          url: `../act-list/act-list?orgId=-1`,
+        })
+      }
+      else if (forumId == 5) {
+        wx.navigateTo({
+          url: `../act-list/act-list?orgId=-2`,
+        })
+      }
+      else {
+        wx.navigateTo({
+          url: `../org-list/org-list?forumId=${forumId}&forumName=${forumId == 1 ? "社团" : forumId == 3 ? "学生会" : "志愿"}`,
+        })
+      }
+    },
+
+    goOwner: function () {
+      wx.navigateTo({
+        url: `../user-info/user-info?userId=${this.data.actInfo.owner.id}`,
+      })
+    }
 })

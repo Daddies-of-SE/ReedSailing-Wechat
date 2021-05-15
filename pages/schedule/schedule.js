@@ -269,16 +269,16 @@ Page({
     });
   },
 
-  callLogin: function (e) {
-    if (!app.haveRegistered()) {
-      const login = require("../../utils/login.js")
-      login.registerInfo().then(
-          this.setData({
-              havelogin: true
-          })
-      )
-    }
-  },
+  // callLogin: function (e) {
+  //   if (!app.haveRegistered()) {
+  //     const login = require("../../utils/login.js")
+  //     login.registerInfo().then(
+  //         this.setData({
+  //             havelogin: true
+  //         })
+  //     )
+  //   }
+  // },
 
   goAct: function(e) {
     wx.navigateTo({

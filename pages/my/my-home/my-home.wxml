@@ -11,6 +11,7 @@
         <open-data type="userAvatarUrl"></open-data>
       </view>
         <text class="userinfo-nickname">{{nickName}}</text>
+        <text class="userinfo-motto">{{motto}}</text>
     </view>
     <view wx:elif="{{!hasUserInfo}}">
       <button wx:if="{{canIUseGetUserProfile}}" bind:tap="getUserProfile"> 获取头像昵称 </button>

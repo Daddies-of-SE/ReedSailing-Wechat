@@ -20,7 +20,8 @@ module.exports.saveLoginData = function (resData) {
     userId : resData.id,
     nickName : resData.name,
     motto : resData.sign,
-    avatar : resData.avatar
+    avatar : resData.avatar,
+    contact: resData.contact
   }
   // util.debug("save login data: " + JSON.stringify(dt))
   if (dt.email == null) {
@@ -141,6 +142,7 @@ function login_(options) {
       success: function (res) {
         //如果返回数据存在token则记录并返回token
         // util.debug("res" + JSON.stringify(res))
+        console.log("login_返回体", res.data)
         if (res.data.token) {
           module.exports.saveLoginData(res.data)
           util.debug("登录成功, id: " + res.data.id)
@@ -313,8 +315,8 @@ module.exports.register_ = function (userInfo) {
         userInfo: userInfo
       },
       {
-        func: module.exports.registerInfo,
-        funcName: 'registerInfo',
+        func: module.exports.register_,
+        funcName: 'register_',
         reject: reject,
         resolve: resolve
       }
@@ -322,50 +324,50 @@ module.exports.register_ = function (userInfo) {
   })
 }
 
-module.exports.registerInfo = function () {
-  if (!app) {
-    app = getApp()
-  }
-  return new Promise((resolve, reject) => {
-    wx.getUserProfile({
-      desc : '用于完善资料',
-      success : (res1) => {
-        module.exports.register_(res1.userInfo).then(
-          res => {
-            if (res.data.status == 0) {
-              wx.showToast({
-                title: '注册成功',
-                icon: 'success'
-              })
-              module.exports.saveLoginData({
-                token: app.loginData.token,
-                email : app.loginData.email,
-                userExist : 1,
-                id : app.loginData.userId,
-                name : res1.userInfo.nickName,
-                sign : app.loginData.motto,
-                avatar : res1.userInfo.avatarUrl
-              })
-            }
-          }
-        )
-      }
-    })
-  })
-}
+// module.exports.registerInfo = function () {
+//   if (!app) {
+//     app = getApp()
+//   }
+//   return new Promise((resolve, reject) => {
+//     wx.getUserProfile({
+//       desc : '用于完善资料',
+//       success : (res1) => {
+//         module.exports.register_(res1.userInfo).then(
+//           res => {
+//             if (res.data.status == 0) {
+//               wx.showToast({
+//                 title: '注册成功',
+//                 icon: 'success'
+//               })
+//               module.exports.saveLoginData({
+//                 token: app.loginData.token,
+//                 email : app.loginData.email,
+//                 userExist : 1,
+//                 id : app.loginData.userId,
+//                 name : res1.userInfo.nickName,
+//                 sign : app.loginData.motto,
+//                 avatar : res1.userInfo.avatarUrl
+//               })
+//             }
+//           }
+//         )
+//       }
+//     })
+//   })
+// }
 
-module.exports.consistentAskingGetUserProfile = function () {
-  wx.showModal({
-    content : "需要注册才能继续使用",
-    showCancel : false,
-    success (res) {
-      wx.getUserProfile({
-        desc : '用于完善资料',
-        success : (res1) => {  
-          util.debug("授权成功")
-        },
-        fail : module.exports.consistentAskingGetUserProfile
-      })
-    }
-  })
-}
+// module.exports.consistentAskingGetUserProfile = function () {
+//   wx.showModal({
+//     content : "需要注册才能继续使用",
+//     showCancel : false,
+//     success (res) {
+//       wx.getUserProfile({
+//         desc : '用于完善资料',
+//         success : (res1) => {  
+//           util.debug("授权成功")
+//         },
+//         fail : module.exports.consistentAskingGetUserProfile
+//       })
+//     }
+//   })
+// }

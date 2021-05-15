@@ -20,20 +20,27 @@ Page({
 
     actions : [
       {
+        name : '查看',
+        color : '#80848f',
+        width : 100,
+        fontsize : '20',
+        // icon : 'group'
+      },
+      {
+        name : '转让',
+        color : '#80848f',
+        width : 100,
+        fontsize : '20',
+        icon : 'group'
+      },
+      {
         name : '移除',
         color : '#fff',
         fontsize : '20',
         width : 100,
         icon : 'delete',
         background : '#ed3f14'
-    },
-    {
-        name : '转让',
-        color : '#80848f',
-        width : 100,
-        fontsize : '20',
-        icon : 'group'
-    }
+      },
     ]
   },
 
@@ -115,7 +122,7 @@ Page({
 
   handleSwipeClick: function(e) {
     let index = e.detail.index
-    if (index == 0){
+    if (index == 2){
       // util.debug("click left")
       this.deleteMem(e)
     }
@@ -123,6 +130,15 @@ Page({
       // util.debug("click right")
       this.changeOwner(e)
     }
+    else if (index == 0) {
+      this.goUser(e.currentTarget.dataset.personid)
+    }
+  },
+
+  goUser: function (userid) {
+    wx.navigateTo({
+      url: `../../user-info/user-info?userId=${userid}`,
+    })
   },
 
   deleteMem: function(e) {

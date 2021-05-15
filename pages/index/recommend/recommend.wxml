@@ -2,6 +2,13 @@
 
 <!-- <view wx:if="{{!havelogin}}" class="hover-login" capture-catch:tap="callLogin"></view> -->
 
+<wxs module="ut">
+  var sub = function(val) {
+    return val.slice(0, 5)
+  }
+  module.exports.sub = sub;
+</wxs>
+
 <!--recommend-orgs-->
 <view class="org-wrap">
   <view class="header">
@@ -19,7 +26,7 @@
       <block wx:else> 
         <image class="org-avator" src="/icon/person.png"></image>
       </block>
-      <text class="org-name">{{item.name}}</text>
+      <text class="org-name">{{item.name.length <= 6 ? item.name : ut.sub(item.name) + "…"}}</text>
     </view>
   </view>
 </view>
@@ -32,7 +39,7 @@
 <view class="msg-wrap">
   <scroll-view scroll-y="true" class="nav">
     <view class="msg-item" wx:for="{{act_list}}" wx:key='id'>
-      <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}" bindtap="toActivity" data-actid="{{item.id}}">
+      <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.relative_pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}" bindtap="toActivity" data-actid="{{item.id}}">
       <!-- TODO: 上一行avatar换成活动图片 -->
         <view slot="content">
           <text calss="title">{{item.name}}</text>
