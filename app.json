@@ -20,7 +20,8 @@
     "pages/sections/org-list/search/search",
     "pages/sections/act-detail/new-comment/new-comment",
     "pages/sections/act-detail/participants/participants",
-    "pages/sections/user-info/user-info"
+    "pages/sections/user-info/user-info",
+    "pages/my/msg-list/msg-list"
   ],
   "window": {
     "backgroundTextStyle": "light",

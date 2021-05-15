@@ -3,8 +3,8 @@
 
 <van-cell-group>
     <view wx:if="{{verifiedEmail != ''}}">
-      <van-cell title="我的用户id" value=" {{userId}}" />
-      <van-cell title="认证邮箱" value="{{verifiedEmail}}" border="{{ false }}"/>
+      <van-cell class="valueleft" title="我的用户id" value=" {{userId}}" />
+      <van-cell class="valueleft" title="认证邮箱" value="{{verifiedEmail}}" border="{{ false }}"/>
     </view>
 </van-cell-group>
 
@@ -16,6 +16,7 @@
       placeholder="请输入北航邮箱地址"
       bindinput="inputEmailHandler"
       border="{{ true }}"
+      style="color:black"
     >
   </van-field>
   <text class="email-pattern">@buaa.edu.cn</text>
@@ -34,6 +35,7 @@
       placeholder="请输入邮箱验证码"
       bindinput="inputVerifyCodeHandler"
       border="{{ true }}"
+      style="color:black"
     >
   </van-field>
   <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitCertificate">提交验证</van-button>
@@ -48,18 +50,30 @@
         placeholder="{{nickName}}"
         bindinput="inputNickNameHandler"
         border="{{ true }}"
+        style="color:black"
       >
   </van-field>
 
   <van-field
-        center
         clearable
         label="个人描述"
         placeholder="{{motto}}"
         bindinput="inputMottoHandler"
         border="{{ false }}"
+        style="color:black"
       >
   </van-field>
+
+  <van-field
+        clearable
+        label="联系方式"
+        placeholder="{{contact}}"
+        bindinput="inputContactHandler"
+        border="{{ false }}"
+        style="color:black"
+      >
+  </van-field>
+
 
   <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitUserInfo">修改个人信息</van-button>
 </view>

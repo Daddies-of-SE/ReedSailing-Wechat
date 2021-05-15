@@ -16,10 +16,12 @@ Page({
     inputVerifyCode : "",
     inputNickName : "",
     inputMotto : "",
+    inputContact : "",
     second : 60,
     userId : -1,
     nickName : '',
     motto : '',
+    contact : '',
   },
 
   /**
@@ -37,8 +39,10 @@ Page({
       userId : app.loginData.userId,
       nickName : app.loginData.nickName,
       motto : app.loginData.motto,
+      contact : app.loginData.contact,
       inputNickName : app.loginData.nickName,
       inputMotto : app.loginData.motto,
+      inputContact : app.loginData.contact
     })
     util.debug("user's email: " + this.data.verifiedEmail)
   },
@@ -147,7 +151,7 @@ Page({
       })
       return
     }
-    interact.updateUserInfo(this.data.inputNickName, this.data.inputMotto).then(
+    interact.updateUserInfo(this.data.inputNickName, this.data.inputMotto, this.data.inputContact).then(
       (res) => {
         if (res.statusCode == 200) {
           wx.showToast({
@@ -156,6 +160,7 @@ Page({
           })
           app.loginData.nickName = this.data.inputNickName
           app.loginData.motto = this.data.inputMotto
+          app.loginData.contact = this.data.inputContact
         } else {
           wx.showToast({
             title: '修改失败',
@@ -181,6 +186,10 @@ Page({
 
   inputMottoHandler(e) {
     this.data.inputMotto = e.detail
+  },
+
+  inputContactHandler(e) {
+    this.data.inputContact = e.detail
   },
 
   timer() {

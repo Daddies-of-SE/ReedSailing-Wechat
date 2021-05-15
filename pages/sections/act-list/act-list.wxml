@@ -46,11 +46,11 @@
       <view class='title_1'>管理员</view>
     </view>
     <view class='mem-list' wx:if="{{showIndex[1]}}">
-          <view class="mem-item" wx:for="{{memList}}">
-            <block> 
-              <image class="mem-avator" src="{{item.person.avatar}}"></image>
-            </block>
+        <view class="mem-item" wx:for="{{memList}}">
+          <view data-userid="{{item.person.id}}" bindtap="goUser"> 
+            <image class="mem-avator" src="{{item.person.avatar}}"></image>
             <text class="mem-name">{{item.person.id == orgInfo.owner.id ? item.person.name+"(负责人)" : item.person.name}}</text>
+          </view>
         </view>
     </view>
     <button class='editBtn' bindtap='editMemList' wx:if="{{isOwner && showIndex[1]}}" hover-class="weui-cell_active">编辑</button>

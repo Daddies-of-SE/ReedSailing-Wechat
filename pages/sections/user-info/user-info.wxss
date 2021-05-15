@@ -1,1 +1,55 @@
 /* pages/sections/user-info/user-info.wxss */
+
+van-button {
+  margin-left: 300rpx;
+}
+
+.relative {
+  position: relative;
+}
+
+.email-pattern {
+  position: absolute;
+  top: 28rpx;
+  right: 35rpx;
+}
+
+.van-cell__title {
+  width: 30%;
+}
+
+.valueleft .van-cell__value{
+  min-width: 70%;
+  display: inline-block;
+  text-align: left;
+  word-break: break-all;
+  color: black
+}
+
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100rpx;
+  margin-top: 100rpx;
+}
+
+  
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
+
+.userinfo-wrap {
+  position: relative;
+  height: 40%;
+  /* background-image: url('/icon/beihang_background.png'); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

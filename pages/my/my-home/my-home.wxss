@@ -27,19 +27,21 @@
 }
 
   
-  .userinfo-avatar {
-    overflow: hidden;
-    width: 128rpx;
-    height: 128rpx;
-    border-radius: 50%;
-  }
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
 
-  .userinfo-nickname {
-    text-align: center;
-    color: black;
-    font-weight: bold;
-  }
+.userinfo-nickname {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+
+.userinfo-motto {
+  text-align: center;
+  color: grey;
   
-  .usermotto {
-    text-align: center;
-  }
+}

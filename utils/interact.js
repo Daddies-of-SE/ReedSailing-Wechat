@@ -488,7 +488,7 @@ module.exports.unFollowOrg = function (org_id) {
   })
 }
 
-module.exports.updateUserInfo = function (name, sign) {
+module.exports.updateUserInfo = function (name, sign, contact) {
   if (!app) {
     app = getApp()
   }
@@ -496,7 +496,8 @@ module.exports.updateUserInfo = function (name, sign) {
     put_request(`users/${app.loginData.userId}/`,
       {
         name : name,
-        sign : sign
+        sign : sign,
+        contact: contact
       }, 
       {
         func: module.exports.updateUserInfo,

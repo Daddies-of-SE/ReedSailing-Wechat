@@ -11,7 +11,8 @@ App({
     userId : -1,
     nickName : '',
     motto : '',
-    avatar : ''
+    avatar : '',
+    contact : ''
   },
   userData: {
     // followOrgs: [],

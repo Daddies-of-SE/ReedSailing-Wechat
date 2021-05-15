@@ -1,2 +1,13 @@
 <!--pages/sections/user-info/user-info.wxml-->
-<text>pages/sections/user-info/user-info.wxml</text>
+
+<view class="userinfo">
+    <view class="userinfo-avatar" bind:tap="bindViewTap">
+      <image class="userinfo-avatar" src="{{userInfo.avatar}}"></image>
+    </view>
+  </view>
+
+
+<van-cell class="valueleft" title="用户id" value=" {{userInfo.id}}" />
+<van-cell class="valueleft" title="昵称" value=" {{userInfo.name}}" />
+<van-cell class="valueleft" title="个人描述" value=" {{userInfo.sign ? userInfo.sign : '（无）'}}" />
+<van-cell class="valueleft" title="联系方式" value=" {{userInfo.contact ? userInfo.contact : '（无）'}}" />

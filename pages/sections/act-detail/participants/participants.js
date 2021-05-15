@@ -12,13 +12,20 @@ Page({
     participantList: [],
     actions : [
       {
+        name : '查看',
+        color : '#80848f',
+        fontsize : '20',
+        width : 100,
+        // icon : 'delete',
+      },
+      {
         name : '移除',
         color : '#fff',
         fontsize : '20',
         width : 100,
         icon : 'delete',
         background : '#ed3f14'
-    },
+      },
     ]
   },
 
@@ -50,12 +57,18 @@ Page({
     let index = e.detail.index
     if (index == 0){
       // util.debug("click left")
-      this.deleteParticipant(e)
+      this.goUser(e.currentTarget.dataset.personid)
     }
     else if (index == 1) {
       // util.debug("click right")
-
+      this.deleteParticipant(e)
     }
+  },
+
+  goUser: function (userid) {
+    wx.navigateTo({
+      url: `../../user-info/user-info?userId=${userid}`,
+    })
   },
 
   deleteParticipant: function(e) {

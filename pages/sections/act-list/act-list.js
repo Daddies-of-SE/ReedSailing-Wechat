@@ -219,4 +219,10 @@ Page({
         }
       }
     },
+
+    goUser: function (e) {
+      wx.navigateTo({
+        url: `../user-info/user-info?userId=${e.currentTarget.dataset.userid}`,
+      })
+    }
 })

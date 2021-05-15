@@ -139,17 +139,17 @@ Page({
         
     },
 
-    callLogin: function (e) {
-      if (!app.haveRegistered()) {
-        const login = require("../../../utils/login.js")
-        login.registerInfo().then(
-            this.setData({
-                havelogin: true,
-                info : JSON.stringify(app.loginData.nickName)
-            })
-        )
-      }
-    },
+    // callLogin: function (e) {
+    //   if (!app.haveRegistered()) {
+    //     const login = require("../../../utils/login.js")
+    //     login.registerInfo().then(
+    //         this.setData({
+    //             havelogin: true,
+    //             info : JSON.stringify(app.loginData.nickName)
+    //         })
+    //     )
+    //   }
+    // },
 
     
     toOrg(e) {

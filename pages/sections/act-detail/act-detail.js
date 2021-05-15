@@ -371,5 +371,11 @@ Page({
           url: `../org-list/org-list?forumId=${forumId}&forumName=${forumId == 1 ? "社团" : forumId == 3 ? "学生会" : "志愿"}`,
         })
       }
+    },
+
+    goOwner: function () {
+      wx.navigateTo({
+        url: `../user-info/user-info?userId=${this.data.actInfo.owner.id}`,
+      })
     }
 })
