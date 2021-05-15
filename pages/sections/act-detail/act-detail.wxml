@@ -33,7 +33,7 @@
         <view class="organizer"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view>
         <view class="organizer"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
         <!-- <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view> -->
-        <view class="organizer"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" readonly allow-half model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>
+        <view class="organizer" wx:if="{{hasBegun}}"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" readonly allow-half model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>
 
   
       </view>
@@ -86,8 +86,8 @@
       <i-card i-class="card-demo" title="{{item.user.name}}" extra="{{item.publish_time}}" thumb="{{item.user.avator}}">
         <view slot="content">
           <view>{{item.content}}</view>
-          <view>
-          <van-rate custom-class="rate" model:value="{{ item.score }}" size="{{ 20 }}"
+          <view wx:if="{{hasBegun && item.score != 0}}">
+            <van-rate custom-class="rate" model:value="{{ item.score }}" size="{{ 20 }}"
            readonly allow-half/>
           </view>
         </view>

@@ -98,16 +98,16 @@ Page({
         getApp().goCertificate()
         return
       }
-      if (!this.data.hasBegun) {
-        wx.showToast({
-          title: '活动尚未开始，不能评论',
-          icon: 'none'
-        })
-        return
-      }
+      // if (!this.data.hasBegun) {
+      //   wx.showToast({
+      //     title: '活动尚未开始，不能评论',
+      //     icon: 'none'
+      //   })
+      //   return
+      // }
       // util.debug('tap a tap!')
       wx.navigateTo({
-        url: `./new-comment/new-comment?actId=${this.data.actId}`,
+        url: `./new-comment/new-comment?actId=${this.data.actId}&begin=${this.data.hasBegun}`,
       })
     },
 
@@ -115,7 +115,7 @@ Page({
       var commentId = e.currentTarget.dataset.commentId
       // util.debug('edited comment id is '+commentId)
       wx.navigateTo({
-        url: `./new-comment/new-comment?actId=${this.data.actId}&commentId=${commentId}`,
+        url: `./new-comment/new-comment?actId=${this.data.actId}&commentId=${commentId}&begin=${this.data.hasBegun}`,
       })
     },
 
@@ -228,12 +228,17 @@ Page({
           interact.getActComments(this.data.actId).then(
             (res) => {
               var score_sum = 0
+              var total_rates = 0
               for (var i = 0; i < res.data.length; i++) {
+                if (res.data[i].score == 0) {
+                  continue
+                }
                 score_sum += parseFloat(res.data[i].score)
+                total_rates += 1
               }
               this.setData({
                 comment_list : res.data,
-                avg_score : score_sum / res.data.length
+                avg_score : score_sum / total_rates
               })
             }
           )

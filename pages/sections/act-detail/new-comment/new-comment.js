@@ -12,6 +12,7 @@ Page({
     actId : -1,
     comment : "",
     rate : 0,
+    mustRate : false
   },
 
   bindTextAreaInput: function(e) {
@@ -31,6 +32,11 @@ Page({
     this.setData({
       actId : options.actId
     })
+    if (options.begin == "true") {
+      this.setData({
+        mustRate : true
+      })
+    }
     if (options.commentId) {  // 不要把条件写成 options.commentId != -1，因为可能的取值是undefine,条件成立
       this.setData({
         commentId : options.commentId
@@ -62,7 +68,7 @@ Page({
       })
       return
     }
-    if (this.data.rate == 0) {
+    if (this.data.rate == 0 && this.data.mustRate) {
       wx.showToast({
         title: '请评分',
         icon : 'none'
