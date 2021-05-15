@@ -136,25 +136,22 @@ Page({
       })
     },
 
-    like: function (options) {
-      //TODO
-      wx.request({
-        url: 'url',
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          console.log(res) //控制台打印
-          this.setData({
-            //TODO: newurl for like
-            likeUrl: "newUrl"
-          })
-        }
-      })
-    },
+    // like: function (options) {
+    //   wx.request({
+    //     url: 'url',
+    //     header: {
+    //       'content-type': 'application/json'
+    //     },
+    //     success: res => {
+    //       console.log(res) //控制台打印
+    //       this.setData({
+    //         likeUrl: "newUrl"
+    //       })
+    //     }
+    //   })
+    // },
     
     // reply: function (options) {
-    //   //TODO
     //   wx.request({
     //     url: 'url',
     //     header: {

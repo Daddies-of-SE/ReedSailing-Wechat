@@ -2,3 +2,30 @@
 .check-right {
   text-align: center;
 }
+
+van-button {
+  margin-left: 300rpx;
+}
+
+.relative {
+  position: relative;
+}
+
+.email-pattern {
+  position: absolute;
+  top: 28rpx;
+  right: 35rpx;
+}
+
+.van-cell__title {
+  width: 30%;
+}
+
+.valueleft .van-cell__value{
+  min-width: 70%;
+  display: inline-block;
+  text-align: left;
+  word-break: break-all;
+  color: black
+}
+

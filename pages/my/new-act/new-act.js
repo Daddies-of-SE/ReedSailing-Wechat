@@ -1,6 +1,15 @@
 // pages/my/new-act/new-act.js
 const interact = require("../../../utils/interact.js")
 const util = require("../../../utils/util.js")
+const chooseLocation = requirePlugin('chooseLocation');
+
+const key = 'GEUBZ-V2TRO-SEPW7-S3UZV-QJDE6-OUFE4'; //使用在腾讯位置服务申请的key
+const referer = '一苇以航-地图'; //调用插件的app的名称
+const location = JSON.stringify({
+  latitude: 39.89631551,
+  longitude: 116.323459711
+});
+const category = '生活服务';
 
 Page({
 
@@ -27,6 +36,8 @@ Page({
         description: '',
         numPeople: '',
         newCategory: '',
+        locationText: '',
+        // haveLocation : false,
 
         // start_date: "2021-04-22",
         // start_time: "00:00",
@@ -52,6 +63,10 @@ Page({
 
     inputNewCategoryHandler: function (e) {
         this.data.newCategory = e.detail.detail.value
+    },
+
+    inputLocationTextHandler: function (e) {
+        this.data.locationText = e.detail.detail.value
     },
 
     bindPicker_1_Change: function(e) {
@@ -164,6 +179,7 @@ Page({
                     description: r.description,
                     numPeople: r.contain,
                     actInfo: r,
+                    locationText : r.location.name,
                     start_date : r.begin_time.split(" ")[0],
                     end_date : r.end_time.split(" ")[0],
                     start_time : r.begin_time.split(" ")[1],
@@ -196,7 +212,32 @@ Page({
         var end_datetime = d.end_date + "T" + d.end_time
         var start = new Date(Date.parse(start_datetime))
         var end = new Date(Date.parse(end_datetime))
-        if (d.name == "") {
+
+        var location = chooseLocation.getLocation();
+        if (!location) {
+            location = d.actInfo.location
+        }
+        console.log("location", location)
+        // if (!d.haveLocation) {
+        //     wx.showToast({
+        //       title: '请选择地点',
+        //       icon: 'none'
+        //     })
+        // }
+        
+        if (location == null) {
+            wx.showToast({
+                title: '请选择活动地点',
+                icon : 'none'
+            })
+        }
+        else if (d.locationText == "") {
+            wx.showToast({
+                title: '请输入详细地址',
+                icon : 'none'
+            })
+        }
+        else if (d.name == "") {
             wx.showToast({
               title: '请输入名称',
               icon : 'none'
@@ -236,33 +277,35 @@ Page({
             if (d.createNewCategory) {
                 interact.createActCategory(d.newCategory).then(
                     (res) => {
-                        this.newActWrap(d, start_datetime, end_datetime, res.data.id)
+                        this.newActWrap(d, start_datetime, end_datetime, res.data.id, location)
                     }
                 )
             } 
             else {
-                this.newActWrap(d, start_datetime, end_datetime, d.categories[d.index1].id)
+                this.newActWrap(d, start_datetime, end_datetime, d.categories[d.index1].id, location)
             }
         }
     },
 
-    newActWrap: function(d, start_datetime, end_datetime, type_id) {
-        interact.createAct({
-            id: d.actId,
-            name: d.name,
-            begin_time: start_datetime,
-            end_time: end_datetime,
-            contain: d.numPeople,
-            description: d.description,
-            review: false,
-            owner: getApp().loginData.userId,
-            type: type_id,
-            org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[d.index2].id,
-            location: 1, //TODO
-            block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[d.index2].block.id
-            //创建还是修改，通过下面一行的d.actId == -1来判断
-        }, d.actId == -1).then(
-            res => {
+    newActWrap: function(d, start_datetime, end_datetime, type_id, location) {
+        interact.createActAddress(d.locationText, location.longitude, location.latitude, true).then(
+         (res0) => {
+            interact.createAct({
+                id: d.actId,
+                name: d.name,
+                begin_time: start_datetime,
+                end_time: end_datetime,
+                contain: d.numPeople,
+                description: d.description,
+                review: false,
+                owner: getApp().loginData.userId,
+                type: type_id,
+                org: d.presetOrgId != -1 ? d.presetOrgId : d.index2 == 0 ? null : d.my_org[d.index2].id,
+                location: res0.data.id,
+                block: d.presetOrgId != -1 ? d.presetOrgForumId : d.index2 == 0 ? 5 : d.my_org[d.index2].block.id
+                //创建还是修改，通过下面一行的d.actId == -1来判断
+            }, d.actId == -1).then(
+                res => {
                 wx.navigateBack({
                     delta: 0,
                 })
@@ -277,5 +320,15 @@ Page({
                     })
                 }
             })
+        })
+    },
+
+    toMap : function() {
+        wx.navigateTo({
+            url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer + '&location=' + location + '&category=' + category
+        });
+        // this.setData({
+        //     haveLocation : true
+        // })
     }
 })

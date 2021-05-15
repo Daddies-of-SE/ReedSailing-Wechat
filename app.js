@@ -55,8 +55,7 @@ App({
 
   ],
   server : 'https://www.reedsailing.xyz/api/',
-  // server : 'http://rs.test/',
-  // server : 'http://127.0.0.1:8000/',
+  // server : 'http://127.0.0.1:8000/api/',
 
   shareData : {
     title : "一苇以航活动发布社交平台",

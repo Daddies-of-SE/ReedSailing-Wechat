@@ -25,8 +25,7 @@
         <view class="organizer"><span class="_infor_head">进行时间：</span> {{actInfo.begin_time !== null ? actInfo.begin_time : "暂无信息"}} 至 {{actInfo.end_time !== null ? actInfo.end_time : "暂无信息"}}</view>
 
         <view class="organizer"><span class="_infor_head">状态：</span>{{!hasBegun ? "未开始" : hasEnded ? "已结束" : "进行中"}}</view>
-        <!-- TODO -->
-        <!-- <view class="organizer"><span class="_infor_head">地点：</span> {{actInfo.location !== null ? actInfo.location.name : "暂无信息"}}</view> -->
+        <view class="organizer"><span class="_infor_head">地点：</span> {{actInfo.location? actInfo.location.name : "暂无信息"}}</view>
         <view class="organizer"><span class="_infor_head">人数：</span>{{currentNumPeople}} / {{actInfo.contain}}</view>
 
         <view class="organizer"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view>

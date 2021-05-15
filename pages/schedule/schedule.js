@@ -136,8 +136,6 @@ Page({
         dateArr[i] = obj;
       }
       
-      //TODO: 加载活动列表，处理日期
-      //for (let i = 0; i < actList.length; i++)
       for (let i = 0; i < 0; i++)
       {
         dateArr[actList[i].date].hasAct = true;
