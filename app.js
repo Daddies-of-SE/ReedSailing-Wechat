@@ -53,9 +53,9 @@ App({
     },
 
   ],
-  server : 'https://www.reedsailing.xyz/api/',
+  // server : 'https://www.reedsailing.xyz/api/',
   // server : 'http://rs.test/',
-  // server : 'http://127.0.0.1:8000/',
+  server : 'http://127.0.0.1:8000/api/',
 
   shareData : {
     title : "一苇以航活动发布社交平台",
@@ -80,7 +80,31 @@ App({
       }
     )
 
-    
+    // set up socket link
+    wx.connectSocket({
+      url: this.server + 'link/',
+      // timeout: 10000，
+      success: res=>{
+        console.log("socket连接成功")
+      },
+      fail: res=>{
+        console.log('socket连接失败')
+        console.log(res)
+      }
+    })
+
+     //连接成功
+     wx.onSocketOpen(function() {
+      wx.sendSocketMessage({
+        data: 'This is a test from the client',
+      })
+    })
+
+    //接收数据
+    wx.onSocketMessage(function(data) {
+        console.log(data.data);
+    })
+
   },
 
   haveRegistered() {
