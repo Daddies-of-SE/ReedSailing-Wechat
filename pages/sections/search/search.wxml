@@ -20,7 +20,7 @@
   <view class='actList'>
     <i-cell-group i-class="act-wrap">
         <i-cell title="{{idMatchOrg.name}}" label="{{idMatchOrg.description}}" is-link bindtap="goOrg" 
-            data-actid="{{idMatchOrg.id}}" data-actname="{{idMatchOrg.name}}">
+            data-orgid="{{idMatchOrg.id}}" data-orgname="{{idMatchOrg.name}}">
         </i-cell> 
     </i-cell-group>
   </view>

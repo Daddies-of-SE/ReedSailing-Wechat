@@ -44,8 +44,8 @@
 
 .forum .item .icon {
   display: block;
-  height: 149rpx;
-  width: 187rpx;
+  height: 150rpx;
+  width: 170rpx;
   border-radius: 25px;
   /*border-color单独使用是不起作用的，必须得先使用border-style来设置边框样式。*/
   border-style: solid; 

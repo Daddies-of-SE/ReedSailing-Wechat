@@ -28,7 +28,7 @@ const getTimeMinute = rawTime => {
 
 const getRelativeTime = time => {
     // dateStr = 2018-09-06 18:47:00" 测试时间、
-    var dateStr = new Date(time).getTime();
+    var dateStr = new Date(time.replace(new RegExp('-','g'), '/')).getTime();
     var publishTime = dateStr / 1000,  //获取dataStr的秒数  打印结果--1536230820000
         date = new Date(publishTime * 1000), //获取dateStr的标准格式 console.log(date) 打印结果  Thu Sep 06 2018 18:47:00 GMT+0800 (中国标准时间)
         // 获取date 中的 年 月 日 时 分 秒

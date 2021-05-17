@@ -143,7 +143,7 @@ Page({
                     longitude: v.location.longitude,
                     name: v.name,
                     width: "30",  
-                    height: "45",
+                    height: "60",
                     callout : {content : v.name}
                   })
               }

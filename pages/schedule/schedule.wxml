@@ -27,6 +27,8 @@
     <i-tab key="tab2" title="活动列表"></i-tab>
 </i-tabs>
 
+
+
 <view wx:if="{{current == 'tab1'}}">
     <view class='wrap'>
         <view>
@@ -128,3 +130,5 @@
     </view>
 </view>
 </view>
+
+<text>{{debugText}}</text>

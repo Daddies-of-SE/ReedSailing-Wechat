@@ -27,7 +27,8 @@ Page({
       showDateActList: false,
       DateActList: [],
       init : true,
-      searchContent : ""
+      searchContent : "",
+      debugText : ""
     },
 
    /**
@@ -40,7 +41,12 @@ Page({
       let now = new Date();
       let year = now.getFullYear();
       let month = now.getMonth() + 1;
+
+
       this.dateInit();
+
+      
+
       this.setData({
         year: year,
         month: month,
@@ -97,20 +103,25 @@ Page({
       //全部时间的月份都是按0~11基准，显示月份才+1
       let dateArr = [];                        //需要遍历的日历数组数据
       let arrLen = 0;                            //dateArr的数组长度
+
       let now = setYear ? new Date(setYear, setMonth) : new Date();
       let year = setYear || now.getFullYear();
       let nextYear = 0;
       let month = setMonth || now.getMonth();                    //没有+1方便后面计算当月总天数
       let nextMonth = (month + 1) > 11 ? 1 : (month + 1);
-      let startWeek = new Date(year + ',' + (month + 1) + ',' + 1).getDay();                            //目标月1号对应的星期
+      let startWeek = new Date(year + '/' + (month + 1) + '/' + 1).getDay();                            //目标月1号对应的星期
       let dayNums = new Date(year, nextMonth, 0).getDate();                //获取目标月有多少天
       let obj = {};
       let num = 0;
+
+
     
       if (month + 1 > 11) {
         nextYear = year + 1;
         dayNums = new Date(nextYear, nextMonth, 0).getDate();
       }
+      
+
       arrLen = startWeek + dayNums;
       for (let i = 0; i < arrLen; i++) {
         if (i >= startWeek) {
@@ -134,6 +145,8 @@ Page({
         dateArr[actList[i].date].hasAct = true;
         dateArr[actList[i].date].actList.push(actList[i]);
       }
+
+      
 
       this.setData({
         dateArr: dateArr
