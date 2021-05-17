@@ -10,7 +10,7 @@
 }
 
 .act-header .joinBtn{
-  width: 150rpx;
+  width: 200rpx;
   height: 60rpx;
   background-color: rgba(19, 173, 245, 0.548);
   color: white;

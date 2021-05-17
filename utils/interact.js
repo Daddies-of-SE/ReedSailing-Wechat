@@ -1101,3 +1101,19 @@ module.exports.getAllStatusOrgActs = function (org_id) {
     })
   })
 }
+
+module.exports.getPageQRCode = function (path) {
+  return new Promise((resolve, reject) => {
+    post_request(`qrcode/`, 
+      {
+        path : path,
+        width : 430
+      },
+      {
+        func: module.exports.getPageUrl,
+        funcName: 'getPageUrl',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}

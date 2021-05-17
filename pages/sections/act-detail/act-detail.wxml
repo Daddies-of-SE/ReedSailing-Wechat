@@ -16,7 +16,7 @@
 <view class="msg-item">
     <i-card i-class="card-demo card-demo-full"  full
       title="{{actInfo.owner.name}}" extra="发布者" thumb="{{actInfo.owner.avatar}}" bindtap="goOwner">  
-      <view slot="content">
+      <view slot="content" catchtap="empty">
         <view class="organizer" wx:if="{{actInfo.org != null}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goOrg">活动id：</span>{{actId}}</view>
         <view class="organizer" wx:if="{{actInfo.org != null}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goOrg">所属组织：{{actInfo.org.name}}</span></view>
         <view class="organizer" wx:if="{{actInfo.block != null}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goBlock">所属版块：{{actInfo.block.name}}</span></view>
@@ -35,6 +35,10 @@
         <view class="organizer"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
         <!-- <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view> -->
         <view class="organizer" wx:if="{{hasBegun}}"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" readonly allow-half model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>
+
+        <!-- <button class='joinBtn' bindtap='bindMapButton'>{{'显示地图'}}</button> -->
+        <!-- TODO -->
+         <!-- <button class='joinBtn' bindtap='bindQRCodeButton'>{{'显示二维码'}}</button> -->
 
   
       </view>
@@ -107,3 +111,4 @@
   </scroll-view>
 </view>
 
+<image src="{{qrcode}}" class="qrcode"/>

@@ -67,6 +67,7 @@ Page({
       longitude: 116,
       latitude : 40,
       markers : [],
+      qrcode : ""
     //   comment_list : [
     //     {
     //       user : {
@@ -254,6 +255,14 @@ Page({
               })
             }
           )
+            
+          interact.getPageQRCode(`pages/sections/act-detail/act-detail?actId=${this.data.actId}`).then(
+            res => {
+              this.setData({
+                qrcode : res.data.img
+              })
+            }
+          )
         })
     },
 
@@ -394,5 +403,9 @@ Page({
       wx.navigateTo({
         url: `../user-info/user-info?userId=${this.data.actInfo.owner.id}`,
       })
+    },
+
+    empty() {
+      //用来捕获tap事件，不能删
     }
 })
