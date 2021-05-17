@@ -14,8 +14,8 @@ Page({
         orgName: "",
         orgPicUrl: "/icon/person.png",
         orgInfo: {},
-        orgId : -1,
-        showIndex: [true, true, true, true, false],
+        orgId : 0,
+        showIndex: [true, true, true, true, true],
         hasFollowed: false,
         isManager : false,
         isOwner : false,
@@ -23,7 +23,8 @@ Page({
         memList: [],
         unstartActList : [],
         curActList : [],
-        endActList : []
+        endActList : [],
+        searchContent : ""
     },
 
     /**
@@ -224,5 +225,23 @@ Page({
       wx.navigateTo({
         url: `../user-info/user-info?userId=${e.currentTarget.dataset.userid}`,
       })
-    }
+    },
+
+    onSearch: function (e) {
+      wx.navigateTo({
+        url: `/pages/sections/search/search?searchContent=${this.data.searchContent}&searchType=3&orgId=${this.data.orgId}&orgName=${this.data.orgName}`,
+      })
+    },
+  
+    onChange: function (e) {
+      this.setData({
+        searchContent : e.detail
+      })
+    },
+  
+    onClear: function (e) {
+      this.setData({
+        searchContent : ""
+      })
+    },
 })

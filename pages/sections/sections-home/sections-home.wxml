@@ -11,6 +11,8 @@
     </view>
 </view> -->
 
+<van-search placeholder="搜索全部组织、活动（id/名称）" shape="round" bind:search="onSearch" bind:change="onChange" bind:clear="onClear" bind:cancel="onClear"/>
+
 <view class="forum">
     <view class="item" wx:for="{{forum_list}}" wx:key='id'
      data-name="{{item.title}}" data-has-org="{{item.hasOrgLevel}}" data-forumid="{{index+1}}" wx:key="id" bindtap="handleClick" hover-class="weui-cell_active">

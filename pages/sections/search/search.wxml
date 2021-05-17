@@ -1,0 +1,73 @@
+<!--pages/sections/search/search.wxml-->
+<view class="org-header">
+    <text class="text">"{{options.searchContent}}"的搜索结果</text>
+</view>
+
+
+
+<view class='folder'>
+
+<!-- <view class='folder_item'>
+    <view class='title'>
+      <view class='title_1'>搜索范围：{{searchRangeText}}</view>
+    </view>
+</view> -->
+
+<view class='folder_item' wx:if="{{idMatchOrg != 0}}">
+  <view class='title'>
+    <view class='title_1'>id匹配的组织</view>
+  </view>
+  <view class='actList'>
+    <i-cell-group i-class="act-wrap">
+        <i-cell title="{{idMatchOrg.name}}" label="{{idMatchOrg.description}}" is-link bindtap="goOrg" 
+            data-actid="{{idMatchOrg.id}}" data-actname="{{idMatchOrg.name}}">
+        </i-cell> 
+    </i-cell-group>
+  </view>
+</view>
+
+<view class='folder_item' wx:if="{{idMatchAct != 0}}">
+  <view class='title'>
+    <view class='title_1'>id匹配的活动</view>
+  </view>
+  <view class='actList'>
+    <i-cell-group i-class="act-wrap">
+        <i-cell title="{{idMatchAct.name}}" label="{{idMatchAct.description}}" is-link bindtap="goAct" 
+            data-actid="{{idMatchAct.id}}" data-actname="{{idMatchAct.name}}">
+        </i-cell> 
+    </i-cell-group>
+  </view>
+</view>
+
+<view class='folder_item' wx:if="{{orgList.length != 0}}">
+  <view class='title'>
+    <view class='title_1'>{{options.searchType == 1 ? "全部组织" : searchRangeText}}</view>
+  </view>
+  <view class='actList'>
+    <i-cell-group i-class="act-wrap">
+        <block wx:for="{{orgList}}" wx:key="id">
+            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goOrg" 
+            data-orgid="{{item.id}}" data-orgname="{{item.name}}">
+                <image class="org-avator" src="/icon/person.png"  slot="icon"></image>
+            </i-cell> 
+        </block>
+    </i-cell-group>
+  </view>
+</view>
+
+<view class='folder_item' wx:if="{{actList.length != 0}}">
+  <view class='title'>
+    <view class='title_1'>{{options.searchType == 1 ? "全部活动" : searchRangeText}}</view>
+  </view>
+  <view class='actList'>
+    <i-cell-group i-class="act-wrap">
+      <block wx:for="{{actList}}" wx:key="id">
+          <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
+              data-actid="{{item.id}}" data-actname="{{item.name}}">
+          </i-cell> 
+      </block>
+    </i-cell-group>
+  </view>
+</view>
+
+</view>

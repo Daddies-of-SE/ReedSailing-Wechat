@@ -12,6 +12,8 @@
     </view>
 </view>
 
+<van-search placeholder="搜索活动（id/名称）" shape="round" bind:search="onSearch" bind:change="onChange" bind:clear="onClear" bind:cancel="onClear"/>
+
 <!--信息、管理员、活动-->
 <view class='folder'>
 
@@ -25,6 +27,7 @@
       <view class='title_1'>信息</view>
     </view>
     <block wx:if="{{showIndex[0]}}">
+      <view class='detail'><span class="_infor_head">组织id：</span>{{orgId}}</view>
       <view class='detail'><span class="_infor_head">所属板块：</span>{{orgInfo.belong_forum.name}}</view>
       <view class='detail'><span class="_infor_head">创建时间：</span>{{orgInfo.create_time}}</view>
       <view class='detail'><span class="_infor_head">负责人：</span>{{orgInfo.owner.name}}</view>

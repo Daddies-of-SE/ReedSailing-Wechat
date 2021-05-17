@@ -10,7 +10,8 @@ Page({
         current: 'unstart',
         unstartActList : [],
         curActList : [],
-        endActList : []
+        endActList : [],
+        searchContent : ""
     },
 
     handleChange ({ detail }) {
@@ -62,4 +63,21 @@ Page({
         })
     },
 
+    onSearch: function (e) {
+        wx.navigateTo({
+          url: `/pages/sections/search/search?searchContent=${this.data.searchContent}&searchType=5`,
+        })
+      },
+    
+    onChange: function (e) {
+        this.setData({
+            searchContent : e.detail
+        })
+    },
+
+    onClear: function (e) {
+        this.setData({
+            searchContent : ""
+        })
+    },
 })

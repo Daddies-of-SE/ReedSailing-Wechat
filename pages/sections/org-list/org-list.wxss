@@ -122,9 +122,9 @@
   margin-bottom: 30rpx;
 }
 
-.org-wrap {
+/* .org-wrap {
   margin-top: 150rpx
-}
+} */
 
 .org-wrap .org-avator {
   border-radius: 50%;

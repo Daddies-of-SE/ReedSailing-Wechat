@@ -16,7 +16,7 @@
     "pages/my/my-account/my-account",
     "pages/sections/org-list/org-list",
     "pages/my/feedback/feedback",
-    "pages/sections/org-list/search/search",
+    "pages/sections/search/search",
     "pages/sections/act-detail/new-comment/new-comment",
     "pages/sections/act-detail/participants/participants",
     "pages/sections/user-info/user-info",

@@ -12,7 +12,8 @@ Page({
     forumName: null,
     forumId: null,
     forumInfo: [],
-    hasForumInfo: false
+    hasForumInfo: false,
+    searchContent : ""
   },
 
   /**
@@ -54,10 +55,6 @@ Page({
     })
   },
 
-  onCancel(e) {
-    //TODO
-  },
-
   goOrg(e) {
     wx.navigateTo({
       url: `../act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
@@ -75,5 +72,23 @@ Page({
         })
       }
     }
+  },
+
+  onSearch: function (e) {
+    wx.navigateTo({
+      url: `/pages/sections/search/search?searchContent=${this.data.searchContent}&searchType=2&forumId=${this.data.forumId}&forumName=${this.data.forumName}`,
+    })
+  },
+
+  onChange: function (e) {
+    this.setData({
+      searchContent : e.detail
+    })
+  },
+
+  onClear: function (e) {
+    this.setData({
+      searchContent : ""
+    })
   },
 })

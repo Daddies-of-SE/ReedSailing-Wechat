@@ -12,8 +12,8 @@ Page({
         winHeight:0,
         currentTab:0,
         havelogin: false,
-        forum_list: []
-        
+        forum_list: [],
+        searchContent : ""
     },
  
     /**
@@ -78,4 +78,22 @@ Page({
           }
         }
     },
+
+    onSearch: function (e) {
+        wx.navigateTo({
+          url: `/pages/sections/search/search?searchContent=${this.data.searchContent}&searchType=1`,
+        })
+      },
+    
+      onChange: function (e) {
+        this.setData({
+          searchContent : e.detail
+        })
+      },
+    
+      onClear: function (e) {
+        this.setData({
+          searchContent : ""
+        })
+      },
 })

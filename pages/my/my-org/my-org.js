@@ -79,5 +79,23 @@ Page({
       wx.navigateTo({
         url: `../../sections/act-list/act-list?orgId=${e.currentTarget.dataset.orgid}`,
       })
-    }
+    },
+
+    onSearch: function (e) {
+      wx.navigateTo({
+        url: `/pages/sections/search/search?searchContent=${this.data.searchContent}&searchType=6`,
+      })
+    },
+  
+    onChange: function (e) {
+      this.setData({
+          searchContent : e.detail
+      })
+    },
+
+    onClear: function (e) {
+      this.setData({
+          searchContent : ""
+      })
+    },
 })

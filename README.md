@@ -103,11 +103,11 @@ qnmd的vant，dialog的对齐又出问题了...俺还是自己手搓吧（其实
 | 12 | 我管理的活动 | 14           | my/my-act               | 7              | 某活动—10                                                  |  |
 | 13 | 活动发布/编辑 | 12           | my/new-act              | 7              |                                                            |  |
 | 14   | 组织创建     | 13           | my/new-org              | 8；11          |                                                            |  |
-| 15 | 组织成员管理 | 4.12图5 | my/act-list/mem-list | 9 | 某管理员—21 |  |
+| 15 | 组织成员管理 | 4.12图5 | sections/act-list/mem-list | 9 | 某管理员—21 |  |
 | 16 | 组织信息编辑 | 4.12图6 | sections/org-edit | 9 |  |  |
 | 17 | 用户反馈 |  | my/feedback | 7 |  |  |
 | 18   | 个人信息     |              | my/my-account           | 7              |                                                            |  |
-| 19 | 搜索结果 | | my/org-list/search | 8；9 | | TODO |
+| 19 | 搜索结果 | | sections/search | 8；9 | |  |
 | 20 | 新建/编辑评论 | | sections/act-detail/new-comment | 10 | |  |
 | 21 | 用户信息 | | sections/user-info | 6；9；10；15 | |  |
 |  |               |              |                                  |               |                                                              |            |

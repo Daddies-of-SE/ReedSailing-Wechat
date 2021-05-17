@@ -173,13 +173,19 @@ function get_request(urlpath, funcInfo) {
           login.catchUnLogin(funcInfo);
           return
         } else if (s != 200 && s != 201 && s != 204) {
-            wx.showModal({
-              title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
-              showCancel: true,
-              confirmText: '确认',
-            })
-            funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
+            if (funcInfo.funcName  == "getOrgInfo" || funcInfo.funcName == "getActInfo") {
+              util.debug(funcInfo.funcName + "未找到id")
+              funcInfo.resolve(result);
+            }
+            else {
+              wx.showModal({
+                title: funcInfo.funcName + "请求失败",
+                content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
+                showCancel: true,
+                confirmText: '确认',
+              })
+              funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
+            }
         } 
         funcInfo.resolve(result);
 
@@ -1050,6 +1056,124 @@ module.exports.createActAddress = function (name, long, lat, isNew) {
       {
         func: module.exports.createActAddress,
         funcName: 'createActAddress',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.searchAllOrgs = function (content) {
+  return new Promise((resolve, reject) => {
+    post_request(`organizations/search/`, 
+      {
+        name : content,
+      },
+      {
+        func: module.exports.searchAllOrgs,
+        funcName: 'searchAllOrgs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.searchAllActs = function (content) {
+  return new Promise((resolve, reject) => {
+    post_request(`activities/search/`, 
+      {
+        name : content,
+      },
+      {
+        func: module.exports.searchAllActs,
+        funcName: 'searchAllActs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.searchBlockOrgs = function (content, blockId) {
+  return new Promise((resolve, reject) => {
+    post_request(`blocks/organizations/search/${blockId}/`, 
+      {
+        name : content,
+      },
+      {
+        func: module.exports.searchBlockOrgs,
+        funcName: 'searchBlockOrgs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.searchOrgActs = function (content, orgId) {
+  if (orgId == -1 || orgId == -2) {
+    //博雅、个人
+    var block_id = orgId == -1 ? 2 : 5;
+    return new Promise((resolve, reject) => {
+      get_request(`blocks/activities/search/${block_id}/`, 
+        {
+          func: module.exports.searchOrgActs,
+          funcName: 'searchOrgActs',
+          reject: reject,
+          resolve: resolve
+      })
+    })
+  }
+  return new Promise((resolve, reject) => {
+    post_request(`organizations/activities/search/${orgId}/`, 
+      {
+        name : content,
+      },
+      {
+        func: module.exports.searchOrgActs,
+        funcName: 'searchOrgActs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.searchJoinedActs = function (content) {
+  return new Promise((resolve, reject) => {
+    post_request(`user/joined_acts/search/${getApp().loginData.userId}/`, 
+      {
+        name : content,
+      },
+      {
+        func: module.exports.searchJoinedActs,
+        funcName: 'searchJoinedActs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.searchManageActs = function (content) {
+  return new Promise((resolve, reject) => {
+    post_request(`users/released_activities/search/${getApp().loginData.userId}/`, 
+      {
+        name : content,
+      },
+      {
+        func: module.exports.searchManageActs,
+        funcName: 'searchManageActs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.searchManageOrgs = function (content) {
+  return new Promise((resolve, reject) => {
+    post_request(`users/managed_organizations/search/${getApp().loginData.userId}/`, 
+      {
+        name : content,
+      },
+      {
+        func: module.exports.searchManageOrgs,
+        funcName: 'searchManageOrgs',
         reject: reject,
         resolve: resolve
     })

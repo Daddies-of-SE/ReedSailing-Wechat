@@ -111,7 +111,7 @@ App({
       })
     })
 
-    //接收数据
+    // //接收数据
     wx.onSocketMessage(function(data) {
         console.log('服务器返回的数据: ' + data.data);
         // this.notificationList = 

@@ -13,6 +13,8 @@
     </button>
 </view>
 
+<van-search placeholder="搜索管理的组织（id/名称）" shape="round" bind:search="onSearch" bind:change="onChange" bind:clear="onClear" bind:cancel="onClear"/>
+
 <!--组织列表-->
 <!-- <view class="shadow">
     <block wx:for="{{orgList}}" wx:key="id">

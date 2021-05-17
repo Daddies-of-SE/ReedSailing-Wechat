@@ -74,6 +74,7 @@
 </view> 
 
 <view wx:if="{{current == 'tab2'}}">
+<van-search placeholder="搜索已报名活动（id/名称）" shape="round" bind:search="onSearch" bind:change="onChange" bind:clear="onClear" bind:cancel="onClear"/>
 <view class='folder'>
     <view class='folder_item'>
         <view class='title' data-index='0' catchtap='panel'>

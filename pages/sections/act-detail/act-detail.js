@@ -211,6 +211,8 @@ Page({
                   id: 1,
                   latitude: r.location.latitude,
                   longitude: r.location.longitude,
+                  width: "30",  
+                  height: "45",
                   name: r.name
                 }]
               })
