@@ -44,24 +44,15 @@ Page({
     onShow: function () {
       getApp().globalLogin().then(
         (res0) => {
-          interact.getStatusOrgActs('unstart', this.data.orgId).then(
-            res1 => {
-                this.setData({
-                    unstartActList : res1.data
-                })
-          })
-          interact.getStatusOrgActs('cur', this.data.orgId).then(
-              res2 => {
-                  this.setData({
-                      curActList : res2.data
-                  })
-          })
-          interact.getStatusOrgActs('end', this.data.orgId).then(
-              res3 => {
-                  this.setData({
-                      endActList : res3.data
-                  })
-          })
+          interact.getAllStatusOrgActs(this.data.orgId).then(
+            res => {
+              this.setData({
+                unstartActList : res.data.unstart,
+                curActList : res.data.cur,
+                endActList : res.data.end,
+            })
+            }
+          )
 
           if (this.data.orgId == -1) {
             

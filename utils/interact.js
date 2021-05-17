@@ -406,65 +406,6 @@ module.exports.createOrgApplication = function (name, description, blockid) {
   })
 }
 
-// for develop
-// module.exports.createOrgDirectly = function (name, description, blockid) {
-//   if (!app) {
-//     app = getApp()
-//   }
-//   util.debug("creating org dicrectly " + name)
-//   return new Promise((resolve, reject) => {
-//     post_request(`organizations/`,
-//       {
-//         name: name,
-//         description: description,
-//         owner: app.loginData.userId,
-//         block: blockid
-//       }, 
-//       {
-//         func: module.exports.createOrgDirectly,
-//         funcName: 'createOrgDirectly',
-//         reject: reject,
-//         resolve: resolve
-//     })
-//   })
-// }
-
-// for develop
-// module.exports.approveMyFirstCreateOrgApply = function () {
-
-//   //先获得我的所有申请，然后再全批准
-//   if (!app) {
-//     app = getApp()
-//   }
-//   new Promise((resolve, reject) => {
-//     get_request(`users/organizations/applications/${app.loginData.userId}/`, 
-//       {
-//       func: module.exports.approveMyFirstCreateOrgApply,
-//       funcName: 'approveMyFirstCreateOrgApply',
-//       reject: reject,
-//       resolve: resolve
-//     })
-//   }).then(
-//     (res) => {
-//         return new Promise((resolve, reject) => {
-//         if (res.data.length > 0 && res.data[0].status == 0) {
-//           util.debug(JSON.stringify(res.data))
-//           var appli_id = res.data[0].id
-//           // util.debug("appli_id " + appli_id)
-//           put_request(`organizations/applications/verifications/${appli_id}/`,
-//             {
-//               "status" : 1 // approve
-//             }, {
-//               func: module.exports.approveMyFirstCreateOrgApply,
-//               funcName: 'approveMyFirstCreateOrgApply',
-//               reject: reject,
-//               resolve: resolve
-//           })
-//         }
-//       })
-//     }
-//   )
-// }
 
 module.exports.followOrg = function (org_id) {
   return new Promise((resolve, reject) => {
@@ -554,77 +495,6 @@ module.exports.getOrgActList = function (org_id) {
         resolve: resolve
     })
   }) 
-}
-
-
-// module.exports.getMyActList = function () {
-//   if (!app) {
-//     app = getApp()
-//   }
-//   return new Promise((resolve, reject) => {
-//     get_request(`users/released_activities/${app.loginData.userId}/`, 
-//       {
-//         func: module.exports.getMyActList,
-//         funcName: 'getMyActList',
-//         reject: reject,
-//         resolve: resolve
-//     })
-//   }) 
-// }
-
-module.exports.getStatusJoinActs = function (status) {
-  if (!app) {
-    app = getApp()
-  }
-  return new Promise((resolve, reject) => {
-    get_request(`user/joined_acts/${status}/${app.loginData.userId}/`, 
-      {
-        func: module.exports.getStatusJoinActs,
-        funcName: 'getStatusJoinActs',
-        reject: reject,
-        resolve: resolve
-    })
-  }) 
-}
-
-module.exports.getStatusManageActs = function (status) {
-  if (!app) {
-    app = getApp()
-  }
-  return new Promise((resolve, reject) => {
-    get_request(`users/released_activities/${status}/${app.loginData.userId}/`, 
-      {
-        func: module.exports.getStatusManageActs,
-        funcName: 'getStatusManageActs',
-        reject: reject,
-        resolve: resolve
-    })
-  }) 
-}
-
-module.exports.getStatusOrgActs = function (status, org_id) {
-  if (org_id == -1 || org_id == -2) {
-    //博雅
-    var block_id = org_id == -1 ? 2 : 5;
-    return new Promise((resolve, reject) => {
-      get_request(`blocks/activities/${status}/${block_id}/`, 
-        {
-          func: module.exports.getStatusOrgActs,
-          funcName: 'getStatusOrgActs',
-          reject: reject,
-          resolve: resolve
-      })
-    })
-  }
-  return new Promise((resolve, reject) => {
-    get_request(`organizations/activities/${status}/${org_id}/`, 
-      {
-        func: module.exports.getStatusOrgActs,
-        funcName: 'getStatusOrgActs',
-        reject: reject,
-        resolve: resolve
-    })
-  })
 }
 
 module.exports.addOrgManager = function (org_id, user_id) {
@@ -1137,7 +1007,7 @@ module.exports.searchOrgActs = function (content, orgId) {
 
 module.exports.searchJoinedActs = function (content) {
   return new Promise((resolve, reject) => {
-    post_request(`user/joined_acts/search/${getApp().loginData.userId}/`, 
+    post_request(`users/joined_acts/search/${getApp().loginData.userId}/`, 
       {
         name : content,
       },
@@ -1174,6 +1044,58 @@ module.exports.searchManageOrgs = function (content) {
       {
         func: module.exports.searchManageOrgs,
         funcName: 'searchManageOrgs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.getAllStatusJoinActs = function () {
+  return new Promise((resolve, reject) => {
+    get_request(`users/joined_acts/status/${getApp().loginData.userId}/`, 
+      {
+        func: module.exports.getAllStatusJoinActs,
+        funcName: 'getAllStatusJoinActs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.getAllStatusManageActs = function () {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    get_request(`users/released_activities/status/${app.loginData.userId}/`, 
+      {
+        func: module.exports.getAllStatusManageActs,
+        funcName: 'getAllStatusManageActs',
+        reject: reject,
+        resolve: resolve
+    })
+  }) 
+}
+
+module.exports.getAllStatusOrgActs = function (org_id) {
+  if (org_id == -1 || org_id == -2) {
+    //博雅
+    var block_id = org_id == -1 ? 2 : 5;
+    return new Promise((resolve, reject) => {
+      get_request(`blocks/activities/status/${block_id}/`, 
+        {
+          func: module.exports.getAllStatusOrgActs,
+          funcName: 'getAllStatusOrgActs',
+          reject: reject,
+          resolve: resolve
+      })
+    })
+  }
+  return new Promise((resolve, reject) => {
+    get_request(`organizations/activities/status/${org_id}/`, 
+      {
+        func: module.exports.getAllStatusOrgActs,
+        funcName: 'getAllStatusOrgActs',
         reject: reject,
         resolve: resolve
     })

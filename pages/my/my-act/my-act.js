@@ -37,24 +37,15 @@ Page({
         //       )
         //     return
         // }
-        interact.getStatusManageActs('unstart').then(
-            res1 => {
+        interact.getAllStatusManageActs().then(
+            res => {
                 this.setData({
-                    unstartActList : res1.data
+                    unstartActList : res.data.unstart,
+                    curActList : res.data.cur,
+                    endActList : res.data.end
                 })
-        })
-        interact.getStatusManageActs('cur').then(
-            res2 => {
-                this.setData({
-                    curActList : res2.data
-                })
-        })
-        interact.getStatusManageActs('end').then(
-            res3 => {
-                this.setData({
-                    endActList : res3.data
-                })
-        })
+            }
+        )
     },
 
     goAct: function(e) {
@@ -67,7 +58,7 @@ Page({
         wx.navigateTo({
           url: `/pages/sections/search/search?searchContent=${this.data.searchContent}&searchType=5`,
         })
-      },
+    },
     
     onChange: function (e) {
         this.setData({

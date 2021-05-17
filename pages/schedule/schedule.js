@@ -51,24 +51,16 @@ Page({
         getApp().goCertificate()
         return
       }
-      interact.getStatusJoinActs('unstart').then(
-        res1 => {
-            this.setData({
-                unstartActList : res1.data
-            })
-      })
-      interact.getStatusJoinActs('cur').then(
-        res2 => {
-            this.setData({
-                curActList : res2.data
-            })
-      })
-      interact.getStatusJoinActs('end').then(
-        res3 => {
-            this.setData({
-                endActList : res3.data
-            })
-      })
+
+      interact.getAllStatusJoinActs().then(
+        res => {
+          this.setData({
+            unstartActList : res.data.unstart,
+            curActList : res.data.cur,
+            endActList : res.data.end
+          })
+        }
+      )
       
       this.getMonthActs(this.data.year, this.data.month)
       
