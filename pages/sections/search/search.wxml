@@ -48,7 +48,7 @@
         <block wx:for="{{orgList}}" wx:key="id">
             <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goOrg" 
             data-orgid="{{item.id}}" data-orgname="{{item.name}}">
-                <image class="org-avator" src="/icon/person.png"  slot="icon"></image>
+                <image class="org-avatar" src="/icon/person.png"  slot="icon"></image>
             </i-cell> 
         </block>
     </i-cell-group>

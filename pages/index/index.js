@@ -54,23 +54,23 @@ Page({
       //       org_list : [
                 // {
                 //     org:{name: "高工足球队",
-                //     avator: "/icon/gaogong_football.png",}
+                //     avatar: "/icon/gaogong_football.png",}
                 // },
                 // {
                 //     org:{name: "高工学生会",
-                //     avator: "/icon/gaogong_student_union.png",}
+                //     avatar: "/icon/gaogong_student_union.png",}
                 // },
                 // {
                 //     org:{name: "点赞互助",
-                //     avator: "/icon/like.png",}
+                //     avatar: "/icon/like.png",}
                 // },
                 // {
                 //     org:{name: "环境协会",
-                //     avator: "/icon/planet.png",}
+                //     avatar: "/icon/planet.png",}
                 // },
                 // {
                 //     org:{name: "软工2021",
-                //     avator: "/icon/sample.png",}
+                //     avatar: "/icon/sample.png",}
                 // },
                
             // ], 
@@ -79,7 +79,7 @@ Page({
                 // {
                 //     type : "activity",
                 //     org_name : "高工足球队",
-                //     avatorUrl: "/icon/gaogong_football.png",
+                //     avatarUrl: "/icon/gaogong_football.png",
                 //     act_title : "常规训练",
                 //     publish_time : "3小时前",
                 //     start_time : "2021-04-18 15:00",
@@ -91,7 +91,7 @@ Page({
                 // {
                 //     type : "activity",
                 //     org_name : "高工学生会",
-                //     avatorUrl: "/icon/gaogong_student_union.png",
+                //     avatarUrl: "/icon/gaogong_student_union.png",
                 //     act_title : "大班会",
                 //     publish_time : "10小时前",
                 //     start_time : "2021-04-14 14:30",
@@ -105,6 +105,7 @@ Page({
     },
 
     onShow: function (e) {
+
       if (app.haveRegistered()) {
           this.setData({
               havelogin : true,

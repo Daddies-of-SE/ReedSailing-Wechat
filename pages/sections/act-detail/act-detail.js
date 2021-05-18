@@ -73,7 +73,7 @@ Page({
     //   comment_list : [
     //     {
     //       user : {
-    //         avator : '/icon/sample.png',
+    //         avatar : '/icon/sample.png',
     //         name : 'yy',
     //       },
     //       publish_time : '10分钟前',
@@ -83,7 +83,7 @@ Page({
     //     },
     //     {
     //       user : {
-    //         avator : '/icon/sample.png',
+    //         avatar : '/icon/sample.png',
     //         name : 'yy',
     //       },
     //       publish_time : '30分钟前',

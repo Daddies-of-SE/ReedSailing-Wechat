@@ -62,7 +62,7 @@
 }
 
 
-.org-wrap .org-item .org-avator {
+.org-wrap .org-item .org-avatar {
   display: block;
   height: 101rpx;
   width: 101rpx;
@@ -96,7 +96,7 @@
 }
 
 
-.msg-item .org-avator {
+.msg-item .org-avatar {
     margin-left: 10rpx;
     margin-top: 10rpx;
     display: inline-block;

@@ -27,7 +27,6 @@ Page({
     },
 
     handleClick: function(e) {
-
         if (e.currentTarget.dataset.hasOrg) {
             wx.navigateTo({
                 url: `../org-list/org-list?forumId=${e.currentTarget.dataset.forumid}&forumName=${e.currentTarget.dataset.name}`,
@@ -48,6 +47,8 @@ Page({
     },
 
     onShow: function (e) {
+
+      //interact.uploadImage("actAvatar/")
         if (app.haveRegistered()) {
             this.setData({
                 havelogin : true

@@ -1117,3 +1117,53 @@ module.exports.getPageQRCode = function (path) {
     })
   })
 }
+
+//上传图片相关
+function uploadImage (url, resolve, reject) {
+  wx.chooseImage({
+    count: 1,
+    sizeType : ['original', 'compressed'],
+    sourceType: ['album', 'camera'],
+    success (res) {
+      const tempFilePaths = res.tempFilePaths
+      console.log("uploadImage请求url", getAPIUrl(url))
+      wx.uploadFile({
+        url: getAPIUrl(url),
+        filePath: tempFilePaths[0],
+        name: 'image',
+        method :'POST',
+        // data : data,
+        header : {
+          'content-type' : 'application/x-www-form-urlencoded'
+        },
+        success (res) {
+          wx.showToast({
+            title: '上传成功',
+          })
+          console.log("uploadImage请求成功")
+          resolve(JSON.parse(res.data))
+        },
+        fail (res) {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none'
+          })
+          console.err("uploadImage请求失败")
+          reject()
+        }
+      })
+    }
+  })
+}
+
+module.exports.uploadOrgAvatar = function(org_id) {
+  return new Promise((resolve, reject) => {
+    uploadImage(`organizations/${org_id}/avatar/`, resolve, reject)
+  })
+}
+
+module.exports.uploadActAvatar = function(act_id) {
+  return new Promise((resolve, reject) => {
+    uploadImage(`activities/${act_id}/avatar/`, resolve, reject)
+  })
+}

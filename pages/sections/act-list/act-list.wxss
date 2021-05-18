@@ -117,7 +117,7 @@
   flex-shrink: 0;
 }
 
-.mem-wrap .mem-item .mem-avator {
+.mem-wrap .mem-item .mem-avatar {
   display: block;
   height: 101rpx;
   width: 101rpx;

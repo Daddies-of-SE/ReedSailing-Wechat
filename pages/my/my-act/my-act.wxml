@@ -11,7 +11,7 @@
     <i-cell-group i-class="act-wrap">
         <block wx:for="{{curActList}}" wx:key="id">
             <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" data-actid="{{item.id}}" data-actname="{{item.name}}">
-                <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
+                <!-- <image class="org-avatar" src="/icon/like.png"  slot="icon"></image> -->
             </i-cell> 
         </block>
     </i-cell-group>
@@ -21,7 +21,7 @@
         <block wx:for="{{unstartActList}}" wx:key="id">
         <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
             data-actid="{{item.id}}" data-actname="{{item.name}}">
-            <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
+            <!-- <image class="org-avatar" src="/icon/like.png"  slot="icon"></image> -->
         </i-cell> 
         </block>
     </i-cell-group>
@@ -31,7 +31,7 @@
         <block wx:for="{{endActList}}" wx:key="id">
         <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
             data-actid="{{item.id}}" data-actname="{{item.name}}">
-            <!-- <image class="org-avator" src="/icon/like.png"  slot="icon"></image> -->
+            <!-- <image class="org-avatar" src="/icon/like.png"  slot="icon"></image> -->
         </i-cell> 
         </block>
     </i-cell-group>

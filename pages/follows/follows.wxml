@@ -20,11 +20,11 @@
   </view>
   <view class="org-list">
     <view class="org-item" wx:for="{{org_list}}" wx:key='id' data-orgid="{{item.org.id}}" bindtap="toOrg" hover-class="weui-cell_active">
-      <block wx:if="{{item.org.avator != null}}"> 
-        <image class="org-avator" src="{{item.org.avator}}"></image>
+      <block wx:if="{{item.org.avatar}}"> 
+        <image class="org-avatar" src="{{item.org.avatar}}"></image>
       </block>
       <block wx:else> 
-        <image class="org-avator" src="/icon/person.png"></image>
+        <image class="org-avatar" src="/icon/person.png"></image>
       </block>
       <text class="org-name">{{item.org.name.length <= 6 ? item.org.name : ut.sub(item.org.name) + "…"}}</text>
     </view>
@@ -36,7 +36,7 @@
   <scroll-view scroll-y="true" class="nav">
     <view class="msg-item" wx:for="{{act_list}}">
       <view class="activity" wx:if="{{item.type === 'activity'}}">
-          <image class="org-avator" src="{{item.avatorUrl}}"></image>
+          <image class="org-avatar" src="{{item.avatarUrl}}"></image>
           <view class="content relative">
             <text class="org">{{item.org_name}}</text>
             <text class="publish_time">{{item.publish_time}}</text>

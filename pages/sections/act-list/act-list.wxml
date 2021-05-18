@@ -51,7 +51,7 @@
     <view class='mem-list' wx:if="{{showIndex[1]}}">
         <view class="mem-item" wx:for="{{memList}}">
           <view data-userid="{{item.person.id}}" bindtap="goUser"> 
-            <image class="mem-avator" src="{{item.person.avatar}}"></image>
+            <image class="mem-avatar" src="{{item.person.avatar}}"></image>
             <text class="mem-name">{{item.person.id == orgInfo.owner.id ? item.person.name+"(负责人)" : item.person.name}}</text>
           </view>
         </view>
