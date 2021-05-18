@@ -436,4 +436,10 @@ Page({
         showMap : !this.data.showMap
       })
     },
+
+    goUser(e) {
+      wx.navigateTo({
+        url: `../user-info/user-info?userId=${e.currentTarget.dataset.userid}`,
+      })
+    }
 })

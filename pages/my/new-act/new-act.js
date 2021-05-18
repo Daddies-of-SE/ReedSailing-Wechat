@@ -325,6 +325,18 @@ Page({
                             }
                         )
                     }
+                    else if (this.data.actId != -1) {
+                        interact.removeActAvatar(this.data.actId).then(
+                            (res) => {
+                                wx.navigateBack({
+                                    delta: 0,
+                                })
+                                wx.showToast({
+                                    title: this.data.actId == -1 ? '创建成功' : '修改成功',
+                                })
+                            }
+                        )
+                    }
                     else {
                         wx.navigateBack({
                             delta: 0,
@@ -358,6 +370,12 @@ Page({
               })
               console.log(that.data.actPicUrl)
             }
-          })
+        })
+    },
+
+    removePic : function() {
+        this.setData({
+            actPicUrl : ""
+        })
     }
 })

@@ -20,12 +20,7 @@
   </view>
   <view class="org-list">
     <view class="org-item" wx:for="{{org_list}}" wx:key='id' data-orgid="{{item.org.id}}" bindtap="toOrg" hover-class="weui-cell_active">
-      <block wx:if="{{item.org.avatar}}"> 
-        <image class="org-avatar" src="{{item.org.avatar}}"></image>
-      </block>
-      <block wx:else> 
-        <image class="org-avatar" src="/icon/person.png"></image>
-      </block>
+      <image class="org-avatar" src="{{item.org.avatar ? item.org.avatar : '/icon/person.png'}}"></image>
       <text class="org-name">{{item.org.name.length <= 6 ? item.org.name : ut.sub(item.org.name) + "…"}}</text>
     </view>
   </view>

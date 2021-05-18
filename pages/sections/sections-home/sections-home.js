@@ -81,6 +81,13 @@ Page({
     },
 
     onSearch: function (e) {
+      if (this.data.searchContent == "") {
+        wx.showToast({
+          title: '请输入搜索内容',
+          icon: 'none'
+        })
+        return
+      }
         wx.navigateTo({
           url: `/pages/sections/search/search?searchContent=${this.data.searchContent}&searchType=1`,
         })

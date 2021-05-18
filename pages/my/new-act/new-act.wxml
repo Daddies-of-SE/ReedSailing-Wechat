@@ -48,6 +48,9 @@
         <view class='uploadBtnWrap'>
         <a class='weui-btn weui-btn_default weui-btn_mini' bindtap='uploadPic'>上传</a>
         </view>
+        <view class='uploadBtnWrap' wx:if="{{actPicUrl != ''}}">
+        <a class='weui-btn weui-btn_default weui-btn_mini' bindtap='removePic' style="margin-top:20rpx">删除</a>
+        </view>
     </view>
 
     <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">

@@ -13,7 +13,8 @@ Page({
     idMatchAct : 0,
     orgList: [],
     actList: [],
-    searchRangeText: ''
+    searchRangeText: '',
+    searchDone : false
   },
   /*
     searchType：
@@ -29,6 +30,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.searchContent.length > 10) {
+      options.searchContent = options.searchContent.slice(0,10)
+      wx.showToast({
+        title: '搜索内容过长，仅保留前十个字符',
+        icon: 'none'
+      })
+    }
     this.setData({
       options : options,
       searchRangeText : options.searchType == 1 ? "全部组织、活动" :
@@ -84,7 +92,8 @@ Page({
       interact.searchAllActs(o.searchContent).then(
         (res2) => {
           this.setData({
-            actList : res2.data
+            actList : res2.data,
+            searchDone : true
           })
         }
       )
@@ -93,7 +102,8 @@ Page({
       interact.searchBlockOrgs(o.searchContent, o.forumId).then(
         (res) => {
           this.setData({
-            orgList : res.data
+            orgList : res.data,
+            searchDone : true
           })
         }
       )
@@ -102,7 +112,8 @@ Page({
       interact.searchOrgActs(o.searchContent, o.orgId).then(
         (res) => {
           this.setData({
-            actList : res.data
+            actList : res.data,
+            searchDone : true
           })
         }
       )
@@ -115,7 +126,8 @@ Page({
             r.push(res.data[i].act)
           }
           this.setData({
-            actList : r
+            actList : r,
+            searchDone : true
           })
           // console.log(r)
         }
@@ -125,7 +137,8 @@ Page({
       interact.searchManageActs(o.searchContent).then(
         (res) => {
           this.setData({
-            actList : res.data
+            actList : res.data,
+            searchDone : true
           })
         }
       )
@@ -138,7 +151,8 @@ Page({
             r.push(res.data[i].org)
           }
           this.setData({
-            orgList : r
+            orgList : r,
+            searchDone : true
           })
         }
       )

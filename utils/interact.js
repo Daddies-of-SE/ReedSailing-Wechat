@@ -982,7 +982,10 @@ module.exports.searchOrgActs = function (content, orgId) {
     //博雅、个人
     var block_id = orgId == -1 ? 2 : 5;
     return new Promise((resolve, reject) => {
-      get_request(`blocks/activities/search/${block_id}/`, 
+      post_request(`blocks/activities/search/${block_id}/`,
+        {
+          name : content,
+        },
         {
           func: module.exports.searchOrgActs,
           funcName: 'searchOrgActs',
@@ -1135,6 +1138,14 @@ module.exports.uploadOrgAvatar = function(org_id) {
             'content-type' : 'application/x-www-form-urlencoded'
           },
           success (res) {
+            if (res.statusCode != 200) {
+              wx.showToast({
+                title: '请求出现错误',
+                icon : 'none'
+              })
+              console.error(res)
+              reject()
+            }
             wx.showToast({
               title: '上传成功',
             })
@@ -1147,7 +1158,7 @@ module.exports.uploadOrgAvatar = function(org_id) {
               title: '网络错误',
               icon: 'none'
             })
-            console.err("uploadOrgAvatar请求失败")
+            console.error("uploadOrgAvatar请求失败", res)
             reject()
           }
         })
@@ -1168,6 +1179,14 @@ module.exports.uploadActAvatar = function(act_id, filePath) {
         'content-type' : 'application/x-www-form-urlencoded'
       },
       success (res) {
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '请求出现错误',
+            icon : 'none'
+          })
+          console.error(res)
+          reject()
+        }
         wx.showToast({
           title: '上传成功',
         })
@@ -1175,16 +1194,28 @@ module.exports.uploadActAvatar = function(act_id, filePath) {
         console.log(res)
         resolve(JSON.parse(res.data))
       },
-      // fail (res) {
-      //   wx.showToast({
-      //     title: '网络错误',
-      //     icon: 'none'
-      //   })
-      //   console.error("uploadActAvatar请求失败")
-      //   console.log(res)
-      //   reject()
-      // }
+      fail (res) {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+        console.error("uploadActAvatar请求失败", res)
+        console.log(res)
+        reject()
+      }
     })
 
+  })
+}
+
+module.exports.removeActAvatar = function(act_id) {
+  return new Promise((resolve, reject) => {
+    delete_request(`activities/${act_id}/avatar/`, 
+      {
+        func: module.exports.removeActAvatar,
+        funcName: 'removeActAvatar',
+        reject: reject,
+        resolve: resolve
+    })
   })
 }
