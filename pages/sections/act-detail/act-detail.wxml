@@ -73,10 +73,8 @@
 
 
 <button class='middleBtn' bindtap='bindQRCodeButton' style="width:30%; margin-bottom:25rpx; margin-left: 0rpx;">{{showQRCode ? '隐藏二维码' :'显示二维码'}}</button>
-<view wx:if="{{showQRCode}}">
-  <view wx:if="{{qrcode != ''}}">
+<view wx:if="{{showQRCode && qrcode != ''}}">
     <image src="{{qrcode}}" class="qrcode"/>
-  </view>
 </view>
 
 <!--评论区-->

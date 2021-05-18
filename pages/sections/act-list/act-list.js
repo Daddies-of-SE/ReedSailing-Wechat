@@ -24,7 +24,9 @@ Page({
         unstartActList : [],
         curActList : [],
         endActList : [],
-        searchContent : ""
+        searchContent : "",
+        qrcode : "",
+        showQRCode : false,
     },
 
     /**
@@ -234,5 +236,25 @@ Page({
       this.setData({
         searchContent : ""
       })
+    },
+
+    bindQRCodeButton() {
+      this.setData({
+        showQRCode : !this.data.showQRCode
+      })
+      if (this.data.showQRCode && this.data.qrcode == "") {
+        wx.showToast({
+          title: '正在生成二维码',
+          icon: 'loading'
+        })
+        interact.getPageQRCode(`pages/sections/act-list/act-list?orgId=${this.data.orgId}`).then(
+          res => {
+            wx.hideToast()
+            this.setData({
+              qrcode : res.data.img
+            })
+          }
+        )
+      }
     },
 })
