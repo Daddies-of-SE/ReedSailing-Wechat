@@ -67,7 +67,9 @@ Page({
       longitude: 116,
       latitude : 40,
       markers : [],
-      qrcode : ""
+      qrcode : "",
+      showQRCode : false,
+      showMap : false,
     //   comment_list : [
     //     {
     //       user : {
@@ -256,13 +258,7 @@ Page({
             }
           )
             
-          interact.getPageQRCode(`pages/sections/act-detail/act-detail?actId=${this.data.actId}`).then(
-            res => {
-              this.setData({
-                qrcode : res.data.img
-              })
-            }
-          )
+          
         })
     },
 
@@ -407,5 +403,31 @@ Page({
 
     empty() {
       //用来捕获tap事件，不能删
-    }
+    },
+
+    bindQRCodeButton() {
+      this.setData({
+        showQRCode : !this.data.showQRCode
+      })
+      if (this.data.showQRCode && this.data.qrcode == "") {
+        wx.showToast({
+          title: '正在生成二维码',
+          icon: 'loading'
+        })
+        interact.getPageQRCode(`pages/sections/act-detail/act-detail?actId=${this.data.actId}`).then(
+          res => {
+            wx.hideToast()
+            this.setData({
+              qrcode : res.data.img
+            })
+          }
+        )
+      }
+    },
+
+    bindMapButton() {
+      this.setData({
+        showMap : !this.data.showMap
+      })
+    },
 })

@@ -7,7 +7,7 @@
       <button class='joinBtn' bindtap='joinAct'>报名</button>
     </view>
     <view wx:elif="{{hasJoined}}" hover-class="weui-cell_active">
-      <button class='joinBtn' bindtap='exitAct'>取消报名</button>
+      <button class='unJoinBtn' bindtap='exitAct'>取消报名</button>
     </view>
 </view>
 
@@ -36,9 +36,7 @@
         <!-- <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view> -->
         <view class="organizer" wx:if="{{hasBegun}}"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" readonly allow-half model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>
 
-        <!-- <button class='joinBtn' bindtap='bindMapButton'>{{'显示地图'}}</button> -->
-        <!-- TODO -->
-         <!-- <button class='joinBtn' bindtap='bindQRCodeButton'>{{'显示二维码'}}</button> -->
+        
 
   
       </view>
@@ -56,17 +54,30 @@
                   <view style="font-size: 35rpx;" hover-class="weui-cell_active">删除活动</view>
         </view>
       </view>
-      
+
+     
     </i-card>
-    
+     
 </view>
 
-<map id="detailMap"
-  style="width: 100%; height: 30%; "
-  latitude="{{latitude}}"
-  longitude="{{longitude}}"
-  markers="{{markers}}"
-></map>
+<button class='middleBtn' bindtap='bindMapButton' style="width:30%; margin-bottom:25rpx; margin-left: 0rpx;">{{showMap ? '隐藏地图' : '显示地图'}}</button>
+<block wx:if="{{showMap}}">
+  <!-- 上一行不能写成view，因为map不能渲染在view内部 -->
+  <map id="detailMap"
+    style="width: 100%; height: 30%;"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}"
+  ></map>
+</block>
+
+
+<button class='middleBtn' bindtap='bindQRCodeButton' style="width:30%; margin-bottom:25rpx; margin-left: 0rpx;">{{showQRCode ? '隐藏二维码' :'显示二维码'}}</button>
+<view wx:if="{{showQRCode}}">
+  <view wx:if="{{qrcode != ''}}">
+    <image src="{{qrcode}}" class="qrcode"/>
+  </view>
+</view>
 
 <!--评论区-->
 <view class="comment-header">
@@ -111,4 +122,3 @@
   </scroll-view>
 </view>
 
-<image src="{{qrcode}}" class="qrcode"/>

@@ -39,7 +39,6 @@ page {
 .qrcode {
   width : 600rpx;
   height: 600rpx;
-
 }
 
 
