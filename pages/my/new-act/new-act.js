@@ -312,8 +312,9 @@ Page({
                 //创建还是修改，通过下面一行的d.actId == -1来判断
             }, d.actId == -1).then(
                 res => {
+                    console.log("actPicUrl", this.data.actPicUrl)
                     if (this.data.actPicUrl != "") {
-                        interact.uploadActAvatar(res.data.id, this.data.actPicUrl).then(
+                        interact.uploadActAvatar(this.data.actId == -1 ? res.data.id : this.data.actId, this.data.actPicUrl).then(
                             (res) => {
                                 wx.navigateBack({
                                     delta: 0,
