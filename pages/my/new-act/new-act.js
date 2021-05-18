@@ -1,7 +1,8 @@
 // pages/my/new-act/new-act.js
 const interact = require("../../../utils/interact.js")
 const util = require("../../../utils/util.js")
-const chooseLocation = requirePlugin('chooseLocation');
+
+const chooseLocation = requirePlugin('chooseLocation')
 
 const key = 'GEUBZ-V2TRO-SEPW7-S3UZV-QJDE6-OUFE4'; //使用在腾讯位置服务申请的key
 const referer = '一苇以航-地图'; //调用插件的app的名称
@@ -22,6 +23,7 @@ Page({
         index3 : 0,
         index1 : 0,
         createNewCategory : false,
+        actPicUrl : '',
 
         presetOrgId : -1,
         presetOrgName : "",
@@ -33,6 +35,7 @@ Page({
         numPeople: '',
         newCategory: '',
         locationText: '',
+        hasLocation : false,
         // haveLocation : false,
 
         // start_date: "2021-04-22",
@@ -134,22 +137,7 @@ Page({
                 presetOrgForumId : options.forumId
             })
         }
-    },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-        // if (!getApp().haveRegistered()) {
-        //     wx.navigateBack({
-        //       delta: 0,
-        //     }).then(
-        //         setTimeout(function () {
-        //           getApp().goCertificate()
-        //         }, 500)
-        //       )
-        //     return
-        // }
         interact.getAllActCategories().then(
             (res) => {
                 var r = res.data
@@ -180,10 +168,10 @@ Page({
                     end_date : r.end_time.split(" ")[0],
                     start_time : r.begin_time.split(" ")[1],
                     end_time : r.end_time.split(" ")[1],
-                    index3 : r.review ? 1 : 0
+                    index3 : r.review ? 1 : 0,
+                    actPicUrl : r.avatar
                 })
-            }
-            )
+            })
         }
         else if (this.data.presetOrgId == -1) {
             interact.getAllManageOrgs().then(
@@ -199,6 +187,27 @@ Page({
                     })
                 }
             )
+        }
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+        // if (!getApp().haveRegistered()) {
+        //     wx.navigateBack({
+        //       delta: 0,
+        //     }).then(
+        //         setTimeout(function () {
+        //           getApp().goCertificate()
+        //         }, 500)
+        //       )
+        //     return
+        // }
+        if (chooseLocation.getLocation()) {
+            this.setData({
+                hasLocation : true
+            })
         }
     },
 
@@ -220,7 +229,7 @@ Page({
         //       icon: 'none'
         //     })
         // }
-        
+
         if (location == null) {
             wx.showToast({
                 title: '请选择活动地点',
@@ -284,6 +293,7 @@ Page({
     },
 
     newActWrap: function(d, start_datetime, end_datetime, type_id, location) {
+
         interact.createActAddress(d.locationText, location.longitude, location.latitude, true).then(
          (res0) => {
             interact.createAct({
@@ -302,19 +312,26 @@ Page({
                 //创建还是修改，通过下面一行的d.actId == -1来判断
             }, d.actId == -1).then(
                 res => {
-                wx.navigateBack({
-                    delta: 0,
-                })
-                if (this.data.actId == -1) {
-                    wx.showToast({
-                        title: '创建成功',
-                    })
-                }
-                else {
-                    wx.showToast({
-                        title: '修改成功',
-                    })
-                }
+                    if (this.data.actPicUrl != "") {
+                        interact.uploadActAvatar(res.data.id, this.data.actPicUrl).then(
+                            (res) => {
+                                wx.navigateBack({
+                                    delta: 0,
+                                })
+                                wx.showToast({
+                                    title: this.data.actId == -1 ? '创建成功' : '修改成功',
+                                })
+                            }
+                        )
+                    }
+                    else {
+                        wx.navigateBack({
+                            delta: 0,
+                        })
+                        wx.showToast({
+                            title: this.data.actId == -1 ? '创建成功' : '修改成功',
+                        })
+                    }
             })
         })
     },
@@ -326,5 +343,20 @@ Page({
         // this.setData({
         //     haveLocation : true
         // })
+    },
+
+    uploadPic : function() {
+        var that = this
+        wx.chooseImage({
+            count: 1,
+            sizeType : ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success (res) {
+              that.setData({
+                  actPicUrl : res.tempFilePaths[0]
+              })
+              console.log(that.data.actPicUrl)
+            }
+          })
     }
 })

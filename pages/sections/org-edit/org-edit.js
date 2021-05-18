@@ -37,9 +37,6 @@ Page({
     this.setData({
       orgId : options.orgId
     })
-  },
-
-  onShow: function () {
     interact.getOrgInfo(this.data.orgId).then(
       (res) => {
         this.setData({
@@ -53,6 +50,10 @@ Page({
         }
       }
     )
+  },
+
+  onShow: function () {
+    
   },
 
   inputNameHandler: function (e) {

@@ -3,7 +3,7 @@
 <!--组织名称-->
 <view class="org-header">
     <text class="text">{{orgName}}</text>
-    <image class="picture" src="{{orgPicUrl}}"></image>
+    <image class="picture" src="{{orgPicUrl && orgPicUrl != '' ? orgPicUrl : '/icon/person.png'}}"></image>
     <view wx:if="{{isRealOrg && !hasFollowed}}" hover-class="weui-cell_active">
       <button class='followBtn' bindtap='followOrg'>关注</button>
     </view>
@@ -34,6 +34,7 @@
       <view class='detail detail-last'><span class="_infor_head">介绍：</span>{{orgInfo.description ? orgInfo.description : "暂无"}}</view>
 
         <button class='editBtn' bindtap='bindQRCodeButton' style="width:30%; margin-left: 50rpx;">{{showQRCode ? '隐藏二维码' :'显示二维码'}}</button>
+        
         <view wx:if="{{showQRCode && qrcode != ''}}">
             <image src="{{qrcode}}" class="qrcode"/>
         </view>

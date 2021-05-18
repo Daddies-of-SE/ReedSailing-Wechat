@@ -97,6 +97,8 @@
 
 .card-demo image {
   border-radius: 50%;
+  height : 150rpx;
+  width: 150rpx;
 }
 
 

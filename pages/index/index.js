@@ -127,7 +127,7 @@ Page({
             }
         )
   
-        interact.getRecommendActs().then(
+          interact.getRecommendActs().then(
           (res) => {
               var lst = []
               var locations = []
@@ -154,6 +154,35 @@ Page({
                 markers : locations
               })
           })
+          
+          wx.connectSocket({
+            url: app.ws_werver + `link/${app.loginData.userId}/`,
+            timeout: 1000,
+            success: res=>{
+              console.log("创建socket连接成功")
+              console.log(res)
+            },
+            fail: res=>{
+              console.log('创建socket连接失败')
+              console.log(res)
+            }
+          })
+          
+          //连接成功
+          wx.onSocketOpen(function() {
+            console.log("websocket连接服务器成功")
+            wx.sendSocketMessage({
+              data: 'This is a test from the client',
+            })
+          })
+
+          //接收数据
+          wx.onSocketMessage(function(data) {
+              console.log('服务器返回的数据: ' + data.data);
+              // this.notificationList = 
+          })
+
+          
         }
       )
     },

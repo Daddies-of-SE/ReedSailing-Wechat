@@ -57,7 +57,6 @@ Page({
       },
       hasBegun : false,
       hasEnded : false,
-      hasActInfo: false,
       showIndex: 0,
       userId: -1,
       hasJoined: false,
@@ -396,9 +395,16 @@ Page({
     },
 
     goOwner: function () {
-      wx.navigateTo({
-        url: `../user-info/user-info?userId=${this.data.actInfo.owner.id}`,
-      })
+      if (this.data.actInfo.org) {
+        wx.navigateTo({
+          url: `../act-list/act-list?orgId=${this.data.actInfo.org.id}`,
+        })
+      } 
+      else {
+        wx.navigateTo({
+          url: `../user-info/user-info?userId=${this.data.actInfo.owner.id}`,
+        })
+      }
     },
 
     empty() {
