@@ -10,7 +10,7 @@
         data-personname="{{item.person.name}}" data-personid="{{item.person.id}}">
       <view slot="content">
         <view class="i-swipeout-image" style="background:#ff9900;">
-          <image class="mem-avator" src="{{item.person.avatar}}"  slot="icon"></image>
+          <image class="mem-avatar" src="{{item.person.avatar}}"  slot="icon"></image>
         </view>
         <view class="i-swipeout-des">
           <view class="i-swipeout-des-h2">{{item.person.name}}</view>

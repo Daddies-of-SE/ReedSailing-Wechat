@@ -19,8 +19,9 @@
   </view>
   <view class='actList'>
     <i-cell-group i-class="act-wrap">
-        <i-cell title="{{idMatchOrg.name}}" label="{{idMatchOrg.description}}" is-link bindtap="goOrg" 
+        <i-cell title="{{idMatchOrg.name}}" label="{{idMatchOrg.description}}" is-link bindtap="goOrg"
             data-orgid="{{idMatchOrg.id}}" data-orgname="{{idMatchOrg.name}}">
+        <image class="org-avatar" src="{{idMatchOrg.avatar && idMatchOrg.avatar != '' ? idMatchOrg.avatar : '/icon/person.png'}}"  slot="icon"></image>
         </i-cell> 
     </i-cell-group>
   </view>
@@ -48,7 +49,7 @@
         <block wx:for="{{orgList}}" wx:key="id">
             <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goOrg" 
             data-orgid="{{item.id}}" data-orgname="{{item.name}}">
-                <image class="org-avator" src="/icon/person.png"  slot="icon"></image>
+                <image class="org-avatar" src="{{item.avatar && item.avatar != '' ? item.avatar : '/icon/person.png'}}"  slot="icon"></image>
             </i-cell> 
         </block>
     </i-cell-group>
@@ -69,5 +70,10 @@
     </i-cell-group>
   </view>
 </view>
+
+<view wx:if="{{idMatchOrg == 0 && idMatchAct == 0 && orgList.length == 0 && actList.length == 0 && searchDone}}">
+  <i-cell title="">在{{searchRangeText}}中未搜索到相关内容</i-cell>
+</view>
+
 
 </view>

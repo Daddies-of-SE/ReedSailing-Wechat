@@ -34,11 +34,24 @@
     <i-input value="{{ numPeople }}" bind:change="inputNumPeopleHandler" maxlength="3" type="number" title="最大人数" placeholder="{{actInfo.contain ? actInfo.contain : '请输入正整数'}}" /> -->
     
     <i-input bind:change="inputNameHandler" maxlength="20" title="活动名称" placeholder="{{actInfo.name ? actInfo.name : '请输入活动名称'}}" />
-    <i-input bind:change="inputDescriptionHandler" maxlength="50" title="活动描述(可选)" placeholder="{{actInfo.description ? actInfo.description : '请输入活动描述'}}" />
+    <i-input type="textarea"  bind:change="inputDescriptionHandler" maxlength="50" title="活动描述(可选)" placeholder="{{actInfo.description ? actInfo.description : '请输入活动描述'}}" />
     <i-input bind:change="inputNumPeopleHandler" maxlength="3" type="number" title="最大人数" placeholder="{{actInfo.contain ? actInfo.contain : '请输入正整数'}}" />
 
-    <i-input bind:tap="toMap" disabled title="活动地点" value="点击选择"/>
+    <i-input bind:tap="toMap" disabled title="活动地点" value="{{hasLocation ? '已选择' : '点击选择'}}" />
     <i-input bind:change="inputLocationTextHandler" maxlength="50" title="详细地址" placeholder="{{actInfo.location ? actInfo.location.name : '请输入详细地址'}}" />
+
+    <view class="org-pic">
+        <view class="text">图片</view>
+        <view class="picture" wx:if="{{actPicUrl != ''}}">
+        <image src="{{actPicUrl}}" class="pictureSize" mode="widthFix" ></image>
+        </view>
+        <view class='uploadBtnWrap'>
+        <a class='weui-btn weui-btn_default weui-btn_mini' bindtap='uploadPic'>上传</a>
+        </view>
+        <view class='uploadBtnWrap' wx:if="{{actPicUrl != ''}}">
+        <a class='weui-btn weui-btn_default weui-btn_mini' bindtap='removePic' style="margin-top:20rpx">删除</a>
+        </view>
+    </view>
 
     <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
         <view class="weui-cell__hd">

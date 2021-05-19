@@ -3,7 +3,7 @@
 <!--组织名称-->
 <view class="org-header">
     <text class="text">{{orgName}}</text>
-    <image class="picture" src="{{orgPicUrl}}"></image>
+    <image class="picture" src="{{orgPicUrl && orgPicUrl != '' ? orgPicUrl : '/icon/person.png'}}"></image>
     <view wx:if="{{isRealOrg && !hasFollowed}}" hover-class="weui-cell_active">
       <button class='followBtn' bindtap='followOrg'>关注</button>
     </view>
@@ -32,7 +32,15 @@
       <view class='detail'><span class="_infor_head">创建时间：</span>{{orgInfo.create_time}}</view>
       <view class='detail'><span class="_infor_head">负责人：</span>{{orgInfo.owner.name}}</view>
       <view class='detail detail-last'><span class="_infor_head">介绍：</span>{{orgInfo.description ? orgInfo.description : "暂无"}}</view>
+
+        <button class='editBtn' bindtap='bindQRCodeButton' style="width:30%; margin-left: 50rpx;">{{showQRCode ? '隐藏二维码' :'显示二维码'}}</button>
+        
+        <view wx:if="{{showQRCode && qrcode != ''}}">
+            <image src="{{qrcode}}" class="qrcode"/>
+        </view>
+
     </block>
+    
     
     <button class='editBtn' bindtap='editOrgInfo' wx:if="{{isManager && showIndex[0]}}" hover-class="weui-cell_active">编辑</button>
   </view>
@@ -51,7 +59,7 @@
     <view class='mem-list' wx:if="{{showIndex[1]}}">
         <view class="mem-item" wx:for="{{memList}}">
           <view data-userid="{{item.person.id}}" bindtap="goUser"> 
-            <image class="mem-avator" src="{{item.person.avatar}}"></image>
+            <image class="mem-avatar" src="{{item.person.avatar}}"></image>
             <text class="mem-name">{{item.person.id == orgInfo.owner.id ? item.person.name+"(负责人)" : item.person.name}}</text>
           </view>
         </view>

@@ -62,7 +62,7 @@
 }
 
 
-.org-wrap .org-item .org-avator {
+.org-wrap .org-item .org-avatar {
   display: block;
   height: 101rpx;
   width: 101rpx;
@@ -83,6 +83,8 @@
 
 .card-demo image {
   border-radius: 50%;
+  height : 150rpx;
+  width: 150rpx;
 }
 
 .msg-item {
@@ -96,7 +98,7 @@
 }
 
 
-.msg-item .org-avator {
+.msg-item .org-avatar {
     margin-left: 10rpx;
     margin-top: 10rpx;
     display: inline-block;

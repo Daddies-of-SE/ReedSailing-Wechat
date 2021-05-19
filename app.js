@@ -12,7 +12,8 @@ App({
     nickName : '',
     motto : '',
     avatar : '',
-    contact : ''
+    contact : '',
+    haveTriedLogin : false
   },
   // allNotifList : [],
   unreadNotifList : [],
@@ -77,44 +78,29 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 考虑通过二维码直接进入某一界面的情况，不能只允许recommend页面进行newLogin
-    this.globalLogin().then(
-      res => {
-        // wx.hideToast({
-        //   success: (res) => {},
-        // })
-        // login.consistentAskingGetUserProfile()
-        wx.connectSocket({
-          url: this.ws_werver + `link/${this.loginData.userId}/`,
-          timeout: 1000,
-          success: res=>{
-            console.log("创建socket连接成功")
-            console.log(res)
-          },
-          fail: res=>{
-            console.log('创建socket连接失败')
-            console.log(res)
-          }
-        })
-      }
-    )
+    // this.globalLogin().then(
+    //   res => {
+    //     // wx.hideToast({
+    //     //   success: (res) => {},
+    //     // })
+    //     // login.consistentAskingGetUserProfile()
+        
+    //   }
+    // )
 
     // console.log(util.getRelativeTime("2020-12-01 01:18"))
 
     // set up socket link
 
 
-     //连接成功
-     wx.onSocketOpen(function() {
-      console.log("websocket连接服务器成功")
-      wx.sendSocketMessage({
-        data: 'This is a test from the client',
-      })
-    })
 
+<<<<<<< HEAD
     // //接收数据
     wx.onSocketMessage(function(data) {
         console.log('服务器返回的通知列表: ' + data.data);
     })
+=======
+>>>>>>> d6fbdaab619ab79bc6d6ed2c7576d3661746a2c9
 
   },
 

@@ -982,7 +982,10 @@ module.exports.searchOrgActs = function (content, orgId) {
     //博雅、个人
     var block_id = orgId == -1 ? 2 : 5;
     return new Promise((resolve, reject) => {
-      get_request(`blocks/activities/search/${block_id}/`, 
+      post_request(`blocks/activities/search/${block_id}/`,
+        {
+          name : content,
+        },
         {
           func: module.exports.searchOrgActs,
           funcName: 'searchOrgActs',
@@ -1096,6 +1099,121 @@ module.exports.getAllStatusOrgActs = function (org_id) {
       {
         func: module.exports.getAllStatusOrgActs,
         funcName: 'getAllStatusOrgActs',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.getPageQRCode = function (path) {
+  return new Promise((resolve, reject) => {
+    post_request(`qrcode/`, 
+      {
+        path : path,
+        width : 430
+      },
+      {
+        func: module.exports.getPageUrl,
+        funcName: 'getPageUrl',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.uploadOrgAvatar = function(org_id) {
+  return new Promise((resolve, reject) => {
+    wx.chooseImage({
+      count: 1,
+      sizeType : ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success (res) {
+        const tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: getAPIUrl(`organizations/${org_id}/avatar/`),
+          filePath: tempFilePaths[0],
+          name: 'image',
+          method :'POST',
+          header : {
+            'content-type' : 'application/x-www-form-urlencoded'
+          },
+          success (res) {
+            if (res.statusCode != 200) {
+              wx.showToast({
+                title: '请求出现错误',
+                icon : 'none'
+              })
+              console.error(res)
+              reject()
+            }
+            wx.showToast({
+              title: '上传成功',
+            })
+            console.log("uploadOrgAvatar请求成功")
+            console.log(res)
+            resolve(JSON.parse(res.data))
+          },
+          fail (res) {
+            wx.showToast({
+              title: '网络错误',
+              icon: 'none'
+            })
+            console.error("uploadOrgAvatar请求失败", res)
+            reject()
+          }
+        })
+      }
+    })
+  })
+}
+
+module.exports.uploadActAvatar = function(act_id, filePath) {
+  return new Promise((resolve, reject) => {
+    // console.log(act_id, filePath)
+    wx.uploadFile({
+      url: getAPIUrl(`activities/${act_id}/avatar/`),
+      filePath: filePath,
+      name: 'image',
+      method :'POST',
+      header : {
+        'content-type' : 'application/x-www-form-urlencoded'
+      },
+      success (res) {
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '请求出现错误',
+            icon : 'none'
+          })
+          console.error(res)
+          reject()
+        }
+        wx.showToast({
+          title: '上传成功',
+        })
+        console.log("uploadActAvatar请求成功")
+        console.log(res)
+        resolve(JSON.parse(res.data))
+      },
+      fail (res) {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+        console.error("uploadActAvatar请求失败", res)
+        console.log(res)
+        reject()
+      }
+    })
+
+  })
+}
+
+module.exports.removeActAvatar = function(act_id) {
+  return new Promise((resolve, reject) => {
+    delete_request(`activities/${act_id}/avatar/`, 
+      {
+        func: module.exports.removeActAvatar,
+        funcName: 'removeActAvatar',
         reject: reject,
         resolve: resolve
     })

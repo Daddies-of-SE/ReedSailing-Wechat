@@ -37,22 +37,23 @@ Page({
     this.setData({
       orgId : options.orgId
     })
-  },
-
-  onShow: function () {
     interact.getOrgInfo(this.data.orgId).then(
       (res) => {
         this.setData({
           inputName : res.data.name,
           inputDescription : res.data.description
         })
-        if (res.data.avatar != null) {
+        if (res.data.avatar && res.data.avatar != "") {
           this.setData({
             orgPicUrl : res.data.avatar,
           })
         }
       }
     )
+  },
+
+  onShow: function () {
+    
   },
 
   inputNameHandler: function (e) {
@@ -64,7 +65,13 @@ Page({
   },
 
   uploadPic: function (e) {
-    //TODO
+    interact.uploadOrgAvatar(this.data.orgId).then(
+      (res) => {
+        this.setData({
+          orgPicUrl : res.img
+        })
+      }
+    )
   },
 
   submitOrg: function (e) {

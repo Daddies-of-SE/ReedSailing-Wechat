@@ -118,7 +118,7 @@
   flex-shrink: 0;
 }
 
-.mem-wrap .mem-item .mem-avator {
+.mem-wrap .mem-item .mem-avatar {
   display: block;
   height: 101rpx;
   width: 101rpx;
@@ -136,7 +136,7 @@
   overflow:hidden;
 }
 
-.org-avator {
+.org-avatar {
   border-radius: 50%;
   /* width: 40rpx;
   height: 40rpx; */

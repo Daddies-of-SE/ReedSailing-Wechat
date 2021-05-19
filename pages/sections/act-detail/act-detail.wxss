@@ -10,7 +10,7 @@
 }
 
 .act-header .joinBtn{
-  width: 150rpx;
+  width: 100rpx;
   height: 60rpx;
   background-color: rgba(19, 173, 245, 0.548);
   color: white;
@@ -25,7 +25,7 @@
 }
 
 .act-header .unJoinBtn{
-  width: 150rpx;
+  width: 200rpx;
   height: 60rpx;
   background-color: rgba(19, 173, 245, 0.548);
   color: white;
@@ -77,6 +77,8 @@
 
 .card-demo image {
   border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .msg-item ._infor_head {
@@ -146,4 +148,19 @@
 
 .owner {
   height: 5rpx;
+}
+
+.middleBtn {
+  width: 100rpx;
+  height: 60rpx;
+  background-color: rgba(19, 173, 245, 0.548);
+  color: white;
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
 }

@@ -24,7 +24,9 @@ Page({
         unstartActList : [],
         curActList : [],
         endActList : [],
-        searchContent : ""
+        searchContent : "",
+        qrcode : "",
+        showQRCode : false,
     },
 
     /**
@@ -219,6 +221,13 @@ Page({
     },
 
     onSearch: function (e) {
+      if (this.data.searchContent == "") {
+        wx.showToast({
+          title: '请输入搜索内容',
+          icon: 'none'
+        })
+        return
+      }
       wx.navigateTo({
         url: `/pages/sections/search/search?searchContent=${this.data.searchContent}&searchType=3&orgId=${this.data.orgId}&orgName=${this.data.orgName}`,
       })
@@ -234,5 +243,25 @@ Page({
       this.setData({
         searchContent : ""
       })
+    },
+
+    bindQRCodeButton() {
+      this.setData({
+        showQRCode : !this.data.showQRCode
+      })
+      if (this.data.showQRCode && this.data.qrcode == "") {
+        wx.showToast({
+          title: '正在生成二维码',
+          icon: 'loading'
+        })
+        interact.getPageQRCode(`pages/sections/act-list/act-list?orgId=${this.data.orgId}`).then(
+          res => {
+            wx.hideToast()
+            this.setData({
+              qrcode : res.data.img
+            })
+          }
+        )
+      }
     },
 })

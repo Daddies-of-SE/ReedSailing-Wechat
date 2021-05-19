@@ -1,5 +1,5 @@
 /* pages/sections/act-detail/participants/participants.wxss */
-.mem-wrap .mem-avator {
+.mem-wrap .mem-avatar {
   border-radius: 50%;
   width: 80rpx;
   height: 80rpx;

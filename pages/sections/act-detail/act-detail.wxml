@@ -7,7 +7,7 @@
       <button class='joinBtn' bindtap='joinAct'>报名</button>
     </view>
     <view wx:elif="{{hasJoined}}" hover-class="weui-cell_active">
-      <button class='joinBtn' bindtap='exitAct'>取消报名</button>
+      <button class='unJoinBtn' bindtap='exitAct'>取消报名</button>
     </view>
 </view>
 
@@ -15,11 +15,11 @@
 <!--活动信息-->
 <view class="msg-item">
     <i-card i-class="card-demo card-demo-full"  full
-      title="{{actInfo.owner.name}}" extra="发布者" thumb="{{actInfo.owner.avatar}}" bindtap="goOwner">  
-      <view slot="content">
-        <view class="organizer" wx:if="{{actInfo.org != null}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goOrg">活动id：</span>{{actId}}</view>
-        <view class="organizer" wx:if="{{actInfo.org != null}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goOrg">所属组织：{{actInfo.org.name}}</span></view>
-        <view class="organizer" wx:if="{{actInfo.block != null}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goBlock">所属版块：{{actInfo.block.name}}</span></view>
+      title="{{actInfo.org ? actInfo.org.name : actInfo.owner.name}}" extra="发布者" thumb="{{actInfo.org ? actInfo.org.avatar : actInfo.owner.avatar}}" bindtap="goOwner">  
+      <view slot="content" catchtap="empty">
+        <view class="organizer" wx:if="{{actInfo.org}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goOrg">活动id：</span>{{actId}}</view>
+        <view class="organizer" wx:if="{{actInfo.org}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goOrg">所属组织：{{actInfo.org.name}}</span></view>
+        <view class="organizer" wx:if="{{actInfo.block}}"><span class="_infor_head" hover-class="weui-cell_active" bindtap="goBlock">所属版块：{{actInfo.block.name}}</span></view>
 
         <view class="organizer"><span class="_infor_head">发布时间：</span>{{pub_time}}</view>
 
@@ -36,33 +36,47 @@
         <!-- <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view> -->
         <view class="organizer" wx:if="{{hasBegun}}"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" readonly allow-half model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>
 
+        <view wx:if="{{actInfo.avatar && actInfo.avatar != ''}}">
+          <image src="{{actInfo.avatar}}" class="act-avatar" mode="widthFix" style="width: 500rpx; border-radius: 0; margin-top: 50rpx;"></image>
+        </view>
   
       </view>
-      <view wx:if="{{isManager}}" slot="footer">
+      <view wx:if="{{isManager}}" slot="footer" catchtap="empty">
         <view class="bottom-right" bind:tap="goParticipants">
                   <image class="arrow" src="/icon/rightArrow.png"></image>
                   <view style="font-size: 35rpx;" hover-class="weui-cell_active">查看参与者</view>
         </view>
         <view class="bottom-right" bind:tap="editAct">
-                  <image class="arrow" src="/icon/rightArrow.png"></image>
+                  <i-icon type="editor" />
                   <view style="font-size: 35rpx;" hover-class="weui-cell_active">编辑活动</view>
         </view>
         <view class="bottom-right" bind:tap="deleteAct">
-                  <image class="arrow" src="/icon/rightArrow.png"></image>
+                  <i-icon type="delete" />
                   <view style="font-size: 35rpx;" hover-class="weui-cell_active">删除活动</view>
         </view>
       </view>
-      
+
+     
     </i-card>
-    
+     
 </view>
 
-<map id="detailMap"
-  style="width: 100%; height: 30%; "
-  latitude="{{latitude}}"
-  longitude="{{longitude}}"
-  markers="{{markers}}"
-></map>
+<button class='middleBtn' bindtap='bindMapButton' style="width:30%; margin-bottom:25rpx; margin-left: 0rpx;">{{showMap ? '隐藏地图' : '显示地图'}}</button>
+<block wx:if="{{showMap}}">
+  <!-- 上一行不能写成view，因为map不能渲染在view内部 -->
+  <map id="detailMap"
+    style="width: 100%; height: 30%;"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}"
+  ></map>
+</block>
+
+
+<button class='middleBtn' bindtap='bindQRCodeButton' style="width:30%; margin-bottom:25rpx; margin-left: 0rpx;">{{showQRCode ? '隐藏二维码' :'显示二维码'}}</button>
+<view wx:if="{{showQRCode && qrcode != ''}}">
+    <image src="{{qrcode}}" class="qrcode"/>
+</view>
 
 <!--评论区-->
 <view class="comment-header">
@@ -84,15 +98,15 @@
       </i-card>
     </view>
     <view class="msg-item" wx:for="{{comment_list}}" wx:key='id'>
-      <i-card i-class="card-demo" title="{{item.user.name}}" extra="{{item.publish_time}}" thumb="{{item.user.avator}}">
-        <view slot="content">
+      <i-card i-class="card-demo" title="{{item.user.name}}" extra="{{item.publish_time}}" thumb="{{item.user.avatar}}" bindtap="goUser" data-userid="{{item.user.id}}">
+        <view slot="content" catchtap="empty">
           <view>{{item.content}}</view>
           <view wx:if="{{hasBegun && item.score != 0}}">
             <van-rate custom-class="rate" model:value="{{ item.score }}" size="{{ 20 }}"
            readonly allow-half/>
           </view>
         </view>
-        <view slot="footer">
+        <view slot="footer" catchtap="empty">
           <view wx:if="{{item.user.id == userId}}" class="bottom-right" bind:tap="goEditComment" data-comment-id="{{item.id}}">
             <i-icon type="editor" />
             <view class="txt" style="font-size: 35rpx;" hover-class="weui-cell_active"> 编辑</view>

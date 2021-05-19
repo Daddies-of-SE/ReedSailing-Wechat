@@ -57,7 +57,6 @@ Page({
       },
       hasBegun : false,
       hasEnded : false,
-      hasActInfo: false,
       showIndex: 0,
       userId: -1,
       hasJoined: false,
@@ -67,10 +66,13 @@ Page({
       longitude: 116,
       latitude : 40,
       markers : [],
+      qrcode : "",
+      showQRCode : false,
+      showMap : false,
     //   comment_list : [
     //     {
     //       user : {
-    //         avator : '/icon/sample.png',
+    //         avatar : '/icon/sample.png',
     //         name : 'yy',
     //       },
     //       publish_time : '10分钟前',
@@ -80,7 +82,7 @@ Page({
     //     },
     //     {
     //       user : {
-    //         avator : '/icon/sample.png',
+    //         avatar : '/icon/sample.png',
     //         name : 'yy',
     //       },
     //       publish_time : '30分钟前',
@@ -254,6 +256,8 @@ Page({
               })
             }
           )
+            
+          
         })
     },
 
@@ -391,8 +395,51 @@ Page({
     },
 
     goOwner: function () {
+      if (this.data.actInfo.org) {
+        wx.navigateTo({
+          url: `../act-list/act-list?orgId=${this.data.actInfo.org.id}`,
+        })
+      } 
+      else {
+        wx.navigateTo({
+          url: `../user-info/user-info?userId=${this.data.actInfo.owner.id}`,
+        })
+      }
+    },
+
+    empty() {
+      //用来捕获tap事件，不能删
+    },
+
+    bindQRCodeButton() {
+      this.setData({
+        showQRCode : !this.data.showQRCode
+      })
+      if (this.data.showQRCode && this.data.qrcode == "") {
+        wx.showToast({
+          title: '正在生成二维码',
+          icon: 'loading'
+        })
+        interact.getPageQRCode(`pages/sections/act-detail/act-detail?actId=${this.data.actId}`).then(
+          res => {
+            wx.hideToast()
+            this.setData({
+              qrcode : res.data.img
+            })
+          }
+        )
+      }
+    },
+
+    bindMapButton() {
+      this.setData({
+        showMap : !this.data.showMap
+      })
+    },
+
+    goUser(e) {
       wx.navigateTo({
-        url: `../user-info/user-info?userId=${this.data.actInfo.owner.id}`,
+        url: `../user-info/user-info?userId=${e.currentTarget.dataset.userid}`,
       })
     }
 })

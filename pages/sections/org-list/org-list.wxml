@@ -24,60 +24,11 @@
 
 <van-search placeholder="搜索版块下的组织（id/名称）" shape="round" bind:search="onSearch" bind:change="onChange" bind:clear="onClear" bind:cancel="onClear"/>
 
-<!-- <view class="search-bar"> -->
-    
-    <!-- <view class="header">
-        <van-search value="{{ value }}" placeholder="请输入组织关键词" show-action shape="round" bind:search="onSearch" bind:cancel="onCancel" bind:clear="onClear" />
-        <wux-filterbar items="{{ filters }}" bind:change="onFilterChange" bind:open="onOpen" wx:if="{{ result.length>0 && searchStatus }}" />
-    </view> -->
-
-    <!-- 未搜索时标签 -->
-    <!-- <view class="no-search" wx:if="{{ !searchStatus }}">
-        <view class="history" wx:if="{{history.length>0}}">
-            <view class="head">
-            <text class="title">历史记录</text>
-            <image class="icon" bindtap="clearHistory" src="/assets/delete.png"></image>
-            </view>
-            <view class="wrap">
-            <view class="item" bindtap="clickTag" data-value="{{item}}" wx:key="{{item}}" wx:for="{{history}}" hover-class="navigator-hover">{{item}}</view>
-            </view>
-        </view>
-    </view> -->
-
-    <!-- 搜索结果 -->
-    <!-- <scroll-view bindscrolltolower="scrollListen" scroll-y enable-flex class="result" wx:if="{{ result.length>0 && searchStatus }}">
-    <view style="height:208rpx;width:750rpx"></view>
-    <view class="item" wx:for="{{result}}" wx:for-item="item" wx:key="id" data-value="{{item}}" bindtap="handleClick">
-        <product-big data="{{item}}" border="false"></product-big>
-    </view>
-    </scroll-view>
-
-    <view class="empty-wrap" wx:if="{{ result.length==0 && searchStatus}}">
-    <view class="empty">
-        <image class="icon" src="/assets/noSearch.png"></image>
-        <text class="text">您寻找的还未上架TODO</text>
-    </view>
-    </view> -->
-
-<!-- </view> -->
-
-<!--组织列表-->
-<!-- <view class="shadow">
-    <block wx:for="{{forumInfo}}" wx:key="id">
-			<view class="cell" hover-class="hover-grey" hover-stay-time="300" bindtap="goOrg" data-orgid="{{item.id}}" data-orgname="{{item.name}}">
-				<view class="content one-line">
-					<view class="title">{{item.name}}</view>
-					<view class="arrow" />
-				</view>
-			</view>
-    </block>
-</view> -->
-
 <i-cell-group i-class="org-wrap">
     <block wx:for="{{forumInfo}}" wx:key="id">
         <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goOrg" 
         data-orgid="{{item.id}}" data-orgname="{{item.name}}">
-            <image class="org-avator" src="/icon/person.png"  slot="icon"></image>
+            <image class="org-avatar" src="{{item.avatar ? item.avatar : '/icon/person.png'}}"  slot="icon"></image>
         </i-cell> 
     </block>
 </i-cell-group>

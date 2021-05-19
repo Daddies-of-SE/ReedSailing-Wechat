@@ -29,3 +29,24 @@ van-button {
   color: black
 }
 
+.text {
+
+  color: #495060;
+  margin-left: 67rpx;
+}
+
+
+.org-pic .picture {
+  display: flex;
+  justify-content: center;
+}
+
+.org-pic .picture .pictureSize {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.org-pic .uploadBtnWrap{
+  display: flex;
+  justify-content: center;
+} 

@@ -126,7 +126,7 @@
   margin-top: 150rpx
 } */
 
-.org-wrap .org-avator {
+.org-wrap .org-avatar {
   border-radius: 50%;
   /* width: 40rpx;
   height: 40rpx; */

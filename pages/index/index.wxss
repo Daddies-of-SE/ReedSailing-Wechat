@@ -56,7 +56,7 @@
   flex-shrink: 0;
 }
 
-.org-wrap .org-item .org-avator {
+.org-wrap .org-item .org-avatar {
   border-radius: 50%;
   display: block;
   height: 101rpx;
@@ -97,10 +97,15 @@
 
 .card-demo image {
   border-radius: 50%;
+<<<<<<< HEAD
   border: solid 0.05rem #34b3de;
   height: 101rpx;
   width: 101rpx;
   object-fit: scale-down;
+=======
+  height : 150rpx;
+  width: 150rpx;
+>>>>>>> d6fbdaab619ab79bc6d6ed2c7576d3661746a2c9
 }
 
 
