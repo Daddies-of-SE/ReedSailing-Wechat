@@ -94,13 +94,10 @@ App({
 
 
 
-<<<<<<< HEAD
     // //接收数据
     wx.onSocketMessage(function(data) {
-        console.log('服务器返回的通知列表: ' + data.data);
+        console.log('未读通知列表: ' + data.data);
     })
-=======
->>>>>>> d6fbdaab619ab79bc6d6ed2c7576d3661746a2c9
 
   },
 
@@ -108,7 +105,7 @@ App({
     return new Promise( (resolve, reject) => {
       if (this.loginData.userId == -1) {
         login.newLogin().then(
-          (res) => {
+          (resgit) => {
             resolve()
           }
         )
