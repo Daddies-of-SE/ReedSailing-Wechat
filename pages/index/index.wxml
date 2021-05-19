@@ -45,9 +45,9 @@
   <view class="msg-wrap">
     <scroll-view scroll-y="true" class="nav">
       <view class="msg-item" wx:for="{{act_list}}" wx:key='id'>
-        <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.relative_pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}" bindtap="toActivity" data-actid="{{item.id}}">
+        <i-card i-class="card-demo" thumb="{{item.org ? item.org.avatar : ''}}" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.relative_pub_time}}' bindtap="toActivity" data-actid="{{item.id}}">
         <!-- TODO: 上一行avatar换成活动图片 -->
-          <view slot="content">
+          <view class= slot="content">
             <text calss="title">{{item.name}}</text>
             <view class="org_time"><span class="_infor_head">时间：</span> {{item.begin_time ? item.begin_time: "暂无信息"}} 至 {{item.end_time ? item.end_time: "暂无信息"}}</view>
             <view class="place"><span class="_infor_head">地点：</span> {{item.location ? item.location.name : "暂无信息"}}</view>

@@ -887,7 +887,7 @@ module.exports.getJoinedMonthActs = function (year, month) {
 
 module.exports.getAllActCategories = function () {
   return new Promise((resolve, reject) => {
-    get_request(`/activities/categories/`, 
+    get_request(`activities/categories/`, 
       {
         func: module.exports.getAllActCategories,
         funcName: 'getAllActCategories',
@@ -899,7 +899,7 @@ module.exports.getAllActCategories = function () {
 
 module.exports.createActCategory = function (name) {
   return new Promise((resolve, reject) => {
-    post_request(`/activities/categories/`, 
+    post_request(`activities/categories/`, 
       {name : name},
       {
         func: module.exports.createActCategory,
