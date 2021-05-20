@@ -119,42 +119,42 @@ Page({
               havelogin : app.haveRegistered(),
               info : JSON.stringify(app.loginData.nickName)
           })
-          // interact.getRecommendOrgs().then(
-          //   (res) => {
-          //       this.setData({
-          //         org_list : res.data.slice(0,10)
-          //       })
-          //   }
-          // )
+          interact.getRecommendOrgs().then(
+            (res) => {
+                this.setData({
+                  org_list : res.data.slice(0,10)
+                })
+            }
+          )
   
-          // interact.getRecommendActs().then(
-          //   (res) => {
-          //       var lst = []
-          //       var locations = []
-          //       for (var i = 0; i < 10; i++) {
-          //           var v = res.data[i]
-          //           v.pub_time = v.pub_time.split(".")[0].replace("T", " ")
-          //           v.begin_time = v.begin_time.replace("T", " ")
-          //           v.end_time = v.end_time.replace("T", " ")
-          //           v.relative_pub_time = util.getRelativeTime(v.pub_time)
-          //           lst.push(v)
-          //           locations.push({
-          //             id: v.id,
-          //             latitude: v.location.latitude,
-          //             longitude: v.location.longitude,
-          //             name: v.name,
-          //             width: "30",  
-          //             height: "60",
-          //             callout : {content : v.name}
-          //           })
-          //       }
+          interact.getRecommendActs().then(
+            (res) => {
+                var lst = []
+                var locations = []
+                for (var i = 0; i < 10; i++) {
+                    var v = res.data[i]
+                    v.pub_time = v.pub_time.split(".")[0].replace("T", " ")
+                    v.begin_time = v.begin_time.replace("T", " ")
+                    v.end_time = v.end_time.replace("T", " ")
+                    v.relative_pub_time = util.getRelativeTime(v.pub_time)
+                    lst.push(v)
+                    locations.push({
+                      id: v.id,
+                      latitude: v.location.latitude,
+                      longitude: v.location.longitude,
+                      name: v.name,
+                      width: "30",  
+                      height: "60",
+                      callout : {content : v.name}
+                    })
+                }
                 
-          //       this.setData({
-          //         act_list : lst,
-          //         markers : locations
-          //       })
-          //   }
-          // )
+                this.setData({
+                  act_list : lst,
+                  markers : locations
+                })
+            }
+          )
           
           wx.connectSocket({
             url: app.ws_werver + `link/${app.loginData.userId}/`,
