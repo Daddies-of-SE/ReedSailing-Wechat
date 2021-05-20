@@ -20,6 +20,7 @@ Page({
       //   joinedNum : 99,
       //   capacity : 100,
       // },
+      isBoya : false,
       actId : -1,
       avg_score : 0,
       actInfo : {
@@ -205,6 +206,7 @@ Page({
                 })
               }
               this.setData({
+                isBoya : r.block && r.block.id == 2,
                 actInfo: r,
                 pub_time : util.getRelativeTime(r.pub_time),
                 latitude: r.location.latitude,
@@ -397,6 +399,10 @@ Page({
     },
 
     goOwner: function () {
+      if (this.data.isBoya) {
+        //nothing happens
+        return
+      }
       if (this.data.actInfo.org) {
         wx.navigateTo({
           url: `../act-list/act-list?orgId=${this.data.actInfo.org.id}`,
