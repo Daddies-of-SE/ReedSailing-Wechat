@@ -313,7 +313,7 @@ Page({
             }, d.actId == -1).then(
                 res => {
                     console.log("actPicUrl", this.data.actPicUrl)
-                    if (this.data.actPicUrl != "") {
+                    if (this.data.actPicUrl && this.data.actPicUrl != "") {
                         interact.uploadActAvatar(this.data.actId == -1 ? res.data.id : this.data.actId, this.data.actPicUrl).then(
                             (res) => {
                                 wx.showToast({
@@ -327,7 +327,7 @@ Page({
                             }
                         )
                     }
-                    else if (this.data.actId != -1) {
+                    else if (this.data.actId != -1 && this.data.actInfo.avatar) {
                         interact.removeActAvatar(this.data.actId).then(
                             (res) => {
                                 wx.showToast({

@@ -42,13 +42,13 @@
 
     <view class="org-pic">
         <view class="text">图片</view>
-        <view class="picture" wx:if="{{actPicUrl != ''}}">
+        <view class="picture" wx:if="{{actPicUrl && actPicUrl != ''}}">
         <image src="{{actPicUrl}}" class="pictureSize" mode="widthFix" ></image>
         </view>
         <view class='uploadBtnWrap'>
         <a class='weui-btn weui-btn_default weui-btn_mini' bindtap='uploadPic'>上传</a>
         </view>
-        <view class='uploadBtnWrap' wx:if="{{actPicUrl != ''}}">
+        <view class='uploadBtnWrap' wx:if="{{actPicUrl && actPicUrl != ''}}">
         <a class='weui-btn weui-btn_default weui-btn_mini' bindtap='removePic' style="margin-top:20rpx">删除</a>
         </view>
     </view>
