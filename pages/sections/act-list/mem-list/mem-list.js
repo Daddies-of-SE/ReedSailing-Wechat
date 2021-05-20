@@ -192,12 +192,14 @@ Page({
         } else {
           interact.changeOrgOwner(that.data.orgId, dataset.personid).then(
             res2 => {
-              wx.navigateBack({
-                delta: 0,
-              })
               wx.showToast({
                 title: '转让成功',
               })
+              setTimeout(function () {
+                  wx.navigateBack({
+                      delta: 0,
+                  })
+              }, 1500)
             }
           )
         }

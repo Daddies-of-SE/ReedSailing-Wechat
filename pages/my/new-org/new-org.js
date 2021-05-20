@@ -61,13 +61,14 @@ Page({
         }
         interact.createOrgApplication(this.data.inputName, this.data.inputDescription, this.data.forum_array[this.data.index1].id).then(
             (res) => {
-                wx.navigateBack({
-                    delta: 0,
-                })
                 wx.showToast({
-                    title: '申请已提交',
-                    icon : 'success'
-                })
+                    title: '申请已提交，请等待审核',
+                  })
+                setTimeout(function () {
+                    wx.navigateBack({
+                        delta: 0,
+                    })
+                }, 1500)
         })
     },
 

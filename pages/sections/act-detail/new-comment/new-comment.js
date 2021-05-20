@@ -78,24 +78,26 @@ Page({
     // util.debug(this.data.commentId)
     if (this.data.commentId != -1) {
       interact.editComment(this.data.commentId, this.data.rate, this.data.comment).then(res => {
-        
-        wx.navigateBack({
-          delta: 1,
-        })
         wx.showToast({
           title: '修改成功',
         })
+        setTimeout(function () {
+            wx.navigateBack({
+                delta: 0,
+            })
+        }, 1500)
       })
     }
     else {
       interact.submitComment(this.data.actId, this.data.rate, this.data.comment).then(res => {
-        
-        wx.navigateBack({
-          delta: 1,
-        })
         wx.showToast({
           title: '评论成功',
         })
+        setTimeout(function () {
+            wx.navigateBack({
+                delta: 0,
+            })
+        }, 1500)
       })
     }
   }

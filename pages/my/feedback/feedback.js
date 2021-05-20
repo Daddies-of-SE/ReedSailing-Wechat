@@ -33,12 +33,15 @@ Page({
     }
     interact.submitFeedback(msg).then(
       (res) => {
-        wx.navigateBack({
-          delta: 0,
-        })
         wx.showToast({
           title: '提交成功',
         })
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 0,
+          })
+        }, 1500)
+        
       }
 
     )

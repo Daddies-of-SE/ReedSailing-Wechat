@@ -316,34 +316,40 @@ Page({
                     if (this.data.actPicUrl != "") {
                         interact.uploadActAvatar(this.data.actId == -1 ? res.data.id : this.data.actId, this.data.actPicUrl).then(
                             (res) => {
-                                wx.navigateBack({
-                                    delta: 0,
-                                })
                                 wx.showToast({
                                     title: this.data.actId == -1 ? '创建成功' : '修改成功',
-                                })
+                                  })
+                                setTimeout(function () {
+                                    wx.navigateBack({
+                                        delta: 0,
+                                    })
+                                }, 1500)
                             }
                         )
                     }
                     else if (this.data.actId != -1) {
                         interact.removeActAvatar(this.data.actId).then(
                             (res) => {
-                                wx.navigateBack({
-                                    delta: 0,
-                                })
                                 wx.showToast({
                                     title: this.data.actId == -1 ? '创建成功' : '修改成功',
-                                })
+                                  })
+                                setTimeout(function () {
+                                    wx.navigateBack({
+                                        delta: 0,
+                                    })
+                                }, 1500)
                             }
                         )
                     }
                     else {
-                        wx.navigateBack({
-                            delta: 0,
-                        })
                         wx.showToast({
                             title: this.data.actId == -1 ? '创建成功' : '修改成功',
-                        })
+                          })
+                        setTimeout(function () {
+                            wx.navigateBack({
+                                delta: 0,
+                            })
+                        }, 1500)
                     }
             })
         })

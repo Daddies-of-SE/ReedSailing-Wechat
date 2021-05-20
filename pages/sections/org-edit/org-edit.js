@@ -84,12 +84,14 @@ Page({
     }
     interact.updateOrgInfo(this.data.orgId, this.data.inputName, this.data.inputDescription, this.data.orgPicUrl).then(
         (res) => {
-          wx.navigateBack({
-            delta: 0,
-          })
           wx.showToast({
             title: '修改成功',
           })
+          setTimeout(function () {
+              wx.navigateBack({
+                  delta: 0,
+              })
+          }, 1500)
     })
 },
 
