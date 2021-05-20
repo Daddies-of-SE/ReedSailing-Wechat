@@ -51,12 +51,12 @@ App({
     },
 
   ],
-  // server : 'https://www.reedsailing.xyz/api/',
-  // ws_werver: 'wss://www.reedsailing.xyz/ws/',
+  server : 'https://www.reedsailing.xyz/api/',
+  ws_werver: 'wss://www.reedsailing.xyz/ws/',
   // ws_werver: 'wss://rs.test/ws/',
   // server : 'http://rs.test/',
-  server : 'http://127.0.0.1:8000/api/',
-  ws_werver: 'ws://127.0.0.1:8000/ws/',
+  // server : 'http://127.0.0.1:8000/api/',
+  // ws_werver: 'ws://127.0.0.1:8000/ws/',
 
   shareData : {
     title : "一苇以航活动发布社交平台",
