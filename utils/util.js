@@ -27,6 +27,7 @@ const getTimeMinute = rawTime => {
 }
 
 const getRelativeTime = time => {
+    time = time.replace("T", " ")
     // dateStr = 2018-09-06 18:47:00" 测试时间、
     var dateStr = new Date(time.replace(new RegExp('-','g'), '/')).getTime();
     var publishTime = dateStr / 1000,  //获取dataStr的秒数  打印结果--1536230820000

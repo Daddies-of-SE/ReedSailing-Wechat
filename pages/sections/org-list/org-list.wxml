@@ -8,7 +8,7 @@
 <!--创建组织按钮-->
 <view class="found-org">
     <button class='btn' bindtap='goFoundOrg' hover-class="weui-cell_active">
-        <image class='btnImg' src='/icon/found_org.png'></image>
+        <van-icon name='plus' size='60rpx'/>
         <view>申请创建组织</view>
     </button>
 </view>

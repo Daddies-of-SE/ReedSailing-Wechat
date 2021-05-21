@@ -15,7 +15,12 @@ Page({
     jumpItem: [
       {
         name:'个人信息',
-        url:'../my-account/my-account'
+        url:'../my-account/my-account',
+        notice : true
+      },
+      {
+        name:'通知列表',
+        url:'../my-notif/my-notif'
       },
       {
         name:'提交反馈',
@@ -34,10 +39,20 @@ Page({
   },
 
   onShow: function (e) {
-    if (!getApp().haveRegistered()) {
-      getApp().goCertificate()
+    if (!app.haveRegistered()) {
+      app.goCertificate()
     }
     else {
+      if (app.unreadNotifList.length != 0) {
+        wx.showTabBarRedDot({
+          index: 4,
+        })
+      }
+      else {
+        wx.hideTabBarRedDot({
+          index: 4,
+        })
+      }
       this.setData({
         jumpItem : [
           {
@@ -45,11 +60,16 @@ Page({
             url:'../my-account/my-account'
           },
           {
-            name:'我管理的组织',
+            name:'通知列表',
+            url:'../my-notif/my-notif',
+            notice : app.unreadNotifList.length != 0
+          },
+          {
+            name:'我的组织',
             url:'../my-org/my-org'
           },
           {
-            name:'我管理的活动',
+            name:'我的活动',
             url:'../my-act/my-act'
           },
           {

@@ -1,1 +1,251 @@
 /* pages/my/my-notif/my-notif.wxss */
+
+/* pages/schedule/schedule.wxss */
+
+
+.swiper-tab{
+  width: 100%;  
+  text-align: center;  
+  line-height: 80rpx;
+  border-bottom: 1px solid #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.tab-item{
+  flex: 1;
+  font-size: 30rpx;  
+  display: inline-block;   
+  color: #777777;
+}
+.on{
+  color: red;  
+  border-bottom: 5rpx solid red;
+}
+
+/* pages/sections/act-list/act-list.wxss */
+
+.org-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90rpx;
+  padding: 0 30rpx;
+}
+
+.org-header .picture {
+  height: 90rpx;
+  width: 90rpx;
+}
+
+.org-header .followBtn{
+  width: 150rpx;
+  height: 60rpx;
+  background-color: rgba(19, 173, 245, 0.548);
+  color: white;
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}
+
+
+.folder {
+  width: 700rpx;
+  margin: 0 auto;
+  background: white;
+}
+.folder .folder_item {
+  margin: 10rpx auto;
+}
+.folder .folder_item .title {
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #e2e2e2;
+  display: flex;
+  background: white;
+}
+.folder .folder_item .title .title_1 {
+  width: 630rpx;
+  height: 60rpx;
+  padding-left: 20rpx;
+}
+.folder .folder_item .title .title_2 {
+  width: 50rpx;
+  height: 60rpx;
+  text-align: center;
+}
+.folder .folder_item .title .title_2 image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 10rpx auto;
+}
+.folder .folder_item .detail {
+  margin: 10rpx auto;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  text-indent: 2em;
+}
+
+.folder .folder_item .editBtn{
+  width: 100rpx;
+  height: 50rpx;
+  background-color: rgba(200, 212, 218, 0.548);
+  color: rgb(43, 37, 37);
+  border-radius: 49rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  writing-mode: vertical-lr;
+  margin-right: 0%;
+}
+
+.folder .folder_item .headShot {
+  height: 80rpx;
+  width: 80rpx;
+}
+
+.date-show{
+  position: relative;
+  width: 250rpx;
+  font-family: PingFang-SC-Regular;
+  font-size: 40rpx;
+  color: #282828;
+  text-align: center;
+  margin: 59rpx auto 10rpx;
+}
+
+.lt-arrow,.rt-arrow{
+  position: absolute;
+  top: 1rpx;
+  width: 60rpx;
+  height: 60rpx;
+  padding-right: 0.6rem;
+}
+
+.lt-arrow image,.rt-arrow image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.lt-arrow{
+  left: -110rpx;
+  /* transform: rotate(180deg); */
+}
+
+.rt-arrow{
+  right: -100rpx;
+}
+
+.header{
+  font-size: 0;
+  padding: 0 24rpx;
+}
+
+.header>view{
+  display: inline-block;
+  width: 14.285%;
+  color: #333;
+  font-size: 30rpx;
+  text-align: center;
+  border-bottom: 1px solid #D0D0D0;
+  padding: 39rpx 0;
+}
+
+.weekMark{
+  position: relative;
+}
+
+.weekMark view{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid #22A7F6;
+}
+
+.date-box{
+  font-size: 0;
+  padding: 10rpx 0;
+}
+
+.date-box>view{
+  position: relative;
+  display: inline-block;
+  width: 14.285%;
+  color: #020202;
+  font-size: 40rpx;
+  text-align: center;
+  vertical-align: middle;
+  margin: 15rpx 0;
+}
+
+.date-head{
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+}
+
+.nowDay .date-head{
+  width: 60rpx;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  background-color: #22A7F6;
+  margin: 0 auto;
+}
+
+.date-weight{
+  font-size: 22rpx;
+  padding: 15rpx 0;
+}
+
+.nowDay .date-weight{
+  color: #22A7F6;
+}
+
+.point {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #ff876d;
+  margin: 0 auto;
+  margin-top: 5rpx;
+}
+
+.select {
+  width: 60rpx;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  border: 5rpx solid #22A7F6;
+  border-radius: 10rpx;
+  margin: 0 auto;
+}
+
+.one{
+  position: absolute;
+  bottom: 0;
+  right: 5rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.two{
+  position: absolute;
+  bottom: 30rpx;
+  right: 5rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: blue;
+}

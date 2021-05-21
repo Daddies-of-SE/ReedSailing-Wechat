@@ -1,2 +1,36 @@
 <!--pages/my/my-notif/my-notif.wxml-->
-<text>pages/my/my-notif/my-notif.wxml</text>
+
+
+<view class='folder'>
+    <view class='folder_item'>
+        <view class='title' data-index='0' catchtap='panel'>
+        <van-icon name="{{showIndex[0]? 'arrow-down':'arrow'}}" />
+        <view class='title_1'>未读通知</view>
+        </view>
+        <view class='actList'  wx:if="{{showIndex[0]}}">
+            <i-cell-group i-class="act-wrap">
+                <block wx:for="{{unreadNotifList}}" wx:key="id">
+                    <i-cell title="{{item.content}}" label="{{item.relative_time}}" bindtap="goActOrOrg" 
+                        data-act="{{item.act}}" data-org="{{item.org}}" is-link="{{item.act || item.org ? true : null}}">
+                    </i-cell> 
+                </block>
+            </i-cell-group>
+        </view>
+    </view>
+
+    <view class='folder_item'>
+        <view class='title' data-index='1' catchtap='panel'>
+        <van-icon name="{{showIndex[1]? 'arrow-down':'arrow'}}" />
+        <view class='title_1'>已读通知</view>
+        </view>
+        <view class='actList'  wx:if="{{showIndex[1]}}">
+            <i-cell-group i-class="act-wrap">
+                <block wx:for="{{readNotifList}}" wx:key="id">
+                    <i-cell title="{{item.content}}" label="{{item.relative_time}}"  bindtap="goActOrOrg" 
+                        data-act="{{item.act}}" data-org="{{item.org}}" is-link="{{item.act || item.org ? true : null}}">
+                    </i-cell> 
+                </block>
+            </i-cell-group>
+        </view>
+    </view>
+</view>

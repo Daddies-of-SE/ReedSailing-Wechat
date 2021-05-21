@@ -1,4 +1,8 @@
 // pages/my/my-notif/my-notif.js
+
+const app = getApp()
+const util = require("../../../utils/util.js")
+
 Page({
 
   /**
@@ -6,6 +10,9 @@ Page({
    */
   data: {
     allNotifList : [],
+    unreadNotifList : [],
+    readNotifList: [],
+    showIndex: [true, false],
   },
 
   /**
@@ -22,45 +29,53 @@ Page({
 
   },
 
+  addRelativeTime(notifList) {
+    for (var i = 0; i < notifList.length; i++) {
+      notifList[i].relative_time = util.getRelativeTime(notifList[i].time)
+    }
+    return notifList
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
+    this.setData({
+      unreadNotifList : this.addRelativeTime(app.unreadNotifList),
+      readNotifList : this.addRelativeTime(app.readNotifList)
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  panel: function (e) {
+    var index = e.currentTarget.dataset.index
+    if (!this.data.showIndex[index]) {
+      //此前未show
+      var newIndex = this.data.showIndex
+      newIndex[index] = true
+      this.setData({
+        showIndex: newIndex
+      })
+    } else {
+      var newIndex = this.data.showIndex
+      newIndex[index] = false
+      this.setData({
+        showIndex: newIndex
+      })
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  goActOrOrg(e) {
+    var dataset = e.currentTarget.dataset
+    if (dataset.act) {
+      wx.navigateTo({
+        url: `../../sections/act-detail/act-detail?actId=${dataset.act}`,
+      })
+    }
+    else if (dataset.org) {
+      wx.navigateTo({
+        url: `../../sections/act-list/act-list?orgId=${dataset.org}`,
+      })
+    }
   }
 })

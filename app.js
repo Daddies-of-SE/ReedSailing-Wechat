@@ -17,6 +17,7 @@ App({
   },
   // allNotifList : [],
   unreadNotifList : [],
+  readNotifList: [],
   forumList : [
     {
         id : 1,
@@ -102,10 +103,62 @@ App({
   },
 
   globalLogin() {
+    var that = this;
     return new Promise( (resolve, reject) => {
-      if (this.loginData.userId == -1) {
+      if (that.loginData.userId == -1) {
         login.newLogin().then(
           (resgit) => {
+            wx.connectSocket({
+              url: that.ws_werver + `link/${that.loginData.userId}/`,
+              timeout: 1000,
+              success: res=>{
+                console.log("创建socket连接成功")
+                console.log(res)
+              },
+              fail: res=>{
+                console.log('创建socket连接失败')
+                console.log(res)
+              }
+            })
+            
+            //连接成功
+            wx.onSocketOpen(function() {
+              console.log("websocket连接服务器成功")
+              wx.sendSocketMessage({
+                data: 'This is a test from the client',
+              })
+            })
+  
+            //接收数据
+            wx.onSocketMessage(function(data) {
+                //TODO
+                console.log('服务器返回的数据: ' + data.data);
+                that.unreadNotifList = data.data
+                that.unreadNotifList = [
+                  {
+                    id : 31,
+                    type : 1,
+                    time : '2021-05-21T11:04:50.445933',
+                    content: '活动\'PS不教学不讲座\'内容发生了改变，请及时查看',
+                    act : 1,
+                    org : null
+                  },
+                  {
+                    id : 32,
+                    type : 1,
+                    time : '2021-01-21T11:04:50.445933',
+                    content: '爪巴',
+                    act : null,
+                    org : null
+                  },
+                ]
+                if (that.unreadNotifList.length > 0) {
+                  wx.showTabBarRedDot({
+                    index: 4,
+                  })
+                }
+                // this.notificationList = 
+            })
             resolve()
           }
         )
