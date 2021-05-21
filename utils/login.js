@@ -21,7 +21,8 @@ module.exports.saveLoginData = function (resData) {
     nickName : resData.name,
     motto : resData.sign,
     avatar : resData.avatar,
-    contact: resData.contact
+    contact: resData.contact,
+    follow_boya : resData.follow_boya
   }
   // util.debug("save login data: " + JSON.stringify(dt))
   if (dt.email == null) {

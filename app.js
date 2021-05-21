@@ -13,7 +13,8 @@ App({
     motto : '',
     avatar : '',
     contact : '',
-    haveTriedLogin : false
+    follow_boya : false
+
   },
   // allNotifList : [],
   unreadNotifList : [],

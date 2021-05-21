@@ -1219,3 +1219,19 @@ module.exports.removeActAvatar = function(act_id) {
     })
   })
 }
+
+module.exports.updateFollowBoya = function (follow) {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    put_request(`users/${app.loginData.userId}/`,
+      {follow_boya : follow, name : app.loginData.nickName}, 
+      {
+        func: module.exports.updateFollowBoya,
+        funcName: 'updateFollowBoya',
+        reject: reject,
+        resolve: resolve
+    })
+  })  
+}

@@ -61,7 +61,8 @@ Page({
             this.setData({
               orgName: "博雅活动",
               orgPicUrl : "/icon/boya.png",
-              isRealOrg : false
+              isRealOrg : false,
+              hasFollowed : app.loginData.follow_boya
             })
             return
           }
@@ -264,4 +265,32 @@ Page({
         )
       }
     },
+
+    followBoya() {
+      interact.updateFollowBoya(true).then(
+        (res) => {
+          this.setData({
+            hasFollowed : true
+          })
+          app.loginData.follow_boya = true
+          wx.showToast({
+            title: '关注成功',
+          })
+        }
+      )
+    },
+
+    unfollowBoya() {
+      interact.updateFollowBoya(false).then(
+        (res) => {
+          this.setData({
+            hasFollowed : false
+          })
+          app.loginData.follow_boya = false
+          wx.showToast({
+            title: '取消关注成功',
+          })
+        }
+      )
+    }
 })

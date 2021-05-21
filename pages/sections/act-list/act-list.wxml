@@ -10,6 +10,12 @@
     <view wx:elif="{{isRealOrg && hasFollowed}}" hover-class="weui-cell_active">
       <button class='followBtn' bindtap='unFollowOrg'>取消关注</button>
     </view>
+    <view wx:elif="{{orgId == -1 && !hasFollowed}}" hover-class="weui-cell_active">
+      <button class='followBtn' bindtap='followBoya'>关注</button>
+    </view>
+    <view wx:elif="{{orgId == -1 && hasFollowed}}" hover-class="weui-cell_active">
+      <button class='followBtn' bindtap='unfollowBoya'>取消关注</button>
+    </view>
 </view>
 
 <van-search placeholder="搜索活动（id/名称）" shape="round" bind:search="onSearch" bind:change="onChange" bind:clear="onClear" bind:cancel="onClear"/>

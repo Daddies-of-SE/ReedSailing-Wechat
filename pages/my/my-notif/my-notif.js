@@ -40,7 +40,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
     this.setData({
       unreadNotifList : this.addRelativeTime(app.unreadNotifList),
       readNotifList : this.addRelativeTime(app.readNotifList)
