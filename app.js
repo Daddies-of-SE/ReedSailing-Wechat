@@ -144,14 +144,14 @@ App({
                     act : 1,
                     org : null
                   },
-                  {
-                    id : 32,
-                    type : 1,
-                    time : '2021-01-21T11:04:50.445933',
-                    content: '爪巴',
-                    act : null,
-                    org : null
-                  },
+                  // {
+                  //   id : 32,
+                  //   type : 1,
+                  //   time : '2021-01-21T11:04:50.445933',
+                  //   content: '爪巴',
+                  //   act : null,
+                  //   org : null
+                  // },
                 ]
                 if (that.unreadNotifList.length > 0) {
                   wx.showTabBarRedDot({
