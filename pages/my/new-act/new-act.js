@@ -272,12 +272,12 @@ Page({
                 icon : 'none'
             })
         }
-        else if (start <= new Date()) {
-            wx.showToast({
-                title: '开始时间应晚于当前时间',
-                icon : 'none'
-            })
-        }
+        // else if (start <= new Date()) {
+        //     wx.showToast({
+        //         title: '开始时间应晚于当前时间',
+        //         icon : 'none'
+        //     })
+        // }
         else {
             if (d.createNewCategory) {
                 interact.createActCategory(d.newCategory).then(
@@ -313,7 +313,8 @@ Page({
             }, d.actId == -1).then(
                 res => {
                     console.log("actPicUrl", this.data.actPicUrl)
-                    if (this.data.actPicUrl && this.data.actPicUrl != "") {
+                    if (this.data.actPicUrl && this.data.actPicUrl != "" && this.data.actPicUrl != this.data.actInfo.avatar) {
+                        // change a picture
                         interact.uploadActAvatar(this.data.actId == -1 ? res.data.id : this.data.actId, this.data.actPicUrl).then(
                             (res) => {
                                 wx.showToast({
@@ -327,7 +328,7 @@ Page({
                             }
                         )
                     }
-                    else if (this.data.actId != -1 && this.data.actInfo.avatar) {
+                    else if (this.data.actId != -1 && this.data.actInfo.avatar && this.data.actPicUrl == '') {
                         interact.removeActAvatar(this.data.actId).then(
                             (res) => {
                                 wx.showToast({
