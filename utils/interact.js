@@ -1135,7 +1135,8 @@ module.exports.uploadOrgAvatar = function(org_id) {
           name: 'image',
           method :'POST',
           header : {
-            'content-type' : 'application/x-www-form-urlencoded'
+            'content-type' : 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer ' + getApp().loginData.token
           },
           success (res) {
             if (res.statusCode != 200) {
@@ -1176,7 +1177,8 @@ module.exports.uploadActAvatar = function(act_id, filePath) {
       name: 'image',
       method :'POST',
       header : {
-        'content-type' : 'application/x-www-form-urlencoded'
+        'content-type' : 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ' + getApp().loginData.token
       },
       success (res) {
         if (res.statusCode != 200) {
