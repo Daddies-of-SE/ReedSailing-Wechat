@@ -18,7 +18,7 @@ App({
   },
   // allNotifList : [],
   unreadNotifList : [],
-  readNotifList: [],
+  // readNotifList: [],
   forumList : [
     {
         id : 1,
@@ -99,13 +99,12 @@ App({
     //接收数据
     var that = this;
     wx.onSocketMessage(function(data) {
-      //TODO
-      console.log(typeof(data.data))
-      console.log(data.data)
+      // console.log(typeof(data.data))
+      // console.log(data.data)
       // console.log(util.replaceAll(data.data, "'", "\""))
       // var r = JSON.parse(util.replaceAll(data.data, "'", "\""))
       var r = JSON.parse(data.data)
-      console.log('服务器返回的数据: ' + r);
+      console.log('服务器返回的数据: ', r);
       that.unreadNotifList = r
       // that.unreadNotifList = [
       //   {
@@ -130,13 +129,6 @@ App({
           index: 4,
         })
       }
-      var oldNotifs = wx.getStorage('notifs')
-      console.log('notifs from storage', oldNotifs)
-      var newNotifs = oldNotifs.concat(that.unreadNotifList)
-      console.log('new notifs', newNotifs)
-      wx.setStorageSync('notifs', newNotifs)
-      console.log('new notifs from storage', wx.getStorageSync('notifs'))
-      // this.notificationList = 
   })
   },
 

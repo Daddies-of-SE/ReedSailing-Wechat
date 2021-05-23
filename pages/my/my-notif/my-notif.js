@@ -41,33 +41,40 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var allNotifList = wx.getStorageSync('notifs')
-    var unread = []
-    var read = []
-    for (var i = 0; i < allNotifList.length; i++) {
-      if (!allNotifList[i].read) {
-        unread.push(allNotifList[i])
-      }
-      else {
-        read.push(allNotifList[i])
-      }
-    }
+    // var allNotifList = wx.getStorageSync('notifs')
+    // var unread = []
+    // var read = []
+    // for (var i = 0; i < allNotifList.length; i++) {
+    //   if (!allNotifList[i].read) {
+    //     unread.push(allNotifList[i])
+    //   }
+    //   else {
+    //     read.push(allNotifList[i])
+    //   }
+    // }
 
     this.setData({
-      unreadNotifList : this.addRelativeTime(unread),
-      readNotifList : this.addRelativeTime(read),
-      allNotifList : this.addRelativeTime(allNotifList)
+      unreadNotifList : this.addRelativeTime(app.unreadNotifList),
+      readNotifList : this.addRelativeTime(wx.getStorageSync('notifs')),
     })
     var unreadIds = []
-    for (var i = 0; i < unreadNotifList.length; i++) {
+    for (var i = 0; i < this.data.unreadNotifList.length; i++) {
       unreadIds.push(this.data.unreadNotifList[i].id)
     }
-    // interact.setNotifsRead(unreadIds).then(
-    //   (res) => {
-    //     console.log("已将", unreadIds, "设为已读")
-        
-    //   }
-    // )
+
+    interact.setNotifsRead(unreadIds).then(
+      (res) => {
+        console.log("已将", unreadIds, "设为已读")
+        var oldNotifs = wx.getStorageSync('notifs')
+        console.log('notifs from storage', oldNotifs)
+        var newNotifs = oldNotifs.concat(app.unreadNotifList)
+        console.log('new notifs', newNotifs)
+        wx.setStorageSync('notifs', newNotifs)
+        app.unreadNotifList = []
+      }
+    )
+    
+
   },
 
   panel: function (e) {
