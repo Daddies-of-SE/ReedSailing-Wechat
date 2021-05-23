@@ -53,12 +53,12 @@ App({
     },
 
   ],
-  // server : 'https://www.reedsailing.xyz/api/',
-  // ws_werver: 'wss://www.reedsailing.xyz/ws/',
+  server : 'https://www.reedsailing.xyz/api/',
+  ws_werver: 'wss://www.reedsailing.xyz/ws/',
   // ws_werver: 'wss://rs.test/ws/',
   // server : 'http://rs.test/',
-  server : 'http://127.0.0.1:8000/api/',
-  ws_werver: 'ws://127.0.0.1:8000/ws/',
+  // server : 'http://127.0.0.1:8000/api/',
+  // ws_werver: 'ws://127.0.0.1:8000/ws/',
 
   shareData : {
     title : "一苇以航活动发布社交平台",
@@ -100,8 +100,13 @@ App({
     var that = this;
     wx.onSocketMessage(function(data) {
       //TODO
-      console.log('服务器返回的数据: ' + data.data);
-      that.unreadNotifList = data.data
+      console.log(typeof(data.data))
+      console.log(data.data)
+      // console.log(util.replaceAll(data.data, "'", "\""))
+      // var r = JSON.parse(util.replaceAll(data.data, "'", "\""))
+      var r = JSON.parse(data.data)
+      console.log('服务器返回的数据: ' + r);
+      that.unreadNotifList = r
       // that.unreadNotifList = [
       //   {
       //     id : 31,
@@ -125,6 +130,12 @@ App({
           index: 4,
         })
       }
+      var oldNotifs = wx.getStorage('notifs')
+      console.log('notifs from storage', oldNotifs)
+      var newNotifs = oldNotifs.concat(that.unreadNotifList)
+      console.log('new notifs', newNotifs)
+      wx.setStorageSync('notifs', newNotifs)
+      console.log('new notifs from storage', wx.getStorageSync('notifs'))
       // this.notificationList = 
   })
   },

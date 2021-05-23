@@ -275,7 +275,7 @@ Page({
         // else if (start <= new Date()) {
         //     wx.showToast({
         //         title: '开始时间应晚于当前时间',
-        //         icon : 'none'
+        //         icon :  'none'
         //     })
         // }
         else {

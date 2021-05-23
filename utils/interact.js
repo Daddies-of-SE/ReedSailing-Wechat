@@ -1237,3 +1237,18 @@ module.exports.updateFollowBoya = function (follow) {
     })
   })  
 }
+
+module.exports.setNotifsRead = function (ids) {
+  return new Promise((resolve, reject) => {
+    post_request(`notifications/read/${getApp().loginData.userId}/`, 
+      {
+        notifications : ids,
+      },
+      {
+        func: module.exports.setNotifsRead,
+        funcName: 'setNotifsRead',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
