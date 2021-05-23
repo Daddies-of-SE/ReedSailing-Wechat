@@ -15,17 +15,14 @@
                     </i-cell> 
                 </block>
             </i-cell-group>
-            <!-- <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actions}}"  bindchange="handleSwipeClick"
-                data-personname="{{item.person.name}}" data-personid="{{item.person.id}}">
-                <view slot="content">
-                    <view class="i-swipeout-image" style="background:#ff9900;">
-                    <image class="mem-avatar" src="{{item.person.avatar}}"  slot="icon"></image>
+            <!-- <block wx:for="{{unreadNotifList}}" wx:key="id">
+                <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actions}}"  bindchange="handleSwipeClick"
+                data-act="{{item.act}}" data-org="{{item.org}}">
+                    <view slot="content">
+                        <i-cell title="{{item.content}}" label="{{item.relative_time}}"></i-cell>
                     </view>
-                    <view class="i-swipeout-des">
-                    <view class="i-swipeout-des-h2">{{item.person.name}}</view>
-                    </view>
-                </view>
-            </i-swipeout> -->
+                </i-swipeout>
+            </block> -->
         </view>
     </view>
 
@@ -42,6 +39,17 @@
                     </i-cell> 
                 </block>
             </i-cell-group>
+            <!-- <block wx:for="{{readNotifList}}" wx:key="id">
+                <i-swipeout  i-class="act-wrap" actions="{{actions}}"  bindchange="handleSwipeClick"
+                data-act="{{item.act}}" data-org="{{item.org}}">
+                    <view slot="content">
+                        <i-cell title="{{item.content}}" label="{{item.relative_time}}"></i-cell>
+                        
+                        <view class="i-swipeout-des-h2" style="word-break:break-all; ">{{item.content}}</view>
+                        <view class="i-swipeout-des-detail">{{item.relative_time}}</view>
+                    </view>
+                </i-swipeout>
+            </block> -->
         </view>
     </view>
 </view>

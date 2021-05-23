@@ -15,7 +15,7 @@
 
 <view class='folder_item' wx:if="{{idMatchOrg != 0}}">
   <view class='title'>
-    <view class='title_1'>id匹配的组织</view>
+    <view class='title_1'>全部组织中id匹配的组织</view>
   </view>
   <view class='actList'>
     <i-cell-group i-class="act-wrap">
@@ -29,7 +29,7 @@
 
 <view class='folder_item' wx:if="{{idMatchAct != 0}}">
   <view class='title'>
-    <view class='title_1'>id匹配的活动</view>
+    <view class='title_1'>全部活动中id匹配的活动</view>
   </view>
   <view class='actList'>
     <i-cell-group i-class="act-wrap">

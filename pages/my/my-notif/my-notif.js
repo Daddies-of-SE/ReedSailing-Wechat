@@ -14,6 +14,23 @@ Page({
     unreadNotifList : [],
     readNotifList: [],
     showIndex: [true, false],
+    actions : [
+      {
+        name : '查看',
+        color : '#80848f',
+        fontsize : '20',
+        width : 100,
+        // icon : 'delete',
+      },
+      {
+        name : '移除',
+        color : '#fff',
+        fontsize : '20',
+        width : 100,
+        icon : 'delete',
+        background : '#ed3f14'
+      },
+    ]
   },
 
   /**
@@ -52,7 +69,7 @@ Page({
     //     read.push(allNotifList[i])
     //   }
     // }
-
+    console.log('old notifs', typeof(wx.getStorageSync('notifs')), wx.getStorageSync('notifs'))
     this.setData({
       unreadNotifList : this.addRelativeTime(app.unreadNotifList),
       readNotifList : this.addRelativeTime(wx.getStorageSync('notifs')),
@@ -66,9 +83,9 @@ Page({
       (res) => {
         console.log("已将", unreadIds, "设为已读")
         var oldNotifs = wx.getStorageSync('notifs')
-        console.log('notifs from storage', oldNotifs)
-        var newNotifs = oldNotifs.concat(app.unreadNotifList)
-        console.log('new notifs', newNotifs)
+        console.log('notifs from storage', typeof(oldNotifs), oldNotifs)
+        var newNotifs = oldNotifs ? oldNotifs.concat(app.unreadNotifList) : app.unreadNotifList
+        console.log('new notifs', typeof(newNotifs), newNotifs)
         wx.setStorageSync('notifs', newNotifs)
         app.unreadNotifList = []
       }

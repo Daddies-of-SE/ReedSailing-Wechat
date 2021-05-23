@@ -55,6 +55,7 @@ Page({
   onShow: function () {
     var o = this.options
     var id = parseInt(o.searchContent)
+    // var idMatchOrg = {id : -233}, idMatchAct = {id : -233}
     if (!isNaN(id)) {
       if (o.searchType in [1,2,6]) {
         interact.getOrgInfo(id).then(
@@ -160,6 +161,21 @@ Page({
     else {
       console.log("unknown searchType" + o.searchType)
     }
+    // for (var i = 0; i < this.data.orgList.length; i++) {
+    //   if (this.data.orgList[i].id == id) {
+    //     this.setData({
+    //       idMatchOrg :this.data.orgList[i]
+    //     })
+    //   }
+    // }
+    // for (var i = 0; i < this.data.actList.length; i++) {
+    //   if (this.data.actList[i].id == id) {
+    //     this.setData({
+    //       idMatchAct :this.data.actList[i]
+    //     })
+    //   }
+    // }
+
   },
 
   goAct: function(e) {

@@ -125,9 +125,12 @@ App({
         // },
       // ]
       if (that.unreadNotifList.length > 0) {
+        
         wx.showTabBarRedDot({
           index: 4,
-        })
+        }).catch(
+          
+        )
       }
   })
   },
