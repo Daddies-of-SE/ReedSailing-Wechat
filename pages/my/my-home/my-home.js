@@ -39,6 +39,11 @@ Page({
   },
 
   onShow: function (e) {
+    // // For test
+    // wx.sendSocketMessage({
+    //   data: 'This is a test from the client',
+    // })
+
     if (!app.haveRegistered()) {
       app.goCertificate()
     }

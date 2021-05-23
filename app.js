@@ -132,6 +132,8 @@ App({
   })
   },
 
+  
+
   globalLogin() {
     var that = this;
     return new Promise( (resolve, reject) => {
@@ -141,22 +143,22 @@ App({
             wx.connectSocket({
               url: that.ws_werver + `link/${that.loginData.userId}/`,
               timeout: 1000,
-              success: res=>{
-                console.log("创建socket连接成功")
-                console.log(res)
-              },
-              fail: res=>{
-                console.log('创建socket连接失败')
-                console.log(res)
-              }
+              // success: res=>{
+              //   console.log("创建socket连接成功")
+              //   console.log(res)
+              // },
+              // fail: res=>{
+              //   console.log('创建socket连接失败')
+              //   console.log(res)
+              // }
             })
             
             //连接成功
             wx.onSocketOpen(function() {
               console.log("websocket连接服务器成功")
-              wx.sendSocketMessage({
-                data: 'This is a test from the client',
-              })
+              // wx.sendSocketMessage({
+              //   data: 'This is a test from the client',
+              // })
             })
   
             // //接收数据
