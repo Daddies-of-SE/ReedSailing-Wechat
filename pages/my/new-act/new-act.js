@@ -220,8 +220,12 @@ Page({
         var d = this.data
         var start_datetime = d.start_date + "T" + d.start_time
         var end_datetime = d.end_date + "T" + d.end_time
-        var start = new Date(Date.parse(start_datetime))
-        var end = new Date(Date.parse(end_datetime))
+        var start = new Date(Date.parse(start_datetime.replace(new RegExp('-','g'), '/').replace("T"," ")))
+        var end = new Date(Date.parse(end_datetime.replace(new RegExp('-','g'), '/').replace("T"," ")))
+        // wx.showModal({
+        //   'title' : JSON.stringify(start),
+        // })
+        // return
 
         var location = chooseLocation.getLocation();
         if (!location) {

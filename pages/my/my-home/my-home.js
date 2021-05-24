@@ -1,6 +1,4 @@
 const app = getApp()
-const util = require('../../../utils/util.js')
-const interact = require('../../../utils/interact.js')
 
 Page({
   data: {
@@ -107,19 +105,6 @@ Page({
     }
   },
 
-  // callLogin: function (e) {
-  //   if (!app.haveRegistered()) {
-  //     const login = require("../../../utils/login.js")
-  //     login.registerInfo().then(
-  //         this.setData({
-  //             havelogin: true,
-  //             nickName : app.loginData.nickName,
-  //             motto : app.loginData.motto
-  //         })
-  //     )
-  //   }
-  // },
-
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
@@ -132,36 +117,6 @@ Page({
       }
     })
   },
-
-  // toMyAccount() {
-  //   wx.navigateTo({
-  //     url: '../my-account/my-account',
-  //   })
-  // },
-
-  // toMyOrg() {
-  //   wx.navigateTo({
-  //     url: '../my-org/my-org',
-  //   })
-  // },
-
-  // toMyAct() {
-  //   wx.navigateTo({
-  //     url: '../my-act/my-act',
-  //   })
-  // },
-
-  // toNewAct() {
-  //   wx.navigateTo({
-  //     url: '../new-act/new-act',
-  //   })
-  // },
-
-  // toFeedback() {
-  //   wx.navigateTo({
-  //     url: '../feedback/feedback',
-  //   })
-  // },
 
 
   onShareAppMessage: function (res) {

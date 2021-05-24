@@ -44,7 +44,7 @@ Page({
       options.searchType == 3 && options.orgId in [-1, -2] ? options.orgName:
       options.searchType == 3 ? `'${options.orgName}'组织下的活动` :
       options.searchType == 4 ? `报名的活动` :
-      options.searchType == 5 ? `管理的活动` :
+      options.searchType == 5 ? `发布的活动` :
       "管理的组织"
     })
   },

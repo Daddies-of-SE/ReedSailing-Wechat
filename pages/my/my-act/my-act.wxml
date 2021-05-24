@@ -1,6 +1,6 @@
 <!--pages/my/my-act/my-act.wxml-->
 
-<van-search placeholder="搜索管理的活动（id/名称）" shape="round" bind:search="onSearch" bind:change="onChange" bind:clear="onClear" bind:cancel="onClear"/>
+<van-search placeholder="搜索发布的活动（id/名称）" shape="round" bind:search="onSearch" bind:change="onChange" bind:clear="onClear" bind:cancel="onClear"/>
 <i-tabs current="{{ current }}" color="#f759ab" bindchange="handleChange">
     <i-tab key="unstart" title="未开始"></i-tab>
     <i-tab key="cur" title="进行中"></i-tab>

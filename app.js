@@ -102,10 +102,6 @@ App({
     //接收数据
     var that = this;
     wx.onSocketMessage(function(data) {
-      // console.log(typeof(data.data))
-      // console.log(data.data)
-      // console.log(util.replaceAll(data.data, "'", "\""))
-      // var r = JSON.parse(util.replaceAll(data.data, "'", "\""))
       var r = JSON.parse(data.data)
       console.log('服务器返回的数据: ', r);
       that.unreadNotifList = r

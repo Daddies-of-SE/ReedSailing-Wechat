@@ -40,13 +40,6 @@ Page({
     
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
   addRelaTimeAndSort(notifList) {
     if (typeof(notifList) == 'string') {
       return []
@@ -54,7 +47,21 @@ Page({
     for (var i = 0; i < notifList.length; i++) {
       notifList[i].relative_time = util.getRelativeTime(notifList[i].time)
     }
-    return notifList.sort(util.compare('id')).reverse()
+    var newList = notifList.sort(util.compare('id')).reverse()
+    var ret = []
+    for (var i = 0; i < newList.length - 1; i++) {
+      if (newList[i].id != newList[i+1].id) {
+        ret.push(newList[i])
+      }
+    }
+    return ret
+  },
+
+  updateNotifList() {
+    this.setData({
+      unreadNotifList : this.addRelaTimeAndSort(app.unreadNotifList),
+      readNotifList : this.addRelaTimeAndSort(wx.getStorageSync('notifs')),
+    })
   },
 
   /**
@@ -62,29 +69,8 @@ Page({
    */
   onShow: function () {
     // console.log('onshow old notifs', wx.getStorageSync('notifs'))
-    this.setData({
-      unreadNotifList : this.addRelaTimeAndSort(app.unreadNotifList),
-      readNotifList : this.addRelaTimeAndSort(wx.getStorageSync('notifs')),
-    })
+    this.updateNotifList()
     console.log('read notifs', this.data.readNotifList)
-    // var unreadIds = []
-    // for (var i = 0; i < this.data.unreadNotifList.length; i++) {
-    //   unreadIds.push(this.data.unreadNotifList[i].id)
-    // }
-
-    // interact.setNotifsRead(unreadIds).then(
-    //   (res) => {
-    //     console.log("将", unreadIds, "设为已读")
-    //     var oldNotifs = wx.getStorageSync('notifs')
-    //     console.log('notifs from storage', typeof(oldNotifs), oldNotifs)
-    //     var newNotifs = oldNotifs ? app.unreadNotifList.concat(oldNotifs) : app.unreadNotifList
-    //     console.log('new notifs', typeof(newNotifs), newNotifs)
-    //     wx.setStorageSync('notifs', newNotifs)
-    //     app.unreadNotifList = []
-    //   }
-    // )
-    
-
   },
 
   panel: function (e) {
@@ -103,6 +89,27 @@ Page({
         showIndex: newIndex
       })
     }
+  },
+
+  readAll(e) {
+    console.log("readAll called")
+    var unreadIds = []
+    for (var i = 0; i < this.data.unreadNotifList.length; i++) {
+      unreadIds.push(this.data.unreadNotifList[i].id)
+    }
+
+    interact.setNotifsRead(unreadIds).then(
+      (res) => {
+        console.log("将", unreadIds, "设为已读")
+        var oldNotifs = wx.getStorageSync('notifs')
+        console.log('notifs from storage', typeof(oldNotifs), oldNotifs)
+        var newNotifs = oldNotifs ? app.unreadNotifList.concat(oldNotifs) : app.unreadNotifList
+        console.log('new notifs', typeof(newNotifs), newNotifs)
+        wx.setStorageSync('notifs', newNotifs)
+        app.unreadNotifList = []
+        this.updateNotifList()
+      }
+    )
   },
 
   goActOrOrg(e) {
@@ -135,11 +142,7 @@ Page({
           })
         }
         else {
-          this.setData({
-            unreadNotifList : this.addRelaTimeAndSort(app.unreadNotifList),
-            readNotifList : this.addRelaTimeAndSort(wx.getStorageSync('notifs')),
-          })
-
+          this.updateNotifList()
         }
       }
     )

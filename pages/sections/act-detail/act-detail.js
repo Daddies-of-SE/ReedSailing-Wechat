@@ -70,6 +70,7 @@ Page({
       qrcode : "",
       showQRCode : false,
       showMap : false,
+      debugText : ''
     //   comment_list : [
     //     {
     //       user : {
@@ -201,8 +202,11 @@ Page({
               r.pub_time = util.getTimeMinute(r.pub_time)
               r.begin_time = util.getTimeMinute(r.begin_time)
               r.end_time = util.getTimeMinute(r.end_time)
-              var begin_time = new Date(Date.parse(r.begin_time))
-              var end_time = new Date(Date.parse(r.end_time))
+              var begin_time = new Date(Date.parse(r.begin_time.replace(new RegExp('-','g'), '/')))
+              var end_time = new Date(Date.parse(r.end_time.replace(new RegExp('-','g'), '/')))
+              this.setData({
+                debugText : JSON.stringify(begin_time)
+              })
               if (begin_time < new Date()) {
                 this.setData({
                   hasBegun : true
