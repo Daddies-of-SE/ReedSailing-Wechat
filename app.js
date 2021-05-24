@@ -53,12 +53,15 @@ App({
     },
 
   ],
+  socketOpen : false,
+  firstShow : true,
   server : 'https://www.reedsailing.xyz/api/',
   ws_werver: 'wss://www.reedsailing.xyz/ws/',
   // server : 'http://127.0.0.1:8000/api/',
   // ws_werver: 'ws://127.0.0.1:8000/ws/',
   // ws_werver: 'wss://rs.test/ws/',
   // server : 'http://rs.test/',
+  
 
   shareData : {
     title : "一苇以航活动发布社交平台",
@@ -122,6 +125,19 @@ App({
   })
   },
 
+  onShow() {
+    // when the app is hiden, the websocket link will disconnect. So we need connect again in Onshow
+    var that = this;
+    if (this.firstShow) {
+      this.firstShow = false
+    } else if(this.loginData.userId != -1 && !this.socketOpen) {
+      wx.connectSocket({
+        url: that.ws_werver + `link/${that.loginData.userId}/`,
+        timeout: 1000,
+      })
+    }
+  },
+
   showRedDot() {
     wx.showTabBarRedDot({
       index: 4,
@@ -159,6 +175,14 @@ App({
                 data: 'This is a test from the client',
               })
             })
+
+            //监听链接断开事件
+            wx.onSocketClose(function(res) {
+              console.log("websocket连接断开:" + res.reason)
+              that.socketOpen = false
+            })
+
+
   
             // //接收数据
             // wx.onSocketMessage(function(data) {
