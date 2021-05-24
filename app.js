@@ -117,17 +117,20 @@ App({
       //   },
       // ]
       if (that.unreadNotifList.length > 0) {
-        
-        wx.showTabBarRedDot({
-          index: 4,
-        }).catch(
-          
-        )
+        that.showRedDot()
       }
   })
   },
 
-  
+  showRedDot() {
+    wx.showTabBarRedDot({
+      index: 4,
+    }).catch(
+     (res) => {
+       console.log("showRedDot called but not a TabBar page; ignore")
+     }
+    )
+  },
 
   globalLogin() {
     var that = this;

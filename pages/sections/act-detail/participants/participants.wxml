@@ -18,4 +18,5 @@
       </view>
     </i-swipeout>
   </block>
+  <view wx:if="{{participantList.length == 0}}" class="i-swipeout-demo-title">暂无参与者</view>
 </view>

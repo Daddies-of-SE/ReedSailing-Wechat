@@ -54,6 +54,9 @@ Page({
                 havelogin : true
             })
         }
+        if (app.unreadNotifList.length != 0) {
+          app.showRedDot()
+        }
       },
 
     // callLogin: function (e) {

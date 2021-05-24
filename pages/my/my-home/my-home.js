@@ -49,9 +49,7 @@ Page({
     }
     else {
       if (app.unreadNotifList.length != 0) {
-        wx.showTabBarRedDot({
-          index: 4,
-        })
+        app.showRedDot()
       }
       else {
         wx.hideTabBarRedDot({
