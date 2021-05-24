@@ -53,24 +53,12 @@ App({
     },
 
   ],
-<<<<<<< HEAD
-
-  // server : 'https://www.reedsailing.xyz/api/',
-  // ws_werver: 'wss://www.reedsailing.xyz/ws/',
-  // ws_werver: 'wss://rs.test/ws/',
-  // server : 'http://rs.test/',
-  server : 'http://127.0.0.1:8000/api/',
-  ws_werver: 'ws://127.0.0.1:8000/ws/',
-  socketOpen : false,
-=======
   server : 'https://www.reedsailing.xyz/api/',
   ws_werver: 'wss://www.reedsailing.xyz/ws/',
   // server : 'http://127.0.0.1:8000/api/',
   // ws_werver: 'ws://127.0.0.1:8000/ws/',
   // ws_werver: 'wss://rs.test/ws/',
   // server : 'http://rs.test/',
-  
->>>>>>> 2c5e859f269128a9585896a8b57468830593ca98
 
   shareData : {
     title : "一苇以航活动发布社交平台",

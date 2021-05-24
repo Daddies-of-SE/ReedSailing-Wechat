@@ -34,4 +34,4 @@
 <a class="weui-btn weui-btn_primary" bindtap="submitFB">提交</a>
 
 <text>\n\n关于我们：\n一苇以航开发团队\n乐洋 史鑫杰 王肇凯 开聚实 王佳瑞 李永毅</text>
-<text>\n\n版本：1.4.5</text>
+<text>\n\n版本：1.5.0</text>
