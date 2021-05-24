@@ -5,13 +5,13 @@
     <view class='folder_item'>
         <view class='title' data-index='0' catchtap='panel'>
         <van-icon name="{{showIndex[0]? 'arrow-down':'arrow'}}" />
-        <view class='title_1'>未读通知</view>
+        <view class='title_1'>未读通知（{{unreadNotifList.length}}）</view>
         </view>
         <view class='actList'  wx:if="{{showIndex[0]}}">
             <i-cell-group i-class="act-wrap">
                 <block wx:for="{{unreadNotifList}}" wx:key="id">
-                    <i-cell title="{{item.content}}" label="{{item.relative_time}}" bindtap="goActOrOrg" 
-                        data-act="{{item.act}}" data-org="{{item.org}}" is-link="{{item.act || item.org ? true : null}}">
+                    <i-cell title="{{item.content}}" label="{{item.relative_time}}" bindclick="goActOrOrg" 
+                        data-act="{{item.act}}" data-org="{{item.org}}" data-idd="{{item.id}}" data-item="{{item}}" is-link="{{item.act || item.org ? true : null}}" value="{{item.act? '查看活动' : item.org ? '查看组织' : '设为已读'}}">
                     </i-cell> 
                 </block>
             </i-cell-group>
@@ -29,13 +29,13 @@
     <view class='folder_item'>
         <view class='title' data-index='1' catchtap='panel'>
         <van-icon name="{{showIndex[1]? 'arrow-down':'arrow'}}" />
-        <view class='title_1'>已读通知</view>
+        <view class='title_1'>已读通知（{{readNotifList.length}}）</view>
         </view>
         <view class='actList'  wx:if="{{showIndex[1]}}">
             <i-cell-group i-class="act-wrap">
                 <block wx:for="{{readNotifList}}" wx:key="id">
-                    <i-cell title="{{item.content}}" label="{{item.relative_time}}"  bindtap="goActOrOrg" 
-                        data-act="{{item.act}}" data-org="{{item.org}}" is-link="{{item.act || item.org ? true : null}}">
+                    <i-cell title="{{item.content}}" label="{{item.relative_time}}" bindclick="goActOrOrg" 
+                        data-act="{{item.act}}" data-org="{{item.org}}" data-idd="{{item.id}}" data-item="{{item}}" is-link="{{item.act || item.org ? true : null}}" value="{{item.act? '查看活动' : item.org ? '查看组织' : '设为已读'}}">
                     </i-cell> 
                 </block>
             </i-cell-group>

@@ -47,49 +47,42 @@ Page({
 
   },
 
-  addRelativeTime(notifList) {
+  addRelaTimeAndSort(notifList) {
+    if (typeof(notifList) == 'string') {
+      return []
+    }
     for (var i = 0; i < notifList.length; i++) {
       notifList[i].relative_time = util.getRelativeTime(notifList[i].time)
     }
-    return notifList
+    return notifList.sort(util.compare('id')).reverse()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // var allNotifList = wx.getStorageSync('notifs')
-    // var unread = []
-    // var read = []
-    // for (var i = 0; i < allNotifList.length; i++) {
-    //   if (!allNotifList[i].read) {
-    //     unread.push(allNotifList[i])
-    //   }
-    //   else {
-    //     read.push(allNotifList[i])
-    //   }
-    // }
-    console.log('old notifs', typeof(wx.getStorageSync('notifs')), wx.getStorageSync('notifs'))
+    // console.log('onshow old notifs', wx.getStorageSync('notifs'))
     this.setData({
-      unreadNotifList : this.addRelativeTime(app.unreadNotifList),
-      readNotifList : this.addRelativeTime(wx.getStorageSync('notifs')),
+      unreadNotifList : this.addRelaTimeAndSort(app.unreadNotifList),
+      readNotifList : this.addRelaTimeAndSort(wx.getStorageSync('notifs')),
     })
-    var unreadIds = []
-    for (var i = 0; i < this.data.unreadNotifList.length; i++) {
-      unreadIds.push(this.data.unreadNotifList[i].id)
-    }
+    console.log('read notifs', this.data.readNotifList)
+    // var unreadIds = []
+    // for (var i = 0; i < this.data.unreadNotifList.length; i++) {
+    //   unreadIds.push(this.data.unreadNotifList[i].id)
+    // }
 
-    interact.setNotifsRead(unreadIds).then(
-      (res) => {
-        console.log("已将", unreadIds, "设为已读")
-        var oldNotifs = wx.getStorageSync('notifs')
-        console.log('notifs from storage', typeof(oldNotifs), oldNotifs)
-        var newNotifs = oldNotifs ? oldNotifs.concat(app.unreadNotifList) : app.unreadNotifList
-        console.log('new notifs', typeof(newNotifs), newNotifs)
-        wx.setStorageSync('notifs', newNotifs)
-        app.unreadNotifList = []
-      }
-    )
+    // interact.setNotifsRead(unreadIds).then(
+    //   (res) => {
+    //     console.log("将", unreadIds, "设为已读")
+    //     var oldNotifs = wx.getStorageSync('notifs')
+    //     console.log('notifs from storage', typeof(oldNotifs), oldNotifs)
+    //     var newNotifs = oldNotifs ? app.unreadNotifList.concat(oldNotifs) : app.unreadNotifList
+    //     console.log('new notifs', typeof(newNotifs), newNotifs)
+    //     wx.setStorageSync('notifs', newNotifs)
+    //     app.unreadNotifList = []
+    //   }
+    // )
     
 
   },
@@ -114,15 +107,42 @@ Page({
 
   goActOrOrg(e) {
     var dataset = e.currentTarget.dataset
-    if (dataset.act) {
-      wx.navigateTo({
-        url: `../../sections/act-detail/act-detail?actId=${dataset.act}`,
-      })
-    }
-    else if (dataset.org) {
-      wx.navigateTo({
-        url: `../../sections/act-list/act-list?orgId=${dataset.org}`,
-      })
-    }
+    interact.setNotifsRead([dataset.idd]).then(
+      (res) => {
+        console.log('item', dataset.item)
+        console.log("将", dataset.idd, "设为已读")
+        var oldNotifs = wx.getStorageSync('notifs')
+        console.log('notifs from storage', oldNotifs)
+        var newNotifs = oldNotifs ? [dataset.item].concat(oldNotifs) : [dataset.item]
+        console.log('new notifs', newNotifs)
+        wx.setStorageSync('notifs', newNotifs)
+        
+        var newUnread = []
+        for (var i = 0; i < app.unreadNotifList.length; i++) {
+          if (app.unreadNotifList[i].id != dataset.idd) {
+            newUnread.push(app.unreadNotifList[i])
+          }
+        }
+        app.unreadNotifList = newUnread
+        if (dataset.act) {
+          wx.navigateTo({
+            url: `../../sections/act-detail/act-detail?actId=${dataset.act}`,
+          })
+        }
+        else if (dataset.org) {
+          wx.navigateTo({
+            url: `../../sections/act-list/act-list?orgId=${dataset.org}`,
+          })
+        }
+        else {
+          this.setData({
+            unreadNotifList : this.addRelaTimeAndSort(app.unreadNotifList),
+            readNotifList : this.addRelaTimeAndSort(wx.getStorageSync('notifs')),
+          })
+
+        }
+      }
+    )
+    
   }
 })

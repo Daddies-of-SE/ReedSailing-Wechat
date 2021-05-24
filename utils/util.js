@@ -93,11 +93,20 @@ const replaceAll = (str, from, to) => {
     return str.replace(new RegExp(from,"gm"),to);
 }
 
+const compare = (property) => {
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+    }
+}
+
 module.exports = {
   err,
   debug,
   formatTime,
   getTimeMinute,
   getRelativeTime,
-  replaceAll
+  replaceAll,
+  compare
 }

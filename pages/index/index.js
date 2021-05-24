@@ -131,7 +131,7 @@ Page({
             (res) => {
                 var lst = []
                 var locations = []
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < Math.min(10, res.data.length); i++) {
                     var v = res.data[i]
                     v.pub_time = v.pub_time.split(".")[0].replace("T", " ")
                     v.begin_time = v.begin_time.replace("T", " ")
