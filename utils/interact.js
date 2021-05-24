@@ -16,11 +16,12 @@ function send_receivers_to_websocket(result) {
     if (result.data.__receivers__) {
       
       wx.sendSocketMessage({
-        data: result.data.__receivers__,
-        // data : [1,2,3],
-        success: (res) => {
-          console.log('success send_receivers_to_websocket')
-        }
+        data: JSON.stringify(result.data.__receivers__),
+        // success: (res) => {
+        //   wx.showToast({
+        //     title: 'success send_receivers_to_websocket',
+        //   })
+        // }
       })
       
     }
