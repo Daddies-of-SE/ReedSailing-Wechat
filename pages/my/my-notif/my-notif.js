@@ -1,8 +1,8 @@
 // pages/my/my-notif/my-notif.js
 
-const app = getApp()
 const util = require("../../../utils/util.js")
 const interact = require("../../../utils/interact.js")
+const app = getApp()
 
 Page({
 
@@ -53,6 +53,9 @@ Page({
       if (newList[i].id != newList[i+1].id) {
         ret.push(newList[i])
       }
+    }
+    if (newList.length > 0) {
+      ret.push(newList[newList.length - 1])
     }
     return ret
   },
@@ -108,6 +111,9 @@ Page({
         wx.setStorageSync('notifs', newNotifs)
         app.unreadNotifList = []
         this.updateNotifList()
+        wx.showToast({
+          title: '操作成功',
+        })
       }
     )
   },

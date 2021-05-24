@@ -13,7 +13,7 @@
         <view class='title' data-index='0' catchtap='panel'>
         <van-icon name="{{showIndex[0]? 'arrow-down':'arrow'}}" />
         <view class='title_1'>未读通知（{{unreadNotifList.length}}）</view>
-        <view catchtap="readAll" style="margin-left:140rpx; display: flex;" hover-class="weui-cell_active">
+        <view wx:if="{{unreadNotifList.length != 0}}" catchtap="readAll" style="margin-left:140rpx; display: flex;" hover-class="weui-cell_active">
             <view style='font-size:30rpx; margin-top : 5rpx'>全部已读</view>
             <i-icon type="browse" size="25"/>
         </view>
