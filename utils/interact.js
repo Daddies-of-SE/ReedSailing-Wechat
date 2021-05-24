@@ -11,6 +11,21 @@ function getAPIUrl(params) {
 
 module.exports.post_request = post_request
 
+function send_receivers_to_websocket(result) {
+  // 如果返回结果包含"__receivers__"字段, 发送ws请求
+    if (result.data.__receivers__) {
+      
+      wx.sendSocketMessage({
+        data: result.data.__receivers__,
+        // data : [1,2,3],
+        success: (res) => {
+          console.log('success send_receivers_to_websocket')
+        }
+      })
+      
+    }
+}
+
 //PUT请求函数 urlpath是请求路径（不包含前面的/） data是请求体 funcInfo是调用函数信息
 function put_request(urlpath, data, funcInfo) {
   lg.checkLoginData().then(login => {
@@ -51,6 +66,8 @@ function put_request(urlpath, data, funcInfo) {
             })
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         } 
+
+        send_receivers_to_websocket(result);
         funcInfo.resolve(result);
 
       },
@@ -118,6 +135,8 @@ function post_request(urlpath, data, funcInfo) {
             })
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         } 
+
+        send_receivers_to_websocket(result);
         funcInfo.resolve(result);
 
       },
@@ -187,6 +206,8 @@ function get_request(urlpath, funcInfo) {
               funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
             }
         } 
+
+        send_receivers_to_websocket(result);
         funcInfo.resolve(result);
 
       },
@@ -239,6 +260,8 @@ function delete_request(urlpath, funcInfo) {
             })
             funcInfo.reject({ err: result, errMsg: "服务器发生错误" });
         } 
+
+        send_receivers_to_websocket(result);
         funcInfo.resolve(result);
 
       },
