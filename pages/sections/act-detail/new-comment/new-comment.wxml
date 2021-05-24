@@ -5,7 +5,7 @@
   <view class="weui-cell">
       <view class="weui-cell__bd">
         <textarea class="weui-textarea" value="{{comment}}" bindinput="bindTextAreaInput"  rows="3"
-          placeholder="请输入评论" placeholder-class="weui-input__placeholder" maxlength="{{10000}}" />
+          placeholder="请输入评论" placeholder-class="weui-input__placeholder" maxlength="{{200}}" />
           <!-- <view class="weui-textarea-counter"><span>0</span>/200</view> -->
       </view>
   </view>

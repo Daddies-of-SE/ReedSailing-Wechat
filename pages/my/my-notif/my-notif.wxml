@@ -1,5 +1,12 @@
 <!--pages/my/my-notif/my-notif.wxml-->
 
+<wxs module="ut">
+  var sub = function(val) {
+      console.log(val.slice(0, 30))
+    return val.slice(0, 50)
+  }
+  module.exports.sub = sub;
+</wxs>
 
 <view class='folder'>
     <view class='folder_item'>
@@ -10,7 +17,7 @@
         <view class='actList'  wx:if="{{showIndex[0]}}">
             <i-cell-group i-class="act-wrap">
                 <block wx:for="{{unreadNotifList}}" wx:key="id">
-                    <i-cell title="{{item.content}}" label="{{item.relative_time}}" bindclick="goActOrOrg" 
+                    <i-cell title="{{item.content.length <= 50 ? item.content : ut.sub(item.content) + '…'}}" label="{{item.relative_time}}" bindclick="goActOrOrg" 
                         data-act="{{item.act}}" data-org="{{item.org}}" data-idd="{{item.id}}" data-item="{{item}}" is-link="{{item.act || item.org ? true : null}}" value="{{item.act? '查看活动' : item.org ? '查看组织' : '设为已读'}}">
                     </i-cell> 
                 </block>
@@ -34,7 +41,7 @@
         <view class='actList'  wx:if="{{showIndex[1]}}">
             <i-cell-group i-class="act-wrap">
                 <block wx:for="{{readNotifList}}" wx:key="id">
-                    <i-cell title="{{item.content}}" label="{{item.relative_time}}" bindclick="goActOrOrg" 
+                    <i-cell title="{{item.content.length <= 50 ? item.content : ut.sub(item.content) + '…'}}" label="{{item.relative_time}}" bindclick="goActOrOrg" 
                         data-act="{{item.act}}" data-org="{{item.org}}" data-idd="{{item.id}}" data-item="{{item}}" is-link="{{item.act || item.org ? true : null}}" value="{{item.act? '查看活动' : item.org ? '查看组织' : '设为已读'}}">
                     </i-cell> 
                 </block>

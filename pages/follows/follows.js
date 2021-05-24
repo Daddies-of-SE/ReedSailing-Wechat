@@ -92,6 +92,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        if (app.unreadNotifList.length != 0) {
+            app.showRedDot()
+        }
         if (app.haveRegistered()) {
             this.setData({
                 havelogin : true

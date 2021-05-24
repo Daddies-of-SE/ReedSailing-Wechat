@@ -20,10 +20,10 @@
 
 <!--添加管理员-->
 <view class="add-manager-wrap">
-    <text class="text">添加管理员</text>
+    <view class="i-swipeout-demo-title">添加管理员</view>
     <van-search
     model:value="{{ searchInput }}"
-    placeholder="请输入用户id(可在“我的账户“页面查看)"
+    placeholder="请输入用户id(可在“我的账户”页面查看)"
     bind:search="onSearch"
   />
 </view>

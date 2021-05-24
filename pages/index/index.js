@@ -119,6 +119,9 @@ Page({
               havelogin : app.haveRegistered(),
               info : JSON.stringify(app.loginData.nickName)
           })
+          if (app.unreadNotifList.length != 0) {
+            app.showRedDot()
+          }
           interact.getRecommendOrgs().then(
             (res) => {
                 this.setData({
