@@ -20,7 +20,7 @@
 
 <!--添加管理员-->
 <view class="add-manager-wrap">
-    <view class="i-swipeout-demo-title">添加管理员</view>
+    <view class="i-swipeout-demo-title" style="font-size : 35rpx">添加管理员</view>
     <van-search
     model:value="{{ searchInput }}"
     placeholder="请输入用户id(可在“我的账户”页面查看)"
@@ -49,7 +49,7 @@
 </i-panel> -->
 
 <view class="mem-wrap">
-  <view class="i-swipeout-demo-title">管理员列表</view>
+  <view class="i-swipeout-demo-title" style="font-size : 35rpx">管理员列表</view>
   <view class="i-swipeout-demo-des">
         提示：左滑管理员可以选择移除管理员或者转让负责人
     </view>

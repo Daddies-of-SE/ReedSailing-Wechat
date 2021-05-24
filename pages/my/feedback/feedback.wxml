@@ -25,9 +25,9 @@
 
 
 
-<i-panel title="组织基本信息">
+<i-panel title="提交反馈">
 
-    <i-input type="textarea" value="{{content}}" bind:change="contentHandler" title="反馈" placeholder="写写你的建议/问题" maxlength="50"/>
+    <i-input type="textarea" value="{{content}}" bind:change="contentHandler" title="反馈内容" placeholder="写写你的建议/问题" maxlength="50"/>
     <i-input value="{{contact}}" bind:change="contactHandler" title="联系方式(可选)" placeholder="留下qq/微信" maxlength="20"/>
 
 </i-panel>

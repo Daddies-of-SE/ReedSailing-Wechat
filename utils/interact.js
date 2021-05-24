@@ -11,6 +11,10 @@ function getAPIUrl(params) {
 
 module.exports.post_request = post_request
 
+function get_errmsg(data) {
+  return data.detail ? data.detail : data.name ? data.name[0] : JSON.stringify(result.data).slice(0,50)
+}
+
 function send_receivers_to_websocket(result) {
   // 如果返回结果包含"__receivers__"字段, 发送ws请求
     if (result.data.__receivers__) {
@@ -43,16 +47,6 @@ function put_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        // if (result.data.status && result.data.status != 0) {
-        //   wx.hideToast()
-        //   wx.showModal({
-        //     title: funcInfo.funcName + "请求失败",
-        //     content: result.data.msg,
-        //     showCancel: true,
-        //     confirmText: '确认',
-        //   })
-        // }
-
         //如果状态码为401 Unauthorized
         var s = result.statusCode
         if (s == 401) {
@@ -61,7 +55,7 @@ function put_request(urlpath, data, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
+              content: get_errmsg(result.data),
               showCancel: true,
               confirmText: '确认',
             })
@@ -112,16 +106,6 @@ function post_request(urlpath, data, funcInfo) {
         console.log(funcInfo.funcName + "请求体：", data);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        // if (result.data.status && result.data.status != 0) {
-        //   wx.hideToast()
-        //   wx.showModal({
-        //     title: funcInfo.funcName + "请求失败",
-        //     content: result.data.msg,
-        //     showCancel: true,
-        //     confirmText: '确认',
-        //   })
-        // }
-
         //如果状态码为401 Unauthorized
         var s = result.statusCode
         if (s == 401) {
@@ -130,7 +114,7 @@ function post_request(urlpath, data, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
+              content: get_errmsg(result.data),
               showCancel: true,
               confirmText: '确认',
             })
@@ -177,16 +161,6 @@ function get_request(urlpath, funcInfo) {
         console.log(funcInfo.funcName + "请求链接：", urlpath);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-        // if (result.data.status && result.data.status != 0) {
-        //   wx.hideToast()
-        //   wx.showModal({
-        //     title: funcInfo.funcName + "请求失败",
-        //     content: result.data.msg,
-        //     showCancel: true,
-        //     confirmText: '确认',
-        //   })
-        // }
-
         //如果状态码为401 Unauthorized
         var s = result.statusCode
         if (s == 401) {
@@ -200,7 +174,7 @@ function get_request(urlpath, funcInfo) {
             else {
               wx.showModal({
                 title: funcInfo.funcName + "请求失败",
-                content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
+                content: get_errmsg(result.data),
                 showCancel: true,
                 confirmText: '确认',
               })
@@ -255,7 +229,7 @@ function delete_request(urlpath, funcInfo) {
         } else if (s != 200 && s != 201 && s != 204) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
-              content: result.data.detail ? result.data.detail : JSON.stringify(result.data).slice(0,50),
+              content: get_errmsg(result.data),
               showCancel: true,
               confirmText: '确认',
             })

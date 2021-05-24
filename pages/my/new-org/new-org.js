@@ -62,7 +62,8 @@ Page({
         interact.createOrgApplication(this.data.inputName, this.data.inputDescription, this.data.forum_array[this.data.index1].id).then(
             (res) => {
                 wx.showToast({
-                    title: '申请已提交，请等待审核',
+                    title: '申请提交成功，请等待审核',
+                    icon: 'none'
                   })
                 setTimeout(function () {
                     wx.navigateBack({

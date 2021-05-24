@@ -17,6 +17,8 @@
 </view>
 
 
+
 <a class="weui-btn weui-btn_primary" bindtap="createComment">提交</a>
 
 
+<view wx:if="{{!mustRate}}">\n提示：未开始的活动只能评论\n不能进行评分</view>

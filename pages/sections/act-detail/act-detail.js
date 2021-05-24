@@ -101,6 +101,13 @@ Page({
         getApp().goCertificate()
         return
       }
+      if (!this.data.hasJoined) {
+        wx.showToast({
+          title: '不能评论未报名的活动',
+          icon : 'none'
+        })
+        return
+      }
       // if (!this.data.hasBegun) {
       //   wx.showToast({
       //     title: '活动尚未开始，不能评论',
@@ -189,6 +196,7 @@ Page({
         (res0) =>{
           interact.getActInfo(this.data.actId).then(
             (res) => {
+              console.log("onshow...")
               var r = res.data
               r.pub_time = util.getTimeMinute(r.pub_time)
               r.begin_time = util.getTimeMinute(r.begin_time)
@@ -199,10 +207,19 @@ Page({
                 this.setData({
                   hasBegun : true
                 })
+              } else {
+                this.setData({
+                  hasBegun : false
+                })
               }
+
               if (end_time < new Date()) { 
                 this.setData({
                   hasEnded : true
+                })
+              } else {
+                this.setData({
+                  hasEnded : false
                 })
               }
               this.setData({

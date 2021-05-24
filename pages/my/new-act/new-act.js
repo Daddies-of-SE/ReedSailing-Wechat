@@ -228,12 +228,6 @@ Page({
             location = d.actInfo.location
         }
         console.log("location", location)
-        // if (!d.haveLocation) {
-        //     wx.showToast({
-        //       title: '请选择地点',
-        //       icon: 'none'
-        //     })
-        // }
 
         if (location == null) {
             wx.showToast({
