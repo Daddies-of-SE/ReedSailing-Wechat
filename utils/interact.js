@@ -245,7 +245,7 @@ function delete_request(urlpath, funcInfo) {
         console.log(funcInfo.funcName + "请求链接：", urlpath);
         console.log(funcInfo.funcName + "请求结果：", result.data)
 
-
+        
         //如果状态码为401 Unauthorized
         var s = result.statusCode
         if (s == 401) {

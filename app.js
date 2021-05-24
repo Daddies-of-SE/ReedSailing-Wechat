@@ -53,6 +53,7 @@ App({
     },
 
   ],
+<<<<<<< HEAD
 
   // server : 'https://www.reedsailing.xyz/api/',
   // ws_werver: 'wss://www.reedsailing.xyz/ws/',
@@ -61,6 +62,15 @@ App({
   server : 'http://127.0.0.1:8000/api/',
   ws_werver: 'ws://127.0.0.1:8000/ws/',
   socketOpen : false,
+=======
+  server : 'https://www.reedsailing.xyz/api/',
+  ws_werver: 'wss://www.reedsailing.xyz/ws/',
+  // server : 'http://127.0.0.1:8000/api/',
+  // ws_werver: 'ws://127.0.0.1:8000/ws/',
+  // ws_werver: 'wss://rs.test/ws/',
+  // server : 'http://rs.test/',
+  
+>>>>>>> 2c5e859f269128a9585896a8b57468830593ca98
 
   shareData : {
     title : "一苇以航活动发布社交平台",
@@ -110,21 +120,13 @@ App({
       that.unreadNotifList = r
       // that.unreadNotifList = [
       //   {
-      //     id : 31,
+      //     id : 666,
       //     type : 1,
-      //     time : '2021-05-21T11:04:50.445933',
-      //     content: '活动\'PS不教学不讲座\'内容发生了改变，请及时查看',
-      //     act : 1,
+      //     time : '2021-01-21T11:04:50.445933',
+      //     content: '爪巴',
+      //     act : null,
       //     org : null
       //   },
-        // {
-        //   id : 32,
-        //   type : 1,
-        //   time : '2021-01-21T11:04:50.445933',
-        //   content: '爪巴',
-        //   act : null,
-        //   org : null
-        // },
       // ]
       if (that.unreadNotifList.length > 0) {
         

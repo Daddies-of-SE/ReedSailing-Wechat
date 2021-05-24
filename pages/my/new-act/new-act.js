@@ -145,6 +145,11 @@ Page({
                 this.setData({
                     categories: r
                 })
+                if (this.data.categories[this.data.index1].create) {
+                    this.setData({
+                        createNewCategory: true
+                    })
+                }
                 // console.log(this.data.categories)
             }
         )
