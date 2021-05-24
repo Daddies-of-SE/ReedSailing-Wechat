@@ -55,9 +55,11 @@ Page({
   onShow: function () {
     var o = this.options
     var id = parseInt(o.searchContent)
+    o.searchType = parseInt(o.searchType)
     // var idMatchOrg = {id : -233}, idMatchAct = {id : -233}
     if (!isNaN(id)) {
-      if (o.searchType in [1,2,6]) {
+      console.log(o.searchType)
+      if ([1,2,6].indexOf(o.searchType) > -1) {
         interact.getOrgInfo(id).then(
           (res) => {
             if (res.statusCode != 404) {
@@ -68,7 +70,7 @@ Page({
           }
         )
       }
-      if (o.searchType in [1,3,4,5]) {
+      if ([1,3,4,5].indexOf(o.searchType) > -1) {
         interact.getActInfo(id).then(
           (res) => {
             if (res.statusCode != 404) {

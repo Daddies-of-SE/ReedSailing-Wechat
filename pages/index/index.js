@@ -145,7 +145,7 @@ Page({
                       name: v.name,
                       width: "30",  
                       height: "60",
-                      callout : {content : v.name}
+                      // callout : {content : v.name}
                     })
                 }
                 
