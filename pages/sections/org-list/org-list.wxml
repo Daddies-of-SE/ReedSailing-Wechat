@@ -1,8 +1,8 @@
 <!--pages/sections/org-list/org-list.wxml-->
 
-<!--板块名称-->
+<!--版块名称-->
 <!-- <view class="forum-header">
-    <text class="text">{{forumName}}板块</text>
+    <text class="text">{{forumName}}版块</text>
 </view> -->
 
 <!--创建组织按钮-->

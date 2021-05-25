@@ -42,7 +42,7 @@
         <view class="organizer" wx:if="{{!isBoya}}"><span class="_infor_head">人数：</span>{{currentNumPeople}} / {{actInfo.contain}}</view>
         <view class="organizer" wx:else><span class="_infor_head">最大人数：</span>{{actInfo.contain}}</view>
 
-        <view class="organizer"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view>
+        <view class="organizer" wx:if="{{!isBoya}}"><span class="_infor_head">活动类型：</span>{{actInfo.type.name}}</view>
         <view class="organizer"><span class="_infor_head">活动描述：</span>{{actInfo.description == "" ? "无" : actInfo.description}}</view>
         <!-- <view class="organizer"><span class="_infor_head">加入需要审核：</span>{{actInfo.review ? "是": "否"}}</view> -->
         <view class="organizer" wx:if="{{hasBegun}}"><span class="_infor_head">平均评分：</span><van-rate custom-class="rate" readonly allow-half model:value="{{ avg_score }}" size="{{ 20 }}"/> </view>

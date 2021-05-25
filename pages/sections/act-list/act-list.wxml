@@ -34,7 +34,7 @@
     </view>
     <block wx:if="{{showIndex[0]}}">
       <view class='detail'><span class="_infor_head">组织id：</span>{{orgId}}</view>
-      <view class='detail'><span class="_infor_head">所属板块：</span>{{orgInfo.belong_forum.name}}</view>
+      <view class='detail'><span class="_infor_head">所属版块：</span>{{orgInfo.belong_forum.name}}</view>
       <view class='detail'><span class="_infor_head">创建时间：</span>{{orgInfo.create_time}}</view>
       <view class='detail'><span class="_infor_head">负责人：</span>{{orgInfo.owner.name}}</view>
       <view class='detail detail-last'><span class="_infor_head">介绍：</span>{{orgInfo.description ? orgInfo.description : "暂无"}}</view>
@@ -87,7 +87,7 @@
       <i-cell-group i-class="act-wrap">
         <button class='editBtn' bindtap='goNewAct' wx:if="{{isManager && orgId != -1}}" hover-class="weui-cell_active">新建</button>
         <block wx:for="{{unstartActList}}" wx:key="id">
-            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
+            <i-cell title="{{item.name}}" label="{{item.description == '无' ? '' : item.description}}" is-link bindtap="goAct" 
                 data-actid="{{item.id}}" data-actname="{{item.name}}">
             </i-cell> 
         </block>
@@ -107,7 +107,7 @@
     <view class='actList'  wx:if="{{showIndex[3]}}">
       <i-cell-group i-class="act-wrap">
         <block wx:for="{{curActList}}" wx:key="id">
-            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
+            <i-cell title="{{item.name}}" label="{{item.description == '无' ? '' : item.description}}" is-link bindtap="goAct" 
                 data-actid="{{item.id}}" data-actname="{{item.name}}">
             </i-cell> 
         </block>
@@ -127,7 +127,7 @@
     <view class='actList'  wx:if="{{showIndex[4]}}">
       <i-cell-group i-class="act-wrap">
         <block wx:for="{{endActList}}" wx:key="id">
-            <i-cell title="{{item.name}}" label="{{item.description}}" is-link bindtap="goAct" 
+            <i-cell title="{{item.name}}" label="{{item.description == '无' ? '' : item.description}}" is-link bindtap="goAct" 
                 data-actid="{{item.id}}" data-actname="{{item.name}}">
             </i-cell> 
         </block>

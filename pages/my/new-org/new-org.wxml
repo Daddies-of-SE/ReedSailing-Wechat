@@ -3,7 +3,7 @@
 <i-panel title="组织基本信息">
     <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
         <view class="weui-cell__hd">
-            <label class="weui-label" style="width: 3em">板块</label>
+            <label class="weui-label" style="width: 3em">版块</label>
         </view>
         <view class="weui-cell__bd">
             <picker bindchange="bindPicker_1_Change" range="{{forum_array}}" range-key="title">
