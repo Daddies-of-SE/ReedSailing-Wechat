@@ -36,6 +36,6 @@
 <view style="background : white; margin-top : 100rpx" >
 <view class="bottom">
 <text>关于我们：\n一苇以航开发团队\n乐洋 史鑫杰 王肇凯 开聚实 王佳瑞 李永毅\n\n</text>
-<text>版本：1.5.4</text>
+<text>版本：{{version}}</text>
 </view>
 </view>

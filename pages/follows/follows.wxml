@@ -6,13 +6,18 @@
   var sub = function(val) {
     return val.slice(0, 5)
   }
+  var formatTime = function(time) {
+    return (time.split(":")[0] + ":" + time.split(":")[1]).replace("T", " ")
+  }
   module.exports.sub = sub;
+  module.exports.formatTime = formatTime;
 </wxs>
 
 <!--follow-orgs-->
 <view class="org-wrap">
-  <view class="header" wx:if="{{havelogin && act_list.length != 0}}">
-      <text class="txt">关注的组织</text>
+  <view class="header" wx:if="{{havelogin}}">
+      <view wx:if="{{org_list.length != 0}}"><text class="txt">关注的组织</text></view>
+      <view wx:else><text class="txt">您还没有关注任何组织哦</text></view>
       <!-- <view class="right" id="0" bindtap="toFollowOrg">
         <text class="all">查看全部</text>
         <image class="arrow" src="/icon/rightArrow.png"></image>
@@ -68,19 +73,19 @@
         <view slot="content">您还没有认证，请进入“我的”—“个人信息”页面进行认证</view>
       </i-card>
     </view>
-    <view class="msg-item" wx:if="{{havelogin && act_list.length == 0}}">
+    <view class="msg-item" wx:if="{{havelogin && act_list.length == 0 && org_list.length != 0}}">
       <i-card i-class="card-demo">
-        <view slot="content">您还没有关注任何组织哦</view>
+        <view slot="content">您关注的组织暂无活动</view>
       </i-card>
     </view>
     <view class="msg-item" wx:for="{{act_list}}" wx:key='id'>
       <i-card i-class="card-demo" title="{{item.org ? item.org.name : item.block.name}}" extra='{{item.relative_pub_time}}' thumb="{{item.org ? item.org.avatar : ''}}" bindtap="toActivity" data-actid="{{item.id}}">
         <view slot="content">
           <text calss="title">{{item.name}}</text>
-          <view class="org_time"><span class="_infor_head">时间：</span> {{item.begin_time ? item.begin_time: "暂无信息"}} 至 {{item.end_time ? item.end_time: "暂无信息"}}</view>
+          <view class="org_time"><span class="_infor_head">时间：</span> {{item.begin_time ? ut.formatTime(item.begin_time): "暂无信息"}} 至 {{item.end_time ? ut.formatTime(item.end_time): "暂无信息"}}</view>
           <view class="place"><span class="_infor_head">地点：</span> {{item.location ? item.location.name : "暂无信息"}}</view>
-          <view class="place"><span class="_infor_head">类别：</span> {{item.type.name}}</view>
-          <view class="body"><span class="_infor_head">简介：</span>{{item.description != "" ? item.description : "无"}}</view>
+          <view class="place" wx:if="{{item.block.id != 2}}"><span class="_infor_head">类别：</span> {{item.type.name}}</view>
+          <view wx:if="{{item.description != '' && ite.description != '无'}}" class="body"><span class="_infor_head">简介：</span>{{item.description}}</view>
         </view>
         <!-- <view slot="footer">
           <view class="bottom-right" bindtap="toActivity">

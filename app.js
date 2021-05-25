@@ -4,6 +4,7 @@ const login = require('utils/login.js')
 
 // app.js
 App({
+  version: "1.5.6",
   loginData: {
     token: '',
     email : '',

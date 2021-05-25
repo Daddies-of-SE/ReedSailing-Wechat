@@ -111,7 +111,7 @@
       </i-card>
     </view>
     <view class="msg-item" wx:for="{{comment_list}}" wx:key='id'>
-      <i-card i-class="card-demo" title="{{item.user.name}}" extra="{{item.publish_time}}" thumb="{{item.user.avatar}}" bindtap="goUser" data-userid="{{item.user.id}}">
+      <i-card i-class="card-demo" title="{{item.user.name}}" extra="{{item.relative_time}}" thumb="{{item.user.avatar}}" bindtap="goUser" data-userid="{{item.user.id}}">
         <view slot="content" catchtap="empty">
           <view>{{item.content}}</view>
           <view wx:if="{{hasBegun && item.score != 0}}">

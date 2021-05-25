@@ -9,6 +9,13 @@ Page({
   data: {
     contact : "",
     content : "",
+    version : ""
+  },
+
+  onLoad() {
+    this.setData({
+      version : getApp().version
+    })
   },
 
   contactHandler: function (e) {

@@ -137,8 +137,8 @@ Page({
                 for (var i = 0; i < Math.min(10, res.data.length); i++) {
                     var v = res.data[i]
                     v.pub_time = v.pub_time.split(".")[0].replace("T", " ")
-                    v.begin_time = v.begin_time.replace("T", " ")
-                    v.end_time = v.end_time.replace("T", " ")
+                    v.begin_time = util.getTimeMinute(v.begin_time)
+                    v.end_time = util.getTimeMinute(v.end_time)
                     v.relative_pub_time = util.getRelativeTime(v.pub_time)
                     lst.push(v)
                     locations.push({

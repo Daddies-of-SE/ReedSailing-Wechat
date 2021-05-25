@@ -149,6 +149,14 @@ Page({
         }
       })
     },
+    
+    addRelativeTime (commentList) {
+      for (var i = 0; i < commentList.length; i++) {
+        // console.log(commentList[i])
+        commentList[i].relative_time = util.getRelativeTime(commentList[i].pub_time)
+      }
+      return commentList.sort(util.compare('id')).reverse()
+    },
 
     // like: function (options) {
     //   wx.request({
@@ -264,7 +272,7 @@ Page({
                 total_rates += 1
               }
               this.setData({
-                comment_list : res.data,
+                comment_list : this.addRelativeTime(res.data),
                 avg_score : score_sum / total_rates
               })
             }

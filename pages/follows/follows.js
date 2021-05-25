@@ -114,19 +114,22 @@ Page({
         )
         interact.getFollowOrgActs().then(
             (res) => {
-                var lst = []
-                for (var i = 0; i < res.data.length; i++) {
-                    var v = res.data[i]
-                    v.pub_time = res.data[i].pub_time.split(".")[0].replace("T", " ")
-                    v.begin_time = res.data[i].begin_time.replace("T", " ")
-                    v.end_time = res.data[i].end_time.replace("T", " ")
-                    v.relative_pub_time = util.getRelativeTime(v.pub_time)
-                    lst.push(v)
+                var lst = res.data
+                if (app.loginData.follow_boya) {
+                    interact.getAllStatusOrgActs(-1).then(
+                        (res) => {
+                            lst = lst.concat(res.data.unstart).concat(res.data.cur).concat(res.data.end)
+                            this.setData({
+                                act_list : this.addRelaTimeAndSort(lst)
+                            })
+                        }
+                    )
                 }
-                
-                this.setData({
-                    act_list : lst
-                })
+                else {
+                    this.setData({
+                        act_list : lst
+                    })
+                }
             }
         )
     },
@@ -160,5 +163,15 @@ Page({
             })
           }
         }
+    },
+
+    addRelaTimeAndSort(notifList) {
+        if (typeof(notifList) == 'string') {
+          return []
+        }
+        for (var i = 0; i < notifList.length; i++) {
+          notifList[i].relative_pub_time = util.getRelativeTime(notifList[i].pub_time)
+        }
+        return notifList.sort(util.compare('id')).reverse()
     },
 })
