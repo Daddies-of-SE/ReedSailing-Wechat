@@ -627,7 +627,7 @@ module.exports.exitAct = function(act_id) {
     app = getApp()
   }
   return new Promise((resolve, reject) => {
-    delete_request(`activities/participants/?person=${app.loginData.userId}&act=${act_id}`,
+    delete_request(`activities/participants/?person=${app.loginData.userId}&act=${act_id}&operator=${app.loginData.userId}`,
       {
         func: module.exports.exitAct,
         funcName: 'exitAct',
@@ -702,7 +702,7 @@ module.exports.deleteActParticipant = function(act_id, person_id) {
     app = getApp()
   }
   return new Promise((resolve, reject) => {
-    delete_request(`activities/participants/?person=${person_id}&act=${act_id}`,
+    delete_request(`activities/participants/?person=${person_id}&act=${act_id}&operator=${app.loginData.userId}`,
       {
         func: module.exports.deleteActParticipant,
         funcName: 'deleteActParticipant',
