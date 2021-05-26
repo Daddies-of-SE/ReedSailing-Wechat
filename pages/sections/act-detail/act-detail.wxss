@@ -76,7 +76,7 @@
 }
 
 .card-demo image {
-  border-radius: 50%;
+  /* border-radius: 50%; */
   width: 100rpx;
   height: 100rpx;
 }

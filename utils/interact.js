@@ -12,7 +12,7 @@ function getAPIUrl(params) {
 module.exports.post_request = post_request
 
 function get_errmsg(data) {
-  return data.detail ? data.detail : data.name ? data.name[0] : JSON.stringify(result.data).slice(0,50)
+  return data.detail ? data.detail : data.name ? data.name[0] : JSON.stringify(data).slice(0,50)
 }
 
 function send_receivers_to_websocket(result) {
@@ -790,35 +790,35 @@ module.exports.getCommentById = function (comment_id) {
 }
 
 
-module.exports.getRecommendOrgs = function () {
-  if (!app) {
-    app = getApp()
-  }
-  return new Promise((resolve, reject) => {
-    get_request(`recommended/organizations/${app.loginData.userId}/`, 
-      {
-        func: module.exports.getRecommendOrgs,
-        funcName: 'getRecommendOrgs',
-        reject: reject,
-        resolve: resolve
-    })
-  }) 
-}
+// module.exports.getRecommendOrgs = function () {
+//   if (!app) {
+//     app = getApp()
+//   }
+//   return new Promise((resolve, reject) => {
+//     get_request(`recommended/organizations/${app.loginData.userId}/`, 
+//       {
+//         func: module.exports.getRecommendOrgs,
+//         funcName: 'getRecommendOrgs',
+//         reject: reject,
+//         resolve: resolve
+//     })
+//   }) 
+// }
 
-module.exports.getRecommendActs = function () {
-  if (!app) {
-    app = getApp()
-  }
-  return new Promise((resolve, reject) => {
-    get_request(`recommended/activities/${app.loginData.userId}/`, 
-      {
-        func: module.exports.getRecommendActs,
-        funcName: 'getRecommendActs',
-        reject: reject,
-        resolve: resolve
-    })
-  })
-}
+// module.exports.getRecommendActs = function () {
+//   if (!app) {
+//     app = getApp()
+//   }
+//   return new Promise((resolve, reject) => {
+//     get_request(`recommended/activities/${app.loginData.userId}/`, 
+//       {
+//         func: module.exports.getRecommendActs,
+//         funcName: 'getRecommendActs',
+//         reject: reject,
+//         resolve: resolve
+//     })
+//   })
+// }
 
 module.exports.getFollowOrgActs = function () {
   return new Promise((resolve, reject) => {
@@ -1245,6 +1245,20 @@ module.exports.setNotifsRead = function (ids) {
       {
         func: module.exports.setNotifsRead,
         funcName: 'setNotifsRead',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+module.exports.getRecommend = function () {
+  if (!app) {
+    app = getApp()
+  }
+  return new Promise((resolve, reject) => {
+    get_request(`recommended/${app.loginData.userId}/`, 
+      {
+        func: module.exports.getRecommend,
+        funcName: 'getRecommend',
         reject: reject,
         resolve: resolve
     })

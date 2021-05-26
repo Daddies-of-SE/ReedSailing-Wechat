@@ -234,7 +234,7 @@ App({
       success: function (res) {
         if (!res.cancel) {
             wx.navigateTo({
-                url: '../../my/my-account/my-account',
+                url: '/pages/my/my-account/my-account',
             })
         }
         else {

@@ -122,20 +122,18 @@ Page({
           if (app.unreadNotifList.length != 0) {
             app.showRedDot()
           }
-          interact.getRecommendOrgs().then(
-            (res) => {
-                this.setData({
-                  org_list : res.data.slice(0,10)
-                })
-            }
-          )
   
-          interact.getRecommendActs().then(
+          interact.getRecommend().then(
             (res) => {
                 var lst = []
                 var locations = []
-                for (var i = 0; i < Math.min(10, res.data.length); i++) {
-                    var v = res.data[i]
+                var acts = res.data.acts
+                var orgs = res.data.orgs
+                this.setData({
+                  org_list : orgs.length > 10 ? orgs.slice(0,10) : orgs
+                })
+                for (var i = 0; i < Math.min(10, acts.length); i++) {
+                    var v = acts[i]
                     v.pub_time = v.pub_time.split(".")[0].replace("T", " ")
                     v.begin_time = util.getTimeMinute(v.begin_time)
                     v.end_time = util.getTimeMinute(v.end_time)
@@ -153,7 +151,7 @@ Page({
                 }
                 
                 this.setData({
-                  act_list : lst,
+                  act_list : lst.sort(util.compare('id')).reverse(),
                   markers : locations
                 })
             }
