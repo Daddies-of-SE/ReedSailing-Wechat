@@ -128,7 +128,7 @@ Page({
                   email : app.loginData.email,
                   userExist : 1,
                   id : app.loginData.userId,
-                  name : res1.userInfo.nickName,
+                  name : res1.userInfo.nickName.slice(0,10),
                   sign : app.loginData.motto,
                   avatar : res1.userInfo.avatarUrl
                 })

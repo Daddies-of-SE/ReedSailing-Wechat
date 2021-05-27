@@ -1,7 +1,7 @@
 <!--pages/sections/org-edit/org-edit.wxml-->
 
 <i-panel title="组织基本信息">
-    <i-input value="{{ inputName }}" bind:change="inputNameHandler" title="组织名称" mode="wrapped" placeholder="{{inputName}}" maxlength="20"/>
+    <i-input value="{{ inputName }}" bind:change="inputNameHandler" title="组织名称" mode="wrapped" placeholder="{{inputName}}" maxlength="10"/>
     <view class="org-pic">
         <view class="text">头像</view>
         <view class="picture">
@@ -15,29 +15,3 @@
 
 </i-panel>
 <a class="weui-btn weui-btn_primary" bindtap="submitOrg">提交</a>
-
-
-
-<!-- <view class="org-name">
-    <text class="text">组织id：{{orgId}}</text>
-</view> -->
-
-<!--组织名称-->
-<!-- <view class="org-name">
-    <text class="text">名称：</text>
-    <input class="input" name="orgName" placeholder="{{orgName}}" bindinput="orgNameInput"/>
-</view> -->
-
-<!--组织头像-->
-
-
-<!--介绍信息-->
-<!-- <view class="org-info">
-    <text class="text">介绍信息：</text>
-    <textarea class="areas" placeholder='{{orgInfo}}' maxlength="{{max}}" bindinput="inputs"> 
-        <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
-        <text class="hint">{{texts}}</text>
-    </textarea>
-</view> -->
-
-<!-- <button class='submitBtn' bindtap='submit'>提交</button> -->
