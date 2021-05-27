@@ -22,7 +22,7 @@
         <view class='actList'  wx:if="{{showIndex[0]}}">
             <i-cell-group i-class="act-wrap">
                 <block wx:for="{{unreadNotifList}}" wx:key="id">
-                    <i-cell title="{{item.content.length <= 50 ? item.content : ut.sub(item.content) + '…'}}" label="{{item.relative_time}}" bindclick="goActOrOrg" 
+                    <i-cell title="{{item.content.length <= 50 ? item.content : ut.sub(item.content) + '…'}}" label="{{item.relative_time}}" bindclick="goActOrOrg" data-read="0"
                         data-act="{{item.act}}" data-org="{{item.org}}" data-idd="{{item.id}}" data-item="{{item}}" is-link="{{item.act || item.org ? true : null}}" value="{{item.act? '查看活动' : item.org ? '查看组织' : '设为已读'}}" >
                     </i-cell> 
                 </block>
@@ -46,8 +46,8 @@
         <view class='actList'  wx:if="{{showIndex[1]}}">
             <i-cell-group i-class="act-wrap">
                 <block wx:for="{{readNotifList}}" wx:key="id">
-                    <i-cell title="{{item.content.length <= 50 ? item.content : ut.sub(item.content) + '…'}}" label="{{item.relative_time}}" bindclick="goActOrOrg" 
-                        data-act="{{item.act}}" data-org="{{item.org}}" data-idd="{{item.id}}" data-item="{{item}}" is-link="{{item.act || item.org ? true : null}}" value="{{item.act? '查看活动' : item.org ? '查看组织' : '设为已读'}}">
+                    <i-cell title="{{item.content.length <= 50 ? item.content : ut.sub(item.content) + '…'}}" label="{{item.relative_time}}" bindclick="goActOrOrg" data-read="1"
+                        data-act="{{item.act}}" data-org="{{item.org}}" data-idd="{{item.id}}" data-item="{{item}}" is-link="{{item.act || item.org ? true : null}}" value="{{item.act? '查看活动' : item.org ? '查看组织' : ''}}">
                     </i-cell> 
                 </block>
             </i-cell-group>

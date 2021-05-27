@@ -120,7 +120,7 @@ Page({
 
   goActOrOrg(e) {
     var dataset = e.currentTarget.dataset
-    interact.setNotifsRead([dataset.idd]).then(
+    interact.setNotifsRead([dataset.idd], dataset.read).then(
       (res) => {
         console.log('item', dataset.item)
         console.log("将", dataset.idd, "设为已读")
