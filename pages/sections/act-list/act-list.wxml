@@ -1,5 +1,7 @@
 <!--pages/sections/act-list/act-list.wxml-->
 
+
+
 <!--组织名称-->
 <view class="org-header">
     <text class="text">{{orgName}}</text>
@@ -66,7 +68,8 @@
         <view class="mem-item" wx:for="{{memList}}">
           <view data-userid="{{item.person.id}}" bindtap="goUser"> 
             <image class="mem-avatar" src="{{item.person.avatar}}"></image>
-            <text class="mem-name">{{item.person.id == orgInfo.owner.id ? item.person.name+"(负责人)" : item.person.name}}</text>
+            <!-- <text class="mem-name">{{item.person.id == orgInfo.owner.id ? (item.person.name.length < 6 ? item.person.name+"(负责人)" : ut.sub(item.person.name,5)+"(负责人)") : item.person.name}}</text> -->
+            <text class="mem-name">{{item.person.name}}</text>
           </view>
         </view>
     </view>

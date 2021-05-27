@@ -17,6 +17,7 @@
       bindinput="inputEmailHandler"
       border="{{ true }}"
       style="color:black"
+      maxlength="30"
     >
   </van-field>
   <text class="email-pattern">@buaa.edu.cn</text>
@@ -36,6 +37,7 @@
       bindinput="inputVerifyCodeHandler"
       border="{{ true }}"
       style="color:black"
+      maxlength="6"
     >
   </van-field>
   <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitCertificate">提交验证</van-button>
@@ -51,6 +53,7 @@
         bindinput="inputNickNameHandler"
         border="{{ true }}"
         style="color:black"
+        maxlength="10"
       >
   </van-field>
 
@@ -61,6 +64,7 @@
         bindinput="inputMottoHandler"
         border="{{ false }}"
         style="color:black"
+        maxlength="100"
       >
   </van-field>
 
@@ -71,6 +75,7 @@
         bindinput="inputContactHandler"
         border="{{ false }}"
         style="color:black"
+        maxlength="30"
       >
   </van-field>
 
