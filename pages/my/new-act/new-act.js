@@ -77,6 +77,11 @@ Page({
                 createNewCategory: true
             })
         }
+        else {
+            this.setData({
+                createNewCategory: false
+            })
+        }
     },
 
     bindPicker_2_Change: function(e) {
@@ -141,13 +146,18 @@ Page({
         interact.getAllActCategories().then(
             (res) => {
                 var r = res.data
-                r.push({name : "新建类别", create : true})
+                r.push({name : "【新建类别】", create : true})
                 this.setData({
                     categories: r
                 })
                 if (this.data.categories[this.data.index1].create) {
                     this.setData({
                         createNewCategory: true
+                    })
+                }
+                else {
+                    this.setData({
+                        createNewCategory: false
                     })
                 }
                 // console.log(this.data.categories)
