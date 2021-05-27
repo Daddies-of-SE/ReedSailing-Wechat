@@ -111,6 +111,12 @@ Page({
       return
     }
     else {
+      if (!wx.getUserProfile) {
+        wx.showModal({
+          content : '请使用手机端小程序进行认证'
+        })
+        return
+      }
       wx.getUserProfile({
         desc : '用于完善资料',
         success : (res1) => {

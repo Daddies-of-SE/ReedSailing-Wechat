@@ -102,7 +102,7 @@ Page({
         getApp().goCertificate()
         return
       }
-      if (!this.data.hasJoined) {
+      if (!this.data.hasJoined && !this.data.isBoya) {
         wx.showToast({
           title: '不能评论未报名的活动',
           icon : 'none'
