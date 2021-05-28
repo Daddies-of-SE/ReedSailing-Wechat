@@ -7,6 +7,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
+    show : false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'),
     nickName : '',
     motto : '',
@@ -32,9 +33,6 @@ Page({
   bindViewTap() {
     
   },
-  
-  onLoad() {
-  },
 
   onShow: function (e) {
     // // For test
@@ -45,6 +43,23 @@ Page({
     if (!app.haveRegistered()) {
       app.goCertificate()
     }
+
+    else if (!app.show) {
+      this.setData({
+        jumpItem: [
+          {
+            name:'个人信息',
+            url:'../my-account/my-account',
+            notice : true
+          },
+          {
+            name:'提交反馈',
+            url:'../feedback/feedback'
+          }
+        ]
+      })
+    }
+
     else {
       if (app.unreadNotifList.length != 0) {
         app.showRedDot()

@@ -5,6 +5,7 @@ const login = require('utils/login.js')
 // app.js
 App({
   version: "1.5.8",
+  show : false,
   loginData: {
     token: '',
     email : '',
@@ -80,6 +81,12 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
 
+    interact.show().then(
+      (res) => {
+        this.show = res.data.show
+        console.log("show: ", this.show)
+      }
+    )
 
     wx.setStorageSync('logs', logs)
 

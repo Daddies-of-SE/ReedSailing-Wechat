@@ -1253,6 +1253,7 @@ module.exports.setNotifsRead = function (ids, read) {
     })
   })
 }
+
 module.exports.getRecommend = function () {
   if (!app) {
     app = getApp()
@@ -1262,6 +1263,18 @@ module.exports.getRecommend = function () {
       {
         func: module.exports.getRecommend,
         funcName: 'getRecommend',
+        reject: reject,
+        resolve: resolve
+    })
+  })
+}
+
+module.exports.show = function() {
+  return new Promise((resolve, reject) => {
+    get_request(`show/`, 
+      {
+        func: module.exports.show,
+        funcName: 'show',
         reject: reject,
         resolve: resolve
     })

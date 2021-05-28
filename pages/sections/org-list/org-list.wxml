@@ -6,7 +6,7 @@
 </view> -->
 
 <!--创建组织按钮-->
-<view class="found-org">
+<view class="found-org" wx:if="{{show}}">
     <button class='btn' bindtap='goFoundOrg' hover-class="weui-cell_active">
         <van-icon name='plus' size='60rpx'/>
         <view>申请创建组织</view>

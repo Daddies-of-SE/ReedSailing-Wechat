@@ -13,36 +13,43 @@ Page({
     forumId: null,
     forumInfo: [],
     hasForumInfo: false,
-    searchContent : ""
+    searchContent : "",
+    show : false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getApp().globalLogin()
-      this.setData({
-        forumName: options.forumName,
-        forumId: options.forumId
-      })
-      wx.setNavigationBarTitle({
-        title: this.data.forumName + "版块",
-      })
+    this.setData({
+      show : appInstance.data.show
+    })
+      
+    this.setData({
+      forumName: options.forumName,
+      forumId: options.forumId
+    })
+    wx.setNavigationBarTitle({
+      title: this.data.forumName + "版块",
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    interact.getBlockOrgList(this.data.forumId).then(
+    getApp().globalLogin().then(
       (res) => {
-        // console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
-        this.setData({
-          forumInfo: res.data,
-          hasForumInfo: true,
-        })
-      }
-    )
+        interact.getBlockOrgList(this.data.forumId).then(
+          (res) => {
+            // console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
+            this.setData({
+              forumInfo: res.data,
+              hasForumInfo: true,
+            })
+          }
+        )
+      })
   },
   
   goFoundOrg: function() {

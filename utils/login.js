@@ -77,6 +77,9 @@ module.exports.checkLoginData = function () {
 //请求时捕获未登录的状态
 module.exports.catchUnLogin = function(funcInfo) {
   //限制重复登录次数为3次
+  if (!app) {
+    app = getApp()
+  }
   util.debug("CatchUnLogin called")
   if (retryTimes < 3) {
     //获取code
@@ -90,7 +93,7 @@ module.exports.catchUnLogin = function(funcInfo) {
             retryTimes++
             //重复调用请求函数
             funcInfo.func(funcInfo.options).then((res) => {
-              if (funcInfo.options.success)
+              if (funcInfo && funcInfo.options && funcInfo.options.success)
                 funcInfo.options.success(res);
               funcInfo.resolve(res);
             }).catch((e) => {

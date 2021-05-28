@@ -9,17 +9,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-      // isRealAct : true,
-      // actName: "actName",
-      // actInfo: {
-      //   organizer : "高工足球队",
-      //   start_time : "2021-04-21 08:00",
-      //   end_time : "2021-04-21 10:00",
-      //   location : "学院路足球场",
-      //   description : "高工男足将被六系女足暴打，欢迎大家前来捧场",
-      //   joinedNum : 99,
-      //   capacity : 100,
-      // },
       isBoya : false,
       actId : -1,
       avg_score : 0,
@@ -32,6 +21,7 @@ Page({
             email: "1111@qq.com",
             sign: ""
         },
+        show : false,
         name: "加载中",
         begin_time: "2021-04-16T14:19:18",
         end_time: "2021-04-16T14:19:18",
@@ -71,30 +61,7 @@ Page({
       showQRCode : false,
       showMap : false,
       debugText : ''
-    //   comment_list : [
-    //     {
-    //       user : {
-    //         avatar : '/icon/sample.png',
-    //         name : 'yy',
-    //       },
-    //       publish_time : '10分钟前',
-    //       content : 'yy yydfive',
-    //       score : 5,
 
-    //     },
-    //     {
-    //       user : {
-    //         avatar : '/icon/sample.png',
-    //         name : 'yy',
-    //       },
-    //       publish_time : '30分钟前',
-    //       content : 'yy tcl',
-    //       score : 3.5,
-
-    //     }
-    //   ],
-
-      // likeUrl : "/icon/like.png"
     },
 
     goCreateComment: function() {
@@ -116,7 +83,6 @@ Page({
       //   })
       //   return
       // }
-      // util.debug('tap a tap!')
       wx.navigateTo({
         url: `./new-comment/new-comment?actId=${this.data.actId}&begin=${this.data.hasBegun}`,
       })
@@ -196,7 +162,8 @@ Page({
         actId: options.actId,
         userId: app.loginData.userId,
         longitude: app.buaaLocation.longitude,
-        latitude: app.buaaLocation.latitude
+        latitude: app.buaaLocation.latitude,
+        show : app.show
       })
     },
 

@@ -13,7 +13,8 @@ Page({
         currentTab:0,
         havelogin: false,
         forum_list: [],
-        searchContent : ""
+        searchContent : "",
+        show : false
     },
  
     /**
@@ -21,9 +22,12 @@ Page({
      */
     onLoad: function (options) {
         this.setData({
+            show : app.show,
             havelogin : app.haveRegistered(),
-            forum_list: app.forumList 
+            forum_list: app.show ? app.forumList  : [app.forumList[1]]
         })
+        if (!this.data.show) {
+        }
     },
 
     handleClick: function(e) {

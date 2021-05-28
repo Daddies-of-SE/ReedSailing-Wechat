@@ -14,7 +14,7 @@
 </wxs>
 
 <!--follow-orgs-->
-<view class="org-wrap">
+<view class="org-wrap" wx:if="{{show}}">
   <view class="header" wx:if="{{havelogin}}">
       <view wx:if="{{org_list.length != 0}}"><text class="txt">关注的组织</text></view>
       <view wx:else><text class="txt">您还没有关注任何组织哦</text></view>
@@ -31,39 +31,6 @@
   </view>
 </view>
 
-<!--message lists-->
-<!-- <view class="msg-wrap">
-  <scroll-view scroll-y="true" class="nav">
-    <view class="msg-item" wx:for="{{act_list}}">
-      <view class="activity" wx:if="{{item.type === 'activity'}}">
-          <image class="org-avatar" src="{{item.avatarUrl}}"></image>
-          <view class="content relative">
-            <text class="org">{{item.org_name}}</text>
-            <text class="publish_time">{{item.publish_time}}</text>
-            <view class="content-body">
-              <text calss="title">{{item.act_title}}</text>
-              <view class="org_time"><span class="_infor_head">时间：</span> {{item.start_time !== null ? item.start_time : "暂无信息"}} 至 {{item.end_time !== null ? item.end_time : "暂无信息"}}</view>
-              <view class="place"><span class="_infor_head">地点：</span> {{item.act_place !== null ? item.act_place : "暂无信息"}}</view>
-              <view class="place"><span class="_infor_head">类别：</span> 活动</view>
-              <view class="body"><span class="_infor_head">简介：</span>{{item.body}}</view>
-            </view>
-          </view>
-          <view class="bottom-right" bindtap="toActivity">
-              <image class="arrow" src="/icon/rightArrow.png"></image>
-              <text class="txt">详情</text>
-          </view>
-      </view>
-      <view wx:elif="{{item.type === 'news'}}">
-
-      </view>
-      <view wx:elif="{{item.type === 'notice'}}">
-
-      </view>
-    </view>
-    
-  </scroll-view>
-</view> -->
-    
 
 
 <view class="msg-wrap">

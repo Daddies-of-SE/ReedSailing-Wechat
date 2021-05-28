@@ -86,14 +86,15 @@
   ></map>
 </block>
 
-
+<view wx:if="{{show}}">
 <button class='middleBtn' bindtap='bindQRCodeButton' style="width:30%; margin-bottom:25rpx; margin-left: 0rpx;">{{showQRCode ? '隐藏二维码' :'显示二维码'}}</button>
 <view wx:if="{{showQRCode && qrcode != ''}}">
     <image src="{{qrcode}}" class="qrcode"/>
 </view>
+</view>
 
 <!--评论区-->
-<view class="comment-header">
+<view class="comment-header" wx:if="{{show}}">
       <text class="txt">评论区</text>
       <view class="right" bindtap="goCreateComment" hover-class="weui-cell_active">
         <view class="right-txt" style="font-size: 35rpx;"  >新建评论</view>
@@ -102,7 +103,7 @@
       </view>
   </view>
 
-<view class="msg-wrap comment-wrap">
+<view class="msg-wrap comment-wrap" wx:if="{{show}}">
   <scroll-view scroll-y="true" class="nav">
     <view class="msg-item" wx:if="{{comment_list.length == 0}}">
       <i-card i-class="card-demo">
