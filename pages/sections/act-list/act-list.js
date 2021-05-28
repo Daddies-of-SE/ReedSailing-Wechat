@@ -181,7 +181,7 @@ Page({
         console.log("无事发生")
       }
       else if (this.data.orgId == -2) {
-        //发布个人活动
+        //个人
         wx.navigateTo({
           url: `../../my/new-act/new-act`,
         })

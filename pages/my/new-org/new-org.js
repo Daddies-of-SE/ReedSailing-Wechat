@@ -11,7 +11,8 @@ Page({
         forum_array: [],
         index1 : 0,
         inputName : "",
-        inputDescription : ""
+        inputDescription : "",
+        show : false
     },
 
     /**
@@ -32,7 +33,8 @@ Page({
         //     return
         // }
         this.setData({
-            forum_array : [app.forumList[0],app.forumList[2],app.forumList[3]]
+            forum_array : [app.forumList[0],app.forumList[2],app.forumList[3]],
+            show : getApp().show
         })
     },
 

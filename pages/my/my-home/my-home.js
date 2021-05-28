@@ -89,7 +89,7 @@ Page({
             url:'../my-act/my-act'
           },
           {
-            name:'活动发布',
+            name:'新建活动',
             url:'../new-act/new-act'
           },
           {

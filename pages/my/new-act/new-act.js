@@ -46,6 +46,7 @@ Page({
         start_time: null,
         end_date: null,
         end_time: null,
+        show : false
     },
 
     inputNameHandler: function (e) {
@@ -209,6 +210,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.setData({
+            show : getApp().show
+        })
         // if (!getApp().haveRegistered()) {
         //     wx.navigateBack({
         //       delta: 0,

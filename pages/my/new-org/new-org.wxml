@@ -1,5 +1,6 @@
 <!--pages/my/new-org/new-org.wxml-->
 
+<view wx:if="{{show}}">
 <i-panel title="组织基本信息">
     <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
         <view class="weui-cell__hd">
@@ -18,3 +19,8 @@
 
 </i-panel>
 <a class="weui-btn weui-btn_primary" bindtap="submitOrg">提交</a>
+</view>
+
+<view wx:else>
+<text>不支持此功能</text>
+</view>

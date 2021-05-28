@@ -1271,12 +1271,12 @@ module.exports.getRecommend = function () {
 
 module.exports.show = function() {
   return new Promise((resolve, reject) => {
-    get_request(`show/`, 
-      {
-        func: module.exports.show,
-        funcName: 'show',
-        reject: reject,
-        resolve: resolve
+    wx.request({
+      url: 'https://www.reedsailing.xyz/api/show/',
+      method: 'GET',
+      success : result => {
+        resolve(result)
+      }
     })
   })
 }
