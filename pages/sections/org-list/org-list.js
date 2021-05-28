@@ -22,12 +22,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      show : appInstance.data.show
-    })
-      
-    this.setData({
       forumName: options.forumName,
-      forumId: options.forumId
+      forumId: options.forumId,
+      show : appInstance.show
     })
     wx.setNavigationBarTitle({
       title: this.data.forumName + "版块",
@@ -42,7 +39,6 @@ Page({
       (res) => {
         interact.getBlockOrgList(this.data.forumId).then(
           (res) => {
-            // console.log("getblocklist" + JSON.stringify(res.data)) //控制台打印
             this.setData({
               forumInfo: res.data,
               hasForumInfo: true,

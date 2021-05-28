@@ -44,9 +44,10 @@ function put_request(urlpath, data, funcInfo) {
       success: result => {
 
         //调试使用 发布时请记得注释
-        console.log(funcInfo.funcName + "请求体：", data);
-        console.log(funcInfo.funcName + "请求结果：", result.data)
-
+        if (app.debug) {
+          console.log(funcInfo.funcName + "请求体：", data);
+          console.log(funcInfo.funcName + "请求结果：", result.data)
+        }
         //如果状态码为401 Unauthorized
         var s = result.statusCode
         if (s == 401) {
@@ -103,9 +104,10 @@ function post_request(urlpath, data, funcInfo) {
       success: result => {
 
         //调试使用 发布时请记得注释
-        console.log(funcInfo.funcName + "请求体：", data);
-        console.log(funcInfo.funcName + "请求结果：", result.data)
-
+        if (app.debug) {
+          console.log(funcInfo.funcName + "请求体：", data);
+          console.log(funcInfo.funcName + "请求结果：", result.data)
+        }
         //如果状态码为401 Unauthorized
         var s = result.statusCode
         if (s == 401) {
@@ -158,9 +160,10 @@ function get_request(urlpath, funcInfo) {
       success: result => {
 
         //调试使用 发布时请记得注释
-        console.log(funcInfo.funcName + "请求链接：", urlpath);
-        console.log(funcInfo.funcName + "请求结果：", result.data)
-
+        if (app.debug) {
+          console.log(funcInfo.funcName + "请求链接：", urlpath);
+          console.log(funcInfo.funcName + "请求结果：", result.data)
+        }
         //如果状态码为401 Unauthorized
         var s = result.statusCode
         if (s == 401) {
@@ -217,9 +220,10 @@ function delete_request(urlpath, funcInfo) {
       success: result => {
 
         //调试使用 发布时请记得注释
-        console.log(funcInfo.funcName + "请求链接：", urlpath);
-        console.log(funcInfo.funcName + "请求结果：", result.data)
-
+        if (app.debug) {
+          console.log(funcInfo.funcName + "请求链接：", urlpath);
+          console.log(funcInfo.funcName + "请求结果：", result.data)
+        }
         
         //如果状态码为401 Unauthorized
         var s = result.statusCode
@@ -1148,8 +1152,9 @@ module.exports.uploadOrgAvatar = function(org_id) {
             wx.showToast({
               title: '上传成功',
             })
-            console.log("uploadOrgAvatar请求成功")
-            console.log(res)
+            if (app.debug) {
+              console.log("uploadOrgAvatar请求成功")
+            }
             resolve(JSON.parse(res.data))
           },
           fail (res) {
@@ -1168,7 +1173,6 @@ module.exports.uploadOrgAvatar = function(org_id) {
 
 module.exports.uploadActAvatar = function(act_id, filePath) {
   return new Promise((resolve, reject) => {
-    // console.log(act_id, filePath)
     wx.uploadFile({
       url: getAPIUrl(`activities/${act_id}/avatar/`),
       filePath: filePath,
@@ -1190,8 +1194,9 @@ module.exports.uploadActAvatar = function(act_id, filePath) {
         wx.showToast({
           title: '上传成功',
         })
-        console.log("uploadActAvatar请求成功")
-        console.log(res)
+        if (app.debug) {
+          console.log("uploadActAvatar请求成功")
+        }
         resolve(JSON.parse(res.data))
       },
       fail (res) {
@@ -1200,7 +1205,6 @@ module.exports.uploadActAvatar = function(act_id, filePath) {
           icon: 'none'
         })
         console.error("uploadActAvatar请求失败", res)
-        console.log(res)
         reject()
       }
     })

@@ -146,7 +146,9 @@ function login_(options) {
       success: function (res) {
         //如果返回数据存在token则记录并返回token
         // util.debug("res" + JSON.stringify(res))
-        console.log("login_返回体", res.data)
+        if (app.debug) {
+          console.log("login_返回体", res.data)
+        }
         if (res.data.token) {
           module.exports.saveLoginData(res.data)
           util.debug("登录成功, id: " + res.data.id)

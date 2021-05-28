@@ -118,41 +118,10 @@ Page({
     
     addRelativeTime (commentList) {
       for (var i = 0; i < commentList.length; i++) {
-        // console.log(commentList[i])
         commentList[i].relative_time = util.getRelativeTime(commentList[i].pub_time)
       }
       return commentList.sort(util.compare('id')).reverse()
     },
-
-    // like: function (options) {
-    //   wx.request({
-    //     url: 'url',
-    //     header: {
-    //       'content-type': 'application/json'
-    //     },
-    //     success: res => {
-    //       console.log(res) //控制台打印
-    //       this.setData({
-    //         likeUrl: "newUrl"
-    //       })
-    //     }
-    //   })
-    // },
-    
-    // reply: function (options) {
-    //   wx.request({
-    //     url: 'url',
-    //     header: {
-    //       'content-type': 'application/json'
-    //     },
-    //     success: res => {
-    //       console.log(res) //控制台打印
-    //       this.setData({
-            
-    //       })
-    //     }
-    //   })
-    // },
 
     /**
      * 生命周期函数--监听页面加载
@@ -172,7 +141,6 @@ Page({
         (res0) =>{
           interact.getActInfo(this.data.actId).then(
             (res) => {
-              console.log("onshow...")
               var r = res.data
               r.pub_time = util.getTimeMinute(r.pub_time)
               r.begin_time = util.getTimeMinute(r.begin_time)

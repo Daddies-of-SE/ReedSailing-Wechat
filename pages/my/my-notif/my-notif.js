@@ -71,7 +71,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // console.log('onshow old notifs', wx.getStorageSync('notifs'))
     this.updateNotifList()
     console.log('read notifs', this.data.readNotifList)
   },
@@ -95,7 +94,6 @@ Page({
   },
 
   readAll(e) {
-    console.log("readAll called")
     var unreadIds = []
     for (var i = 0; i < this.data.unreadNotifList.length; i++) {
       unreadIds.push(this.data.unreadNotifList[i].id)
@@ -103,11 +101,15 @@ Page({
 
     interact.setNotifsRead(unreadIds).then(
       (res) => {
-        console.log("将", unreadIds, "设为已读")
+        
         var oldNotifs = wx.getStorageSync('notifs')
-        console.log('notifs from storage', typeof(oldNotifs), oldNotifs)
+        
         var newNotifs = oldNotifs ? app.unreadNotifList.concat(oldNotifs) : app.unreadNotifList
-        console.log('new notifs', typeof(newNotifs), newNotifs)
+        if (app.debug) {
+          console.log("将", unreadIds, "设为已读")
+          console.log('notifs from storage', typeof(oldNotifs), oldNotifs)
+          console.log('new notifs', typeof(newNotifs), newNotifs)
+        }
         wx.setStorageSync('notifs', newNotifs)
         app.unreadNotifList = []
         this.updateNotifList()
@@ -122,13 +124,15 @@ Page({
     var dataset = e.currentTarget.dataset
     interact.setNotifsRead([dataset.idd], dataset.read).then(
       (res) => {
-        console.log('item', dataset.item)
-        console.log("将", dataset.idd, "设为已读")
         var oldNotifs = wx.getStorageSync('notifs')
-        console.log('notifs from storage', oldNotifs)
         var newNotifs = oldNotifs ? [dataset.item].concat(oldNotifs) : [dataset.item]
-        console.log('new notifs', newNotifs)
+        
         wx.setStorageSync('notifs', newNotifs)
+        if (app.debug) {
+          console.log("将", dataset.idd, "设为已读")
+          console.log('notifs from storage', oldNotifs)
+          console.log('new notifs', newNotifs)
+        }
         
         var newUnread = []
         for (var i = 0; i < app.unreadNotifList.length; i++) {

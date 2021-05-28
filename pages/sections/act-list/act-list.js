@@ -178,7 +178,6 @@ Page({
 
     goNewAct: function() {
       if (this.data.orgId == -1) {
-        console.log("无事发生")
       }
       else if (this.data.orgId == -2) {
         //个人

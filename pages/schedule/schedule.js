@@ -88,7 +88,6 @@ Page({
             var m = month < 10 ? "0" + month : month
             date = date < 10 ? "0" + date : date
             var todayAct = this.data.monthActList[`${year}-${m}-${date}`]
-            // console.log(i, todayAct)
             if (todayAct) {
               newDateArr[i].actList = todayAct
               newDateArr[i].hasAct = true
@@ -214,7 +213,6 @@ Page({
         DateActList : this.data.dateArr[e.currentTarget.dataset.index].actList,
         showDateActList : true
       })
-      console.log(this.data.DateActList)
       // let date = e.currentTarget.dataset.date;
       // showDateActList = date.hasAct;
       // DateActList = date.actList;
@@ -223,8 +221,6 @@ Page({
       {
         newDateArr[i].selected = false;
       }
-      // console.log(newDateArr.indexOf(e.currentTarget.dataset.date))
-      // console.log(e.currentTarget.dataset.date)
       newDateArr[e.currentTarget.dataset.index].selected = true;
       this.setData({
         dateArr : newDateArr,

@@ -26,12 +26,11 @@ Page({
             havelogin : app.haveRegistered(),
             forum_list: app.show ? app.forumList  : [app.forumList[1]]
         })
-        if (!this.data.show) {
-        }
     },
 
     handleClick: function(e) {
         if (e.currentTarget.dataset.hasOrg) {
+
             wx.navigateTo({
                 url: `../org-list/org-list?forumId=${e.currentTarget.dataset.forumid}&forumName=${e.currentTarget.dataset.name}`,
               })
@@ -62,17 +61,6 @@ Page({
           app.showRedDot()
         }
       },
-
-    // callLogin: function (e) {
-    //     if (!app.haveRegistered()) {
-    //         const login = require("../../../utils/login.js")
-    //         login.registerInfo().then(
-    //             this.setData({
-    //                 havelogin: true
-    //             })
-    //         )
-    //     }
-    // },
 
     onShareAppMessage: function (res) {
         return {

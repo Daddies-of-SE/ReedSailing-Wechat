@@ -1,3 +1,4 @@
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -15,11 +16,13 @@ const formatNumber = n => {
 }
 
 const debug = str => {
-  console.warn("DEBUG INFO: " + str)
+    if (false) {
+        console.warn("DEBUG INFO: " + str)
+    }
 }
 
 const err = str => {
-  console.err("ERR INFO: " + str)
+    console.err("ERR INFO: " + str)
 }
 
 const getTimeMinute = rawTime => {
@@ -30,8 +33,8 @@ const getRelativeTime = time => {
     time = time.replace("T", " ").split(".")[0]
     // dateStr = 2018-09-06 18:47:00" 测试时间、
     var dateStr = new Date(time.replace(new RegExp('-','g'), '/')).getTime();
-    var publishTime = dateStr / 1000,  //获取dataStr的秒数  打印结果--1536230820000
-        date = new Date(publishTime * 1000), //获取dateStr的标准格式 console.log(date) 打印结果  Thu Sep 06 2018 18:47:00 GMT+0800 (中国标准时间)
+    var publishTime = dateStr / 1000,  //获取dataStr的秒数
+        date = new Date(publishTime * 1000), //获取dateStr的标准格式 
         // 获取date 中的 年 月 日 时 分 秒
         Y = date.getFullYear(),
         M = date.getMonth() + 1,
@@ -55,12 +58,6 @@ const getRelativeTime = time => {
         if (s < 10) {
             s = '0' + s;
         }
-        // console.log("年", Y); // 年 2018
-        // console.log("月", M); // 月 09
-        // console.log("日", D); // 日 06
-        // console.log("时", H); // 时 18
-        // console.log("分", m); // 分 47
-        // console.log("秒", s); // 秒 00
     var nowTimeDate = new Date()
     var nowYear = nowTimeDate.getFullYear()
     var nowTime = nowTimeDate.getTime() / 1000, //获取此时此刻日期的秒数

@@ -2,7 +2,6 @@
 
 <wxs module="ut">
   var sub = function(val) {
-      console.log(val.slice(0, 30))
     return val.slice(0, 50)
   }
   module.exports.sub = sub;

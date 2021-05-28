@@ -4,8 +4,9 @@ const login = require('utils/login.js')
 
 // app.js
 App({
-  version: "1.5.8",
+  version: "1.6.3",
   show : false,
+  debug : false,
   loginData: {
     token: '',
     email : '',
@@ -90,20 +91,8 @@ App({
 
     wx.setStorageSync('logs', logs)
 
-    // 考虑通过二维码直接进入某一界面的情况，不能只允许recommend页面进行newLogin
-    // this.globalLogin().then(
-    //   res => {
-    //     // wx.hideToast({
-    //     //   success: (res) => {},
-    //     // })
-    //     // login.consistentAskingGetUserProfile()
-        
-    //   }
-    // )
 
-    // console.log(util.getRelativeTime("2020-12-01 01:18"))
 
-    // set up socket link
 
 
 
@@ -113,16 +102,7 @@ App({
       var r = JSON.parse(data.data)
       console.log('服务器返回的数据: ', r);
       that.unreadNotifList = r
-      // that.unreadNotifList = [
-      //   {
-      //     id : 666,
-      //     type : 1,
-      //     time : '2021-01-21T11:04:50.445933',
-      //     content: '爪巴',
-      //     act : null,
-      //     org : null
-      //   },
-      // ]
+
       if (that.unreadNotifList.length > 0) {
         that.showRedDot()
       }
@@ -161,14 +141,6 @@ App({
             wx.connectSocket({
               url: that.ws_werver + `link/${that.loginData.userId}/`,
               timeout: 1000,
-              // success: res=>{
-              //   console.log("创建socket连接成功")
-              //   console.log(res)
-              // },
-              // fail: res=>{
-              //   console.log('创建socket连接失败')
-              //   console.log(res)
-              // }
             })
             
             //连接成功
@@ -186,38 +158,6 @@ App({
               that.socketOpen = false
             })
 
-
-  
-            // //接收数据
-            // wx.onSocketMessage(function(data) {
-            //     //TODO
-            //     console.log('服务器返回的数据: ' + data.data);
-            //     that.unreadNotifList = data.data
-            //     // that.unreadNotifList = [
-            //     //   {
-            //     //     id : 31,
-            //     //     type : 1,
-            //     //     time : '2021-05-21T11:04:50.445933',
-            //     //     content: '活动\'PS不教学不讲座\'内容发生了改变，请及时查看',
-            //     //     act : 1,
-            //     //     org : null
-            //     //   },
-            //       // {
-            //       //   id : 32,
-            //       //   type : 1,
-            //       //   time : '2021-01-21T11:04:50.445933',
-            //       //   content: '爪巴',
-            //       //   act : null,
-            //       //   org : null
-            //       // },
-            //     // ]
-            //     if (that.unreadNotifList.length > 0) {
-            //       wx.showTabBarRedDot({
-            //         index: 4,
-            //       })
-            //     }
-            //     // this.notificationList = 
-            // })
             resolve()
           }
         )
@@ -229,8 +169,6 @@ App({
   },
 
   haveRegistered() {
-    // util.debug("have register " + this.loginData.userExist)
-    // return this.loginData.userExist == 1
     return this.loginData.email && this.loginData.email != ""
   },
 

@@ -58,7 +58,6 @@ Page({
     o.searchType = parseInt(o.searchType)
     // var idMatchOrg = {id : -233}, idMatchAct = {id : -233}
     if (!isNaN(id)) {
-      console.log(o.searchType)
       if ([1,2,6].indexOf(o.searchType) > -1) {
         interact.getOrgInfo(id).then(
           (res) => {
@@ -132,7 +131,6 @@ Page({
             actList : r,
             searchDone : true
           })
-          // console.log(r)
         }
       )
     }

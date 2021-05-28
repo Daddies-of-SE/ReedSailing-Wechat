@@ -50,7 +50,6 @@ Page({
           {
             name:'个人信息',
             url:'../my-account/my-account',
-            notice : true
           },
           {
             name:'提交反馈',

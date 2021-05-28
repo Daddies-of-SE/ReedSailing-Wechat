@@ -161,7 +161,6 @@ Page({
                         createNewCategory: false
                     })
                 }
-                // console.log(this.data.categories)
             }
         )
         if (this.data.actId != -1) {
@@ -329,7 +328,6 @@ Page({
                 //创建还是修改，通过下面一行的d.actId == -1来判断
             }, d.actId == -1).then(
                 res => {
-                    console.log("actPicUrl", this.data.actPicUrl)
                     if (this.data.actPicUrl && this.data.actPicUrl != "" && this.data.actPicUrl != this.data.actInfo.avatar) {
                         // change a picture
                         interact.uploadActAvatar(this.data.actId == -1 ? res.data.id : this.data.actId, this.data.actPicUrl).then(
