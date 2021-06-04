@@ -61,7 +61,7 @@ Page({
   },
 
   createComment : function () {
-    if (this.data.comment == "") {
+    if (this.data.comment.trim() == "") {
       wx.showToast({
         title: '请输入评论内容',
         icon : 'none'

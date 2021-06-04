@@ -124,6 +124,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        
         var time = util.formatTime(new Date()).split("T")
         this.setData({
             start_date : time[0],
@@ -133,15 +134,25 @@ Page({
         })
         if (options.actId) {
             this.setData({
-                actId: options.actId
+                actId: options.actId,
+                hasLocation : true
+            })
+            interact.getActNumPeople(this.data.actId).then(
+            (res) => {
+                this.setData({
+                    participantNum : res.data.number
+                })
             })
         }
-        else if (options.orgId) {
-            this.setData({
-                presetOrgId : options.orgId,
-                presetOrgName : options.orgName,
-                presetOrgForumId : options.forumId
-            })
+        else {
+            chooseLocation.setLocation(null);
+            if (options.orgId) {
+                this.setData({
+                    presetOrgId : options.orgId,
+                    presetOrgName : options.orgName,
+                    presetOrgForumId : options.forumId
+                })
+            }
         }
 
         interact.getAllActCategories().then(
@@ -161,48 +172,60 @@ Page({
                         createNewCategory: false
                     })
                 }
-            }
-        )
-        if (this.data.actId != -1) {
-            wx.setNavigationBarTitle({
-              title: '活动编辑',
-            })
-            interact.getActInfo(this.data.actId).then(
-                (res) => {
-                  var r = res.data
-                  r.pub_time = util.getTimeMinute(r.pub_time)
-                  r.begin_time = util.getTimeMinute(r.begin_time)
-                  r.end_time = util.getTimeMinute(r.end_time)
-                  this.setData({
-                    name: r.name,
-                    description: r.description,
-                    numPeople: r.contain,
-                    actInfo: r,
-                    locationText : r.location.name,
-                    start_date : r.begin_time.split(" ")[0],
-                    end_date : r.end_time.split(" ")[0],
-                    start_time : r.begin_time.split(" ")[1],
-                    end_time : r.end_time.split(" ")[1],
-                    index3 : r.review ? 1 : 0,
-                    actPicUrl : r.avatar
-                })
-            })
-        }
-        else if (this.data.presetOrgId == -1) {
-            interact.getAllManageOrgs().then(
-                (res) => {
-                    var dt = [{
-                        name : "发布为个人活动",
-                    }]
-                    for (var i = 0; i < res.data.length; i++) {
-                        dt.push(res.data[i].org)
-                    }
-                    this.setData({
-                        my_org : dt
+
+                if (this.data.actId != -1) {
+                    wx.setNavigationBarTitle({
+                      title: '活动编辑',
+                    })
+                    interact.getActInfo(this.data.actId).then(
+                        (res) => {
+                          var r = res.data
+                          r.pub_time = util.getTimeMinute(r.pub_time)
+                          r.begin_time = util.getTimeMinute(r.begin_time)
+                          r.end_time = util.getTimeMinute(r.end_time)
+                          this.setData({
+                            name: r.name,
+                            description: r.description,
+                            numPeople: r.contain + "",
+                            actInfo: r,
+                            locationText : r.location.name,
+                            start_date : r.begin_time.split(" ")[0],
+                            end_date : r.end_time.split(" ")[0],
+                            start_time : r.begin_time.split(" ")[1],
+                            end_time : r.end_time.split(" ")[1],
+                            index3 : r.review ? 1 : 0,
+                            actPicUrl : r.avatar
+                        })
+                        for (var i = 0; i < this.data.categories.length; i++) {
+                            if (this.data.categories[i].name == this.data.actInfo.type.name) {
+                                this.setData({
+                                    index1 : i
+                                })
+                                console.log("find", i)
+                                break
+                            }
+                        }
                     })
                 }
-            )
-        }
+                else if (this.data.presetOrgId == -1) {
+                    interact.getAllManageOrgs().then(
+                        (res) => {
+                            var dt = [{
+                                name : "发布为个人活动",
+                            }]
+                            for (var i = 0; i < res.data.length; i++) {
+                                dt.push(res.data[i].org)
+                            }
+                            this.setData({
+                                my_org : dt
+                            })
+                        }
+                    )
+                }
+
+            }
+        )
+        
     },
 
     /**
@@ -233,18 +256,19 @@ Page({
         var d = this.data
         var start_datetime = d.start_date + "T" + d.start_time
         var end_datetime = d.end_date + "T" + d.end_time
-        var start = new Date(Date.parse(start_datetime.replace(new RegExp('-','g'), '/').replace("T"," ")))
-        var end = new Date(Date.parse(end_datetime.replace(new RegExp('-','g'), '/').replace("T"," ")))
+        var start_timesec = Date.parse(start_datetime.replace(new RegExp('-','g'), '/').replace("T"," "))
+        var end_timesec = Date.parse(end_datetime.replace(new RegExp('-','g'), '/').replace("T"," "))
         // wx.showModal({
         //   'title' : JSON.stringify(start),
         // })
         // return
 
         var location = chooseLocation.getLocation();
+
         if (!location) {
             location = d.actInfo.location
         }
-        console.log("location", location)
+        // console.log("location", location)
 
         if (location == null) {
             wx.showToast({
@@ -252,37 +276,43 @@ Page({
                 icon : 'none'
             })
         }
-        else if (d.locationText == "") {
+        else if (d.locationText.trim() == "") {
             wx.showToast({
                 title: '请输入详细地址',
                 icon : 'none'
             })
         }
-        else if (d.name == "") {
+        else if (d.name.trim() == "") {
             wx.showToast({
               title: '请输入名称',
               icon : 'none'
             })
         }
-        else if (d.numPeople == "") {
+        else if (d.numPeople.trim() == "") {
             wx.showToast({
               title: '请输入人数',
               icon : 'none'
             })
         }
-        else if (!(/(^[1-9]\d*$)/.test(d.numPeople))) {
+        else if (!(/(^[1-9]\d*$)/.test(d.numPeople.trim()))) {
             wx.showToast({
               title: '人数请输入正整数',
               icon : 'none'
             })
         }
-        else if (d.createNewCategory && d.newCategory == "") {
+        else if (parseInt(d.numPeople.trim()) < d.participantNum) {
+            wx.showToast({
+              title: '人数不能小于已报名人数',
+              icon : 'none'
+            })
+        }
+        else if (d.createNewCategory && d.newCategory.trim() == "") {
             wx.showToast({
                 title: '请输入新类别',
                 icon : 'none'
             })
         }
-        else if (start >= end) {
+        else if (start_timesec >= end_timesec) {
             wx.showToast({
                 title: '开始时间应早于结束时间',
                 icon : 'none'
@@ -317,7 +347,7 @@ Page({
                 name: d.name,
                 begin_time: start_datetime,
                 end_time: end_datetime,
-                contain: d.numPeople,
+                contain: d.numPeople.trim(),
                 description: d.description,
                 review: false,
                 owner: getApp().loginData.userId,

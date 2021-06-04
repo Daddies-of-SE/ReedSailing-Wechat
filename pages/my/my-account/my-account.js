@@ -42,8 +42,12 @@ Page({
       contact : app.loginData.contact,
       inputNickName : app.loginData.nickName,
       inputMotto : app.loginData.motto,
-      inputContact : app.loginData.contact
+      inputContact : app.loginData.contact,
+      second: app.second
     })
+    if (app.timerRunning) {
+      this.timer()
+    }
     util.debug("user's email: " + this.data.verifiedEmail)
   },
 
@@ -64,6 +68,7 @@ Page({
             title: '提交成功',
             icon: 'success' 
           })
+          app.timerRunning = true
           this.timer()
         }
       }
@@ -158,24 +163,45 @@ Page({
       })
       return
     }
-    interact.updateUserInfo(this.data.inputNickName, this.data.inputMotto, this.data.inputContact).then(
-      (res) => {
-        if (res.statusCode == 200) {
-          wx.showToast({
-            title: '修改成功',
-            icon : 'success'
-          })
-          app.loginData.nickName = this.data.inputNickName
-          app.loginData.motto = this.data.inputMotto
-          app.loginData.contact = this.data.inputContact
-        } else {
-          wx.showToast({
-            title: '修改失败',
-            icon: 'none'
-          })
-        }
+    if (!wx.getUserProfile) {
+      wx.showModal({
+        content : '请使用手机端小程序进行认证'
+      })
+      return
+    }
+    wx.getUserProfile({
+      desc : '用于完善资料',
+      success : (res1) => {
+
+        interact.updateUserInfo(this.data.inputNickName, this.data.inputMotto, this.data.inputContact, res1.userInfo.avatarUrl).then(
+          (res) => {
+            if (res.statusCode == 200) {
+              wx.showToast({
+                title: '修改成功',
+                icon : 'success'
+              })
+              app.loginData.nickName = this.data.inputNickName
+              app.loginData.motto = this.data.inputMotto
+              app.loginData.contact = this.data.inputContact
+              app.loginData.avatar = res1.userInfo.avatarUrl
+            } else {
+              wx.showToast({
+                title: '修改失败',
+                icon: 'none'
+              })
+            }
+          }
+        )
+      },
+      fail : (res2) => {
+        wx.showToast({
+          title: '请允许授权',
+          icon: 'none'
+        })
       }
-    )
+    })
+
+    
   },
 
   inputEmailHandler(e) {
@@ -206,10 +232,12 @@ Page({
           this.setData({
             second: this.data.second - 1
           })
+          app.second -= 1
           if (this.data.second <= 0) {
             this.setData({
               second: 60
             })
+            app.timerRunning = false
             resolve(setTimer)
           }
         }

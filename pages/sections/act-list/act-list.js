@@ -10,6 +10,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        pressButton : false,
         isRealOrg : true,
         orgName: "",
         orgPicUrl: "/icon/person.png",
@@ -139,29 +140,52 @@ Page({
         getApp().goCertificate()
         return
       }
+      if (this.data.pressButton) {
+        return
+      }
+      this.setData({
+        pressButton : true
+      })
       interact.followOrg(this.data.orgId).then(
         (res) => {
           wx.showToast({
             title: '关注成功',
           })
           this.setData({
-            hasFollowed : true
+            hasFollowed : true,
+            pressButton : false
           })
+          
         }
-      )
+      ).catch(res=>{
+        this.setData({
+          pressButton : false
+        })
+      })
     },
 
     unFollowOrg: function() {
+      if (this.data.pressButton) {
+        return
+      }
+      this.setData({
+        pressButton : true
+      })
       interact.unFollowOrg(this.data.orgId).then(
         (res) => {
           wx.showToast({
             title: '已取消关注',
           })
           this.setData({
-            hasFollowed : false
+            hasFollowed : false,
+            pressButton: false
           })
         }
-      )
+      ).catch(res=>{
+        this.setData({
+          pressButton : false
+        })
+      })
     },
   
     editOrgInfo: function() {

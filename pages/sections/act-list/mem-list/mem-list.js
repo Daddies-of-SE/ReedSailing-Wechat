@@ -108,7 +108,7 @@ Page({
     }
     else {
       wx.showToast({
-        title: '该用户未认证，不能添加为管理员',
+        title: '无法添加',
         icon : 'none'
       })
     }

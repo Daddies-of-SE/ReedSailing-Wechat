@@ -29,9 +29,9 @@
 </view>
 
 <daddy-dialog
-  title="{{searchResult.name}}"
+  title="{{searchResult.email && searchResult.email != '' ?searchResult.name : '未认证用户，无法添加'}}"
   show="{{ showSearchResult }}"
-  src="{{searchResult.avatar}}"
+  src="{{searchResult.email && searchResult.email != '' ? searchResult.avatar : ''}}"
   show-cancel-button
   bind:confirmTap="confirm"
   bind:cancelTap="cancel"

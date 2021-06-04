@@ -75,7 +75,7 @@ Page({
   },
 
   submitOrg: function (e) {
-    if (this.data.inputName == "") {
+    if (this.data.inputName.trim() == "") {
       wx.showToast({
         title: '名称不能为空',
         icon : "none"

@@ -9,6 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+      pressButton : false,
       isBoya : false,
       actId : -1,
       avg_score : 0,
@@ -233,6 +234,9 @@ Page({
         getApp().goCertificate()
         return
       }
+      if (this.data.pressButton) {
+        return
+      }
       if (this.data.hasEnded) {
         wx.showToast({
           title: '活动已结束，不能报名',
@@ -240,6 +244,9 @@ Page({
         })
         return
       }
+      this.setData({
+        pressButton : true
+      })
       interact.joinAct(this.data.actId).then(
         (res) => {
           wx.showToast({
@@ -255,8 +262,14 @@ Page({
               })
             }
           )
+          this.setData({
+            pressButton : false
+          })
         }
-      )
+      ).catch(res=>{
+        this.setData({
+        pressButton : false
+      })})
     },
 
     exitAct: function() {

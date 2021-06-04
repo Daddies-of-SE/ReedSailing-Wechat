@@ -113,7 +113,7 @@ function post_request(urlpath, data, funcInfo) {
         if (s == 401) {
           login.catchUnLogin(funcInfo);
           return
-        } else if (s != 200 && s != 201 && s != 204) {
+        } else if (s != 200 && s != 201 && s != 204 && !(result.data.non_field_errors && result.data.non_field_errors[0] == '已关注该组织。')) {
             wx.showModal({
               title: funcInfo.funcName + "请求失败",
               content: get_errmsg(result.data),
@@ -437,7 +437,7 @@ module.exports.unFollowOrg = function (org_id) {
   })
 }
 
-module.exports.updateUserInfo = function (name, sign, contact) {
+module.exports.updateUserInfo = function (name, sign, contact, avatar) {
   if (!app) {
     app = getApp()
   }
@@ -446,7 +446,8 @@ module.exports.updateUserInfo = function (name, sign, contact) {
       {
         name : name,
         sign : sign,
-        contact: contact
+        contact: contact,
+        avatar : avatar
       }, 
       {
         func: module.exports.updateUserInfo,

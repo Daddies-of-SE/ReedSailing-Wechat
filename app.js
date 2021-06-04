@@ -7,6 +7,8 @@ App({
   version: "1.6.3",
   show : false,
   debug : false,
+  second : 60,
+  timerRunning : false,
   loginData: {
     token: '',
     email : '',
@@ -138,26 +140,9 @@ App({
       if (that.loginData.userId == -1) {
         login.newLogin().then(
           (resgit) => {
-            wx.connectSocket({
-              url: that.ws_werver + `link/${that.loginData.userId}/`,
-              timeout: 1000,
-            })
             
-            //连接成功
-            wx.onSocketOpen(function() {
-              console.log("websocket连接服务器成功")
-              that.socketOpen = true
-              wx.sendSocketMessage({
-                data: 'This is a test from the client',
-              })
-            })
-
-            //监听链接断开事件
-            wx.onSocketClose(function(res) {
-              console.log("websocket连接断开:" + res.reason)
-              that.socketOpen = false
-            })
-
+            
+            that.loopSocket()
             resolve()
           }
         )
@@ -166,6 +151,30 @@ App({
       }
     })
     
+  },
+
+  loopSocket() {
+    var that = this
+    return new Promise((resolve, reject) => {
+      wx.connectSocket({
+        url: that.ws_werver + `link/${that.loginData.userId}/`,
+        timeout: 1000,
+      })
+      //连接成功
+      wx.onSocketOpen(function() {
+        console.log("websocket连接服务器成功")
+        that.socketOpen = true
+        wx.sendSocketMessage({
+          data: 'This is a test from the client',
+        })
+      })
+
+      //监听链接断开事件
+      wx.onSocketClose(function(res) {
+        console.log("websocket连接断开:" + res.reason)
+        that.socketOpen = false
+      })
+    })
   },
 
   haveRegistered() {

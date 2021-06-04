@@ -81,4 +81,6 @@
 
 
   <van-button class="my-button" slot="button" size="small" type="primary" custom-class="button" bindtap="submitUserInfo">修改个人信息</van-button>
+
+  <text>\n\n提示：点击修改并允许授权，会同步微信头像至小程序</text>
 </view>
