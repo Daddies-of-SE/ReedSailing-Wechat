@@ -14,7 +14,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-        // pressButton : false,
         actId : -1,
         actInfo : {},
         my_org:[],
@@ -268,10 +267,7 @@ Page({
 
     submitActWrapper: util.throttle(
     function() {
-                // if (this.data.pressButton) {
-        //     console.log("submit act return")
-        //     return
-        // }
+
         console.log("submit act continue")
 
         var d = this.data
@@ -296,56 +292,48 @@ Page({
                 title: '请选择活动地点',
                 icon : 'none'
             })
-            this.data.pressButton = false
         }
         else if (d.locationText.trim() == "") {
             wx.showToast({
                 title: '请输入详细地址',
                 icon : 'none'
             })
-            this.data.pressButton = false
         }
         else if (d.name.trim() == "") {
             wx.showToast({
               title: '请输入名称',
               icon : 'none'
             })
-            this.data.pressButton = false
         }
         else if (d.numPeople.trim() == "") {
             wx.showToast({
               title: '请输入人数',
               icon : 'none'
             })
-            this.data.pressButton = false
         }
         else if (!(/(^[1-9]\d*$)/.test(d.numPeople.trim()))) {
             wx.showToast({
               title: '人数请输入正整数',
               icon : 'none'
             })
-            this.data.pressButton = false
         }
         else if (parseInt(d.numPeople.trim()) < d.participantNum) {
             wx.showToast({
               title: '人数不能小于已报名人数',
               icon : 'none'
             })
-            this.data.pressButton = false
         }
         else if (d.createNewCategory && d.newCategory.trim() == "") {
             wx.showToast({
                 title: '请输入新类别',
                 icon : 'none'
             })
-            this.data.pressButton = false
         }
         else if (start_timesec >= end_timesec) {
             wx.showToast({
                 title: '开始时间应早于结束时间',
                 icon : 'none'
             })
-            this.data.pressButton = false
         }
         // else if (start <= new Date()) {
         //     wx.showToast({
@@ -366,7 +354,7 @@ Page({
             }
         }
     }
-    , 1000),
+    , 5000),  // set interval
 
 
     newActWrap: function(d, start_datetime, end_datetime, type_id, location) {
@@ -393,9 +381,7 @@ Page({
                         // change a picture
                         interact.uploadActAvatar(this.data.actId == -1 ? res.data.id : this.data.actId, this.data.actPicUrl).then(
                             (res) => {
-                                this.setData({
-                                    pressButton : false
-                                })
+                               
                                 wx.showToast({
                                     title: this.data.actId == -1 ? '创建成功' : '修改成功',
                                   })
@@ -410,9 +396,7 @@ Page({
                     else if (this.data.actId != -1 && this.data.actInfo.avatar && this.data.actPicUrl == '') {
                         interact.removeActAvatar(this.data.actId).then(
                             (res) => {
-                                this.setData({
-                                    pressButton : false
-                                })
+                                
                                 wx.showToast({
                                     title: this.data.actId == -1 ? '创建成功' : '修改成功',
                                 })
@@ -425,9 +409,7 @@ Page({
                         )
                     }
                     else {
-                        this.setData({
-                            pressButton : false
-                        })
+                        
                         wx.showToast({
                             title: this.data.actId == -1 ? '创建成功' : '修改成功',
                           })
