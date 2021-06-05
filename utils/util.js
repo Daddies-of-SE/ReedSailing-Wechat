@@ -98,6 +98,18 @@ const compare = (property) => {
     }
 }
 
+const throttle = (fn, delay) => {
+    var previous = 0;
+    // 使用闭包返回一个函数并且用到闭包函数外面的变量previous
+    return function() {
+        var now = new Date();
+        if(now - previous > delay) {
+            fn.apply(this, arguments);
+            previous = now;
+        }
+    }
+}
+
 module.exports = {
   err,
   debug,
@@ -105,5 +117,6 @@ module.exports = {
   getTimeMinute,
   getRelativeTime,
   replaceAll,
-  compare
+  compare,
+  throttle
 }

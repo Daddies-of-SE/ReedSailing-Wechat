@@ -14,7 +14,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        pressButton : false,
+        // pressButton : false,
         actId : -1,
         actInfo : {},
         my_org:[],
@@ -262,11 +262,17 @@ Page({
     },
 
     submitAct: function() {
-        if (this.data.pressButton) {
-            console.log("submit act return")
-            return
-        }
-        this.data.pressButton = true
+
+
+    },
+
+    submitActWrapper: util.throttle(
+    function() {
+                // if (this.data.pressButton) {
+        //     console.log("submit act return")
+        //     return
+        // }
+        console.log("submit act continue")
 
         var d = this.data
         var start_datetime = d.start_date + "T" + d.start_time
@@ -359,7 +365,9 @@ Page({
                 this.newActWrap(d, start_datetime, end_datetime, d.categories[d.index1].id, location)
             }
         }
-    },
+    }
+    , 1000),
+
 
     newActWrap: function(d, start_datetime, end_datetime, type_id, location) {
 

@@ -120,7 +120,7 @@
 
 </i-panel>
 
-<a class="weui-btn weui-btn_primary" bindtap="submitAct">提交</a>
+<a class="weui-btn weui-btn_primary" bindtap="submitActWrapper">提交</a>
 </view>
 
 <view wx:else>
