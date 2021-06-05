@@ -34,17 +34,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      verifiedEmail : app.loginData.email,
-      userId : app.loginData.userId,
-      nickName : app.loginData.nickName,
-      motto : app.loginData.motto,
-      contact : app.loginData.contact,
-      inputNickName : app.loginData.nickName,
-      inputMotto : app.loginData.motto,
-      inputContact : app.loginData.contact,
-      second: app.second
-    })
+    // interact.getUserInfo(app.loginData.userId).then(
+    //   (res) => {
+    //     login.saveLoginData({
+    //       token : app.loginData.token,
+    //       email : res.data.email,
+    //       userExist : app.loginData.userExist,
+    //       userId : app.loginData.userId,
+    //       nickName : res.data.name,
+    //       motto : res.data.sign,
+    //       avatar : res.data.avatar,
+    //       contact: res.data.contact,
+    //       follow_boya : res.data.follow_boya
+    //     })
+        this.setData({
+          verifiedEmail : app.loginData.email,
+          userId : app.loginData.userId,
+          nickName : app.loginData.nickName,
+          motto : app.loginData.motto,
+          contact : app.loginData.contact,
+          inputNickName : app.loginData.nickName,
+          inputMotto : app.loginData.motto,
+          inputContact : app.loginData.contact,
+          second: app.second
+        })
+    //   }
+    // )
     if (app.timerRunning) {
       this.timer()
     }
@@ -52,7 +67,7 @@ Page({
   },
 
   submitVerifyEmail(e) {
-    if (this.data.inputEmailAddress == "") {
+    if (this.data.inputEmailAddress.trim() == "") {
       wx.showToast({
         title: "请输入邮箱",
         icon: 'none'
@@ -108,7 +123,7 @@ Page({
   },
 
   submitCertificate(e) {
-    if (this.data.inputVerifyCode == "") {
+    if (this.data.inputVerifyCode.trim() == "") {
       wx.showToast({
         title: "请输入验证码",
         icon: 'none'
@@ -156,7 +171,7 @@ Page({
   },
 
   submitUserInfo(e) {
-    if (this.data.inputNickName == "") {
+    if (this.data.inputNickName.trim() == "") {
       wx.showToast({
         title: '昵称不能为空',
         icon: 'none'
@@ -237,6 +252,7 @@ Page({
             this.setData({
               second: 60
             })
+            app.second = 60
             app.timerRunning = false
             resolve(setTimer)
           }

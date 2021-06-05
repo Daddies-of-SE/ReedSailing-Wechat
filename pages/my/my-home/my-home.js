@@ -1,4 +1,6 @@
 const app = getApp()
+const interact = require('../../../utils/interact.js')
+const login = require('../../../utils/login.js')
 
 Page({
   data: {
@@ -39,6 +41,26 @@ Page({
     // wx.sendSocketMessage({
     //   data: 'This is a test from the client',
     // })
+    console.log(app, app.loginData, app.loginData.userId)
+    interact.getUserInfo(app.loginData.userId).then( (res) => {
+      login.saveLoginData({
+        token : app.loginData.token,
+        email : res.data.email,
+        userExist : app.loginData.userExist,
+        id : app.loginData.userId,
+        name : res.data.name,
+        sign : res.data.sign,
+        avatar : res.data.avatar,
+        contact: res.data.contact,
+        follow_boya : res.data.follow_boya
+      })
+      this.setData({
+        havelogin : app.haveRegistered(),
+        nickName : app.loginData.nickName,
+        motto : app.loginData.motto
+      })
+    }
+  )
 
     if (!app.haveRegistered()) {
       app.goCertificate()
@@ -104,11 +126,7 @@ Page({
         canIUseGetUserProfile: true,
       })
     }
-    this.setData({
-      havelogin : app.haveRegistered(),
-      nickName : app.loginData.nickName,
-      motto : app.loginData.motto
-    })
+    
     // util.debug("onshow called" + app.loginData.nickName)
     if (app.haveRegistered()) {
         this.setData({

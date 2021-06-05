@@ -1260,6 +1260,7 @@ module.exports.setNotifsRead = function (ids, read) {
 }
 
 module.exports.getRecommend = function () {
+  // console.log("get recommend user id", app.loginData.userId)
   if (!app) {
     app = getApp()
   }

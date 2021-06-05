@@ -6,7 +6,7 @@ const login = require('utils/login.js')
 App({
   version: "1.6.3",
   show : false,
-  debug : false,
+  debug : true,
   second : 60,
   timerRunning : false,
   loginData: {
@@ -78,18 +78,25 @@ App({
     longitude: 116.347256
   },
 
+  testShow() {
+    return new Promise((resolve, reject) => {
+      interact.show().then(
+        (res) => {
+          this.show = res.data.show
+          console.log("show: ", this.show)
+          resolve(this.show)
+        }
+      )
+    })
+  },
+
   onLaunch() {
     util.debug("launching app... server is " + this.server)
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
 
-    interact.show().then(
-      (res) => {
-        this.show = res.data.show
-        console.log("show: ", this.show)
-      }
-    )
+    this.testShow()
 
     wx.setStorageSync('logs', logs)
 

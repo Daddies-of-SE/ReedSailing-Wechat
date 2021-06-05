@@ -28,68 +28,76 @@ Page({
     },
 
     onShow: function (e) {
-      this.setData({
-        show : app.show
-      })
-      if (app.haveRegistered()) {
+      app.testShow().then(
+        (rr) => {
           this.setData({
-              havelogin : true,
-              info : JSON.stringify(app.loginData.nickName)
+            show : app.show
           })
-      }
-      
-      getApp().globalLogin().then(
-        (res) => {
-          this.setData({
-              havelogin : app.haveRegistered(),
-              info : JSON.stringify(app.loginData.nickName),
-          })
-          if (app.unreadNotifList.length != 0) {
-            app.showRedDot()
+          if (app.haveRegistered()) {
+              this.setData({
+                  havelogin : true,
+                  info : JSON.stringify(app.loginData.nickName)
+              })
           }
-  
-          interact.getRecommend().then(
+          
+          getApp().globalLogin().then(
             (res) => {
-                var lst = []
-                var locations = []
-                var acts = res.data.acts
-                var orgs = res.data.orgs
-                this.setData({
-                  org_list : orgs.length > 10 ? orgs.slice(0,10) : orgs
-                })
-                for (var i = 0; i < Math.min(10, acts.length); i++) {
-                    var v = acts[i]
-                    v.pub_time = v.pub_time.split(".")[0].replace("T", " ")
-                    v.begin_time = util.getTimeMinute(v.begin_time)
-                    v.end_time = util.getTimeMinute(v.end_time)
-                    v.relative_pub_time = util.getRelativeTime(v.pub_time)
-                    if (this.data.show || v.block.id == 2) {
-                      lst.push(v)
-                      locations.push({
-                        id: v.id,
-                        latitude: v.location.latitude,
-                        longitude: v.location.longitude,
-                        name: v.name,
-                        width: "30",  
-                        height: "60",
-                        // callout : {content : v.name}
-                      })
+              this.setData({
+                  havelogin : app.haveRegistered(),
+                  info : JSON.stringify(app.loginData.nickName),
+              })
+              if (app.unreadNotifList.length != 0) {
+                app.showRedDot()
+              }
+      
+              interact.getRecommend().then(
+                (res) => {
+                    
+                    var lst = []
+                    var locations = []
+                    var acts = res.data.acts
+                    var orgs = res.data.orgs
+                    
+                    this.setData({
+                      org_list : orgs.length > 10 ? orgs.slice(0,10) : orgs
+                    })
+                    for (var i = 0; i < Math.min(10, acts.length); i++) {
+                        var v = acts[i]
+                        v.pub_time = v.pub_time.split(".")[0].replace("T", " ")
+                        v.begin_time = util.getTimeMinute(v.begin_time)
+                        v.end_time = util.getTimeMinute(v.end_time)
+                        v.relative_pub_time = util.getRelativeTime(v.pub_time)
+                        if (app.show || v.block.id == 2) {
+                          lst.push(v)
+                          locations.push({
+                            id: v.id,
+                            latitude: v.location.latitude,
+                            longitude: v.location.longitude,
+                            name: v.name,
+                            width: "30",  
+                            height: "60",
+                            // callout : {content : v.name}
+                          })
+                        }
                     }
-                }
-                
-                this.setData({
-                  act_list : lst.sort(util.compare('id')).reverse(),
-                  markers : locations,
-                  show : app.show
-                })
-            }
-          )
-          
-          
 
-          
-        }
-      )
+                    console.log("lst length", lst.length, lst)
+                    
+                    this.setData({
+                      act_list : lst.sort(util.compare('id')).reverse(),
+                      markers : locations,
+                      show : app.show
+                    })
+                    console.log("act list", this.data.act_list)
+                }
+              )
+              
+              
+
+              
+            }
+        )
+      })
     },
 
     // callLogin: function (e) {
