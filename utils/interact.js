@@ -174,6 +174,13 @@ function get_request(urlpath, funcInfo) {
               util.debug(funcInfo.funcName + "未找到id")
               funcInfo.resolve(result);
             }
+            else if (funcInfo.funcName  == "getUserInfo" || funcInfo.funcName == "getUserInfo") {
+              wx.showModal({
+                'content' : '未找到id对应的用户'
+              })
+              result.damn = true
+              funcInfo.resolve(result);
+            }
             else {
               wx.showModal({
                 title: funcInfo.funcName + "请求失败",

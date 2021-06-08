@@ -13,6 +13,7 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'),
     nickName : '',
     motto : '',
+    avatar : '',
     jumpItem: [
       {
         name:'个人信息',
@@ -57,7 +58,8 @@ Page({
       this.setData({
         havelogin : app.haveRegistered(),
         nickName : app.loginData.nickName,
-        motto : app.loginData.motto
+        motto : app.loginData.motto,
+        avatar : app.loginData.avatar
       })
     }
   )

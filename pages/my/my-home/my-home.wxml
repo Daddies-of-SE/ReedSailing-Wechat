@@ -7,9 +7,10 @@
 
     
     <view class="userinfo" wx:if="{{canIUseOpenData}}" >
-      <view class="userinfo-avatar" bind:tap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
+      <!-- <view class="userinfo-avatar" bind:tap="bindViewTap"> -->
+        <image src="{{avatar}}" class="userinfo-avatar"></image>
+        <!-- <open-data type="userAvatarUrl"></open-data> -->
+      <!-- </view> -->
         <text class="userinfo-nickname">{{nickName}}</text>
         <text class="userinfo-motto" wx:if="{{motto && motto != ''}}">{{motto}}</text>
     </view>

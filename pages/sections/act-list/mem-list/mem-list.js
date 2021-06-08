@@ -84,10 +84,12 @@ Page({
     interact.getUserInfo(this.data.searchInput).then(
       (res) => {
         // util.debug(res.data.name)
-        this.setData({
-          searchResult: res.data,
-          showSearchResult: true,
-        })
+        if (!res.damn) {
+          this.setData({
+            searchResult: res.data,
+            showSearchResult: true,
+          })
+        }
       }
     )
   },
