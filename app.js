@@ -4,7 +4,7 @@ const login = require('utils/login.js')
 
 // app.js
 App({
-  version: "1.6.3",
+  version: "1.7.2",
   show : false,
   debug : true,
   second : 60,
